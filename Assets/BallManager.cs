@@ -162,23 +162,25 @@ public class BallManager : MonoBehaviour
     {//跳ね返りを予測する
 
         Vector3 locate_return = locate;
+        Vector3 malletsize = this.GetComponent<Renderer>().bounds.size;//マレットのサイズを取得
+        float malletmargin = malletsize.x/2;
 
-        if (locate_return.x <= wall_left)
+        if (locate_return.x <= wall_left+malletmargin)
         {
-            locate_return.x -= 2 * (locate_return.x - wall_left);
+            locate_return.x -= 2 * (locate_return.x - wall_left-malletmargin);
         }
-        else if (wall_right <= locate_return.x)
+        else if (wall_right-malletmargin <= locate_return.x)
         {
-            locate_return.x -= 2 * (locate_return.x - wall_right);
+            locate_return.x -= 2 * (locate_return.x - (wall_right-malletmargin));
         }
 
-        if (locate_return.y <= wall_down)
+        if (locate_return.y <= wall_down+malletmargin)
         {
-            locate_return.y -= 2 * (locate_return.y - wall_down);
+            locate_return.y -= 2 * (locate_return.y - wall_down-malletmargin);
         }
-        else if (wall_up <= locate_return.y)
+        else if (wall_up-malletmargin <= locate_return.y)
         {
-            locate_return.y -= 2 * (locate_return.y - wall_up);
+            locate_return.y -= 2 * (locate_return.y - (wall_up-malletmargin));
         }
 
         return locate_return;
