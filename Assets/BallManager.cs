@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class BallManager : MonoBehaviour
     int count_getposition;//パケットのデータを取得した総回数
     int index;//取得したデータを配列のどのindexに入れるか
     bool Outliers;//外れ値防止(外れ値が疑われる値を検出したらtrueになる)
+    Vector3 Outlier_velocity;//外れ値が疑われる値を保存
 
     int MarkFrate;//何フレームごとに速度計算、軌跡と予測マーク挿入をするか
 
@@ -89,24 +91,33 @@ public class BallManager : MonoBehaviour
         int beforeindex,before2index;//ひとつ前のindex,そのまたひとつ前のindex
         if(index==0) beforeindex=number_getposition-1; else beforeindex=index-1;
         if(beforeindex==0) before2index=number_getposition-1; else before2index=beforeindex-1;
-        BallPosition[index]=this.transform.position;//現在のボールの位置を記憶
+
+        Vector3 a=new Vector3(15,15,15);
+        if(Input.GetKeyDown(KeyCode.A)) BallPosition[index]=a; else BallPosition[index]=this.transform.position;//現在のボールの位置を記憶
 
         Vector3 tmp_velocity;
         if(count_getposition==0) BallVelocity[0]=Vector3.zero;
         else {
             tmp_velocity=BallPosition[index]-BallPosition[beforeindex];
             if(Outliers){//ひとつ前が外れ値の速度の可能性がある場合
-                if(((Vector3.Angle(tmp_velocity,BallVelocity[beforeindex]))>20)|((Vector3.Angle(tmp_velocity,BallVelocity[before2index]))>20))//外れ値だったら
-                    BallVelocity[index]=BallVelocity[beforeindex]=tmp_velocity;
-                else//外れ値じゃなかったら
+                if(((Vector3.Angle(tmp_velocity,Outlier_velocity))>20)){//外れ値だったら
                     BallVelocity[index]=tmp_velocity;
+                }
+                else{//外れ値じゃなかったら
+                    BallVelocity[index]=tmp_velocity;
+                    BallVelocity[beforeindex]=Outlier_velocity;
+                }
                 Outliers=false;
             }
             else {
-                if(((Vector3.Angle(tmp_velocity,BallVelocity[beforeindex]))>20)|((Vector3.Angle(tmp_velocity,BallVelocity[before2index]))>20))
+                if(((Vector3.Angle(tmp_velocity,BallVelocity[beforeindex]))>20)){//ひとつ前の速度と大幅に違ったら
                     Outliers=true;
-                BallVelocity[index]=tmp_velocity;
+                    Outlier_velocity=tmp_velocity;
+                    BallVelocity[index]=BallVelocity[beforeindex];
+                }
+                else BallVelocity[index]=tmp_velocity;
             }
+            //)|(5<Nanbai(Magnitude_vec3(tmp_velocity),Magnitude_vec3(Outlier_velocity))
         }
 
         count_getposition+=1;
@@ -207,5 +218,15 @@ public class BallManager : MonoBehaviour
         }
 
         return locate_return;
+    }
+
+    double Nanbai(double a,double b){
+        double tmp_a,tmp_b;
+        if(a>b) {tmp_a=a;tmp_b=b;} else{tmp_a=b; tmp_b=a;}
+        return tmp_a/tmp_b;
+    }
+
+    double Magnitude_vec3(Vector3 a){
+        return Math.Pow(a.x*a.x+a.y*a.y+a.z*a.z,0.5);
     }
 }
