@@ -12,9 +12,11 @@ public class BallManager : MonoBehaviour
     Vector3[] BallPosition;//Ballの位置
     Vector3[] BallVelocity;//Ballの速度
     int count_getposition;//パケットのデータを取得した総回数
-    int index;//取得したデータを配列のどのindexに入れるか
+    int nowindex;//取得したデータを配列のどのnowindexに入れるか
+    int changevalindex;//速度が変わる境となるindex
     bool Outliers;//外れ値防止(外れ値が疑われる値を検出したらtrueになる)
     Vector3 Outlier_velocity;//外れ値が疑われる値を保存
+
 
     int MarkFrate;//何フレームごとに速度計算、軌跡と予測マーク挿入をするか
 
@@ -50,7 +52,8 @@ public class BallManager : MonoBehaviour
         BallPosition=new Vector3[number_getposition];//Ballの位置
         BallVelocity=new Vector3[number_getposition];//Ballの速度
         count_getposition=0;//パケットのデータを取得した総回数
-        index=0;//取得したデータを配列のどのindexに入れるか
+        nowindex=0;//取得したデータを配列のどのnowindexに入れるか
+        changevalindex=-1;
         Outliers=false;//外れ値防止
 
         MarkFrate = 3;//何フレームごとに速度計算、軌跡と予測マーク挿入をするか
@@ -87,35 +90,39 @@ public class BallManager : MonoBehaviour
     void GetBallData()
     {//ボールの速度を計算
 
-        index=count_getposition%number_getposition;//データを記憶するindex
+        nowindex=count_getposition%number_getposition;//データを記憶するindex
         int beforeindex,before2index;//ひとつ前のindex,そのまたひとつ前のindex
-        if(index==0) beforeindex=number_getposition-1; else beforeindex=index-1;
+        if(nowindex==0) beforeindex=number_getposition-1; else beforeindex=nowindex-1;
         if(beforeindex==0) before2index=number_getposition-1; else before2index=beforeindex-1;
 
         Vector3 a=new Vector3(15,15,15);
-        if(Input.GetKeyDown(KeyCode.A)) BallPosition[index]=a; else BallPosition[index]=this.transform.position;//現在のボールの位置を記憶
+        if(Input.GetKeyDown(KeyCode.A)) BallPosition[nowindex]=a; else BallPosition[nowindex]=this.transform.position;//現在のボールの位置を記憶
 
         Vector3 tmp_velocity;
-        if(count_getposition==0) BallVelocity[0]=Vector3.zero;
+        if(count_getposition==0) BallVelocity[0]=Vector3.zero;//現在のボールの速度を記録
         else {
-            tmp_velocity=BallPosition[index]-BallPosition[beforeindex];
-            if(Outliers){//ひとつ前が外れ値の速度の可能性がある場合
-                if(((Vector3.Angle(tmp_velocity,Outlier_velocity))>20)){//外れ値だったら
-                    BallVelocity[index]=tmp_velocity;
+            if(changevalindex==nowindex) changevalindex=-1;
+
+            tmp_velocity=BallPosition[nowindex]-BallPosition[beforeindex];
+            if(count_getposition==1) BallVelocity[nowindex]=tmp_velocity;
+            else if(Outliers){//ひとつ前が外れ値の速度の可能性がある場合
+                if((5<(Vector3.Angle(tmp_velocity,Outlier_velocity)))|(5<Nanbai(Magnitude_vec3(tmp_velocity),Magnitude_vec3(Outlier_velocity)))){//外れ値だったら
+                    BallVelocity[nowindex]=tmp_velocity;
                 }
                 else{//外れ値じゃなかったら
-                    BallVelocity[index]=tmp_velocity;
+                    BallVelocity[nowindex]=tmp_velocity;
                     BallVelocity[beforeindex]=Outlier_velocity;
+                    changevalindex=beforeindex;
                 }
                 Outliers=false;
             }
             else {
-                if(((Vector3.Angle(tmp_velocity,BallVelocity[beforeindex]))>20)){//ひとつ前の速度と大幅に違ったら
+                if((5<(Vector3.Angle(tmp_velocity,BallVelocity[beforeindex])))|(5<Nanbai(Magnitude_vec3(tmp_velocity),Magnitude_vec3(BallVelocity[beforeindex])))){//ひとつ前の速度と大幅に違ったら
                     Outliers=true;
                     Outlier_velocity=tmp_velocity;
-                    BallVelocity[index]=BallVelocity[beforeindex];
+                    BallVelocity[nowindex]=BallVelocity[beforeindex];
                 }
-                else BallVelocity[index]=tmp_velocity;
+                else BallVelocity[nowindex]=tmp_velocity;
             }
             //)|(5<Nanbai(Magnitude_vec3(tmp_velocity),Magnitude_vec3(Outlier_velocity))
         }
@@ -147,7 +154,7 @@ public class BallManager : MonoBehaviour
             }//透明度を下げる
         }
 
-        trajectory[count_trajectory % number_trajectory] = Instantiate(Prefab_Trajectory, BallPosition[index], new Quaternion(0, 0, 0, 0));//軌跡を生成
+        trajectory[count_trajectory % number_trajectory] = Instantiate(Prefab_Trajectory, BallPosition[nowindex], new Quaternion(0, 0, 0, 0));//軌跡を生成
 
         sprite_trajectory[0] = trajectory[0].GetComponent<SpriteRenderer>();
         sprite_trajectory[0].material.color = new Color32(0, 0, 0, 20);//Color32(233,56,214,255)
@@ -164,7 +171,7 @@ public class BallManager : MonoBehaviour
         {
             for (int i = 0; i < number_prediction; i++)
             {
-                prediction[i] = Instantiate(Prefab_Prediction, Prediction(BallPosition[index] + BallVelocity[index] * i * MarkFrate), new Quaternion(0, 0, 0, 0));//軌跡を生成
+                prediction[i] = Instantiate(Prefab_Prediction, Prediction(BallPosition[nowindex] + BallVelocity[nowindex] * i * MarkFrate), new Quaternion(0, 0, 0, 0));//軌跡を生成
                 sprite_prediction[i] = prediction[i].GetComponent<SpriteRenderer>();
                 sprite_prediction[i].material.color += new Color32(0, 0, 0, 20);
                 count_prediction += 1;
@@ -181,7 +188,7 @@ public class BallManager : MonoBehaviour
 
             Destroy(prediction[count_prediction % number_prediction]);//予測マークを消去
 
-            prediction[count_prediction % number_prediction] = Instantiate(Prefab_Prediction, Prediction(BallPosition[index] + BallVelocity[index] * number_prediction * MarkFrate), new Quaternion(0, 0, 0, 0));//軌跡を生成
+            prediction[count_prediction % number_prediction] = Instantiate(Prefab_Prediction, Prediction(BallPosition[nowindex] + BallVelocity[nowindex] * number_prediction * MarkFrate), new Quaternion(0, 0, 0, 0));//軌跡を生成
 
             //予測軌道の先頭を別の色に
             sprite_prediction[number_prediction-1] = prediction[number_prediction-1].GetComponent<SpriteRenderer>();
@@ -220,13 +227,13 @@ public class BallManager : MonoBehaviour
         return locate_return;
     }
 
-    double Nanbai(double a,double b){
-        double tmp_a,tmp_b;
+    int Nanbai(int a,int b){
+        int tmp_a,tmp_b;
         if(a>b) {tmp_a=a;tmp_b=b;} else{tmp_a=b; tmp_b=a;}
-        return tmp_a/tmp_b;
+        if(tmp_b==0) return 1; else return (tmp_a/tmp_b);
     }
 
-    double Magnitude_vec3(Vector3 a){
-        return Math.Pow(a.x*a.x+a.y*a.y+a.z*a.z,0.5);
+    int Magnitude_vec3(Vector3 a){
+        return Mathf.CeilToInt(Convert.ToSingle(Math.Pow(a.x*a.x+a.y*a.y+a.z*a.z,0.5)));
     }
 }
