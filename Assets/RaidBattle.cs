@@ -10,11 +10,16 @@ public class RaidBattle : MonoBehaviour
     int time;
     int boss_hp;
     int player_a_hp;
-    int Player_b_hp;
+    int player_b_hp;
 
 } 
 
 void Start()
+{
+
+}
+
+void Update()
 {
     
 }
