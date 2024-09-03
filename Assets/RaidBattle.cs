@@ -21,5 +21,10 @@ void Start()
 
 void Update()
 {
+
+}
+
+void CountHP()
+{
     
 }
