@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 334317798}
   - component: {fileID: 334317800}
   - component: {fileID: 334317801}
+  - component: {fileID: 334317802}
   m_Layer: 0
   m_Name: wallbottom
   m_TagString: Untagged
@@ -406,6 +407,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &334317802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334317796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15590252eda71fc45a8338fda79d4a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &434138398 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 60265431807205910, guid: c37667d66e5ddbb49b385051108beefc, type: 3}
@@ -914,6 +927,7 @@ GameObject:
   - component: {fileID: 1062965587}
   - component: {fileID: 1062965589}
   - component: {fileID: 1062965590}
+  - component: {fileID: 1062965591}
   m_Layer: 0
   m_Name: wallleft
   m_TagString: Untagged
@@ -1060,6 +1074,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1062965591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062965585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15590252eda71fc45a8338fda79d4a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1191961970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1140,6 +1166,7 @@ GameObject:
   - component: {fileID: 1883009351}
   - component: {fileID: 1883009353}
   - component: {fileID: 1883009354}
+  - component: {fileID: 1883009355}
   m_Layer: 0
   m_Name: wallright
   m_TagString: Untagged
@@ -1286,6 +1313,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1883009355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883009349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15590252eda71fc45a8338fda79d4a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2138868566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,6 +1337,7 @@ GameObject:
   - component: {fileID: 2138868568}
   - component: {fileID: 2138868570}
   - component: {fileID: 2138868571}
+  - component: {fileID: 2138868572}
   m_Layer: 0
   m_Name: walltop
   m_TagString: Untagged
@@ -1444,6 +1484,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2138868572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138868566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15590252eda71fc45a8338fda79d4a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &60265432207773448
 PrefabInstance:
   m_ObjectHideFlags: 0
