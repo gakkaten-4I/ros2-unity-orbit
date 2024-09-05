@@ -31,10 +31,10 @@ public class BallManager : MonoBehaviour
     int count_prediction;//総予測マーク数
 
     //フィールドの大きさ
-    int wall_right = 10;
-    int wall_left = -10;
-    float wall_up = 4.75f;
-    float wall_down = -4.75f;
+    float wall_right = 20.5f;
+    float wall_left = 0.5f;
+    float wall_up = 0f;
+    float wall_down = -10f;
 
     // Start is called before the first frame update
     void Start()
