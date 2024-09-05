@@ -12,7 +12,7 @@ public class HPBar : MonoBehaviour
     public int bossHP = 45;
     
     public int initialHP;
-    public int currentHP;
+    private int currentHP;
     int player_a_hp;
     int player_b_hp;
 
@@ -22,7 +22,13 @@ public class HPBar : MonoBehaviour
     {
         initialHP = bossHP;
         currentHP = bossHP;
+         if (hpBarImage == null)
+        {
+            Debug.LogError("hpBarImage が設定されていません！");
+        }
         UpdateHPBar();
+
+        
 
         Debug.Log("Hello World");
 
