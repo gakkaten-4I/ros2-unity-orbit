@@ -17,22 +17,3 @@ public class GameManager : MonoBehaviour
     }
 }
 
-public class BossController : MonoBehaviour
-{
-    public SpriteRenderer spriteRenderer; // スプライトレンダラーを参照
-
-    void Start()
-    {
-        // スプライトレンダラーを取得
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
-        // 必要に応じてスプライトを変更
-        Sprite newSprite = Resources.Load<Sprite>("NewBossSprite");
-        spriteRenderer.sprite = newSprite;
-    }
-
-    void Update()
-    {
-        // ここでボスの移動やアニメーションを制御
-    }
-}
