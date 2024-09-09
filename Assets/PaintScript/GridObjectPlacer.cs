@@ -11,7 +11,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
     void Start()
     {
         PlaceObjectsInGrid();
-        StartCoroutine(WaitAndCallResult(50f));  // 50秒後にresult関数を呼び出すコルーチンを開始
+        StartCoroutine(WaitAndCallResult(30f));  // 50秒後にresult関数を呼び出すコルーチンを開始
     }
 
     void PlaceObjectsInGrid()
@@ -56,6 +56,19 @@ public class GridObjectPlacerXZ : MonoBehaviour
     // 結果を表示する関数（必要に応じて定義）
     void result()
     {
-        Debug.Log("50秒が経過しました。");
+        for (int x = 0; x < gridSizeX/2; x++)
+        {
+            for (int y = 0; y < gridSizeY; y++)
+            {
+               
+                Vector3 position = new Vector3(7.5f + x * 5, -9.5f + y * spacing, 0);
+                        // オブジェクトを配置し、生成されたインスタンスの参照を取得
+                GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
+                            // オブジェクトに固有の名前を設定 (例: "Square_X2_Y3" など)
+                newObject.name = $"Square_2X{x}_2Y{y}";
+                
+
+            }
+        }
     }
 }
