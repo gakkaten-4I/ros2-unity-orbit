@@ -26,15 +26,20 @@ public class GridObjectPlacerXZ : MonoBehaviour
         {
             for (int y = 0; y < gridSizeY; y++)
             {
+                if (x != 0 || y != 0)
+                {
+                    Vector3 position = new Vector3(8.5f + x * spacing, -9.5f + y * spacing, 0);
+
+                        // オブジェクトを配置し、生成されたインスタンスの参照を取得
+                        
+                        GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
+
+                            // オブジェクトに固有の名前を設定 (例: "Square_X2_Y3" など)
+                        newObject.name = $"Square_X{x}_Y{y}";
+                }
                 // 配置位置を計算
-                Vector3 position = new Vector3(8.5f + x * spacing, -9.5f + y * spacing, 0);
-
-                // オブジェクトを配置し、生成されたインスタンスの参照を取得
-                GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
-
-                // オブジェクトに固有の名前を設定 (例: "Square_X2_Y3" など)
-                newObject.name = $"Square_X{x}_Y{y}";
-
+                
+                
                 // 必要に応じて、個別に操作を加える (例: 色を変えるなど)
                 // newObject.GetComponent<Renderer>().material.color = Color.red;
             }
