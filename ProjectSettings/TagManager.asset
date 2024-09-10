@@ -42,3 +42,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: PostProcess
+    uniqueID: 1961833013
+    locked: 0
+  - name: TransparentFX
+    uniqueID: 3108684575
+    locked: 0
+  - name: TargetLayer
+    uniqueID: 3447537529
+    locked: 0
