@@ -20,8 +20,15 @@ public class BossController : MonoBehaviour
 //ボスの初期設定・ゲームが開始されたときに一度だけ実行される
     void Start()
     {
-        HPBar.currentHP = bossHP;
-        Debug.Log("Hello World");
+         // HPバーに最大HPを設定
+        if (hpBarController != null)
+        {
+            hpBarController.initialHP = bossHP;
+        }
+        else
+        {
+            Debug.LogError("HPBarController がアタッチされていません");
+        }
 
     }
 

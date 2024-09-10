@@ -17,6 +17,5 @@ public class BallManager2 : MonoBehaviour
         Vector3 target = new Vector3(10, -5, 0);
         float step = 2.0f * Time.deltaTime;
         transform.position = Vector3.MoveTowards(current, target, step);
-
     }
 }
