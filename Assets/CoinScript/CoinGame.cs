@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine;
@@ -39,3 +39,4 @@ public class CoinGame : MonoBehaviour
         if(timeCount >= 600 or sumPoint >= )
     }
 }
+*/

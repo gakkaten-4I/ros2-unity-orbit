@@ -388,7 +388,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 77fc6ef1990ffb1498d6c4b86dd904d4, type: 2}
+  - {fileID: 2100000, guid: 092a534dba20fea49aaa75847673762f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -759,7 +759,7 @@ GameObject:
   - component: {fileID: 556171492}
   - component: {fileID: 556171491}
   - component: {fileID: 556171495}
-  - component: {fileID: 556171494}
+  - component: {fileID: 556171496}
   m_Layer: 0
   m_Name: ball
   m_TagString: Untagged
@@ -1036,22 +1036,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feab04ad06492965492b3edc6423aa53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &556171494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 556171482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 881281a8ddc85364f9831eb69b4ffb58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyableLayer:
-    m_Bits: 0
-  CoinCount: 0
-  CoinText: {fileID: 2003770163}
 --- !u!58 &556171495
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1087,6 +1071,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &556171496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556171482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f47d0f4cecbb40b4589f5509c345db61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyableLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  CoinCount: 0
+  CoinText: {fileID: 2003770163}
 --- !u!1 &573867720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,6 +1099,7 @@ GameObject:
   - component: {fileID: 573867722}
   - component: {fileID: 573867721}
   - component: {fileID: 573867723}
+  - component: {fileID: 573867724}
   m_Layer: 0
   m_Name: GameSceneManager
   m_TagString: Untagged
@@ -1147,9 +1149,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a6f3c1c5dee89344ab52a113cd820a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &573867724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573867720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddeb53fed534e1a49b0055795b414740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   objectToPlace: {fileID: 207530942}
   gridSizeX: 5
-  gridSizeY: 10
+  gridSizeY: 5
   spacing: 2
 --- !u!1 &1062965585
 GameObject:
