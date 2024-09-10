@@ -781,6 +781,7 @@ GameObject:
   - component: {fileID: 556171492}
   - component: {fileID: 556171491}
   - component: {fileID: 556171494}
+  - component: {fileID: 556171495}
   m_Layer: 3
   m_Name: ball
   m_TagString: Untagged
@@ -1121,6 +1122,19 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &556171495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556171482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f7af10d7f054f439373f6676e589d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trail: {fileID: 556171489}
 --- !u!1 &573867720
 GameObject:
   m_ObjectHideFlags: 0
