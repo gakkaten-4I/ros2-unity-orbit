@@ -3,7 +3,9 @@ using UnityEngine;
 public class SpriteCounter : MonoBehaviour
 {
     private int redSprites = 0; 
+    private int blueSprites = 0;
     public float redRatio = 0f;
+    public float blueRatio = 0f;
     private int SpriteNum = 0;
 
     // publicで指定するレイヤーマスク
@@ -21,6 +23,10 @@ public class SpriteCounter : MonoBehaviour
             redRatio = (float)redSprites / (float)SpriteNum * 100f;
             redRatio = Mathf.Round(redRatio * 10f) / 10f;  // 小数点1桁に丸める
             Debug.Log($"Red Sprite Ratio: {redRatio}%");
+
+            blueRatio = (float)blueSprites / (float)SpriteNum * 100f;
+            blueRatio = Mathf.Round(blueRatio * 10f) / 10f;  // 小数点1桁に丸める
+            Debug.Log($"Red Sprite Ratio: {blueRatio}%");
         }
         else
         {
@@ -31,7 +37,8 @@ public class SpriteCounter : MonoBehaviour
 
     int CountSpritesInScene()
     {
-        redSprites = 0;  // 赤いスプライトの数をリセット
+        redSprites = 0; 
+        blueSprites = 0; // 赤いスプライトの数をリセット
 
         // SpriteRendererコンポーネントを持つすべてのゲームオブジェクトを検索
         SpriteRenderer[] spriteRenderers = GameObject.FindObjectsOfType<SpriteRenderer>();
@@ -49,6 +56,11 @@ public class SpriteCounter : MonoBehaviour
                 {
                     redSprites++;  // 赤いスプライトをカウント
                 }
+                else if (IsBlue(sr.color))
+                {
+                    blueSprites++;  // 青いスプライトをカウント
+                }
+
             }
         }
 
@@ -59,5 +71,11 @@ public class SpriteCounter : MonoBehaviour
     {
         // 色が完全な赤 (255, 0, 0) かをチェック
         return Mathf.Approximately(color.r, 1f) && Mathf.Approximately(color.g, 0f) && Mathf.Approximately(color.b, 0f);
+    }
+
+    bool IsBlue(Color color)
+    {
+        // 色が完全な赤 (255, 0, 0) かをチェック
+        return Mathf.Approximately(color.r, 0f) && Mathf.Approximately(color.g, 0f) && Mathf.Approximately(color.b, 1f);
     }
 }

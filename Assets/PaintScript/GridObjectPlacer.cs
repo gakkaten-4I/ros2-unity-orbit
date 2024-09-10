@@ -11,7 +11,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
     void Start()
     {
         PlaceObjectsInGrid();
-        StartCoroutine(WaitAndCallResult(30f));  // 50秒後にresult関数を呼び出すコルーチンを開始
+        StartCoroutine(WaitAndCallResult(3f));  // 50秒後にresult関数を呼び出すコルーチンを開始
     }
 
     void PlaceObjectsInGrid()
