@@ -67,6 +67,8 @@ public class BallManager : MonoBehaviour
         sprite_prediction = new SpriteRenderer[number_prediction];//予測マークの透明度
         count_prediction = 0;//総予測マーク数
 
+        turn=true;//どちらがパケットを打っているか
+
     }
 
     // Update is called once per frame
@@ -226,7 +228,7 @@ public class BallManager : MonoBehaviour
     }
 
     bool whichturn(Vector3 velocity, bool beforeturn){
-        if((velocity.x>=0) || (velocity.x==0 && beforeturn==true)) return true; else return false;  
+        if((velocity.x>0) || (velocity.x==0 && beforeturn==true)) return true; else return false;  
     }
 
     int Nanbai(int a,int b){

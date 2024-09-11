@@ -48,16 +48,16 @@ public class ROS2Listener : MonoBehaviour
     float cameraToScreenBottom = 0.44f;
     void callback(geometry_msgs.msg.Vector3 msg)
     {
-        //xÀ•W‚Ì‚¸‚ê•â³
+        //xï¿½ï¿½ï¿½Wï¿½Ì‚ï¿½ï¿½ï¿½â³
         raw_x= msg.X;
         tanPhi = cameraHeight / ((2 * raw_x - screenWidth) / screenWidth * halfFieldWidth);
         deltaX = ledHeight / tanPhi;
         targetPos.x = (float)((raw_x-screenWidth*deltaX/halfFieldWidth)/66.8f);
 
 
-        //YÀ•W‚Ì‚¸‚ê•â³
+        //Yï¿½ï¿½ï¿½Wï¿½Ì‚ï¿½ï¿½ï¿½â³
         raw_y = msg.Y;
-        tanTheta=cameraHeight/(cameraToScreenBottom+((screenHeight)-(raw_y*-1))/screenHeight)*fieldHeight);
+        tanTheta=cameraHeight/((cameraToScreenBottom+((screenHeight)-(raw_y*-1))/screenHeight)*fieldHeight);
         deltaY=ledHeight/tanTheta;
         targetPos.y = (float)((raw_y - screenHeight * deltaY / fieldHeight) / 66.8f);
 
