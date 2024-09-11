@@ -11,12 +11,10 @@ public class BallManager : MonoBehaviour
     int number_getposition;//記憶しておくパケットのデータ数
     Vector3[] BallPosition;//Ballの位置
     Vector3[] BallVelocity;//Ballの速度
-    int count_getposition;//パケットのデータを取得した総回数
-    int nowindex;//取得したデータを配列のどのnowindexに入れるか
-    int changevalindex;//速度が変わる境となるindex
-    bool Outliers;//外れ値防止(外れ値が疑われる値を検出したらtrueになる)
     Vector3 Outlier_velocity;//外れ値が疑われる値を保存
-
+    int count_getposition;//パケットのデータを取得した総回数
+    int nowindex;//取得したデータを配列のどのindexに入れるか
+    bool Outliers;//外れ値防止(外れ値が疑われる値を検出したらtrueになる)
 
     int MarkFrate;//何フレームごとに速度計算、軌跡と予測マーク挿入をするか
 
@@ -29,6 +27,8 @@ public class BallManager : MonoBehaviour
     GameObject[] prediction;//Ballの予測マークを入れる
     SpriteRenderer[] sprite_prediction;//予測マークの透明度
     int count_prediction;//総予測マーク数
+
+    bool turn;//どちらのターンか
 
     //フィールドの大きさ
     float wall_right = 20.5f;
@@ -101,7 +101,6 @@ public class BallManager : MonoBehaviour
         Vector3 tmp_velocity;
         if(count_getposition==0) BallVelocity[0]=Vector3.zero;//現在のボールの速度を記録
         else {
-            if(changevalindex==nowindex) changevalindex=-1;
 
             tmp_velocity=BallPosition[nowindex]-BallPosition[beforeindex];
             if(count_getposition==1) BallVelocity[nowindex]=tmp_velocity;
@@ -112,7 +111,6 @@ public class BallManager : MonoBehaviour
                 else{//外れ値じゃなかったら
                     BallVelocity[nowindex]=tmp_velocity;
                     BallVelocity[beforeindex]=Outlier_velocity;
-                    changevalindex=beforeindex;
                 }
                 Outliers=false;
             }
@@ -124,8 +122,9 @@ public class BallManager : MonoBehaviour
                 }
                 else BallVelocity[nowindex]=tmp_velocity;
             }
-            //)|(5<Nanbai(Magnitude_vec3(tmp_velocity),Magnitude_vec3(Outlier_velocity))
         }
+
+        turn=whichturn(BallVelocity[nowindex],turn);//どちらが撃ったパケットか判定
 
         count_getposition+=1;
 
@@ -225,6 +224,10 @@ public class BallManager : MonoBehaviour
         }
 
         return locate_return;
+    }
+
+    bool whichturn(Vector3 velocity, bool beforeturn){
+        if((velocity.x>=0) or (velocity.x==0 and beforeturn==true)) return true; else return false;  
     }
 
     int Nanbai(int a,int b){
