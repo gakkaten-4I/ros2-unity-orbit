@@ -7,10 +7,8 @@ using UnityEngine.UI;
 //HPBarがスクリプト名
 public class HPBar : MonoBehaviour
 {
-    //public Image hpBarImage;
     public GameObject black;
-    public GameObject red;
-    public GameObject green;
+    public GameObject hpBarImage;
     //ボスのHP
     public int bossHP = 45;
     public GameObject score_object = null;
@@ -54,9 +52,8 @@ public class HPBar : MonoBehaviour
         //score_text.text="Boss HP" + bossHP;
     if (green == null)
     {
-        green = GameObject.Find("green");
+        hpBarImage = GameObject.Find("hpBarImage");
         black = GameObject.Find("black");
-        red = GameObject.Find("red");
         //hpBarImage = GetComponent<Image>();
 
         if (green == null)
@@ -78,12 +75,12 @@ public class HPBar : MonoBehaviour
 //ボスがダメージを受けたときのメソッド(HPバー)
     void UpdateHPBar()
     {
-        green.GetComponent<RectTransform>().pivot = new Vector2(0, 0.5f);
+        hpBarImage.GetComponent<RectTransform>().pivot = new Vector2(0, 0.5f);
 
-        green.transform.localScale = new Vector3((float)currentHP/initialHP, 1.0f, 1.0f);
+        hpBarImage.transform.localScale = new Vector3((float)currentHP/initialHP, 1.0f, 1.0f);
         Debug.Log("green");
 
-        Image greenImage = green.GetComponent<Image>();
+        Image greenImage = hpBarImage.GetComponent<Image>();
         if(currentHP <=30){
             greenImage.color = Color.yellow;
             if(currentHP <=15){
