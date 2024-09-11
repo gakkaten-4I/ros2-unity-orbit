@@ -1,53 +1,42 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
-//HPBarがスクリプト名
-public class BossController : MonoBehaviour
+public class UIObjectDetection : MonoBehaviour
 {
-    public HPBar hpBarController;
-    //ボスのHP
-    public int bossHP = 45;
-    
-    public int initialHP;
-    public int currentHP;
-    int player_a_hp;
-    int player_b_hp;
+    public GraphicRaycaster raycaster;   // CanvasにアタッチされるRaycaster
+    public EventSystem eventSystem;      // シーンに追加するEventSystem
+    public Text debugText;               // デバッグ表示用
 
-
-//ボスの初期設定・ゲームが開始されたときに一度だけ実行される
     void Start()
     {
-         // HPバーに最大HPを設定
-        if (hpBarController != null)
+        if (raycaster == null)
         {
-            hpBarController.initialHP = bossHP;
+            raycaster = GetComponent<GraphicRaycaster>();
         }
-        else
-        {
-            Debug.LogError("HPBarController がアタッチされていません");
-        }
-
     }
 
-
-    // ボスにダメージを与えるメソッド
-    public void TakeDamage(int damage)
-    {
-        currentHP -= damage;
-        hpBarController.TakeDamage(damage);   
-
-    }
-
-    
     void Update()
     {
-            // ボスの動きや攻撃パターンをここで管理します
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))  // マウスの左クリックを検出
         {
-            TakeDamage(3);
+            DetectObjectAtMousePosition();
+        }
+    }
+
+    void DetectObjectAtMousePosition()
+    {
+        PointerEventData pointerData = new PointerEventData(eventSystem);  // ポインタのデータを作成
+        pointerData.position = Input.mousePosition;                        // 現在のマウス位置を取得
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        raycaster.Raycast(pointerData, results);                           // Raycastを実行
+
+        foreach (RaycastResult result in results)
+        {
+            debugText.text = "オブジェクトにヒット: " + result.gameObject.name;  // ヒットしたオブジェクト名を表示
+            Debug.Log("オブジェクトにヒット: " + result.gameObject.name);
         }
     }
 }

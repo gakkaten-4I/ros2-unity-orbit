@@ -75,21 +75,43 @@ public class HPBar : MonoBehaviour
 //ボスがダメージを受けたときのメソッド(HPバー)
     void UpdateHPBar()
     {
+        // hpBarImage が null でないか確認
+    if (hpBarImage == null)
+    {
+        Debug.LogError("hpBarImage が設定されていません！");
+        return;  // 以降の処理を行わない
+    }
+
+    // hpBarImage に Image コンポーネントがあるか確認
+    Image greenImage = hpBarImage.GetComponent<Image>();
+    if (greenImage == null)
+    {
+        Debug.LogError("hpBarImage に Image コンポーネントがありません！");
+        return;
+    }
         hpBarImage.GetComponent<RectTransform>().pivot = new Vector2(0, 0.5f);
 
         hpBarImage.transform.localScale = new Vector3((float)currentHP/initialHP, 1.0f, 1.0f);
         Debug.Log("green");
 
-        Image greenImage = hpBarImage.GetComponent<Image>();
+        
         if(currentHP <=30){
             greenImage.color = Color.yellow;
             if(currentHP <=15){
                 greenImage.color = Color.red;
             }
         }
-
-        Text score_text = score_object.GetComponent<Text>();
+        // ボスHPのテキストを更新
+    Text score_text = score_object.GetComponent<Text>();
+    if (score_text != null)
+    {
         score_text.text = "Boss HP: " + currentHP;
+    }
+    else
+    {
+        Debug.LogError("score_object に Text コンポーネントがありません！");
+    }
+        
         
     }
 
