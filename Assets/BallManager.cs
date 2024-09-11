@@ -53,7 +53,6 @@ public class BallManager : MonoBehaviour
         BallVelocity=new Vector3[number_getposition];//Ballの速度
         count_getposition=0;//パケットのデータを取得した総回数
         nowindex=0;//取得したデータを配列のどのnowindexに入れるか
-        changevalindex=-1;
         Outliers=false;//外れ値防止
 
         MarkFrate = 3;//何フレームごとに速度計算、軌跡と予測マーク挿入をするか
@@ -227,7 +226,7 @@ public class BallManager : MonoBehaviour
     }
 
     bool whichturn(Vector3 velocity, bool beforeturn){
-        if((velocity.x>=0) or (velocity.x==0 and beforeturn==true)) return true; else return false;  
+        if((velocity.x>=0) || (velocity.x==0 && beforeturn==true)) return true; else return false;  
     }
 
     int Nanbai(int a,int b){
