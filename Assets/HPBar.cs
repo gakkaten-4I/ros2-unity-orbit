@@ -19,9 +19,10 @@ public class HPBar : MonoBehaviour
     int player_b_hp;  
 
     public float timeLimit = 30.0f; // 制限時間（30秒）
-    private float remainingTime;    // 残り時間
+    //privateからpublicにした
+    public float remainingTime;    // 残り時間
 
-    public Text timerText;          // UIのTextコンポーネントに表示されるテキスト
+    public GameObject timerText;          // UIのTextコンポーネントに表示されるテキスト
 
 
 //ボスの初期設定・ゲームが開始されたときに一度だけ実行される
@@ -148,8 +149,17 @@ public class HPBar : MonoBehaviour
         // テキストを更新するメソッド
     void UpdateTimerText()
     {
-        // 残り時間を秒数に変換して小数点以下を2桁にする
-        timerText.text = "残り時間: " + remainingTime.ToString("F2") + "s";
+        timerText = GameObject.Find("BossHP");
+        Text timerText1 = timerText.GetComponent<Text>();
+    if (timerText1 != null)
+    {
+         // 残り時間を秒数に変換して小数点以下を2桁にする
+        timerText1.text = "残り時間: " + remainingTime.ToString("F2") + "s";
+    }
+    else
+    {
+        Debug.LogError("timer Text コンポーネントがありません！");
+    }
     }
     
 }

@@ -342,7 +342,8 @@ MonoBehaviour:
   score_object: {fileID: 2001003019}
   initialHP: 0
   timeLimit: 30
-  timerText: {fileID: 0}
+  remainingTime: 0
+  timerText: {fileID: 1585482028}
 --- !u!1 &334317796
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,6 +618,7 @@ MonoBehaviour:
   score_object: {fileID: 0}
   initialHP: 0
   timeLimit: 30
+  remainingTime: 0
   timerText: {fileID: 0}
 --- !u!1 &556171482
 GameObject:
@@ -1286,7 +1288,8 @@ MonoBehaviour:
   score_object: {fileID: 2001003019}
   initialHP: 0
   timeLimit: 30
-  timerText: {fileID: 0}
+  remainingTime: 0
+  timerText: {fileID: 1585482028}
 --- !u!1 &1062965585
 GameObject:
   m_ObjectHideFlags: 0
@@ -1769,7 +1772,8 @@ MonoBehaviour:
   score_object: {fileID: 2001003019}
   initialHP: 0
   timeLimit: 30
-  timerText: {fileID: 1585482030}
+  remainingTime: 0
+  timerText: {fileID: 1585482028}
 --- !u!1 &1883009349
 GameObject:
   m_ObjectHideFlags: 0
@@ -2026,7 +2030,8 @@ MonoBehaviour:
   score_object: {fileID: 2001003019}
   initialHP: 0
   timeLimit: 30
-  timerText: {fileID: 0}
+  remainingTime: 0
+  timerText: {fileID: 1585482028}
 --- !u!1 &2138868566
 GameObject:
   m_ObjectHideFlags: 0
