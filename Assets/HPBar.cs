@@ -16,7 +16,7 @@ public class HPBar : MonoBehaviour
     public int initialHP;
     private int currentHP;
     int player_a_hp;
-    int player_b_hp;
+    int player_b_hp;  
 
     public float timeLimit = 30.0f; // 制限時間（30秒）
     private float remainingTime;    // 残り時間
@@ -50,13 +50,13 @@ public class HPBar : MonoBehaviour
     }
         //Text score_text = score_object.GetComponent<Text>();
         //score_text.text="Boss HP" + bossHP;
-    if (green == null)
+    if (hpBarImage == null)
     {
         hpBarImage = GameObject.Find("hpBarImage");
         black = GameObject.Find("black");
         //hpBarImage = GetComponent<Image>();
 
-        if (green == null)
+        if (hpBarImage == null)
         {
             Debug.LogError("hpBarImage が設定されていません！");
         }

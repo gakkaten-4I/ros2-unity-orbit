@@ -343,7 +343,7 @@ MonoBehaviour:
   score_object: {fileID: 0}
   initialHP: 0
   timeLimit: 30
-  timerText: {fileID: 0}
+  timerText: {fileID: 676270069}
 --- !u!1 &334317796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,7 +1206,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: "\u6B8B\u308A\u6642\u9593"
 --- !u!222 &676270070
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1305,7 +1305,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: player_a_score
 --- !u!222 &916677788
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1409,7 +1409,7 @@ MonoBehaviour:
   score_object: {fileID: 0}
   initialHP: 0
   timeLimit: 30
-  timerText: {fileID: 0}
+  timerText: {fileID: 676270069}
 --- !u!1 &1062965585
 GameObject:
   m_ObjectHideFlags: 0
@@ -1706,7 +1706,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: player_b_score
 --- !u!222 &1329490037
 CanvasRenderer:
   m_ObjectHideFlags: 0
