@@ -336,8 +336,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b26f64d9404024a46ac1f212a6df8c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBarImage: {fileID: 287356481}
+  black: {fileID: 0}
+  red: {fileID: 0}
+  green: {fileID: 0}
   bossHP: 45
+  score_object: {fileID: 0}
   initialHP: 0
 --- !u!1 &334317796
 GameObject:
@@ -585,8 +588,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b26f64d9404024a46ac1f212a6df8c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBarImage: {fileID: 390250212}
+  black: {fileID: 0}
+  red: {fileID: 0}
+  green: {fileID: 0}
   bossHP: 45
+  score_object: {fileID: 0}
   initialHP: 0
 --- !u!1 &434138398 stripped
 GameObject:
@@ -698,8 +704,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b26f64d9404024a46ac1f212a6df8c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBarImage: {fileID: 0}
+  black: {fileID: 0}
+  red: {fileID: 0}
+  green: {fileID: 0}
   bossHP: 45
+  score_object: {fileID: 0}
   initialHP: 0
 --- !u!1 &556171482
 GameObject:
@@ -1069,6 +1078,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 562f2a45658898e42b545c142f43c9eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PointOfA: 0
+  PointOfB: 0
+  IsMain: 0
 --- !u!4 &573867722
 Transform:
   m_ObjectHideFlags: 0
@@ -1183,6 +1195,7 @@ RectTransform:
   - {fileID: 948756787}
   - {fileID: 2144586850}
   - {fileID: 2001003020}
+  - {fileID: 1429346722}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1278,8 +1291,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b26f64d9404024a46ac1f212a6df8c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBarImage: {fileID: 948756788}
+  black: {fileID: 0}
+  red: {fileID: 0}
+  green: {fileID: 0}
   bossHP: 45
+  score_object: {fileID: 0}
   initialHP: 0
 --- !u!1 &1062965585
 GameObject:
@@ -1507,6 +1523,85 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1429346721
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1429346722}
+  - component: {fileID: 1429346724}
+  - component: {fileID: 1429346723}
+  m_Layer: 5
+  m_Name: BossName
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1429346722
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429346721}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 650100459}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 200}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1429346723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429346721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\u30E1\u30BF\u30EB\u30BB\u30F3\u30C1\u30D4\u30FC\u30C9\n"
+--- !u!222 &1429346724
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429346721}
+  m_CullTransparentMesh: 1
 --- !u!1 &1883009349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1914,7 +2009,7 @@ GameObject:
   - component: {fileID: 2144586852}
   - component: {fileID: 2144586851}
   m_Layer: 5
-  m_Name: bosshp
+  m_Name: timerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1959,9 +2054,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Boss HP
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
