@@ -149,7 +149,7 @@ public class HPBar : MonoBehaviour
         // テキストを更新するメソッド
     void UpdateTimerText()
     {
-        timerText = GameObject.Find("BossHP");
+        timerText = GameObject.Find("gametimer");
         Text timerText1 = timerText.GetComponent<Text>();
     if (timerText1 != null)
     {

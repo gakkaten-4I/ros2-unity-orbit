@@ -1,42 +1,48 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using System.Collections.Generic;
+using TMPro;
 
-public class UIObjectDetection : MonoBehaviour
+public class BossDamage : MonoBehaviour
 {
-    public GraphicRaycaster raycaster;   // CanvasにアタッチされるRaycaster
-    public EventSystem eventSystem;      // シーンに追加するEventSystem
-    public Text debugText;               // デバッグ表示用
+    // 破壊する対象のレイヤー（Inspectorから設定できるようにする）
+    public LayerMask destroyableLayer;
+    public int player_a_hp = 0;
+    public int player_b_hp = 0;
+    public TextMeshProUGUI scoreText;
+    public int PlayerNum = 0;
 
-    void Start()
+/*
+    // 物理的な衝突時に呼ばれるメソッド（2D）
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (raycaster == null)
+        // 衝突したオブジェクトのレイヤーが指定のLayerMaskに含まれているか確認
+        if (((1 << collision.gameObject.layer) & destroyableLayer) != 0)
         {
-            raycaster = GetComponent<GraphicRaycaster>();
+            // 指定のレイヤーであれば破壊する
+            Destroy(collision.gameObject);
+        }
+    }
+    */
+
+    // トリガーとしての衝突時に呼ばれるメソッド（2D）
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // 衝突したオブジェクトのレイヤーが指定のLayerMaskに含まれているか確認
+        if (((1 << other.gameObject.layer) & destroyableLayer) != 0)
+        {
+            // 指定のレイヤーであれば破壊する
+            
+            Debug.Log("hit");
+            Destroy(other.gameObject);
+            player_a_hp++;
+            UpdateplayerCountText();
         }
     }
 
-    void Update()
+    void UpdateplayerCountText()
     {
-        if (Input.GetMouseButtonDown(0))  // マウスの左クリックを検出
-        {
-            DetectObjectAtMousePosition();
-        }
-    }
-
-    void DetectObjectAtMousePosition()
-    {
-        PointerEventData pointerData = new PointerEventData(eventSystem);  // ポインタのデータを作成
-        pointerData.position = Input.mousePosition;                        // 現在のマウス位置を取得
-
-        List<RaycastResult> results = new List<RaycastResult>();
-        raycaster.Raycast(pointerData, results);                           // Raycastを実行
-
-        foreach (RaycastResult result in results)
-        {
-            debugText.text = "オブジェクトにヒット: " + result.gameObject.name;  // ヒットしたオブジェクト名を表示
-            Debug.Log("オブジェクトにヒット: " + result.gameObject.name);
-        }
+        // scoreText = GameObject.Find("player_a_score");
+        // Text a_score = scoreText.GetComponent<Text>();
+        // // テキストメッシュプロに破壊数を表示
+        // a_score.text = "Coin: " + player_a_hp.ToString();
     }
 }
