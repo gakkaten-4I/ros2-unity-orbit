@@ -125,6 +125,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
         {
             string objectName;
             // オブジェクトの名前を生成
+            //グリッド数変えるときここも変える
             if(i != 10){
                 objectName = $"Square_{i}";
             }
@@ -176,6 +177,9 @@ public class GridObjectPlacerXZ : MonoBehaviour
        for (int i = 0; i < countMin; i++)
         {
             // オブジェクトの名前を生成
+
+            //グリッド数変えるときここも変える
+
             string objectName = $"Square_{59-i}";
 
             // 名前でオブジェクトを検索
@@ -238,6 +242,8 @@ public class GridObjectPlacerXZ : MonoBehaviour
         {
             string objectName;
             // オブジェクトの名前を生成
+
+            //グリッド数変えるときここも変える
             if(num ==1){
                 objectName = $"Square_{Count2+i}";
             }else{            
