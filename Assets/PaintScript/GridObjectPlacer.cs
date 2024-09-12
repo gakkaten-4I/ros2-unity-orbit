@@ -8,13 +8,17 @@ public class GridObjectPlacerXZ : MonoBehaviour
     public int gridSizeX = 4;         // X軸方向のグリッド数（4に設定）
     public int gridSizeY = 10;        // Z軸方向のグリッド数（10に設定）
     public float spacing = 1f;
-    public LayerMask targetLayers;       // オブジェクト間のスペース
+    public LayerMask targetLayers;   
+    
+    private int countMin = 0; 
+    private int Count1 = 0;
+    private int Count2 = 0;   // オブジェクト間のスペース
 
     void Start()
     {
         PlaceObjectsInGrid();
         StartCoroutine(WaitAndCallPlus(3f));
-        StartCoroutine(WaitAndCallResult(10f));  // 50秒後にresult関数を呼び出すコルーチンを開始
+        StartCoroutine(WaitAndCallResult(12f));  // 50秒後にresult関数を呼び出すコルーチンを開始
     }
 
     void PlaceObjectsInGrid()
@@ -96,11 +100,17 @@ public class GridObjectPlacerXZ : MonoBehaviour
         SpriteCounter SpriteCounter = GetComponent<SpriteCounter>();
         RangeSpriteColorChange RangeSpriteColorChange = GetComponent<RangeSpriteColorChange>();
         SpriteCounter.CountFlag = 1;
-        int Count1 = SpriteCounter.redSprites;
-        int Count2 = SpriteCounter.blueSprites;
+        Count1 = SpriteCounter.redSprites;
+        Count2 = SpriteCounter.blueSprites;
         RangeSpriteColorChange.enabled = false;
         
         AllWhite();
+
+        if(Count1 > Count2){
+            countMin = Count2;
+        }else{
+            countMin = Count1;
+        }
 
         StartCoroutine(ResultShow());
         StartCoroutine(ResultShow2());
@@ -111,7 +121,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
 
     IEnumerator ResultShow()
     {
-       for (int i = 0; i < 30; i++)
+       for (int i = 0; i < countMin; i++)
         {
             string objectName;
             // オブジェクトの名前を生成
@@ -157,11 +167,13 @@ public class GridObjectPlacerXZ : MonoBehaviour
             }
             yield return new WaitForSeconds(0.2f);
         }
+        yield return new WaitForSeconds(1f);
+        Finish();
     }
 
     IEnumerator ResultShow2()
     {
-       for (int i = 0; i < 30; i++)
+       for (int i = 0; i < countMin; i++)
         {
             // オブジェクトの名前を生成
             string objectName = $"Square_{59-i}";
@@ -203,13 +215,60 @@ public class GridObjectPlacerXZ : MonoBehaviour
         }
     }
 
+    void Finish(){
+        if(Count1 > Count2){
+            ikkini(1,Color.red);
+        }else{
+            ikkini(2,Color.blue);
+        }
+    }
 
 
+    void ikkini(int num,Color targetColor){
 
+        int GridNum;
 
+        if(num == 1){
+            GridNum = Count1-Count2;
+        }else{
+            GridNum = Count2-Count1;
+        }
 
+        for (int i = 0; i < GridNum; i++)
+        {
+            string objectName;
+            // オブジェクトの名前を生成
+            if(num ==1){
+                objectName = $"Square_{Count2+i}";
+            }else{            
+                objectName = $"Square_{59-Count1-i}";
+            }
 
+            // 名前でオブジェクトを検索
+            GameObject obj = GameObject.Find(objectName);
 
+            if (obj != null)
+            {
+                // アニメーションコンポーネントを取得
+                Animator animator = obj.GetComponent<Animator>();
+                if (animator != null)
+                {
+                    // アニメーションを再生
+                    animator.Play("square");
+                }
+
+                // スプライトレンダラーを取得
+                SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
+                if (spriteRenderer != null)
+                {
+                    // スプライトの色を赤に変更
+                    spriteRenderer.color = targetColor;
+                }
+
+            }
+
+        }
+    }
 
 
      void AllWhite(){
