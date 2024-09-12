@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/MainScene.unity
+    guid: e591171c6801d234db0c10cee2217825
+  - enabled: 1
+    path: Assets/Scenes/ColoringGame.unity
+    guid: 98e31dae627ca274682afa536474490d
+  - enabled: 1
+    path: Assets/Scenes/CoinGame.unity
+    guid: 0d8cbafb327a297439d22a0f65835ef2
+  - enabled: 1
+    path: Assets/Scenes/BossBattle.unity
+    guid: ee99e1d3539886e498473af6529fe510
   m_configObjects: {}
