@@ -97,4 +97,6 @@ public class RangeSpriteColorChange : MonoBehaviour
             Gizmos.DrawWireSphere(mallet.position, rangeRadius);
         }
     }
+
+
 }

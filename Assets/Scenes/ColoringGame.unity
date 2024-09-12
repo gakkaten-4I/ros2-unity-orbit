@@ -781,7 +781,6 @@ GameObject:
   - component: {fileID: 556171492}
   - component: {fileID: 556171491}
   - component: {fileID: 556171494}
-  - component: {fileID: 556171495}
   m_Layer: 3
   m_Name: ball
   m_TagString: Untagged
@@ -930,7 +929,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: aa12dc52353ea67409cd7bb3c6513d53, type: 2}
+  - {fileID: 2100000, guid: 35ffa05699ab8b24c97464452808bca1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1122,19 +1121,6 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &556171495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 556171482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35f7af10d7f054f439373f6676e589d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trail: {fileID: 556171489}
 --- !u!1 &573867720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,7 +1186,7 @@ MonoBehaviour:
   blueRatio: 0
   targetLayer:
     serializedVersion: 2
-    m_Bits: 2
+    m_Bits: 64
 --- !u!114 &573867727
 MonoBehaviour:
   m_ObjectHideFlags: 0

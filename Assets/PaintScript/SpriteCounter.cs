@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class SpriteCounter : MonoBehaviour
 {
-    private int redSprites = 0; 
-    private int blueSprites = 0;
+    public int redSprites = 0; 
+    public int blueSprites = 0;
     public float redRatio = 0f;
     public float blueRatio = 0f;
     private int SpriteNum = 0;
+
+    public int CountFlag = 0;
 
     // publicで指定するレイヤーマスク
     public LayerMask targetLayer;
@@ -14,23 +16,26 @@ public class SpriteCounter : MonoBehaviour
     void Update()
     {
         // シーン内の指定レイヤーのSpriteRendererをカウント
-        int spriteCount = CountSpritesInScene();
-        Debug.Log($"Total number of sprites in the scene: {SpriteNum}");
 
-        // 赤いスプライトの割合を計算し、小数点1桁に丸める
-        if (SpriteNum > 0)
-        {
-            redRatio = (float)redSprites / (float)SpriteNum * 100f;
-            redRatio = Mathf.Round(redRatio * 10f) / 10f;  // 小数点1桁に丸める
-            Debug.Log($"Red Sprite Ratio: {redRatio}%");
+        if(CountFlag == 0){
+            int spriteCount = CountSpritesInScene(); 
+            Debug.Log($"Total number of sprites in the scene: {SpriteNum}");
 
-            blueRatio = (float)blueSprites / (float)SpriteNum * 100f;
-            blueRatio = Mathf.Round(blueRatio * 10f) / 10f;  // 小数点1桁に丸める
-            Debug.Log($"Red Sprite Ratio: {blueRatio}%");
-        }
-        else
-        {
-            Debug.Log("No sprites found in the target layer.");
+            // 赤いスプライトの割合を計算し、小数点1桁に丸める
+            if (SpriteNum > 0)
+            {
+                redRatio = (float)redSprites / (float)SpriteNum * 100f;
+                redRatio = Mathf.Round(redRatio * 10f) / 10f;  // 小数点1桁に丸める
+                Debug.Log($"Red Sprite Ratio: {redRatio}%");
+
+                blueRatio = (float)blueSprites / (float)SpriteNum * 100f;
+                blueRatio = Mathf.Round(blueRatio * 10f) / 10f;  // 小数点1桁に丸める
+                Debug.Log($"Red Sprite Ratio: {blueRatio}%");
+            }
+            else
+            {
+                Debug.Log("No sprites found in the target layer.");
+            }
         }
 
     }

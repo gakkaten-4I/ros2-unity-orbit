@@ -1164,8 +1164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToPlace: {fileID: 1406960590}
-  gridSizeX: 5
-  gridSizeY: 5
+  gridSizeX: 2
+  gridSizeY: 2
   spacing: 2
 --- !u!1 &1062965585
 GameObject:
@@ -1443,8 +1443,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.013587952, y: -0.013587236}
-  m_Size: {x: 1.7175674, y: 2.4784732}
+  m_Offset: {x: -0.009890556, y: 0.016598225}
+  m_Size: {x: 1.4693737, y: 2.2436953}
   m_Direction: 0
 --- !u!212 &1406960592
 SpriteRenderer:
@@ -1507,7 +1507,7 @@ Transform:
   m_GameObject: {fileID: 1406960590}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.29984, y: -8.551655, z: 0}
+  m_LocalPosition: {x: 16.1, y: -7.28, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

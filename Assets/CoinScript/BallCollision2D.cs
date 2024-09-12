@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class BallDestroyOnCollision2D : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     public int CoinCount2 = 0;
     public TextMeshProUGUI CoinText;
     public int PlayerNum = 0;
+    private int frameCount = 0;
+    private int contableFlag = 1;
 
 /*
     // 物理的な衝突時に呼ばれるメソッド（2D）
@@ -23,20 +26,39 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     }
     */
 
+    void Update(){
+
+    }
+
     // トリガーとしての衝突時に呼ばれるメソッド（2D）
     void OnTriggerEnter2D(Collider2D other)
     {
         // 衝突したオブジェクトのレイヤーが指定のLayerMaskに含まれているか確認
-        if (((1 << other.gameObject.layer) & destroyableLayer) != 0)
+        if (((1 << other.gameObject.layer) & destroyableLayer) != 0 && contableFlag == 1)
         {
             // 指定のレイヤーであれば破壊する
             
-            Debug.Log(CoinCount);
-            Destroy(other.gameObject);
+            
             CoinCount++;
+            Destroy(other.gameObject);
             UpdateCoinCountText();
+            contableFlag = 0;
+            StartCoroutine(WaitAndExecuteFunction(0.1f));
+
+
         }
     }
+
+    IEnumerator WaitAndExecuteFunction(float waitTime)
+    {
+        // 指定した時間だけ待機する
+
+        yield return new WaitForSeconds(waitTime);
+        contableFlag = 1;
+        // 待機後に実行する関数
+        
+    }
+
 
     void UpdateCoinCountText()
     {
