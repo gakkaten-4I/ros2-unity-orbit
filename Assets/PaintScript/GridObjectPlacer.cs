@@ -102,11 +102,115 @@ public class GridObjectPlacerXZ : MonoBehaviour
         
         AllWhite();
 
-        if(Count1 > Count2){
+        StartCoroutine(ResultShow());
+        StartCoroutine(ResultShow2());
+
+        
+    }
 
 
+    IEnumerator ResultShow()
+    {
+       for (int i = 0; i < 30; i++)
+        {
+            string objectName;
+            // オブジェクトの名前を生成
+            if(i != 10){
+                objectName = $"Square_{i}";
+            }
+            else{
+                objectName = "Square";
+            }
+
+            // 名前でオブジェクトを検索
+            GameObject obj = GameObject.Find(objectName);
+
+            if (obj != null)
+            {
+                // アニメーションコンポーネントを取得
+                Animator animator = obj.GetComponent<Animator>();
+                if (animator != null)
+                {
+                    // アニメーションを再生
+                    animator.Play("square");
+                }
+                else
+                {
+                    Debug.Log($"Animator not found on {objectName}");
+                }
+
+                // スプライトレンダラーを取得
+                SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
+                if (spriteRenderer != null)
+                {
+                    // スプライトの色を赤に変更
+                    spriteRenderer.color = Color.red;
+                }
+                else
+                {
+                    Debug.LogWarning($"SpriteRenderer not found on {objectName}");
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"{objectName} not found.");
+            }
+            yield return new WaitForSeconds(0.2f);
         }
     }
+
+    IEnumerator ResultShow2()
+    {
+       for (int i = 0; i < 30; i++)
+        {
+            // オブジェクトの名前を生成
+            string objectName = $"Square_{59-i}";
+
+            // 名前でオブジェクトを検索
+            GameObject obj = GameObject.Find(objectName);
+
+            if (obj != null)
+            {
+                // アニメーションコンポーネントを取得
+                Animator animator = obj.GetComponent<Animator>();
+                if (animator != null)
+                {
+                    // アニメーションを再生
+                    animator.Play("square");
+                }
+                else
+                {
+                    Debug.Log($"Animator not found on {objectName}");
+                }
+
+                // スプライトレンダラーを取得
+                SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
+                if (spriteRenderer != null)
+                {
+                    // スプライトの色を赤に変更
+                    spriteRenderer.color = Color.blue;
+                }
+                else
+                {
+                    Debug.LogWarning($"SpriteRenderer not found on {objectName}");
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"{objectName} not found.");
+            }
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
+
+
+
+
+
+
+
+
 
      void AllWhite(){
 
