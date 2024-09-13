@@ -13,18 +13,21 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     private int frameCount = 0;
     private int contableFlag = 1;
 
-/*
-    // 物理的な衝突時に呼ばれるメソッド（2D）
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        // 衝突したオブジェクトのレイヤーが指定のLayerMaskに含まれているか確認
-        if (((1 << collision.gameObject.layer) & destroyableLayer) != 0)
+    public GameObject CollectEffectRed;　//赤エフェクト
+    public GameObject CollectEffectBlue; //青エフェクト
+
+    /*
+        // 物理的な衝突時に呼ばれるメソッド（2D）
+        void OnCollisionEnter2D(Collision2D collision)
         {
-            // 指定のレイヤーであれば破壊する
-            Destroy(collision.gameObject);
+            // 衝突したオブジェクトのレイヤーが指定のLayerMaskに含まれているか確認
+            if (((1 << collision.gameObject.layer) & destroyableLayer) != 0)
+            {
+                // 指定のレイヤーであれば破壊する
+                Destroy(collision.gameObject);
+            }
         }
-    }
-    */
+        */
 
     void Update(){
 
@@ -37,8 +40,10 @@ public class BallDestroyOnCollision2D : MonoBehaviour
         if (((1 << other.gameObject.layer) & destroyableLayer) != 0 && contableFlag == 1)
         {
             // 指定のレイヤーであれば破壊する
-            
-            
+
+            //エフェクト発生(青)
+            Instantiate(CollectEffectBlue, transform.position, transform.rotation);
+
             CoinCount++;
             Destroy(other.gameObject);
             UpdateCoinCountText();

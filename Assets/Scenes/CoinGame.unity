@@ -738,9 +738,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b26f64d9404024a46ac1f212a6df8c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  black: {fileID: 0}
   hpBarImage: {fileID: 0}
   bossHP: 45
+  score_object: {fileID: 0}
   initialHP: 0
+  timeLimit: 30
+  remainingTime: 0
+  timerText: {fileID: 0}
 --- !u!1 &556171482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,6 +1017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6135185f74024e343a1d874d927579eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugCanvas: {fileID: 0}
 --- !u!114 &556171492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1090,6 +1096,8 @@ MonoBehaviour:
   CoinCount2: 0
   CoinText: {fileID: 2003770163}
   PlayerNum: 0
+  CollectEffectRed: {fileID: 8596195021196661256, guid: ebfec592adbaa774f816ac18182f7da6, type: 3}
+  CollectEffectBlue: {fileID: 1857858718305735071, guid: 2565de2bd3428934289f5473402c9ad2, type: 3}
 --- !u!1 &573867720
 GameObject:
   m_ObjectHideFlags: 0
