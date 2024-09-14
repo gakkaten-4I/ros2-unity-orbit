@@ -429,11 +429,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f5cada6c3bda048867bc5152bcc0f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objects:
-  - {fileID: 499992093}
-  - {fileID: 1039195572}
-  - {fileID: 237341889}
-  switchInterval: 1
+  destroyableLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  player_a_hp: 0
+  player_b_hp: 0
+  scoreText: {fileID: 0}
+  PlayerNum: 0
 --- !u!1 &287356479
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,11 +792,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f5cada6c3bda048867bc5152bcc0f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objects:
-  - {fileID: 499992093}
-  - {fileID: 1039195572}
-  - {fileID: 237341889}
-  switchInterval: 1
+  destroyableLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  player_a_hp: 0
+  player_b_hp: 0
+  scoreText: {fileID: 0}
+  PlayerNum: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,8 +925,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f5cada6c3bda048867bc5152bcc0f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objects: []
-  switchInterval: 1
+  destroyableLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  player_a_hp: 0
+  player_b_hp: 0
+  scoreText: {fileID: 0}
+  PlayerNum: 0
 --- !u!1 &556171482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1272,7 +1281,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 573867722}
-  - component: {fileID: 573867721}
+  - component: {fileID: 573867723}
   m_Layer: 0
   m_Name: GameSceneManager
   m_TagString: Untagged
@@ -1280,21 +1289,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &573867721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 573867720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 562f2a45658898e42b545c142f43c9eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PointOfA: 0
-  PointOfB: 0
-  IsMain: 0
 --- !u!4 &573867722
 Transform:
   m_ObjectHideFlags: 0
@@ -1310,6 +1304,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &573867723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573867720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19360cda1e76ff4fb10fc06c65d9261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsMain: 0
 --- !u!1 &588385927
 GameObject:
   m_ObjectHideFlags: 0
@@ -1780,11 +1787,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f5cada6c3bda048867bc5152bcc0f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objects:
-  - {fileID: 499992093}
-  - {fileID: 1039195572}
-  - {fileID: 237341889}
-  switchInterval: 1
+  destroyableLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  player_a_hp: 0
+  player_b_hp: 0
+  scoreText: {fileID: 0}
+  PlayerNum: 0
 --- !u!1 &1062965585
 GameObject:
   m_ObjectHideFlags: 0

@@ -1121,10 +1121,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 573867722}
-  - component: {fileID: 573867721}
   - component: {fileID: 573867725}
   - component: {fileID: 573867727}
   - component: {fileID: 573867728}
+  - component: {fileID: 573867729}
   m_Layer: 0
   m_Name: GameSceneManager
   m_TagString: Untagged
@@ -1132,21 +1132,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &573867721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 573867720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 562f2a45658898e42b545c142f43c9eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PointOfA: 0
-  PointOfB: 0
-  IsMain: 0
 --- !u!4 &573867722
 Transform:
   m_ObjectHideFlags: 0
@@ -1220,6 +1205,19 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &573867729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573867720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19360cda1e76ff4fb10fc06c65d9261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsMain: 0
 --- !u!1 &608826326
 GameObject:
   m_ObjectHideFlags: 0
