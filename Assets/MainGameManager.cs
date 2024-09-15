@@ -58,7 +58,7 @@ public class MainGameManager : MonoBehaviour
         Debug.Log(IsMain);
         Debug.Log(SceneMoveCount);
         // コルーチンの起動
-        //StartCoroutine(DelayCoroutine());
+        StartCoroutine(DelayCoroutine());
 
         //最初に4点以上の差がついたら
         if (Mathf.Abs(PointOfA - PointOfB) >= 4 && (SceneMoveCount == 0))
