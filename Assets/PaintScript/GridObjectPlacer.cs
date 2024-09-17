@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GridObjectPlacerXZ : MonoBehaviour
 {
@@ -9,7 +10,11 @@ public class GridObjectPlacerXZ : MonoBehaviour
     public int gridSizeY = 10;        // Z軸方向のグリッド数（10に設定）
     public float spacing = 1f;
     public LayerMask targetLayers;   
-    
+    public TextMeshProUGUI Player1text;
+    public TextMeshProUGUI Player2text;
+    public GameObject P1;
+    public GameObject P2;
+
     private int countMin = 0; 
     private int Count1 = 0;
     private int Count2 = 0;   // オブジェクト間のスペース
@@ -96,6 +101,8 @@ public class GridObjectPlacerXZ : MonoBehaviour
         }
     }
 
+
+    //コルーチンで呼び出される勝利判定
     void result(){
         SpriteCounter SpriteCounter = GetComponent<SpriteCounter>();
         RangeSpriteColorChange RangeSpriteColorChange = GetComponent<RangeSpriteColorChange>();
@@ -105,6 +112,9 @@ public class GridObjectPlacerXZ : MonoBehaviour
         RangeSpriteColorChange.enabled = false;
         
         AllWhite();
+
+        P1.SetActive(true);
+        P2.SetActive(true);
 
         if(Count1 > Count2){
             countMin = Count2;
@@ -118,7 +128,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
         
     }
 
-
+    //Player1のポイント数える
     IEnumerator ResultShow()
     {
        for (int i = 0; i < countMin; i++)
@@ -145,11 +155,6 @@ public class GridObjectPlacerXZ : MonoBehaviour
                     // アニメーションを再生
                     animator.Play("square");
                 }
-                else
-                {
-                    Debug.Log($"Animator not found on {objectName}");
-                }
-
                 // スプライトレンダラーを取得
                 SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
                 if (spriteRenderer != null)
@@ -157,21 +162,21 @@ public class GridObjectPlacerXZ : MonoBehaviour
                     // スプライトの色を赤に変更
                     spriteRenderer.color = Color.red;
                 }
-                else
-                {
-                    Debug.LogWarning($"SpriteRenderer not found on {objectName}");
-                }
+
             }
-            else
-            {
-                Debug.LogWarning($"{objectName} not found.");
-            }
+            int ii = i+1;
+            Player1text.text = ii.ToString();
+
+            Vector2 currentScale = Player1text.transform.localScale;
+            // スケールを少しずつ大きくする
+            Player1text.transform.localScale = currentScale * 1.03f;
             yield return new WaitForSeconds(0.2f);
         }
         yield return new WaitForSeconds(1f);
         Finish();
     }
 
+    //Player2のポイント数える
     IEnumerator ResultShow2()
     {
        for (int i = 0; i < countMin; i++)
@@ -194,10 +199,6 @@ public class GridObjectPlacerXZ : MonoBehaviour
                     // アニメーションを再生
                     animator.Play("square");
                 }
-                else
-                {
-                    Debug.Log($"Animator not found on {objectName}");
-                }
 
                 // スプライトレンダラーを取得
                 SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
@@ -206,22 +207,24 @@ public class GridObjectPlacerXZ : MonoBehaviour
                     // スプライトの色を赤に変更
                     spriteRenderer.color = Color.blue;
                 }
-                else
-                {
-                    Debug.LogWarning($"SpriteRenderer not found on {objectName}");
-                }
             }
-            else
-            {
-                Debug.LogWarning($"{objectName} not found.");
-            }
+
+            Vector2 currentScale = Player2text.transform.localScale;
+
+            // スケールを少しずつ大きくする
+            Player2text.transform.localScale = currentScale * 1.03f;
+
+            int ii = i+1;
+            Player2text.text = ii.ToString();
             yield return new WaitForSeconds(0.2f);
         }
     }
 
+    //同じ数カウントして一気に買った方塗る
     void Finish(){
         if(Count1 > Count2){
             ikkini(1,Color.red);
+            
         }else{
             ikkini(2,Color.blue);
         }
@@ -234,8 +237,16 @@ public class GridObjectPlacerXZ : MonoBehaviour
 
         if(num == 1){
             GridNum = Count1-Count2;
+            Player1text.text = Count1.ToString();
+            Vector2 currentScale = Player1text.transform.localScale;
+            // スケールを少しずつ大きくする
+            Player1text.transform.localScale = currentScale * 1.2f;
         }else{
             GridNum = Count2-Count1;
+            Player2text.text = Count2.ToString();
+            Vector2 currentScale = Player2text.transform.localScale;
+            // スケールを少しずつ大きくする
+            Player2text.transform.localScale = currentScale * 1.2f;
         }
 
         for (int i = 0; i < GridNum; i++)
