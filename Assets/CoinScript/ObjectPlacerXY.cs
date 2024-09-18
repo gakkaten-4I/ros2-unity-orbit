@@ -10,7 +10,7 @@ public class ObjectPlacerXY : MonoBehaviour
 
     void Start()
     {
-        PlaceObjectsInGrid(2); //引数によってマップが変わる
+        PlaceObjectsInGrid(3); //引数によってマップが変わる
         StartCoroutine(WaitAndCallResult(3f));  // 50秒後にresult関数を呼び出すコルーチンを開始
     }
     /*
@@ -90,6 +90,31 @@ public class ObjectPlacerXY : MonoBehaviour
                 }
             }
         }
+
+        if (map == 3) //マップC
+        {
+            for (int x = 0; x < 6; x++)
+            {
+                for (int y = 0; y < 5; y++)
+                {
+                    if ((y == 0 && x == 1)||
+                        (y == 1 && x > 2 && x < 5) ||
+                        (y == 2 && (x == 0 || x == 5))|| 
+                        (y == 3 && x > 0 && x < 3) || 
+                        (y == 4 && x == 4))
+                    {
+                        Vector3 position = new Vector3(5f + x * spacing, -9f + y * spacing, 0);
+
+                        // オブジェクトを配置し、生成されたインスタンスの参照を取得
+                        GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
+
+                        // オブジェクトに固有の名前を設定 (例: "Square_X2_Y3" など)
+                        newObject.name = $"Square_X{x}_Y{y}";
+                    }
+                }
+            }
+        }
+
         // 配置位置を計算
 
 
