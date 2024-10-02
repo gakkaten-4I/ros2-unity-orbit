@@ -10,7 +10,7 @@ public class ObjectPlacerXY : MonoBehaviour
 
     void Start()
     {
-        PlaceObjectsInGrid(4); //引数によってマップが変わる 1→マップA、2→マップB、3→マップC、4→マップD、5→マップE）
+        PlaceObjectsInGrid(5); //引数によってマップが変わる 1→マップA、2→マップB、3→マップC、4→マップD、5→マップE）
         StartCoroutine(WaitAndCallResult(3f));  // 50秒後にresult関数を呼び出すコルーチンを開始
     }
     /*
@@ -143,7 +143,8 @@ public class ObjectPlacerXY : MonoBehaviour
             {
                 for (int y = 0; y < 5; y++)
                 {
-                    if (y == x || y == 4 - x)
+                    if (y == x || y == 4 - x ||
+                        y == 2 && (x == 0 || x == 4) )
                     {
                         Vector3 position = new Vector3(6f + x * spacing, -9f + y * spacing, 0);
 
@@ -153,8 +154,21 @@ public class ObjectPlacerXY : MonoBehaviour
                         // オブジェクトに固有の名前を設定 (例: "Square_X2_Y3" など)
                         newObject.name = $"Square_X{x}_Y{y}";
                     }
+                    
                 }
             }
+            //for文のみで配置できない部分
+
+            Vector3 position1 = new Vector3(6f + 2f * spacing, -9f + 3.5f * spacing, 0);
+            Vector3 position2 = new Vector3(6f + 2f * spacing, -9f + 0.5f * spacing, 0);
+
+            // オブジェクトを配置し、生成されたインスタンスの参照を取得
+            GameObject newObject1 = Instantiate(objectToPlace, position1, Quaternion.identity);
+            GameObject newObject2 = Instantiate(objectToPlace, position2, Quaternion.identity);
+
+            // オブジェクトに固有の名前を設定 (例: "Square_X2_Y3" など)
+            newObject1.name = $"Square_X{2}_Y{3.5}";
+            newObject2.name = $"Square_X{2}_Y{0.5}";
         }
 
         // 配置位置を計算
