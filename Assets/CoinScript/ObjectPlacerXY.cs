@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using System;
 
 public class ObjectPlacerXY : MonoBehaviour
 {
@@ -7,45 +8,52 @@ public class ObjectPlacerXY : MonoBehaviour
     public int gridSizeX = 4;         // X軸方向のグリッド数（4に設定）
     public int gridSizeY = 10;        // Z軸方向のグリッド数（10に設定）
     public float spacing = 1f;        // オブジェクト間のスペース
+    public float map_start_time = 0f; //マップが更新された直後の経過時間を格納するための変数
 
     void Start()
     {
-        PlaceObjectsInGrid(5); //引数によってマップが変わる 1→マップA、2→マップB、3→マップC、4→マップD、5→マップE）
-        StartCoroutine(WaitAndCallResult(3f));  // 50秒後にresult関数を呼び出すコルーチンを開始
+        System.Random rnd = new System.Random();    // Randomオブジェクトの作成
+        int NextMap = rnd.Next(1, 5);  //1以上5未満の値がランダムに出力 マップA~Dがランダムで出現
+        PlaceObjectsInGrid(NextMap); //引数によってマップが変わる 1→マップA、2→マップB、3→マップC、4→マップD、5→マップE）
+
+        //20秒後にマップEに移行
+        StartCoroutine(DelayMethod(20f, () =>
+        {
+            Debug.Log("最後の10秒はマップE");
+
+            //今あるコイン（"coins"タグがついているもの）を消去
+            AllDEstroy();
+
+            //マップEを生成
+            PlaceObjectsInGrid(5);
+        }));
+
+
+        StartCoroutine(WaitAndCallResult(30f));  // 30秒後にresult関数を呼び出すコルーチンを開始
     }
-    /*
-            void PlaceObjectsInGrid()
-            {
-                if (objectToPlace == null)
-                {
-                    Debug.LogError("objectToPlace is not assigned.");
-                    return;
-                }
+    
+    void Update()
+    {
+        //コインを配列に格納
+        GameObject[] CoinsArray = GameObject.FindGameObjectsWithTag("coins");
+        //現在の経過時間
+        float now_time = Time.time;
 
-                for (int x = 0; x < gridSizeX; x++)
-                {
-                    for (int y = 0; y < gridSizeY; y++)
-                    {
-                        if (x != 0 || y != 0)
-                        {
-                            Vector3 position = new Vector3(8.5f + x * spacing, -9.5f + y * spacing, 0);
+        //コインが無い　or 前回のマップ更新から10秒経過 -> マップ更新
+        if(CoinsArray.Length == 0　|| now_time - map_start_time >= 10)
+        {
+            Debug.Log("マップ更新");
 
-                                // オブジェクトを配置し、生成されたインスタンスの参照を取得
+            //今あるコイン（"coins"タグがついているもの）があれば消去
+            AllDEstroy();
 
-                                GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
-
-                                    // オブジェクトに固有の名前を設定 (例: "Square_X2_Y3" など)
-                                newObject.name = $"Square_X{x}_Y{y}";
-                        }
-                        // 配置位置を計算
-
-
-                        // 必要に応じて、個別に操作を加える (例: 色を変えるなど)
-                        // newObject.GetComponent<Renderer>().material.color = Color.red;
-                    }
-                }
-            }
-        */
+            //新しいマップを生成
+            System.Random rnd = new System.Random();
+            int NextMap = rnd.Next(1, 5);
+            PlaceObjectsInGrid(NextMap);
+        }
+    }
+    
     void PlaceObjectsInGrid(int map) 
     {
         if (objectToPlace == null)
@@ -65,6 +73,9 @@ public class ObjectPlacerXY : MonoBehaviour
                     // オブジェクトを配置し、生成されたインスタンスの参照を取得
                     GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
 
+                    //タグつけ
+                    newObject.tag = "coins";
+
                     // オブジェクトに固有の名前を設定 (例: "Square_X2_Y3" など)
                     newObject.name = $"Square_X{x}_Y{y}";
                 }            
@@ -83,6 +94,9 @@ public class ObjectPlacerXY : MonoBehaviour
 
                         // オブジェクトを配置し、生成されたインスタンスの参照を取得
                         GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
+
+                        //タグつけ
+                        newObject.tag = "coins";
 
                         // オブジェクトに固有の名前を設定 (例: "Square_X2_Y3" など)
                         newObject.name = $"Square_X{x}_Y{y}";
@@ -108,6 +122,9 @@ public class ObjectPlacerXY : MonoBehaviour
                         // オブジェクトを配置し、生成されたインスタンスの参照を取得
                         GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
 
+                        //タグつけ
+                        newObject.tag = "coins";
+
                         // オブジェクトに固有の名前を設定 (例: "Square_X2_Y3" など)
                         newObject.name = $"Square_X{x}_Y{y}";
                     }
@@ -130,6 +147,9 @@ public class ObjectPlacerXY : MonoBehaviour
                         // オブジェクトを配置し、生成されたインスタンスの参照を取得
                         GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
 
+                        //タグつけ
+                        newObject.tag = "coins";
+
                         // オブジェクトに固有の名前を設定 (例: "Square_X2_Y3" など)
                         newObject.name = $"Square_X{x}_Y{y}";
                     }
@@ -137,7 +157,7 @@ public class ObjectPlacerXY : MonoBehaviour
             }
         }
 
-        if (map == 5) //マップE 作りかけ
+        if (map == 5) //マップE
         {
             for (int x = 0; x < 5; x++)
             {
@@ -150,6 +170,9 @@ public class ObjectPlacerXY : MonoBehaviour
 
                         // オブジェクトを配置し、生成されたインスタンスの参照を取得
                         GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
+
+                        //タグつけ
+                        newObject.tag = "coins";
 
                         // オブジェクトに固有の名前を設定 (例: "Square_X2_Y3" など)
                         newObject.name = $"Square_X{x}_Y{y}";
@@ -166,6 +189,10 @@ public class ObjectPlacerXY : MonoBehaviour
             GameObject newObject1 = Instantiate(objectToPlace, position1, Quaternion.identity);
             GameObject newObject2 = Instantiate(objectToPlace, position2, Quaternion.identity);
 
+            //タグつけ
+            newObject1.tag = "coins";
+            newObject2.tag = "coins";
+
             // オブジェクトに固有の名前を設定 (例: "Square_X2_Y3" など)
             newObject1.name = $"Square_X{2}_Y{3.5}";
             newObject2.name = $"Square_X{2}_Y{0.5}";
@@ -176,12 +203,35 @@ public class ObjectPlacerXY : MonoBehaviour
 
         // 必要に応じて、個別に操作を加える (例: 色を変えるなど)
         // newObject.GetComponent<Renderer>().material.color = Color.red;
+
+        //マップの開始時間を記録(10秒後に消す動作用)
+        map_start_time = Time.time;
+    }
+
+
+    //(waitTime)秒後に(action)を行う関数
+    IEnumerator DelayMethod(float waitTime, Action action)
+    {
+        yield return new WaitForSeconds(waitTime);
+        action();
+    }
+
+    //今あるコインを消す
+    void AllDEstroy()
+    {
+        GameObject[] CoinsArray2 = GameObject.FindGameObjectsWithTag("coins");
+
+        foreach (GameObject coin_Soccer in CoinsArray2)
+        {
+            Destroy(coin_Soccer);
+        }
     }
 
 
     // 50秒後にresult関数を呼び出すコルーチン
     IEnumerator WaitAndCallResult(float waitTime)
     {
+        Debug.Log("result");
         yield return new WaitForSeconds(waitTime);
         //result();  // 50秒後にresult関数を実行
     }
