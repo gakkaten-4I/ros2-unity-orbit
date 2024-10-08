@@ -16,9 +16,8 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     public int PlayerNum = 0;
     private int frameCount = 0;
     private int contableFlag = 1;
-
     public GameObject CollectEffectRed;　//赤エフェクト
-    public GameObject CollectEffectBlue; //青エフェクト
+    public GameObject CollectEffectBlue; //青エフェクト 
 
     /*
         // 物理的な衝突時に呼ばれるメソッド（2D）
@@ -32,6 +31,40 @@ public class BallDestroyOnCollision2D : MonoBehaviour
             }
         }
         */
+    void Start(){
+
+        //スコアの設定位置
+        Vector3 WhereBlueScore = new Vector3(240f,150f,0f);
+        Vector3 WhereRedScore = new Vector3(-230f,150f,0f);
+        //スコアの大きさ設定
+        Vector2 ScoreSize = new Vector2(150f,20f);
+        float FontSize = 30f;
+
+        //CoinTextBlueを指定の位置に移動させ,フォントサイズを変える
+        if(CoinTextBlue != null)
+        {
+            RectTransform rectTransformBlue = CoinTextBlue.GetComponent<RectTransform>();
+            rectTransformBlue.anchoredPosition = WhereBlueScore;
+            rectTransformBlue.sizeDelta = ScoreSize;
+            CoinTextBlue.fontSize = FontSize;
+        }
+        else
+        {
+            Debug.LogError("BlueScoreオブジェクトが指定されていません");
+        }
+        //CoinTextRedを指定の位置に移動させ,フォントサイズを変える
+        if(CoinTextRed != null)
+        {
+            RectTransform rectTransformRed = CoinTextRed.GetComponent<RectTransform>();
+            rectTransformRed.anchoredPosition = WhereRedScore;
+            rectTransformRed.sizeDelta = ScoreSize;
+            CoinTextRed.fontSize = FontSize;
+        }
+        else
+        {
+            Debug.LogError("RedScoreオブジェクトが指定されていません");
+        }
+    }
 
     void Update(){
 
@@ -83,14 +116,14 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     //ブルーサイドとレッドサイドの点数の表示    
     void UpdateCoinCountTextBlue()
     {
-        CoinCountBlue =+ 1;
+        CoinCountBlue ++;
         // テキストメッシュプロに破壊数を表示
-        CoinTextBlue.text = "Coin: " + CoinCountRed.ToString();
+        CoinTextBlue.text = "Coin:" + CoinCountBlue.ToString();
     }
 
     void UpdateCoinCountTextRed()
     {
-        CoinCountRed += 1;
-        CoinTextRed.text = "Coin: " + CoinCountRed.ToString();
+        CoinCountRed ++;
+        CoinTextRed.text = "Coin:" + CoinCountRed.ToString();
     }
 }

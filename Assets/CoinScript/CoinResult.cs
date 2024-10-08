@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CoinResult : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class CoinResult : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Vector3 WhereTitle = new Vector3(0f,0f,0f);
+        Vector2 TitleSize = new Vector2(100f,50f);
+        float FontSize = 5f;
         // Review1の設定
         if (Review1 != null)
         {
