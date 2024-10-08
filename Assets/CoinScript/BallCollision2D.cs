@@ -46,7 +46,7 @@ public class BallDestroyOnCollision2D : MonoBehaviour
             // 指定のレイヤーであれば破壊する
 
             //エフェクト発生(青)
-            if(playerNum = 0){
+            if(PlayerNum == 0){
                 Instantiate(CollectEffectBlue, transform.position, transform.rotation);
 
                 Destroy(other.gameObject);
@@ -56,7 +56,7 @@ public class BallDestroyOnCollision2D : MonoBehaviour
             }
 
             //エフェクト発生(赤)
-            if(playerNum = 1){
+            if(PlayerNum == 1){
                 Instantiate(CollectEffectRed, transform.position, transform.rotation);
 
                 Destroy(other.gameObject);
@@ -91,6 +91,6 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     void UpdateCoinCountTextRed()
     {
         CoinCountRed += 1;
-        CoinTextRed.text = "Coin: " + CoinCountRed.Tostirng();
+        CoinTextRed.text = "Coin: " + CoinCountRed.ToString();
     }
 }
