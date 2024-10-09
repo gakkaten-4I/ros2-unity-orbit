@@ -883,6 +883,8 @@ MonoBehaviour:
   timeLimit: 30
   remainingTime: 0
   timerText: {fileID: 0}
+<<<<<<< CoinGame
+=======
 --- !u!1 &536370028
 GameObject:
   m_ObjectHideFlags: 0
@@ -967,6 +969,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> main
 --- !u!1 &556171482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,6 +1385,7 @@ MonoBehaviour:
   gridSizeX: 2
   gridSizeY: 2
   spacing: 2
+<<<<<<< CoinGame
   map_start_time: 0
 --- !u!1 &654035131
 GameObject:
@@ -1421,11 +1425,15 @@ RectTransform:
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &654035133
+=======
+--- !u!114 &573867725
+>>>>>>> main
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< CoinGame
   m_GameObject: {fileID: 654035131}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1518,6 +1526,7 @@ CanvasRenderer:
   m_GameObject: {fileID: 654035131}
   m_CullTransparentMesh: 1
 --- !u!1 &1062965585
+=======
   m_GameObject: {fileID: 573867720}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1526,7 +1535,7 @@ CanvasRenderer:
   m_EditorClassIdentifier: 
   IsMain: 0
 --- !u!1 &948077291
-
+>>>>>>> main
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1753,7 +1762,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-
+<<<<<<< CoinGame
 --- !u!114 &1191961974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1769,9 +1778,9 @@ MonoBehaviour:
   Title: {fileID: 1863631761}
   Fight: {fileID: 49499998}
 --- !u!1 &1406960590
-
+=======
 --- !u!1 &1280734297
-
+>>>>>>> main
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1929,7 +1938,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-
+<<<<<<< CoinGame
 --- !u!1 &1863631759
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,9 +2074,9 @@ CanvasRenderer:
   m_GameObject: {fileID: 1863631759}
   m_CullTransparentMesh: 1
 --- !u!1 &1883009349
-
+=======
 --- !u!1 &1406960590
-
+>>>>>>> main
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
