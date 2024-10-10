@@ -58,7 +58,7 @@ public class TitleCall : MonoBehaviour
     }
 
     // コルーチンによる順次処理
-    IEnumerator StartGame()
+    private IEnumerator StartGame()
     {
         RectTransform rectTransformFight = Fight.GetComponent<RectTransform>();
         // Titleを表示
