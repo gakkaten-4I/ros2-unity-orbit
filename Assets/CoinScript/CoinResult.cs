@@ -15,8 +15,8 @@ public class CoinResult : MonoBehaviour
     public TextMeshProUGUI ShowBlue1;
     public TextMeshProUGUI ShowBlue2;
 
-    private float FontSizeReview = 20f;
-    private float FontSizeScore = 15f;
+    private float FontSizeReview = 50f;
+    private float FontSizeScore = 40f;
 
     private int RandNum;
 
@@ -24,17 +24,17 @@ public class CoinResult : MonoBehaviour
     private float buindHeight = 20f;
 
     // Start is called before the first frame update
-    public void ShowCoinResult()
+    void Start()
     {
         // Review1の設定
         if (Review1 != null)
         {
             RectTransform RectReview1 = Review1.GetComponent<RectTransform>();
-            RectReview1.anchoredPosition = new Vector3(0f,0f,0f);
+            RectReview1.anchoredPosition = new Vector3(-20f,20f,0f);
             //RectReview1.sizeDelta = new Vector2(0f,0f);
             Review1.fontSize = FontSizeReview;
             Review1.transform.Rotate(0,0,-90);
-            Review1.text = "結果発表";
+            Review1.text = "   Result   ";
             Review1.color = new Color(0.0f, 0.0f, 0.0f, 1f);
             Review1.enabled = false;
         }
@@ -47,11 +47,11 @@ public class CoinResult : MonoBehaviour
         if (Review2 != null)
         {
             RectTransform RectReview2 = Review2.GetComponent<RectTransform>();
-            RectReview2.anchoredPosition = new Vector3(0f,0f,0f);
+            RectReview2.anchoredPosition = new Vector3(20f,0f,0f);
             //RectReview2.sizeDelta = new Vector2(0f,0f);
             Review2.fontSize = FontSizeReview;
             Review2.transform.Rotate(0,0,90);
-            Review2.text = "結果発表";
+            Review2.text = "   Result   ";
             Review2.color = new Color(0.0f, 0.0f, 0.0f, 1f);
             Review2.enabled = false;
         }
@@ -64,12 +64,12 @@ public class CoinResult : MonoBehaviour
         if (ShowRed1 != null)
         {
             RectTransform RectRed1 = ShowRed1.GetComponent<RectTransform>();
-            RectRed1.anchoredPosition = new Vector3(0f,0f,0f);
+            RectRed1.anchoredPosition = new Vector3(-100f,30f,0f);
             //RectRed1.sizeDelta = new Vector2(0f,0f);
             ShowRed1.fontSize = FontSizeScore;
             ShowRed1.transform.Rotate(0,0,-90);
-            ShowRed1.text = "RedTeam:";
-            ShowRed1.color = new Color(0.0f, 0.0f, 0.0f, 1f);
+            ShowRed1.text = "RedTeam";
+            ShowRed1.color = new Color(1f, 0.0f, 0.0f, 1f);
             ShowRed1.enabled = false;
         }
         else
@@ -81,12 +81,12 @@ public class CoinResult : MonoBehaviour
         if (ShowRed2 != null)
         {
             RectTransform RectRed2 = ShowRed2.GetComponent<RectTransform>();
-            RectRed2.anchoredPosition = new Vector3(0f,0f,0f);
+            RectRed2.anchoredPosition = new Vector3(100f,-40f,0f);
             //RectRed2.sizeDelta = TitleSize;
             ShowRed2.fontSize = FontSizeScore;
             ShowRed2.transform.Rotate(0,0,90);
-            ShowRed2.text = "RedTeam:";
-            ShowRed2.color = new Color(0.0f, 0.0f, 0.0f, 1f);
+            ShowRed2.text = "RedTeam";
+            ShowRed2.color = new Color(1f, 0.0f, 0.0f, 1f);
             ShowRed2.enabled = false;
         }
         else
@@ -98,12 +98,12 @@ public class CoinResult : MonoBehaviour
         if (ShowBlue1 != null)
         {
             RectTransform RectBlue1 = ShowBlue1.GetComponent<RectTransform>();
-            RectBlue1.anchoredPosition = new Vector3(0f,0f);
+            RectBlue1.anchoredPosition = new Vector3(-100f,-110f,0f);
             //RectBlue1.sizeDelta = new Vector2(0f,0f);
             ShowBlue1.fontSize = FontSizeScore;
             ShowBlue1.transform.Rotate(0,0,-90);
             ShowBlue1.text = "BlueTeam";
-            ShowBlue1.color = new Color(0.0f, 0.0f, 0.0f, 1f);
+            ShowBlue1.color = new Color(0.0f, 0.0f, 1f, 1f);
             ShowBlue1.enabled = false;
         }
         else
@@ -115,12 +115,12 @@ public class CoinResult : MonoBehaviour
         if (ShowBlue1 != null)
         {
             RectTransform RectBlue2 = ShowBlue2.GetComponent<RectTransform>();
-            RectBlue2.anchoredPosition = new Vector3(0f,0f,0f);
+            RectBlue2.anchoredPosition = new Vector3(100f,100f,0f);
             //RectBlue2.sizeDelta = new Vector2(0f,0f);
             ShowBlue2.fontSize = FontSizeScore;
             ShowBlue2.transform.Rotate(0,0,90);
             ShowBlue2.text = "BlueTeam";
-            ShowBlue2.color = new Color(0.0f, 0.0f, 0.0f, 1f);  // 0～1の範囲で設定
+            ShowBlue2.color = new Color(0.0f, 0.0f, 1f, 1f);  // 0～1の範囲で設定
             ShowBlue2.enabled = false;
         }
         else
@@ -128,8 +128,8 @@ public class CoinResult : MonoBehaviour
             Debug.LogError("ShowBlue1オブジェクトが指定されていません");
         }
 
-
-        StartCoroutine(ShowCoin());
+        //30秒後に結果発表
+        StartCoroutine(ShowCoin(30f));
     }
 
     // Update is called once per frame
@@ -138,8 +138,9 @@ public class CoinResult : MonoBehaviour
         
     }
 
-    private IEnumerator ShowCoin()
+    private IEnumerator ShowCoin(float waiting)
     {
+        yield return new WaitForSeconds(waiting);
         Review1.enabled = true;
         Review2.enabled = true;
         var length1 = Review1.text.Length;
@@ -147,11 +148,11 @@ public class CoinResult : MonoBehaviour
         for(int i=0;i<length1;i++){
             Review1.maxVisibleCharacters = i;
             Review2.maxVisibleCharacters = i;
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.2f);
         }
         Review1.maxVisibleCharacters = length1;
         Review2.maxVisibleCharacters = length2;
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.5f);
 
         ShowRed1.enabled = true;
         ShowRed2.enabled = true;
@@ -174,18 +175,18 @@ public class CoinResult : MonoBehaviour
 
         if(CoinCountBlue < CoinCountRed){
             //赤チームが勝った時
-            Review1.text = "赤チームの勝利";
-            Review2.text = "赤チームの勝利";
+            Review1.text = "RedTeam  Win";
+            Review2.text = "RedTeam  Win";
         }
         else if(CoinCountBlue > CoinCountRed){
             //青チームが勝った時
-            Review1.text = "青チームの勝利";
-            Review2.text = "青チームの勝利";
+            Review1.text = "BlueTeam Win";
+            Review2.text = "BlueTeam Win";
         }
         else{
             //引き分けの時
-            Review1.text = "引き分け";
-            Review2.text = "引き分け";
+            Review1.text = "    Draw    ";
+            Review2.text = "    Draw    ";
         }
 
         yield return new WaitForSeconds(1f);

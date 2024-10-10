@@ -53,8 +53,7 @@ public class TitleCall : MonoBehaviour
             Debug.LogError("Fightオブジェクトが指定されていません");
         }
 
-        // ゲーム開始のコルーチンを開始
-        StartCoroutine(StartGame());
+        //StartCoroutine(StartGame());
     }
 
     // コルーチンによる順次処理

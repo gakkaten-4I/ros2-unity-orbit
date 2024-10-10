@@ -22,12 +22,11 @@ public class ObjectPlacerXY : MonoBehaviour
             Debug.Log("最後の10秒はマップE");
 
             //今あるコイン（"coins"タグがついているもの）を消去
-            AllDEstroy();
+            AllDestroy();
 
             //マップEを生成
             PlaceObjectsInGrid(5);
         }));
-
 
         StartCoroutine(WaitAndCallResult(30f));  // 30秒後にresult関数を呼び出すコルーチンを開始
     }
@@ -45,7 +44,7 @@ public class ObjectPlacerXY : MonoBehaviour
             Debug.Log("マップ更新");
 
             //今あるコイン（"coins"タグがついているもの）があれば消去
-            AllDEstroy();
+            AllDestroy();
 
             //新しいマップを生成
             System.Random rnd = new System.Random();
@@ -208,7 +207,6 @@ public class ObjectPlacerXY : MonoBehaviour
         map_start_time = Time.time;
     }
 
-
     //(waitTime)秒後に(action)を行う関数
     IEnumerator DelayMethod(float waitTime, Action action)
     {
@@ -217,7 +215,7 @@ public class ObjectPlacerXY : MonoBehaviour
     }
 
     //今あるコインを消す
-    void AllDEstroy()
+    public void AllDestroy()
     {
         GameObject[] CoinsArray2 = GameObject.FindGameObjectsWithTag("coins");
 
@@ -227,33 +225,13 @@ public class ObjectPlacerXY : MonoBehaviour
         }
     }
 
-
-    // 50秒後にresult関数を呼び出すコルーチン
+    // 30秒後にすべてを壊す
     IEnumerator WaitAndCallResult(float waitTime)
     {
         Debug.Log("result");
         yield return new WaitForSeconds(waitTime);
-        //result();  // 50秒後にresult関数を実行
+        AllDestroy();
     }
 
-    // 結果を表示する関数（必要に応じて定義）
-    /*
-    void result()
-    {
-        for (int x = 0; x < gridSizeX / 2; x++)
-        {
-            for (int y = 0; y < gridSizeY; y++)
-            {
-
-                Vector3 position = new Vector3(7.5f + x * 5, -9.5f + y * spacing, 0);
-                // オブジェクトを配置し、生成されたインスタンスの参照を取得
-                GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
-                // オブジェクトに固有の名前を設定 (例: "Square_X2_Y3" など)
-                newObject.name = $"Square_2X{x}_2Y{y}";
-
-
-            }
-        }
-    }
-    */
+    
 }

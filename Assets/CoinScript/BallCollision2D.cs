@@ -34,10 +34,10 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     void Start(){
 
         //スコアの設定位置
-        Vector3 WhereBlueScore = new Vector3(240f,150f,0f);
+        Vector3 WhereBlueScore = new Vector3(260f,150f,0f);
         Vector3 WhereRedScore = new Vector3(-230f,150f,0f);
         //スコアの大きさ設定
-        Vector2 ScoreSize = new Vector2(150f,20f);
+        Vector2 ScoreSize = new Vector2(180f,20f);
         float FontSize = 30f;
 
         //CoinTextBlueを指定の位置に移動させ,フォントサイズを変える
@@ -47,6 +47,8 @@ public class BallDestroyOnCollision2D : MonoBehaviour
             rectTransformBlue.anchoredPosition = WhereBlueScore;
             rectTransformBlue.sizeDelta = ScoreSize;
             CoinTextBlue.fontSize = FontSize;
+            CoinTextBlue.color = new Color(0.0f,0.0f,1f,1f);
+            CoinTextBlue.text = "BlueTeam";
         }
         else
         {
@@ -59,6 +61,8 @@ public class BallDestroyOnCollision2D : MonoBehaviour
             rectTransformRed.anchoredPosition = WhereRedScore;
             rectTransformRed.sizeDelta = ScoreSize;
             CoinTextRed.fontSize = FontSize;
+            CoinTextRed.color = new Color(1f,0.0f,0.0f,1f);
+            CoinTextRed.text = " RedTeam";
         }
         else
         {
