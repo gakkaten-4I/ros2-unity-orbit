@@ -47,7 +47,7 @@ public class HPBar : MonoBehaviour
     }
     else
     {
-        Debug.LogError("score_object が設定されていません！");
+        //Debug.LogError("score_object が設定されていません！");
     }
         //Text score_text = score_object.GetComponent<Text>();
         //score_text.text="Boss HP" + bossHP;
@@ -59,7 +59,7 @@ public class HPBar : MonoBehaviour
 
         if (hpBarImage == null)
         {
-            Debug.LogError("hpBarImage が設定されていません！");
+            //Debug.LogError("hpBarImage が設定されていません！");
         }
     }
     UpdateHPBar();
@@ -67,7 +67,7 @@ public class HPBar : MonoBehaviour
 
         
     
-    Debug.Log("Hello World");
+    //Debug.Log("Hello World");
 
     }
 
@@ -79,7 +79,7 @@ public class HPBar : MonoBehaviour
         // hpBarImage が null でないか確認
     if (hpBarImage == null)
     {
-        Debug.LogError("hpBarImage が設定されていません！");
+        //Debug.LogError("hpBarImage が設定されていません！");
         return;  // 以降の処理を行わない
     }
 
@@ -87,13 +87,13 @@ public class HPBar : MonoBehaviour
     Image greenImage = hpBarImage.GetComponent<Image>();
     if (greenImage == null)
     {
-        Debug.LogError("hpBarImage に Image コンポーネントがありません！");
+        //Debug.LogError("hpBarImage に Image コンポーネントがありません！");
         return;
     }
         hpBarImage.GetComponent<RectTransform>().pivot = new Vector2(0, 0.5f);
 
         hpBarImage.transform.localScale = new Vector3((float)currentHP/initialHP, 1.0f, 1.0f);
-        Debug.Log("green");
+        //Debug.Log("green");
 
         
         if(currentHP <=30){
@@ -110,7 +110,7 @@ public class HPBar : MonoBehaviour
     }
     else
     {
-        Debug.LogError("score_object に Text コンポーネントがありません！");
+        //Debug.LogError("score_object に Text コンポーネントがありません！");
     }
         
         
@@ -121,7 +121,7 @@ public class HPBar : MonoBehaviour
     {
         currentHP -= damage;
         if (currentHP < 0) currentHP = 0;
-        Debug.Log("damege");
+        //Debug.Log("damege");
         UpdateHPBar();
 
     }
@@ -149,16 +149,20 @@ public class HPBar : MonoBehaviour
         // テキストを更新するメソッド
     void UpdateTimerText()
     {
-        timerText = GameObject.Find("gametimer");
-        Text timerText1 = timerText.GetComponent<Text>();
-    if (timerText1 != null)
+        if (timerText == null)
     {
+        timerText = GameObject.Find("gametimer"); // ここで "timeText" は Text コンポーネントを持つゲームオブジェクトの名前
+    }     
+        
+    if (timerText != null)
+    {
+        Text timerText1 = timerText.GetComponent<Text>();
          // 残り時間を秒数に変換して小数点以下を2桁にする
         timerText1.text = "残り時間: " + remainingTime.ToString("F2") + "s";
     }
     else
     {
-        Debug.LogError("timer Text コンポーネントがありません！");
+        //Debug.LogError("timer Text コンポーネントがありません！");
     }
     }
     
