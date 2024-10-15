@@ -14,6 +14,10 @@ public class GridObjectPlacerXZ : MonoBehaviour
     public TextMeshProUGUI Player2text;
     public GameObject P1;
     public GameObject P2;
+    public GameObject WIN1;
+    public GameObject LOSE1;
+    public GameObject WIN2;
+    public GameObject LOSE2;
 
     private int countMin = 0; 
     private int Count1 = 0;
@@ -69,6 +73,8 @@ public class GridObjectPlacerXZ : MonoBehaviour
         plus();  // 50秒後にresult関数を実行
     }
 
+
+
     IEnumerator WaitAndCallResult(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
@@ -76,7 +82,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
     }
 
 
-    // 結果を表示する関数（必要に応じて定義）
+
     void plus()
     {
         int i = 0;
@@ -99,6 +105,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
 
             }
         }
+        
     }
 
 
@@ -107,8 +114,9 @@ public class GridObjectPlacerXZ : MonoBehaviour
         SpriteCounter SpriteCounter = GetComponent<SpriteCounter>();
         RangeSpriteColorChange RangeSpriteColorChange = GetComponent<RangeSpriteColorChange>();
         SpriteCounter.CountFlag = 1;
-        Count1 = SpriteCounter.redSprites;
-        Count2 = SpriteCounter.blueSprites;
+        //変更
+        Count1 = SpriteCounter.blueSprites;
+        Count2 = SpriteCounter.redSprites;
         RangeSpriteColorChange.enabled = false;
         
         AllWhite();
@@ -160,7 +168,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
                 if (spriteRenderer != null)
                 {
                     // スプライトの色を赤に変更
-                    spriteRenderer.color = Color.red;
+                    spriteRenderer.color = Color.blue;
                 }
 
             }
@@ -205,7 +213,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
                 if (spriteRenderer != null)
                 {
                     // スプライトの色を赤に変更
-                    spriteRenderer.color = Color.blue;
+                    spriteRenderer.color = Color.red;
                 }
             }
 
@@ -223,10 +231,10 @@ public class GridObjectPlacerXZ : MonoBehaviour
     //同じ数カウントして一気に買った方塗る
     void Finish(){
         if(Count1 > Count2){
-            ikkini(1,Color.red);
+            ikkini(1,Color.blue);
             
         }else{
-            ikkini(2,Color.blue);
+            ikkini(2,Color.red);
         }
     }
 
@@ -285,6 +293,14 @@ public class GridObjectPlacerXZ : MonoBehaviour
             }
 
         }
+
+            if(num ==1){
+                WIN1.SetActive(true);
+                LOSE2.SetActive(true);
+            }else{            
+                WIN2.SetActive(true);
+                LOSE1.SetActive(true);
+            }
     }
 
 

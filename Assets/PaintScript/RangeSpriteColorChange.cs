@@ -21,10 +21,87 @@ public class RangeSpriteColorChange : MonoBehaviour
 
     private float timer = 0f;
 
+    public GameObject ball;  // ボールの参照
+    private Vector3 previousVelocity;  // 前フレームの速度
+    private Vector3 currentVelocity;   // 現在の速度
+    private float wallRight = 20.0f;  // 右の壁
+    private float wallLeft = 0.0f;    // 左の壁
+    private bool isPlayerA = true;   
+    public bool flag = true;  // true = プレイヤーAのターン, false = プレイヤーBのターン
+
+    void Start()
+    {
+        // ボールの初期速度を取得
+        if (ball.TryGetComponent<Rigidbody2D>(out Rigidbody2D rb))
+        {
+            previousVelocity = rb.velocity;
+        }
+    }
+
+
+
+    bool whichturn(Vector3 position, Vector3 velocity, Vector3 prevVelocity, bool beforeTurn) 
+{
+    // フィールドの中央をX軸の基準とする
+    float fieldCenterX = (wallRight + wallLeft) / 2;
+
+    // 速度の変化量を算出
+    float speedChange = (velocity - prevVelocity).magnitude;
+
+    // 壁の反射を検出するためのしきい値（この値は必要に応じて調整）
+    float wallHitThreshold = 0.1f; // 反射があったとみなすためのしきい値
+
+    // 壁に当たった場合はターンをそのままにする
+    if (position.x <= wallLeft + wallHitThreshold || position.x >= wallRight - wallHitThreshold)
+    {
+        Debug.Log("Ball hit the wall, maintaining previous turn.");
+        return beforeTurn; // 前のターンを維持
+    }
+
+    // 速度の急激な変化があるか確認（一定以上の速度変化を検出）
+    if (speedChange > 2.0f) // 2.0fは調整可能な閾値
+    {
+        // パックが中央より左側にあり、速度が右向きならプレイヤーBが打ったと判断
+        if (position.x < fieldCenterX && velocity.x > 0) 
+        {
+            Debug.Log("Player B hit the ball!");
+            return true;  // プレイヤーBのターン
+        }
+        // パックが中央より右側にあり、速度が左向きならプレイヤーAが打ったと判断
+        else if (position.x > fieldCenterX && velocity.x < 0) 
+        {
+            Debug.Log("Player A hit the ball!");
+            return false; // プレイヤーAのターン
+        }
+    }
+
+    // 特定の基準を満たさない場合、前のターンを維持
+    return beforeTurn;
+}
+
+
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(PlayerNum);
 
+        /*if (ball.TryGetComponent<Rigidbody2D>(out Rigidbody2D rb))
+        {
+            // 現在の速度を取得
+            currentVelocity = rb.velocity;
+
+            // 打ち返しを判定
+            isPlayerA = whichturn(ball.transform.position, currentVelocity, previousVelocity, isPlayerA);
+
+            if(isPlayerA){
+                PlayerNum = 0;
+            }else{
+                PlayerNum =1;
+            }
+
+            // 現在の速度を前の速度として保存
+            previousVelocity = currentVelocity;
+        }*/
 
         if (mallet == null)
         {
@@ -47,9 +124,9 @@ public class RangeSpriteColorChange : MonoBehaviour
 
         //0or1
         if(PlayerNum == 0){
-            targetColor = Color.red;
-        }else {
             targetColor = Color.blue;
+        }else {
+            targetColor = Color.red;
         }
 
         timer += Time.deltaTime;
@@ -63,22 +140,23 @@ public class RangeSpriteColorChange : MonoBehaviour
         // malletの範囲内にあるスプライトを取得
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(malletPosition, rangeRadius, targetLayer);
         
-
-        foreach (var hitCollider in hitColliders)
-        {
-            SpriteRenderer spriteRenderer = hitCollider.GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null)
+        
+            foreach (var hitCollider in hitColliders)
             {
-                // スプライトの色を赤に変更
-                spriteRenderer.color = targetColor;
-
-                // 元の色に戻す処理
-                if (revertColor)
+                SpriteRenderer spriteRenderer = hitCollider.GetComponent<SpriteRenderer>();
+                if (spriteRenderer != null)
                 {
-                    StartCoroutine(RevertColor(spriteRenderer, revertDelay));
+                    
+                    spriteRenderer.color = targetColor;
+
+                    // 元の色に戻す処理
+                    if (revertColor)
+                    {
+                        StartCoroutine(RevertColor(spriteRenderer, revertDelay));
+                    }
                 }
             }
-        }
+        
     }
 
     // 元の色に戻すコルーチン
