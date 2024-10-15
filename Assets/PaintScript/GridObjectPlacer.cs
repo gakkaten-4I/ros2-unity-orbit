@@ -46,7 +46,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
             {
                 if (x != 0 || y != 0)
                 {
-                    Vector3 position = new Vector3(8.5f + x * spacing, -9.5f + y * spacing, 0);
+                    Vector3 position = new Vector3(6.875f + x * spacing, -9.375f + y * spacing, 0);
 
                         // オブジェクトを配置し、生成されたインスタンスの参照を取得
                         
@@ -87,7 +87,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
     {
         int i = 0;
         int a = 0;
-        for (int x = 0; x < gridSizeX/2; x++)
+        for (int x = 0; x < 2; x++)
         {
             for (int y = 0; y < gridSizeY; y++)
             {
@@ -95,7 +95,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
                     a = gridSizeX * gridSizeY;
                 }
                 
-                Vector3 position = new Vector3(7.5f + x * 5, -9.5f + y * spacing, 0);
+                Vector3 position = new Vector3(5.625f + x * 8.75f, -9.375f + y * spacing, 0);
                         // オブジェクトを配置し、生成されたインスタンスの参照を取得
                 GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
                             // オブジェクトに固有の名前を設定 (例: "Square_X2_Y3" など)
@@ -144,7 +144,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
             string objectName;
             // オブジェクトの名前を生成
             //グリッド数変えるときここも変える
-            if(i != 10){
+            if(i != 8){
                 objectName = $"Square_{i}";
             }
             else{
@@ -193,7 +193,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
 
             //グリッド数変えるときここも変える
 
-            string objectName = $"Square_{59-i}";
+            string objectName = $"Square_{63-i}";
 
             // 名前でオブジェクトを検索
             GameObject obj = GameObject.Find(objectName);
