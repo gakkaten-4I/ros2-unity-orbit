@@ -1042,6 +1042,7 @@ GameObject:
   - component: {fileID: 556171491}
   - component: {fileID: 556171495}
   - component: {fileID: 556171496}
+  - component: {fileID: 556171497}
   m_Layer: 3
   m_Name: ball
   m_TagString: Untagged
@@ -1376,6 +1377,20 @@ MonoBehaviour:
   PlayerNum: 0
   CollectEffectRed: {fileID: 8596195021196661256, guid: ebfec592adbaa774f816ac18182f7da6, type: 3}
   CollectEffectBlue: {fileID: 1857858718305735071, guid: 2565de2bd3428934289f5473402c9ad2, type: 3}
+--- !u!114 &556171497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556171482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bb295bb5ae628a4cb2c81f01c67d749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prefab_Trajectory: {fileID: 100000, guid: fdad9d952ae84cafb74c63f2e694d042, type: 3}
+  trajectory: []
 --- !u!1 &573867720
 GameObject:
   m_ObjectHideFlags: 0
