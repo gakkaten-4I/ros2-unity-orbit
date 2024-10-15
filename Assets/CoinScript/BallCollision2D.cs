@@ -47,7 +47,6 @@ public class BallDestroyOnCollision2D : MonoBehaviour
             rectTransformBlue.anchoredPosition = WhereBlueScore;
             rectTransformBlue.sizeDelta = ScoreSize;
             CoinTextBlue.fontSize = FontSize;
-            CoinTextBlue.color = new Color(0.0f,0.0f,1f,1f);
             CoinTextBlue.text = "BlueTeam";
         }
         else
@@ -61,7 +60,6 @@ public class BallDestroyOnCollision2D : MonoBehaviour
             rectTransformRed.anchoredPosition = WhereRedScore;
             rectTransformRed.sizeDelta = ScoreSize;
             CoinTextRed.fontSize = FontSize;
-            CoinTextRed.color = new Color(1f,0.0f,0.0f,1f);
             CoinTextRed.text = " RedTeam";
         }
         else
@@ -122,12 +120,12 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     {
         CoinCountBlue ++;
         // テキストメッシュプロに破壊数を表示
-        CoinTextBlue.text = "Coin:" + CoinCountBlue.ToString();
+        CoinTextBlue.text = "Blue:" + CoinCountBlue.ToString();
     }
 
     void UpdateCoinCountTextRed()
     {
         CoinCountRed ++;
-        CoinTextRed.text = "Coin:" + CoinCountRed.ToString();
+        CoinTextRed.text = "Red:" + CoinCountRed.ToString();
     }
 }
