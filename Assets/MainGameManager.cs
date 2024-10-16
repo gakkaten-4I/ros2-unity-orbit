@@ -26,7 +26,7 @@ public class MainGameManager : MonoBehaviour
     {
         // 90秒間待つ
         // Time.timeScale の影響を受けずに実時間で90秒待つ
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(90);
         DelayMethod();
     }
 
