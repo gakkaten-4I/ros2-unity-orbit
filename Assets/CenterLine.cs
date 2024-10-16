@@ -27,6 +27,9 @@ public class CenterLine : MonoBehaviour
     [Header("FÊ MIN")]
     [Range(0, 1)] public float HSV_Hue_min = 0.0f;// 0 ~ 1
 
+    public Material emissiveMaterial;
+    public float intensity = 4.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,8 +46,20 @@ public class CenterLine : MonoBehaviour
         {
             HSV_Hue = HSV_Hue_min;
         }
+        material.EnableKeyword("_EMISSION");
 
-        material.color = Color.HSVToRGB(HSV_Hue, HSV_Saturation, HSV_Brightness);
+        // HSV‚©‚çRGB‚Ö‚Ì•ÏŠ·
+        Color activeColor = Color.HSVToRGB(HSV_Hue, HSV_Saturation, HSV_Brightness); // Ê“x‚Æ–¾“x‚ÍÅ‘å‚Éİ’è
+
+        Color finalColor = activeColor * intensity;
+        material.color = activeColor;
+        //Œõ‚è‹ï‡‚ğ‘•
+        float factor = Mathf.Pow(1.3f, intensity);
+
+        material.SetColor("_EmissionColor", finalColor *factor );
+        //emissiveMaterial.SetColor("_EmissionColor", finalColor);
+        //emissiveMaterial.SetColor("_Color", activeColor);
+        DynamicGI.SetEmissive(GetComponent<Renderer>(), finalColor);
 
         yield return new WaitForSeconds(Chnge_Color_Time);
 
