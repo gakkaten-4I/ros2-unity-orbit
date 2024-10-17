@@ -266,7 +266,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
             if(num ==1){
                 objectName = $"Square_{Count2+i}";
             }else{            
-                objectName = $"Square_{59-Count1-i}";
+                objectName = $"Square_{63-Count1-i}";
             }
 
             // 名前でオブジェクトを検索
@@ -317,7 +317,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
                         if (spriteRenderer != null)
                         {
                             // スプライトの色を白に変更
-                            spriteRenderer.color = Color.white;
+                            spriteRenderer.color = new Color(0.75f, 0.75f, 0.75f);
                         }
                     }
                 }

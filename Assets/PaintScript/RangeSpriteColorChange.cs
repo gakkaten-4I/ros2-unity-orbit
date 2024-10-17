@@ -123,11 +123,24 @@ public class RangeSpriteColorChange : MonoBehaviour
         }
 
         //0or1
-        if(PlayerNum == 0){
+        /*if(PlayerNum == 0){
             targetColor = Color.blue;
         }else {
             targetColor = Color.red;
+        }*/
+
+        if (PlayerNum == 0)
+        {
+            // 青 (70, 70, 255)
+            targetColor = new Color(50 / 255f, 50 / 255f, 255 / 255f);
         }
+        else
+        {
+            // 赤 (255, 70, 70)
+            targetColor = new Color(255 / 255f, 50 / 255f, 50 / 255f);
+        }
+
+
 
         timer += Time.deltaTime;
 

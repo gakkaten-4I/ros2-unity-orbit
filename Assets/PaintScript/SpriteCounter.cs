@@ -72,7 +72,7 @@ public class SpriteCounter : MonoBehaviour
         return redSprites;
     }
 
-    bool IsRed(Color color)
+    /*bool IsRed(Color color)
     {
         // 色が完全な赤 (255, 0, 0) かをチェック
         return Mathf.Approximately(color.r, 1f) && Mathf.Approximately(color.g, 0f) && Mathf.Approximately(color.b, 0f);
@@ -82,5 +82,21 @@ public class SpriteCounter : MonoBehaviour
     {
         // 色が完全な赤 (255, 0, 0) かをチェック
         return Mathf.Approximately(color.r, 0f) && Mathf.Approximately(color.g, 0f) && Mathf.Approximately(color.b, 1f);
-    }
+    }*/
+
+    bool IsRed(Color color)
+{
+    // 赤 (255, 50, 50) をチェック
+    return Mathf.Approximately(color.r, 255 / 255f) &&
+           Mathf.Approximately(color.g, 50 / 255f) &&
+           Mathf.Approximately(color.b, 50 / 255f);
+}
+
+bool IsBlue(Color color)
+{
+    // 青 (50, 50, 255) をチェック
+    return Mathf.Approximately(color.r, 50 / 255f) &&
+           Mathf.Approximately(color.g, 50 / 255f) &&
+           Mathf.Approximately(color.b, 255 / 255f);
+}
 }
