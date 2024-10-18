@@ -8,10 +8,10 @@ public class TitleCall : MonoBehaviour
     public TextMeshProUGUI Title;
     public TextMeshProUGUI Fight;
 
-    float fontscaleX = 1f;
-    float fontscaleY = 0.75f;
-    float fontX = 50f;
-    float fontY = 0f;
+    private float fontscaleX = 1f;
+    private float fontscaleY = 0.75f;
+    private float fontX = 50f;
+    private float fontY = 0f;
 
     // Start is called before the first frame update
     void Start()

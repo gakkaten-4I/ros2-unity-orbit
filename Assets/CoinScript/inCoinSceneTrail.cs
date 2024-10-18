@@ -193,4 +193,5 @@ public class inCoinSceneTrail : MonoBehaviour
     int Magnitude_vec3(Vector3 a){
         return Mathf.CeilToInt(Convert.ToSingle(Math.Pow(a.x*a.x+a.y*a.y+a.z*a.z,0.5)));
     }
+
 }

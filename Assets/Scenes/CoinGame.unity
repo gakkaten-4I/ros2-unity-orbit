@@ -1131,6 +1131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab_Trajectory: {fileID: 434138398}
   Prefab_Prediction: {fileID: 434138398}
+  turn: 0
 --- !u!50 &556171487
 Rigidbody2D:
   serializedVersion: 4
@@ -1377,6 +1378,7 @@ MonoBehaviour:
   PlayerNum: 0
   CollectEffectRed: {fileID: 8596195021196661256, guid: ebfec592adbaa774f816ac18182f7da6, type: 3}
   CollectEffectBlue: {fileID: 1857858718305735071, guid: 2565de2bd3428934289f5473402c9ad2, type: 3}
+  turn: 0
 --- !u!114 &556171497
 MonoBehaviour:
   m_ObjectHideFlags: 0
