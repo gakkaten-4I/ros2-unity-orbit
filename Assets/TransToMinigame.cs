@@ -8,6 +8,7 @@ public class TransToMinigame : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI nextText;
+    [SerializeField]
     private TextMeshProUGUI minigameNameText;
 
     public GameObject NextText;
@@ -77,8 +78,9 @@ public class TransToMinigame : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
 
-        //Step3.ミニゲームへ推移
+        /*Step3.ミニゲームへ推移
         SceneManager.LoadScene(NextMinigame, LoadSceneMode.Single);
+        */
     }
 
     void DebugTransition(){
