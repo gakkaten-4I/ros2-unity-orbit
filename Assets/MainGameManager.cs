@@ -66,5 +66,10 @@ public class MainGameManager : MonoBehaviour
             DelayMethod();
         }
     }
+
+    public void Goal()
+    {
+        Debug.Log("Goal");
+    }
 }
 
