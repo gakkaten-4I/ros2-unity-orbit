@@ -55,8 +55,8 @@ public class MainGameManager : MonoBehaviour
     {
         //今のシーンがメインがかどうか
         IsMain = (SceneManager.GetActiveScene().name == "MainScene");
-        Debug.Log(IsMain);
-        Debug.Log(SceneMoveCount);
+        //Debug.Log(IsMain);
+        //Debug.Log(SceneMoveCount);
         // コルーチンの起動
         StartCoroutine(DelayCoroutine());
 
