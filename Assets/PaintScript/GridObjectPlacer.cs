@@ -130,6 +130,10 @@ public class GridObjectPlacerXZ : MonoBehaviour
             countMin = Count1;
         }
 
+        //
+            Player1text.color = Color.blue;
+            //
+            Player2text.color = Color.red;
         StartCoroutine(ResultShow());
         StartCoroutine(ResultShow2());
 
@@ -174,6 +178,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
             }
             int ii = i+1;
             Player1text.text = ii.ToString();
+            
 
             Vector2 currentScale = Player1text.transform.localScale;
             // スケールを少しずつ大きくする

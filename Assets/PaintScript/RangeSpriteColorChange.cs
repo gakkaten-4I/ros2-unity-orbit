@@ -22,7 +22,8 @@ public class RangeSpriteColorChange : MonoBehaviour
     private float timer = 0f;
 
     public GameObject ball;  // ボールの参照
-    private Vector3 previousVelocity;  // 前フレームの速度
+    private Vector3 previousVelocity;
+    private Vector3 PrepreviousVelocity;  // 前フレームの速度
     private Vector3 currentVelocity;   // 現在の速度
     private float wallRight = 20.0f;  // 右の壁
     private float wallLeft = 0.0f;    // 左の壁
@@ -40,40 +41,36 @@ public class RangeSpriteColorChange : MonoBehaviour
 
 
 
-    bool whichturn(Vector3 position, Vector3 velocity, Vector3 prevVelocity, bool beforeTurn) 
+bool whichturn(Vector3 position, Vector3 velocity, Vector3 prevVelocity, Vector3 prevPrevVelocity,bool turn, bool beforeTurn) 
 {
     // フィールドの中央をX軸の基準とする
+
+    
+
     float fieldCenterX = (wallRight + wallLeft) / 2;
 
-    // 速度の変化量を算出
-    float speedChange = (velocity - prevVelocity).magnitude;
+    // 3フレームの平均速度を計算
+    Vector3 avgVelocity = (velocity + prevVelocity + prevPrevVelocity) / 3.0f;
+
+    // 現在の速度と前フレームの速度の大きさの変化量を計算
+    float speedChange = Mathf.Abs(avgVelocity.magnitude - prevVelocity.magnitude);
 
     // 壁の反射を検出するためのしきい値（この値は必要に応じて調整）
-    float wallHitThreshold = 0.1f; // 反射があったとみなすためのしきい値
+    float wallHitThreshold = 1.5f;
 
     // 壁に当たった場合はターンをそのままにする
-    if (position.x <= wallLeft + wallHitThreshold || position.x >= wallRight - wallHitThreshold)
-    {
-        Debug.Log("Ball hit the wall, maintaining previous turn.");
-        return beforeTurn; // 前のターンを維持
-    }
 
-    // 速度の急激な変化があるか確認（一定以上の速度変化を検出）
-    if (speedChange > 2.0f) // 2.0fは調整可能な閾値
-    {
-        // パックが中央より左側にあり、速度が右向きならプレイヤーBが打ったと判断
-        if (position.x < fieldCenterX && velocity.x > 0) 
+        if (position.x <= wallLeft + wallHitThreshold || position.x >= wallRight - wallHitThreshold || position.y >= -0.5 - wallHitThreshold || position.y <= -10.5 + wallHitThreshold)
         {
-            Debug.Log("Player B hit the ball!");
-            return true;  // プレイヤーBのターン
+            Debug.Log("Ball hit the wall, maintaining previous turn.");
+            return beforeTurn;
+
+        }else if(position.x < fieldCenterX && turn || position.x > fieldCenterX && !(turn)){
+            return turn;
         }
-        // パックが中央より右側にあり、速度が左向きならプレイヤーAが打ったと判断
-        else if (position.x > fieldCenterX && velocity.x < 0) 
-        {
-            Debug.Log("Player A hit the ball!");
-            return false; // プレイヤーAのターン
-        }
-    }
+
+
+
 
     // 特定の基準を満たさない場合、前のターンを維持
     return beforeTurn;
@@ -84,14 +81,25 @@ public class RangeSpriteColorChange : MonoBehaviour
     void Update()
     {
         Debug.Log(PlayerNum);
+        GameObject otherObject = GameObject.Find("ball");
+         BallManager ballManager = otherObject.GetComponent<BallManager>();
 
-        /*if (ball.TryGetComponent<Rigidbody2D>(out Rigidbody2D rb))
+
+
+        if (ball.TryGetComponent<Rigidbody2D>(out Rigidbody2D rb))
         {
             // 現在の速度を取得
             currentVelocity = rb.velocity;
 
             // 打ち返しを判定
-            isPlayerA = whichturn(ball.transform.position, currentVelocity, previousVelocity, isPlayerA);
+            //isPlayerA = whichturn(ball.transform.position,ballManager.turn, isPlayerA);
+
+            isPlayerA = whichturn(ball.transform.position, currentVelocity,previousVelocity,PrepreviousVelocity,ballManager.turn, isPlayerA); 
+            
+
+
+            
+            
 
             if(isPlayerA){
                 PlayerNum = 0;
@@ -100,8 +108,10 @@ public class RangeSpriteColorChange : MonoBehaviour
             }
 
             // 現在の速度を前の速度として保存
+            PrepreviousVelocity = previousVelocity;
             previousVelocity = currentVelocity;
-        }*/
+
+        }
 
         if (mallet == null)
         {
@@ -111,7 +121,7 @@ public class RangeSpriteColorChange : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        if (timer >= 2)
+        /*if (timer >= 2)
         {
             // 値を切り替える
             PlayerNum = (PlayerNum == 0) ? 1 : 0;
@@ -120,7 +130,7 @@ public class RangeSpriteColorChange : MonoBehaviour
             timer = 0f;
 
             // 値を確認するためにログを出
-        }
+        }*/
 
         //0or1
         /*if(PlayerNum == 0){

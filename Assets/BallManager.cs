@@ -28,7 +28,7 @@ public class BallManager : MonoBehaviour
     SpriteRenderer[] sprite_prediction;//予測マークの透明度
     int count_prediction;//総予測マーク数
 
-    bool turn;//どちらのターンか
+    public bool turn;//どちらのターンか
 
     //フィールドの大きさ
     float wall_right = 20.5f;
