@@ -50,8 +50,8 @@ public class DisplayScoreManager : MonoBehaviour
     void DebugText()//テキストの表示が変わるか確認
     {
         if((Input.GetKeyDown(KeyCode.D))&&(Input.GetKeyDown(KeyCode.B))){
-            ScoreTextOfA.text = "db";
-            ScoreTextOfB.text = "db";
+            ScoreTextOfA.text = "0"+5;
+            ScoreTextOfB.text = "0"+4;
         }
     }
 }
