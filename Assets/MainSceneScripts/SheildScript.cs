@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Threading;
 using UnityEngine;
 
 public class SheildScript : MonoBehaviour
@@ -24,14 +27,21 @@ public class SheildScript : MonoBehaviour
             MainGameManager gsmScript = gsmObject.GetComponent<MainGameManager>();
             if (BallManager.turn)// trueの時は青ボール
             {
-                StartCoroutine(gsmScript.EnableBlueShield());
+                _ = gsmScript.EnableBlueShield(destroyCancellationToken);
             }
             else
             {
-                StartCoroutine(gsmScript.EnableRedShield());
+                _= gsmScript.EnableRedShield(destroyCancellationToken);
             }
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            _ = DelayedDestruction(destroyCancellationToken, 15); // アイテムの持続時間は10秒なので、それより長い時間で削除
         }
         
+    }
+
+    public async ValueTask DelayedDestruction(CancellationToken token, float waitTime)
+    {
+        await Task.Delay(TimeSpan.FromSeconds(waitTime), token);
+        Destroy(gameObject);
     }
 }

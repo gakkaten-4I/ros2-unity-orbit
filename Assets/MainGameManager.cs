@@ -1,6 +1,10 @@
 //using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -44,7 +48,7 @@ public class MainGameManager : MonoBehaviour
     void DelayMethod()
     {
         ++SceneMoveCount;
-        int GameSceneNumber = Random.Range(0, 3);
+        int GameSceneNumber = UnityEngine.Random.Range(0, 3);
         IsMain = false;
         switch (GameSceneNumber)
         {
@@ -78,40 +82,42 @@ public class MainGameManager : MonoBehaviour
         }
     }
 
-    public IEnumerator BombBlue()
+    public async ValueTask BombBlue(CancellationToken token)
     {
         IsBlueBombed = true;
-        yield return new WaitForSeconds(10);
+        await Task.Delay(TimeSpan.FromSeconds(10), token);
         IsBlueBombed = false;
     }
 
-    public IEnumerator BombRed()
+    public async ValueTask BombRed(CancellationToken token)
     {
         IsRedBombed = true;
-        yield return new WaitForSeconds(10);
+        await Task.Delay(TimeSpan.FromSeconds(10), token);
         IsRedBombed = false;
     }
 
-    public IEnumerator Charge()
+    public async ValueTask Charge(CancellationToken token)
     {
         IsCharged = true;
-        yield return new WaitForSeconds(10);
+        await Task.Delay(TimeSpan.FromSeconds(10), token);
         IsCharged = false;
     }
 
-    public IEnumerator EnableBlueShield()
+    public async ValueTask EnableBlueShield(CancellationToken token)
     {
         //TODO: シールドを表示する処理
         IsBlueShielded = true;
-        yield return new WaitForSeconds(10);
+        await Task.Delay(TimeSpan.FromSeconds(10), token);
         //TODO: シールドを非表示にする処理
         IsBlueShielded = false;
     }
 
-    public IEnumerator EnableRedShield()
+    public async ValueTask EnableRedShield(CancellationToken token)
     {
+        //TODO: シールドを表示する処理
         IsRedShielded = true;
-        yield return new WaitForSeconds(10);
+        await Task.Delay(TimeSpan.FromSeconds(10), token);
+        //TODO: シールドを非表示にする処理
         IsRedShielded = false;
     }
 
