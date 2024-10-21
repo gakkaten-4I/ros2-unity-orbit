@@ -7,12 +7,23 @@ using UnityEngine.SceneManagement;
 
 public class MainGameManager : MonoBehaviour
 {
-    public static int PointOfA = 0;
-    public static int PointOfB = 0;
+    public static int PointOfA = 0; // Blue?
+    public static int PointOfB = 0; // Red?
 
     //public static int SceneMoveCount = 0; 本番はこっち
     private int SceneMoveCount = 0;
     public bool IsMain;
+
+    // ゴール管理
+    public bool IsRedBombed = false;
+    public bool IsBlueBombed = false;
+    public bool IsCharged = false; // チャージャーが有効かどうか
+    public bool IsFever = false;
+    public bool IsRedShielded = false;
+    public bool IsBlueShielded = false;
+
+    [SerializeField] BallManager ballManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +76,87 @@ public class MainGameManager : MonoBehaviour
         {
             DelayMethod();
         }
+    }
+
+    public IEnumerator BombBlue()
+    {
+        IsBlueBombed = true;
+        yield return new WaitForSeconds(10);
+        IsBlueBombed = false;
+    }
+
+    public IEnumerator BombRed()
+    {
+        IsRedBombed = true;
+        yield return new WaitForSeconds(10);
+        IsRedBombed = false;
+    }
+
+    public IEnumerator Charge()
+    {
+        IsCharged = true;
+        yield return new WaitForSeconds(10);
+        IsCharged = false;
+    }
+
+    public IEnumerator EnableBlueShield()
+    {
+        //TODO: シールドを表示する処理
+        IsBlueShielded = true;
+        yield return new WaitForSeconds(10);
+        //TODO: シールドを非表示にする処理
+        IsBlueShielded = false;
+    }
+
+    public IEnumerator EnableRedShield()
+    {
+        IsRedShielded = true;
+        yield return new WaitForSeconds(10);
+        IsRedShielded = false;
+    }
+
+    public void Goal(bool isBlueGoal)
+    { 
+        if(isBlueGoal&&!IsBlueShielded) // PointOfB (RedTeam)の得点を増やす
+        {
+            if (IsBlueBombed&&IsCharged)
+            {
+                PointOfB += 4;
+            }
+            else if (IsBlueBombed)
+            {
+                PointOfB += 2;
+            }
+            else if (IsFever)
+            {
+                PointOfB += 3;
+            }
+            else
+            {
+                PointOfB++;
+            }
+        }
+        else if(!IsRedShielded)// PointOfA (BlueTeam)の得点を増やす
+        {
+            if (IsRedBombed&&IsCharged)
+            {
+                PointOfA += 4;
+            }
+            else if (IsRedBombed)
+            {
+                PointOfA += 2;
+            }
+            else if (IsFever)
+            {
+                PointOfA += 3;
+            }
+            else
+            {
+                PointOfA++;
+            }
+            
+        }
+        //TODO: ここでゲームを一旦止めて、パックを戻すように促す
     }
 }
 
