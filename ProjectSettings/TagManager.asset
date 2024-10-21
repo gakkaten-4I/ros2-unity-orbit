@@ -6,6 +6,7 @@ TagManager:
   tags:
   - tag
   - coins
+  - Ball
   layers:
   - Default
   - TransparentFX
