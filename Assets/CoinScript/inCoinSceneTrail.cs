@@ -24,7 +24,8 @@ public class inCoinSceneTrail : MonoBehaviour
     SpriteRenderer[] sprite_trajectory;//軌跡の透明度
     int count_trajectory;//総軌跡数
 
-    bool turn;//どちらのターンか
+    public bool turn;//どちらのターンか
+    
 
     //フィールドの大きさ
     float wall_right = 20.5f;
@@ -152,34 +153,6 @@ public class inCoinSceneTrail : MonoBehaviour
 
     }
 
-    Vector3 Prediction(Vector3 locate)
-    {//跳ね返りを予測する
-
-        Vector3 locate_return = locate;
-        Vector3 malletsize = this.GetComponent<Renderer>().bounds.size;//マレットのサイズを取得
-        float malletmargin = malletsize.x/2;
-
-        if (locate_return.x <= wall_left+malletmargin)
-        {
-            locate_return.x -= 2 * (locate_return.x - wall_left-malletmargin);
-        }
-        else if (wall_right-malletmargin <= locate_return.x)
-        {
-            locate_return.x -= 2 * (locate_return.x - (wall_right-malletmargin));
-        }
-
-        if (locate_return.y <= wall_down+malletmargin)
-        {
-            locate_return.y -= 2 * (locate_return.y - wall_down-malletmargin);
-        }
-        else if (wall_up-malletmargin <= locate_return.y)
-        {
-            locate_return.y -= 2 * (locate_return.y - (wall_up-malletmargin));
-        }
-
-        return locate_return;
-    }
-
     bool whichturn(Vector3 velocity, bool beforeturn){
         if((velocity.x>0) || (velocity.x==0 && beforeturn==true)) return true; else return false;  
     }
@@ -193,5 +166,4 @@ public class inCoinSceneTrail : MonoBehaviour
     int Magnitude_vec3(Vector3 a){
         return Mathf.CeilToInt(Convert.ToSingle(Math.Pow(a.x*a.x+a.y*a.y+a.z*a.z,0.5)));
     }
-
 }

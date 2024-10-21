@@ -22,7 +22,8 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     public GameObject CollectEffectRed;　//赤エフェクト
     public GameObject CollectEffectBlue; //青エフェクト
 
-    bool turnside;
+    //どっちサイドかをinCoinSceneTrailから取得
+    inCoinSceneTrail cointrail;
 
     /*
         // 物理的な衝突時に呼ばれるメソッド（2D）
@@ -46,7 +47,7 @@ public class BallDestroyOnCollision2D : MonoBehaviour
         //スコアのフォントサイズの設定
         float FontSize = 30f;
 
-        turnside = true;
+        cointrail = GetComponent<inCoinSceneTrail>();
 
         //CoinTextBlueを指定の位置に移動させ,フォントサイズを変える
         if(CoinTextBlue != null)
@@ -87,8 +88,7 @@ public class BallDestroyOnCollision2D : MonoBehaviour
         if (((1 << other.gameObject.layer) & destroyableLayer) != 0 && contableFlag == 1)
         {
             // 指定のレイヤーであれば破壊する
-            
-            if(turnside == true){//エフェクト発生(赤)
+            if(cointrail.turn == true){//エフェクト発生(赤)
                 Instantiate(CollectEffectRed, transform.position, transform.rotation);
 
                 Destroy(other.gameObject);
