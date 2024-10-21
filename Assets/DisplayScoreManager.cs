@@ -35,7 +35,7 @@ public class DisplayScoreManager : MonoBehaviour
         ScoreTextOfB.text = ""+tmpScoreOfB+"";//スコアを反映させる
     }
 
-    public void DisplayNumber(int scoreA,int scoreB)//テキストオブジェクトに任意の値を表示する
+    public void DisplayScore(int scoreA,int scoreB)//テキストオブジェクトに任意の値を表示する
     {
         if(scoreA>=0) tmpScoreOfA=""+scoreA+""; else tmpScoreOfA="";
         if(scoreB>=0) tmpScoreOfB=""+scoreB+""; else tmpScoreOfB="";//スコアの値をとってくる
@@ -45,6 +45,9 @@ public class DisplayScoreManager : MonoBehaviour
 
         if(tmpScoreOfA != "")ScoreTextOfA.text = ""+tmpScoreOfA+"";
         if(tmpScoreOfB != "")ScoreTextOfB.text = ""+tmpScoreOfB+"";//スコアを反映させる
+
+        MainGameManager.PointOfA=scoreA;
+        MainGameManager.PointOfB=scoreB;//ポイントが入っている変数の中身も変更
     }
 
     void DebugText()//テキストの表示が変わるか確認
