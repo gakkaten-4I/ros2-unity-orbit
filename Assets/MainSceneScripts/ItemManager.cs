@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -15,11 +15,11 @@ public class ItemManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(DelayMethod(5, SpawnEnergy)); //2•bŒã‚ÉSpawnEnergy‚ğÀs
+        StartCoroutine(DelayMethod(210, SpawnEnergy)); //210ç§’å¾Œã«SpawnEnergyã‚’å®Ÿè¡Œ
         StartCoroutine(RepeatSpawn());
     }
 
-    // EnergyCan‚ğ¶¬
+    // EnergyCanã‚’ç”Ÿæˆ
     private void SpawnEnergy()
     {
         // Instantiate energy can
@@ -34,12 +34,11 @@ public class ItemManager : MonoBehaviour
             Vector3 spawnPoint = ItemSpawnPoints[UnityEngine.Random.Range(0, ItemSpawnPoints.Length)].position;
             GameObject item = Items[UnityEngine.Random.Range(0, Items.Length)];
             Instantiate(item, spawnPoint, Quaternion.identity);
-            Debug.Log("Item Spawned");
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(15);
         }
     }
 
-    // ’x‰„Às‚·‚é‚½‚ß‚Ìƒƒ\ƒbƒh‚ğ‹¤—L‚·‚é
+    // é…å»¶å®Ÿè¡Œã™ã‚‹ãŸã‚ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’å…±æœ‰ã™ã‚‹
     private IEnumerator DelayMethod(float waitTime, Action action)
     {
         yield return new WaitForSeconds(waitTime);
