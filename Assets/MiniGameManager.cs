@@ -36,7 +36,7 @@ public class MiniGameManager : MonoBehaviour
     {
         //今のシーンがメインがかどうか
         IsMain = (SceneManager.GetActiveScene().name == "MainScene");
-        Debug.Log(IsMain);
+        //Debug.Log(IsMain);
         //Debug.Log(++MainGameManager.PointOfA);
         // コルーチンの起動
         StartCoroutine(DelayCoroutine());

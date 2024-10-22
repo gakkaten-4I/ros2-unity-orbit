@@ -248,6 +248,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Malet: {fileID: 0}
+--- !u!1 &264341740
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 264341742}
+  - component: {fileID: 264341743}
+  m_Layer: 0
+  m_Name: TransToMiniGame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &264341742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264341740}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.349294, y: -4.7460723, z: -9.943261}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &264341743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264341740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 760874991ed722b4287d74f0c730d020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minigameNameTextOfA: {fileID: 1393591971}
+  minigameNameTextOfB: {fileID: 2045089420}
+  NextText: {fileID: 283832773}
+  MinigameNameText: {fileID: 1995930902}
 --- !u!1 &283832773
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,6 +767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab_Trajectory: {fileID: 0}
   Prefab_Prediction: {fileID: 0}
+  turn: 0
 --- !u!50 &556171487
 Rigidbody2D:
   serializedVersion: 4
@@ -998,6 +1047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 562f2a45658898e42b545c142f43c9eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transToMinigame: {fileID: 264341743}
   IsMain: 0
 --- !u!114 &573867724
 MonoBehaviour:
@@ -1006,7 +1056,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573867720}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 760874991ed722b4287d74f0c730d020, type: 3}
   m_Name: 
@@ -2725,3 +2775,4 @@ SceneRoots:
   - {fileID: 1041361760}
   - {fileID: 1009107661}
   - {fileID: 848561199}
+  - {fileID: 264341742}

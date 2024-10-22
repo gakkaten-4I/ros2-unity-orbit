@@ -49,11 +49,11 @@ public class TransToMinigame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if((Input.GetKeyDown(KeyCode.D))&&(Input.GetKeyDown(KeyCode.B))) DebugTransition();
+        if((Input.GetKeyDown(KeyCode.D))&&(Input.GetKeyDown(KeyCode.B))) DebugTransition("BossBattle");
     }
 
     //ミニゲームへ遷移する関数
-    IEnumerator GoMinigame(string NextMinigame)//引数は次遷移するミニゲームのシーン名
+    public IEnumerator GoMinigame(string NextMinigame)//引数は次遷移するミニゲームのシーン名
     {
         NextText.SetActive(true);
 
@@ -100,13 +100,17 @@ public class TransToMinigame : MonoBehaviour
         NextText.SetActive(true);
         MinigameNameText.SetActive(true);
 
-        /*Step5.ミニゲームへ推移
+
+        //Step5.ミニゲームへ推移
+        Debug.Log("Move to Mini Game");
         SceneManager.LoadScene(NextMinigame, LoadSceneMode.Single);
-        */
+        
     }
 
-    void DebugTransition(){
+    public void DebugTransition(string NextMiniGame)
+    {
         Debug.Log("DEBUG:GOMINIGAME!!");
-        StartCoroutine(GoMinigame("BossBattle"));
+        
+        StartCoroutine(GoMinigame(NextMiniGame));
     }
 }

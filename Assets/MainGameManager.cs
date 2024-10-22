@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class MainGameManager : MonoBehaviour
 {
+    public TransToMinigame transToMinigame;
     public static int PointOfA = 0;
     public static int PointOfB = 0;
 
@@ -26,7 +27,7 @@ public class MainGameManager : MonoBehaviour
     {
         // 90秒間待つ
         // Time.timeScale の影響を受けずに実時間で90秒待つ
-        yield return new WaitForSecondsRealtime(90);
+        yield return new WaitForSecondsRealtime(10);
         DelayMethod();
     }
 
@@ -34,36 +35,36 @@ public class MainGameManager : MonoBehaviour
     {
         ++SceneMoveCount;
         int GameSceneNumber = Random.Range(0, 3);
+        string NextMiniGame="";
         IsMain = false;
         switch (GameSceneNumber)
         {
             case 0:
-                SceneManager.LoadScene("CoinGame");
+                NextMiniGame = "CoinGame";
                 break;
             case 1:
-                SceneManager.LoadScene("ColoringGame");
+                NextMiniGame = "ColoringGame";
                 break;
             case 2:
-                SceneManager.LoadScene("BossBattle");
+                NextMiniGame = "BossBattle";
                 break;
         }
-
-
+        transToMinigame.DebugTransition(NextMiniGame);
     }
     // Update is called once per frame
     void Update()
     {
         //今のシーンがメインがかどうか
         IsMain = (SceneManager.GetActiveScene().name == "MainScene");
-        Debug.Log(IsMain);
-        Debug.Log(SceneMoveCount);
+        //Debug.Log(IsMain);
+        //Debug.Log(SceneMoveCount);
         // コルーチンの起動
         StartCoroutine(DelayCoroutine());
 
         //最初に4点以上の差がついたら
         if (Mathf.Abs(PointOfA - PointOfB) >= 4 && (SceneMoveCount == 0))
         {
-            DelayMethod();
+            //DelayMethod();
         }
     }
 }
