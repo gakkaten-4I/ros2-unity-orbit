@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +10,13 @@ public class EnergyCanManager : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Ç∑ÇËî≤ÇØÇΩÅI");
+        if (other.gameObject.tag == "Ball") // „Éú„Éº„É´„Å´ÂΩì„Åü„Å£„Åü„Çâ
+        {
+            GameObject gsmObject = GameObject.Find("GameSceneManager");
+            MainGameManager gsmScript = gsmObject.GetComponent<MainGameManager>();
+            _ = gsmScript.EnableBlueShield(destroyCancellationToken);
+            Destroy(gameObject);
+        }
     }
     // Update is called once per frame
     void Update()
