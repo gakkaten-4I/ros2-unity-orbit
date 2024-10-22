@@ -28,10 +28,16 @@ public class SheildScript : MonoBehaviour
             if (BallManager.turn)// trueの時は青ボール
             {
                 _ = gsmScript.EnableBlueShield(destroyCancellationToken);
+                GameObject biaObject = GameObject.Find("BlueItemArea");
+                BlueItemAreaScript biaScript = biaObject.GetComponent<BlueItemAreaScript>();
+                biaScript.AddItem(Items.Shield);
             }
             else
             {
                 _= gsmScript.EnableRedShield(destroyCancellationToken);
+                GameObject riaObject = GameObject.Find("RedItemArea");
+                BlueItemAreaScript riaScript = riaObject.GetComponent<BlueItemAreaScript>();
+                riaScript.AddItem(Items.Shield);
             }
             gameObject.SetActive(false);
             _ = DelayedDestruction(destroyCancellationToken, 15); // アイテムの持続時間は10秒なので、それより長い時間で削除
