@@ -970,6 +970,7 @@ GameObject:
   - component: {fileID: 556171493}
   - component: {fileID: 556171492}
   - component: {fileID: 556171491}
+  - component: {fileID: 556171494}
   m_Layer: 0
   m_Name: ball
   m_TagString: Ball
@@ -1280,6 +1281,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feab04ad06492965492b3edc6423aa53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &556171494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556171482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c1cbac078fe7f418c5f200296bcdaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &573867720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,7 +1346,6 @@ MonoBehaviour:
   IsBlueShielded: 0
   IsRedGoalable: 1
   IsBlueGoalable: 1
-  EnergyCount: 0
   ballManager: {fileID: 556171485}
 --- !u!1 &600815004
 GameObject:
@@ -1364,8 +1376,7 @@ Transform:
   m_LocalPosition: {x: 3, y: -4.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1111062822}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &600815006
@@ -1383,6 +1394,8 @@ MonoBehaviour:
   Bomb: {fileID: 7040181861489111805, guid: b3e33cc58be7213418014e8fb08890cc, type: 3}
   Shield: {fileID: 7333782848150288061, guid: ffe3094df75e99649a4cb6390f1de972, type: 3}
   Gun: {fileID: 8560683547743142482, guid: 7e86ecd8588e02e439cf4b6d696a7c64, type: 3}
+  InitialY: 2.5
+  Upward: -1
 --- !u!1 &609937521
 GameObject:
   m_ObjectHideFlags: 0
@@ -1580,6 +1593,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 989990119}
+  - component: {fileID: 989990120}
   m_Layer: 0
   m_Name: RedItemArea
   m_TagString: Untagged
@@ -1602,6 +1616,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &989990120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989990118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2d9d2bdeb3399d4ab65259c2d7ac44f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bomb: {fileID: 7040181861489111805, guid: b3e33cc58be7213418014e8fb08890cc, type: 3}
+  Shield: {fileID: 7333782848150288061, guid: ffe3094df75e99649a4cb6390f1de972, type: 3}
+  Gun: {fileID: 8560683547743142482, guid: 7e86ecd8588e02e439cf4b6d696a7c64, type: 3}
+  InitialY: -2.5
+  Upward: 1
 --- !u!1 &1009107657
 GameObject:
   m_ObjectHideFlags: 0
@@ -1920,37 +1951,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!1 &1111062821
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1111062822}
-  m_Layer: 0
-  m_Name: ItemSlot0
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1111062822
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1111062821}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 600815005}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1172483463
 GameObject:
   m_ObjectHideFlags: 0
