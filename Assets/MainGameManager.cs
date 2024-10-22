@@ -177,7 +177,7 @@ public class MainGameManager : MonoBehaviour
             }
             else if (IsCharged)
             {
-                PointOfA += 2;
+                PointOfB += 2;
             }
             else if (IsFever)
             {
