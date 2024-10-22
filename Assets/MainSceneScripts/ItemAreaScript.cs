@@ -44,10 +44,23 @@ public class ItemAreaScript : MonoBehaviour
         }
     }
 
+    public void RemoveAllItems()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+        for (int i = 0; i < ItemSlotAvailability.Length; i++)
+        {
+            ItemSlotAvailability[i] = true;
+        }
+
+    }
+
     private IEnumerator SpawnItem(GameObject prefab, int slot, int delaySeconds)
     {
         Vector3 slotPos = new Vector3(0, InitialY + slot*Upward, 0);
-        GameObject obj = Instantiate(prefab, transform.position+slotPos , Quaternion.identity);
+        GameObject obj = Instantiate(prefab, transform.position+slotPos , Quaternion.identity, transform);
         yield return new WaitForSeconds(delaySeconds);
         // Žc‚è‚R•b‚Å“_–Å‚Æ‚©‚à‚ ‚è‚©‚à
         Destroy(obj);

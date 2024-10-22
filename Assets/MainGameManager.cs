@@ -28,7 +28,7 @@ public class MainGameManager : MonoBehaviour
     public bool IsRedGoalable = true;
     public bool IsBlueGoalable = true;
 
-    public short EnergyCount = 0;
+    public static short EnergyCount = 0;
 
     [SerializeField] BallManager ballManager;
     private DisplayScoreManager DisplayScoreManager;
@@ -132,6 +132,12 @@ public class MainGameManager : MonoBehaviour
         IsFever = true;
         //TODO: フィーバーモードになったことがわかるビジュアルエフェクト
         //TODO: 場の効果をすべて無効にする処理
+        GameObject biaObject = GameObject.Find("BlueItemArea");
+        GameObject riaObject = GameObject.Find("RedItemArea");
+        ItemAreaScript biaScript = biaObject.GetComponent<ItemAreaScript>();
+        ItemAreaScript riaScript = riaObject.GetComponent<ItemAreaScript>();
+        biaScript.RemoveAllItems();
+        riaScript.RemoveAllItems();
         yield return new WaitForSeconds(15);
         IsFever = false;
     }
