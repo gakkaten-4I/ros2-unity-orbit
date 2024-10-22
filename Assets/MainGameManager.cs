@@ -138,6 +138,13 @@ public class MainGameManager : MonoBehaviour
         ItemAreaScript riaScript = riaObject.GetComponent<ItemAreaScript>();
         biaScript.RemoveAllItems();
         riaScript.RemoveAllItems();
+
+        IsRedBombed = false;
+        IsBlueBombed = false;
+        IsCharged = false;
+        IsRedShielded = false;
+        IsBlueShielded = false;
+
         yield return new WaitForSeconds(15);
         IsFever = false;
     }
