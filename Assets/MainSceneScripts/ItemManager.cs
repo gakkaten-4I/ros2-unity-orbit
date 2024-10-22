@@ -15,7 +15,7 @@ public class ItemManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(DelayMethod(210, SpawnEnergy)); //210秒後にSpawnEnergyを実行
+        StartCoroutine(DelayMethod(30, SpawnEnergy)); //30秒後にSpawnEnergyを実行
         StartCoroutine(RepeatSpawn());
     }
 
