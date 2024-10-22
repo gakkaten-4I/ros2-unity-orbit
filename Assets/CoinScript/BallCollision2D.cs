@@ -23,9 +23,11 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     public GameObject CollectEffectBlue; //青エフェクト
 
     //赤色コインに変身
-    public Sprite RedSR;
+    public GameObject CoinRed;
     //青色コインに変身
-    public Sprite BlueSR;
+    public GameObject CoinBlue;
+    private Rigidbody2D rb;
+    private float jumpForce = 100f;
 
     //どっちサイドかをinCoinSceneTrailから取得
     inCoinSceneTrail cointrail;
@@ -94,6 +96,8 @@ public class BallDestroyOnCollision2D : MonoBehaviour
         {
             // 指定のレイヤーであれば破壊する
             if(cointrail.turn == true){//エフェクト発生(赤)
+                GameObject newEffect = Instantiate(CoinRed, transform.position, transform.rotation);
+                Jump(newEffect);
                 Instantiate(CollectEffectRed, transform.position, transform.rotation);
 
                 Destroy(other.gameObject);
@@ -101,6 +105,8 @@ public class BallDestroyOnCollision2D : MonoBehaviour
                 contableFlag = 0;
                 StartCoroutine(WaitAndExecuteFunction(0.1f));
             }else{//エフェクト発生(青)
+                GameObject newEffect = Instantiate(CoinBlue, transform.position, transform.rotation);
+                Jump(newEffect);
                 Instantiate(CollectEffectBlue, transform.position, transform.rotation);
 
                 Destroy(other.gameObject);
@@ -136,5 +142,13 @@ public class BallDestroyOnCollision2D : MonoBehaviour
         CoinCountRed ++;
         //テキストメッシュプロに破壊数を表示
         CoinTextRed.text = "Red:" + CoinCountRed.ToString();
+    }
+
+    private IEnumerator Jump(GameObject newobject)
+    {
+        rb = newobject.GetComponent<Rigidbody2D>();
+        rb.velocity = new Vector2(0f, jumpForce);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(newobject);
     }
 }
