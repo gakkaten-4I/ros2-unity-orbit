@@ -1,17 +1,14 @@
 using UnityEngine;
 using TMPro;
-using System.Collections;
 
-public class BallDestroyOnCollision2D : MonoBehaviour
+public class BossDamage : MonoBehaviour
 {
     // 破壊する対象のレイヤー（Inspectorから設定できるようにする）
     public LayerMask destroyableLayer;
-    public int CoinCount = 0;
-    public int CoinCount2 = 0;
-    public TextMeshProUGUI CoinText;
+    public int player_a_hp = 0;
+    public int player_b_hp = 0;
+    public TextMeshProUGUI scoreText;
     public int PlayerNum = 0;
-    private int frameCount = 0;
-    private int contableFlag = 1;
 
 /*
     // 物理的な衝突時に呼ばれるメソッド（2D）
@@ -26,43 +23,26 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     }
     */
 
-    void Update(){
-
-    }
-
     // トリガーとしての衝突時に呼ばれるメソッド（2D）
     void OnTriggerEnter2D(Collider2D other)
     {
         // 衝突したオブジェクトのレイヤーが指定のLayerMaskに含まれているか確認
-        if (((1 << other.gameObject.layer) & destroyableLayer) != 0 && contableFlag == 1)
+        if (((1 << other.gameObject.layer) & destroyableLayer) != 0)
         {
             // 指定のレイヤーであれば破壊する
             
-            
-            CoinCount++;
+            Debug.Log("hit");
             Destroy(other.gameObject);
-            UpdateCoinCountText();
-            contableFlag = 0;
-            StartCoroutine(WaitAndExecuteFunction(0.1f));
-
-
+            player_a_hp++;
+            UpdateplayerCountText();
         }
     }
 
-    IEnumerator WaitAndExecuteFunction(float waitTime)
+    void UpdateplayerCountText()
     {
-        // 指定した時間だけ待機する
-
-        yield return new WaitForSeconds(waitTime);
-        contableFlag = 1;
-        // 待機後に実行する関数
-        
-    }
-
-
-    void UpdateCoinCountText()
-    {
-        // テキストメッシュプロに破壊数を表示
-        CoinText.text = "Coin: " + CoinCount.ToString();
+        // scoreText = GameObject.Find("player_a_score");
+        // Text a_score = scoreText.GetComponent<Text>();
+        // // テキストメッシュプロに破壊数を表示
+        // a_score.text = "Coin: " + player_a_hp.ToString();
     }
 }
