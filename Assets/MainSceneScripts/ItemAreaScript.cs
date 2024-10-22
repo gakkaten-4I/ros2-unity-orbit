@@ -7,7 +7,7 @@ public enum Items
     Bomb,Shield,Gun
 }
 
-public class BlueItemAreaScript : MonoBehaviour
+public class ItemAreaScript : MonoBehaviour
 {
     [SerializeField] private GameObject Bomb,Shield,Gun;
     private bool[] ItemSlotAvailability = new bool[4] { true, true, true, true };
