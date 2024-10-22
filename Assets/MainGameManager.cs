@@ -25,6 +25,8 @@ public class MainGameManager : MonoBehaviour
     public bool IsFever = false;
     public bool IsRedShielded = false;
     public bool IsBlueShielded = false;
+    public bool IsRedGoalable = true;
+    public bool IsBlueGoalable = true;
 
     [SerializeField] BallManager ballManager;
 
@@ -121,9 +123,10 @@ public class MainGameManager : MonoBehaviour
         IsRedShielded = false;
     }
 
-    public void Goal(bool isBlueGoal)
-    { 
-        if(isBlueGoal&&!IsBlueShielded) // PointOfB (RedTeam)の得点を増やす
+    // Blueチーム側のゴールセンサーが反応したときの処理
+    public void OnBlueGoalEnter()
+    {
+        if (!IsBlueShielded&&IsBlueGoalable) // PointOfB (RedTeam)の得点を増やす
         {
             if (IsBlueBombed&&IsCharged)
             {
@@ -141,10 +144,22 @@ public class MainGameManager : MonoBehaviour
             {
                 PointOfB++;
             }
+            StartCoroutine(SetBlueInvincible());
         }
-        else if(!IsRedShielded)// PointOfA (BlueTeam)の得点を増やす
+        if (IsBlueShielded)
         {
-            if (IsRedBombed&&IsCharged)
+            IsBlueShielded = false;
+            StartCoroutine(SetBlueInvincible());
+            //TODO: シールドを非表示にする処理
+        }
+    }
+
+    // Redチーム側のゴールセンサーが反応したときの処理
+    public void OnRedGoalEnter()
+    {
+        if (!IsRedShielded && IsRedGoalable)// PointOfA (BlueTeam)の得点を増やす
+        {
+            if (IsRedBombed && IsCharged)
             {
                 PointOfA += 4;
             }
@@ -160,9 +175,31 @@ public class MainGameManager : MonoBehaviour
             {
                 PointOfA++;
             }
-            
+            StartCoroutine(SetRedInvincible());
         }
-        //TODO: ここでゲームを一旦止めて、パックを戻すように促す
+        if (IsRedShielded)
+        {
+            IsRedShielded = false;
+            StartCoroutine(SetRedInvincible());
+            //TODO: シールドを非表示にする処理
+        }
     }
+
+    public IEnumerator SetBlueInvincible()
+    {
+        IsBlueGoalable = false;
+        //TODO: 無敵状態な事がわかるビジュアルエフェクト
+        yield return new WaitForSeconds(5); // 5秒間ゴールは無視される
+        IsBlueGoalable = true;
+    }
+
+    public IEnumerator SetRedInvincible()
+    {
+        IsRedGoalable = false;
+        //TODO: 無敵状態な事がわかるビジュアルエフェクト
+        yield return new WaitForSeconds(5); // 5秒間ゴールは無視される
+        IsRedGoalable = true;
+    }
+
 }
 
