@@ -14,7 +14,7 @@ public class EnergyCanManager : MonoBehaviour
         {
             GameObject gsmObject = GameObject.Find("GameSceneManager");
             MainGameManager gsmScript = gsmObject.GetComponent<MainGameManager>();
-            _ = gsmScript.EnableBlueShield(destroyCancellationToken);
+            gsmScript.OnEnergyTaken();
             Destroy(gameObject);
         }
     }
