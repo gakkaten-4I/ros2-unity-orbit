@@ -162,6 +162,10 @@ public class MainGameManager : MonoBehaviour
                 PointOfB += 2;
                 IsBlueBombed = false;
             }
+            else if (IsCharged)
+            {
+                PointOfA += 2;
+            }
             else if (IsFever)
             {
                 PointOfB += 3;
@@ -195,6 +199,10 @@ public class MainGameManager : MonoBehaviour
             {
                 PointOfA += 2;
                 IsRedBombed = false;
+            }
+            else if (IsCharged)
+            {
+                PointOfA += 2;
             }
             else if (IsFever)
             {
