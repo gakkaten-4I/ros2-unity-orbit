@@ -13,6 +13,7 @@ public class ItemAreaScript : MonoBehaviour
     private bool[] ItemSlotAvailability = new bool[4] { true, true, true, true };
     [SerializeField] private float InitialY;
     [SerializeField] private short Upward;
+    private int ShieldSlot;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,7 @@ public class ItemAreaScript : MonoBehaviour
                 StartCoroutine(SpawnItem(Bomb, slot, 10));
                 break;
             case Items.Shield:
+                ShieldSlot = slot;
                 StartCoroutine(SpawnItem(Shield, slot, 10));
                 break;
             case Items.Gun:
@@ -55,6 +57,18 @@ public class ItemAreaScript : MonoBehaviour
             ItemSlotAvailability[i] = true;
         }
 
+    }
+
+    public void RemoveShield()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.tag == "Shield")
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        ItemSlotAvailability[ShieldSlot]=true;
     }
 
     private IEnumerator SpawnItem(GameObject prefab, int slot, int delaySeconds)
