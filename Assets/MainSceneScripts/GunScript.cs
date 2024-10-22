@@ -31,13 +31,13 @@ public class GunScript : MonoBehaviour
             if(BallManager.turn)// trueの時は青ボール
             {
                 GameObject biaObject = GameObject.Find("BlueItemArea");
-                BlueItemAreaScript biaScript = biaObject.GetComponent<BlueItemAreaScript>();
+                ItemAreaScript biaScript = biaObject.GetComponent<ItemAreaScript>();
                 biaScript.AddItem(Items.Gun);
             }
             else
             {
                 GameObject riaObject = GameObject.Find("RedItemArea");
-                BlueItemAreaScript riaScript = riaObject.GetComponent<BlueItemAreaScript>();
+                ItemAreaScript riaScript = riaObject.GetComponent<ItemAreaScript>();
                 riaScript.AddItem(Items.Gun);
             }
             gameObject.SetActive(false);

@@ -31,14 +31,14 @@ public class BombScript : MonoBehaviour
             {
                 _ = gsmScript.BombBlue(destroyCancellationToken);
                 GameObject biaObject = GameObject.Find("BlueItemArea");
-                BlueItemAreaScript biaScript = biaObject.GetComponent<BlueItemAreaScript>();
+                ItemAreaScript biaScript = biaObject.GetComponent<ItemAreaScript>();
                 biaScript.AddItem(Items.Bomb);
             }
             else
             {
                 _ = gsmScript.BombRed(destroyCancellationToken);
                 GameObject riaObject = GameObject.Find("RedItemArea");
-                BlueItemAreaScript riaScript = riaObject.GetComponent<BlueItemAreaScript>();
+                ItemAreaScript riaScript = riaObject.GetComponent<ItemAreaScript>();
                 riaScript.AddItem(Items.Bomb);
             }
             gameObject.SetActive(false);
