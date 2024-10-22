@@ -28,6 +28,18 @@ public class GunScript : MonoBehaviour
             //TODO: ボールの軌跡を太くする
             //StartCoroutine(gsmScript.Charge());
             _ = gsmScript.Charge(destroyCancellationToken);
+            if(BallManager.turn)// trueの時は青ボール
+            {
+                GameObject biaObject = GameObject.Find("BlueItemArea");
+                BlueItemAreaScript biaScript = biaObject.GetComponent<BlueItemAreaScript>();
+                biaScript.AddItem(Items.Gun);
+            }
+            else
+            {
+                GameObject riaObject = GameObject.Find("RedItemArea");
+                BlueItemAreaScript riaScript = riaObject.GetComponent<BlueItemAreaScript>();
+                riaScript.AddItem(Items.Gun);
+            }
             gameObject.SetActive(false);
             _ = DelayedDestruction(destroyCancellationToken, 15); // アイテムの持続時間は10秒なので、それより長い時間で削除
         }
