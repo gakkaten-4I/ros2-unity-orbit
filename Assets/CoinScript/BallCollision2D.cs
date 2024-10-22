@@ -22,6 +22,11 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     public GameObject CollectEffectRed;　//赤エフェクト
     public GameObject CollectEffectBlue; //青エフェクト
 
+    //赤色コインに変身
+    public Sprite RedSR;
+    //青色コインに変身
+    public Sprite BlueSR;
+
     //どっちサイドかをinCoinSceneTrailから取得
     inCoinSceneTrail cointrail;
 
