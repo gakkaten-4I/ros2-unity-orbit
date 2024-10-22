@@ -13,8 +13,8 @@ public class DisplayScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ScoreTextOfA.text = ""+00+"";
-        ScoreTextOfA.text = ""+00+"";//スコア表示の初期化
+        ScoreTextOfA.text = "00";
+        ScoreTextOfA.text = "00";//スコア表示の初期化
     }
 
     // Update is called once per frame
@@ -50,8 +50,8 @@ public class DisplayScoreManager : MonoBehaviour
     void DebugText()//テキストの表示が変わるか確認
     {
         if((Input.GetKeyDown(KeyCode.D))&&(Input.GetKeyDown(KeyCode.B))){
-            ScoreTextOfA.text = "db";
-            ScoreTextOfB.text = "db";
+            ScoreTextOfA.text = "0"+5;
+            ScoreTextOfB.text = "0"+4;
         }
     }
 }
