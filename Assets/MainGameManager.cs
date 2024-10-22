@@ -33,6 +33,9 @@ public class MainGameManager : MonoBehaviour
     [SerializeField] BallManager ballManager;
     private DisplayScoreManager DisplayScoreManager;
 
+    private ItemAreaScript biaScript;
+    private ItemAreaScript riaScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +43,11 @@ public class MainGameManager : MonoBehaviour
         //UnityEngin.Random.InitState(DateTime.Now.Millisecond);
         GameObject dsmObj = GameObject.Find("DisplayScoreManager");
         DisplayScoreManager = dsmObj.GetComponent<DisplayScoreManager>();
+
+        GameObject biaObject = GameObject.Find("BlueItemArea");
+        GameObject riaObject = GameObject.Find("RedItemArea");
+        biaScript = biaObject.GetComponent<ItemAreaScript>();
+        riaScript = riaObject.GetComponent<ItemAreaScript>();
     }
 
     // コルーチン本体
@@ -132,10 +140,7 @@ public class MainGameManager : MonoBehaviour
         IsFever = true;
         //TODO: フィーバーモードになったことがわかるビジュアルエフェクト
         //TODO: 場の効果をすべて無効にする処理
-        GameObject biaObject = GameObject.Find("BlueItemArea");
-        GameObject riaObject = GameObject.Find("RedItemArea");
-        ItemAreaScript biaScript = biaObject.GetComponent<ItemAreaScript>();
-        ItemAreaScript riaScript = riaObject.GetComponent<ItemAreaScript>();
+        
         biaScript.RemoveAllItems();
         riaScript.RemoveAllItems();
 
@@ -192,6 +197,8 @@ public class MainGameManager : MonoBehaviour
         }
         if (IsBlueShielded)
         {
+            // アイテム欄からシールドを削除
+            biaScript.RemoveShield();
             IsBlueShielded = false;
             StartCoroutine(SetBlueInvincible());
             //TODO: シールドを非表示にする処理
@@ -230,6 +237,7 @@ public class MainGameManager : MonoBehaviour
         }
         if (IsRedShielded)
         {
+            riaScript.RemoveShield();
             IsRedShielded = false;
             StartCoroutine(SetRedInvincible());
             //TODO: シールドを非表示にする処理
