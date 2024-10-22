@@ -28,14 +28,18 @@ public class MainGameManager : MonoBehaviour
     public bool IsRedGoalable = true;
     public bool IsBlueGoalable = true;
 
-    [SerializeField] BallManager ballManager;
+    public short EnergyCount = 0;
 
+    [SerializeField] BallManager ballManager;
+    private DisplayScoreManager DisplayScoreManager;
 
     // Start is called before the first frame update
     void Start()
     {
         Application.targetFrameRate = 60;//フレームレートを60に固定
         //UnityEngin.Random.InitState(DateTime.Now.Millisecond);
+        GameObject dsmObj = GameObject.Find("DisplayScoreManager");
+        DisplayScoreManager = dsmObj.GetComponent<DisplayScoreManager>();
     }
 
     // コルーチン本体
@@ -123,6 +127,26 @@ public class MainGameManager : MonoBehaviour
         IsRedShielded = false;
     }
 
+    public IEnumerator EnterFeverMode()
+    {
+        IsFever = true;
+        //TODO: フィーバーモードになったことがわかるビジュアルエフェクト
+        //TODO: 場の効果をすべて無効にする処理
+        yield return new WaitForSeconds(15);
+        IsFever = false;
+    }
+
+    public void OnEnergyTaken()
+    {
+        EnergyCount++;
+        if (EnergyCount >= 3)
+        {
+            // 15sフィーバー状態になる
+            StartCoroutine(EnterFeverMode());
+            EnergyCount = 0;
+        }
+    }
+
     // Blueチーム側のゴールセンサーが反応したときの処理
     public void OnBlueGoalEnter()
     {
@@ -131,10 +155,12 @@ public class MainGameManager : MonoBehaviour
             if (IsBlueBombed&&IsCharged)
             {
                 PointOfB += 4;
+                IsBlueBombed = false;
             }
             else if (IsBlueBombed)
             {
                 PointOfB += 2;
+                IsBlueBombed = false;
             }
             else if (IsFever)
             {
@@ -145,6 +171,7 @@ public class MainGameManager : MonoBehaviour
                 PointOfB++;
             }
             StartCoroutine(SetBlueInvincible());
+            DisplayScoreManager.ReflectScore();
         }
         if (IsBlueShielded)
         {
@@ -162,10 +189,12 @@ public class MainGameManager : MonoBehaviour
             if (IsRedBombed && IsCharged)
             {
                 PointOfA += 4;
+                IsRedBombed = false;
             }
             else if (IsRedBombed)
             {
                 PointOfA += 2;
+                IsRedBombed = false;
             }
             else if (IsFever)
             {
@@ -176,6 +205,7 @@ public class MainGameManager : MonoBehaviour
                 PointOfA++;
             }
             StartCoroutine(SetRedInvincible());
+            DisplayScoreManager.ReflectScore();
         }
         if (IsRedShielded)
         {
