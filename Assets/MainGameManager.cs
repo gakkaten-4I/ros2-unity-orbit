@@ -31,6 +31,8 @@ public class MainGameManager : MonoBehaviour
     public static short EnergyCount = 0;
 
     [SerializeField] BallManager ballManager;
+    [SerializeField] ItemManager itemManager;
+
     private DisplayScoreManager DisplayScoreManager;
 
     private ItemAreaScript biaScript;
@@ -99,6 +101,8 @@ public class MainGameManager : MonoBehaviour
     public async ValueTask BombBlue(CancellationToken token)
     {
         IsBlueBombed = true;
+        //StartCoroutine(itemManager.Emergence());
+        itemManager.Emergence(BallManager.turn);
         await Task.Delay(TimeSpan.FromSeconds(10), token);
         IsBlueBombed = false;
     }
@@ -106,6 +110,7 @@ public class MainGameManager : MonoBehaviour
     public async ValueTask BombRed(CancellationToken token)
     {
         IsRedBombed = true;
+        itemManager.Emergence(BallManager.turn);
         await Task.Delay(TimeSpan.FromSeconds(10), token);
         IsRedBombed = false;
     }
