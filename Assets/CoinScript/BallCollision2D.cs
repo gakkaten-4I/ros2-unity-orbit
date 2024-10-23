@@ -13,6 +13,7 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     //点数変数の初期化
     public int CoinCountRed = 0;
     public int CoinCountBlue = 0;
+    
     //スコアを表示するTMP
     public TextMeshProUGUI CoinTextBlue;
     public TextMeshProUGUI CoinTextRed;
@@ -27,7 +28,7 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     //青色コインに変身
     public GameObject CoinBlue;
     private Rigidbody2D rb;
-    private float jumpForce = 100f;
+    private float jumpForce = 500f;
 
     //どっちサイドかをinCoinSceneTrailから取得
     inCoinSceneTrail cointrail;
@@ -43,7 +44,8 @@ public class BallDestroyOnCollision2D : MonoBehaviour
                 Destroy(collision.gameObject);
             }
         }
-        */
+    */
+
     void Start(){
 
         //スコアの設定位置
@@ -147,7 +149,7 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     private IEnumerator Jump(GameObject newobject)
     {
         rb = newobject.GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(0f, jumpForce);
+        rb.AddForce(new Vector2(0,10f), ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.5f);
         Destroy(newobject);
     }
