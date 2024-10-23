@@ -37,7 +37,7 @@ public class CoinResult : MonoBehaviour
             Review1.fontSize = FontSizeReview;
             Review1.transform.Rotate(0,0,-90);
             Review1.text = "   Result   ";
-            Review1.color = new Color(0.0f, 0.0f, 0.0f, 1f);
+            Review1.color = new Color(0.8f, 0.5f, 0.8f, 1f);
             Review1.enabled = false;
         }
         else
@@ -54,7 +54,7 @@ public class CoinResult : MonoBehaviour
             Review2.fontSize = FontSizeReview;
             Review2.transform.Rotate(0,0,90);
             Review2.text = "   Result   ";
-            Review2.color = new Color(0.0f, 0.0f, 0.0f, 1f);
+            Review2.color = new Color(0.8f, 0.5f, 0.8f, 1f);
             Review2.enabled = false;
         }
         else

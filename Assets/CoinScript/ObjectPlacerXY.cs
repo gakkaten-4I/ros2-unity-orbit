@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using System;
+using TMPro;
 
 public class ObjectPlacerXY : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class ObjectPlacerXY : MonoBehaviour
     public int gridSizeY = 10;        // Z軸方向のグリッド数（10に設定）
     public float spacing = 1f;        // オブジェクト間のスペース
     public float map_start_time = 0f; //マップが更新された直後の経過時間を格納するための変数
+    private bool continueFlag = true; //今後ゲームを続けるかのフラグ
+    private int counting; //カウントダウンタイマー用の関数
+    public TextMeshProUGUI countText; //カウントダウンタイマー用の表示テキスト
 
     void Start()
     {
@@ -26,8 +30,24 @@ public class ObjectPlacerXY : MonoBehaviour
 
             //マップEを生成
             PlaceObjectsInGrid(5);
+            continueFlag = false;
         }));
 
+        if (countText != null)
+        {
+            RectTransform RectCountText = countText.GetComponent<RectTransform>();
+            RectCountText.anchoredPosition = new Vector3(-70f,-150f,0f);
+            //RectReview1.sizeDelta = new Vector2(0f,0f);
+            countText.fontSize = 60f;
+            RectCountText.transform.Rotate(0,0,-180);
+            countText.color = new Color(1f, 1f, 1f, 1f);
+        }
+        else
+        {
+            Debug.LogError("Titleオブジェクトが指定されていません");
+        }
+
+        StartCoroutine(CountDown());
         StartCoroutine(WaitAndCallResult(30f));  // 30秒後にresult関数を呼び出すコルーチンを開始
     }
     
@@ -38,8 +58,8 @@ public class ObjectPlacerXY : MonoBehaviour
         //現在の経過時間
         float now_time = Time.time;
 
-        //コインが無い　or 前回のマップ更新から10秒経過 -> マップ更新
-        if(CoinsArray.Length == 0　|| now_time - map_start_time >= 10)
+        //コインが無い　or 前回のマップ更新から10秒経過 -> マップ更新 かつcontinueFlagがtrueであるとき
+        if((CoinsArray.Length == 0　|| now_time - map_start_time >= 10) && (continueFlag == true))
         {
             Debug.Log("マップ更新");
 
@@ -223,6 +243,27 @@ public class ObjectPlacerXY : MonoBehaviour
         {
             Destroy(coin_Soccer);
         }
+    }
+
+    IEnumerator CountDown()
+    {
+        countText.enabled = true;
+        for(int i=0; i<30; i++){
+            counting = 30 - i;
+            countText.text = counting.ToString();
+            if(i > 24){
+                for(int j=0; j<2; j++){
+                    yield return new WaitForSeconds(0.25f);
+                    countText.enabled = false;
+                    yield return new WaitForSeconds(0.25f);
+                    countText.enabled = true;
+                }
+            }else{
+                yield return new WaitForSeconds(1f);
+            }
+        }
+        counting = 0;
+        countText.text = counting.ToString();
     }
 
     // 30秒後にすべてを壊す
