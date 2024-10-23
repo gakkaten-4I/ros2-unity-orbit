@@ -3,7 +3,9 @@ guid: 21f5cada6c3bda048867bc5152bcc0f8
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - boss1Sprite: {fileID: 21300000, guid: 9347b3c57086eb04986373d440fd2548, type: 3}
+  - bossPrefab: {fileID: 2596691601466610400, guid: 11d5e9917f40c6f47ac3ed8e6e12896c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

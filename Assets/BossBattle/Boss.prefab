@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3665700562673390499}
   - component: {fileID: 7702816575184967947}
   m_Layer: 0
-  m_Name: New Prefab
+  m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
