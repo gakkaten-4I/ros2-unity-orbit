@@ -1653,7 +1653,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab_Trajectory: {fileID: 434138398}
   Prefab_Prediction: {fileID: 434138398}
-  turn: 0
 --- !u!50 &556171487
 Rigidbody2D:
   serializedVersion: 4
@@ -1899,8 +1898,8 @@ MonoBehaviour:
   CoinTextRed: {fileID: 2003770163}
   CollectEffectRed: {fileID: 8596195021196661256, guid: ebfec592adbaa774f816ac18182f7da6, type: 3}
   CollectEffectBlue: {fileID: 1857858718305735071, guid: 2565de2bd3428934289f5473402c9ad2, type: 3}
-  CoinRed: {fileID: 2528378792570381764, guid: 80ae108ed49a9504f8e027eb2f663936, type: 3}
-  CoinBlue: {fileID: 8696251564765723684, guid: dbb383946e6793c41ad16d8849d1bc83, type: 3}
+  RedSR: {fileID: 0}
+  BlueSR: {fileID: 0}
 --- !u!114 &556171497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1925,9 +1924,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 573867722}
-  - component: {fileID: 573867721}
   - component: {fileID: 573867723}
   - component: {fileID: 573867724}
+  - component: {fileID: 573867725}
   m_Layer: 0
   m_Name: GameSceneManager
   m_TagString: Untagged
@@ -1935,19 +1934,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &573867721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 573867720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 562f2a45658898e42b545c142f43c9eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsMain: 0
 --- !u!4 &573867722
 Transform:
   m_ObjectHideFlags: 0
@@ -1992,6 +1978,19 @@ MonoBehaviour:
   gridSizeY: 2
   spacing: 2
   map_start_time: 0
+--- !u!114 &573867725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573867720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f19360cda1e76ff4fb10fc06c65d9261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsMain: 0
 --- !u!1 &654035131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2697,13 +2696,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a436c25a7bf4e074981b79df3f425b72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CoinCountRed: 0
+  CoinCountBlue: 0
   Review1: {fileID: 1863631761}
   Review2: {fileID: 49499998}
   ShowRed1: {fileID: 914184029}
   ShowRed2: {fileID: 944228412}
   ShowBlue1: {fileID: 184236513}
   ShowBlue2: {fileID: 1413831116}
-  bdoc: {fileID: 0}
 --- !u!1001 &1231906183
 PrefabInstance:
   m_ObjectHideFlags: 0
