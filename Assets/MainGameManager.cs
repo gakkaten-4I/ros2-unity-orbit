@@ -48,18 +48,21 @@ public class MainGameManager : MonoBehaviour
         GameObject riaObject = GameObject.Find("RedItemArea");
         biaScript = biaObject.GetComponent<ItemAreaScript>();
         riaScript = riaObject.GetComponent<ItemAreaScript>();
+
+        // 60秒後にミニゲームに遷移
+        StartCoroutine(DelayCoroutine());
     }
 
     // コルーチン本体
     private IEnumerator DelayCoroutine()
     {
-        // 90秒間待つ
-        // Time.timeScale の影響を受けずに実時間で90秒待つ
-        yield return new WaitForSecondsRealtime(90);
-        DelayMethod();
+        // 60秒間待つ
+        // Time.timeScale の影響を受けずに実時間で60秒待つ
+        yield return new WaitForSecondsRealtime(60);
+        NextScene();
     }
 
-    void DelayMethod()
+    void NextScene()
     {
         ++SceneMoveCount;
         int GameSceneNumber = UnityEngine.Random.Range(0, 3);
@@ -86,14 +89,15 @@ public class MainGameManager : MonoBehaviour
         IsMain = (SceneManager.GetActiveScene().name == "MainScene");
         //Debug.Log(IsMain);
         //Debug.Log(SceneMoveCount);
-        // コルーチンの起動
-        StartCoroutine(DelayCoroutine());
+        
 
         //最初に4点以上の差がついたら
-        if (Mathf.Abs(PointOfA - PointOfB) >= 4 && (SceneMoveCount == 0))
-        {
-            DelayMethod();
-        }
+        //if (Mathf.Abs(PointOfA - PointOfB) >= 4 && (SceneMoveCount == 0))
+        //{
+        //    DelayMethod();
+        //}
+
+        //TODO: エナジードリンクの本数をどこかに何らかの形で表示
     }
 
     public async ValueTask BombBlue(CancellationToken token)
