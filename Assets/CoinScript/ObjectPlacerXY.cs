@@ -14,6 +14,10 @@ public class ObjectPlacerXY : MonoBehaviour
     private int counting; //カウントダウンタイマー用の関数
     public TextMeshProUGUI countText; //カウントダウンタイマー用の表示テキスト
 
+    //tmpの基準点
+    private float tmpX = -553.5f;
+    private float tmpY = -279f;
+
     void Start()
     {
         System.Random rnd = new System.Random();    // Randomオブジェクトの作成
@@ -36,9 +40,9 @@ public class ObjectPlacerXY : MonoBehaviour
         if (countText != null)
         {
             RectTransform RectCountText = countText.GetComponent<RectTransform>();
-            RectCountText.anchoredPosition = new Vector3(-70f,-150f,0f);
-            //RectReview1.sizeDelta = new Vector2(0f,0f);
-            countText.fontSize = 60f;
+            RectCountText.anchoredPosition = new Vector3(tmpX + 8f, tmpY - 8f, 0f);
+            RectCountText.sizeDelta = new Vector2(2f,2f);
+            countText.fontSize = 1.5f;
             RectCountText.transform.Rotate(0,0,-180);
             countText.color = new Color(1f, 1f, 1f, 1f);
         }
@@ -48,7 +52,7 @@ public class ObjectPlacerXY : MonoBehaviour
         }
 
         StartCoroutine(CountDown());
-        StartCoroutine(WaitAndCallResult(30f));  // 30秒後にresult関数を呼び出すコルーチンを開始
+        StartCoroutine(WaitAndCallResult(25f));  // 30秒後にresult関数を呼び出すコルーチンを開始
     }
     
     void Update()
@@ -254,10 +258,10 @@ public class ObjectPlacerXY : MonoBehaviour
     IEnumerator CountDown()
     {
         countText.enabled = true;
-        for(int i=0; i<30; i++){
-            counting = 30 - i;
+        for(int i=0; i<25; i++){
+            counting = 25 - i;
             countText.text = counting.ToString();
-            if(i > 24){
+            if(i > 19){
                 for(int j=0; j<2; j++){
                     yield return new WaitForSeconds(0.25f);
                     countText.enabled = false;
