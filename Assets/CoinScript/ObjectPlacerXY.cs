@@ -44,7 +44,7 @@ public class ObjectPlacerXY : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Titleオブジェクトが指定されていません");
+            Debug.LogError("countTextオブジェクトが指定されていません");
         }
 
         StartCoroutine(CountDown());
