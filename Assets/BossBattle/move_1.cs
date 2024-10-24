@@ -89,22 +89,13 @@ public class Route : MonoBehaviour
                     pointIdx = 4;
                 }
             }
-            if (move1.hp == 30)
-            {
-                GameObject Boss3 = GameObject.Find("Boss3");
-                GameObject Boss4 = GameObject.Find("Boss4");
-                Destroy(Boss3);
-                Destroy(Boss4);
-            }
+            
             
         }
         
         else if(move1.hp <= 15&&move1.hp > 0)
         {
-            GameObject Boss1 = GameObject.Find("Boss1");
-            GameObject Boss2 = GameObject.Find("Boss2");
-            Destroy(Boss1);
-            Destroy(Boss2);
+            
             float rand = Random.Range(1.0f, 100.0f);
             if (!flag)
             {
@@ -135,13 +126,7 @@ public class Route : MonoBehaviour
             
         } 
 
-        else if (move1.hp <= 0)
-        {
-            move1.hp = 0;
-            particle.Play();
-            
-            
-        }
+        
         
     }
 }

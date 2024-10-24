@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class hitpoint_child : MonoBehaviour
+public class hitpoint_child2 : MonoBehaviour
 {
     hitpoint move1;  // Bossのスクリプト参照
     GameObject _Boss;  // Bossオブジェクト
@@ -19,14 +19,12 @@ public class hitpoint_child : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        //本体のダメージ関数を呼ぶ
-        
         // HPを減少させる
         move1.hp -= 3;
         Debug.Log("hit! Boss HP: " + move1.hp);
 
         // HPが0以下になったらエフェクトを表示してBossを削除
-        if (move1.hp <= 30)
+        if (move1.hp <= 15)
         {
             Debug.Log("Boss Defeated!");
 
@@ -37,6 +35,4 @@ public class hitpoint_child : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
-
 }
