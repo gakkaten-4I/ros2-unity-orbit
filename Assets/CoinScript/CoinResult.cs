@@ -186,6 +186,8 @@ public class CoinResult : MonoBehaviour
         ShowBlue1.text = "Blue:" + bdoc.CoinCountBlue.ToString();
         ShowBlue2.text = "Blue:" + bdoc.CoinCountBlue.ToString();
 
+        Review1.fontSize = 40f;
+        Review2.fontSize = 40f;
         if(bdoc.CoinCountBlue < bdoc.CoinCountRed){
             //赤チームが勝った時
             Review1.text = "RedTeam  Win";

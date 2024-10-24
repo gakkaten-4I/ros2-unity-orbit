@@ -99,7 +99,7 @@ public class BallDestroyOnCollision2D : MonoBehaviour
             // 指定のレイヤーであれば破壊する
             if(cointrail.turn == true){//エフェクト発生(赤)
                 GameObject newEffect = Instantiate(CoinRed, transform.position, transform.rotation);
-                Jump(newEffect);
+                StartCoroutine(Jump(newEffect));
                 Instantiate(CollectEffectRed, transform.position, transform.rotation);
 
                 Destroy(other.gameObject);
@@ -108,7 +108,7 @@ public class BallDestroyOnCollision2D : MonoBehaviour
                 StartCoroutine(WaitAndExecuteFunction(0.1f));
             }else{//エフェクト発生(青)
                 GameObject newEffect = Instantiate(CoinBlue, transform.position, transform.rotation);
-                Jump(newEffect);
+                StartCoroutine(Jump(newEffect));
                 Instantiate(CollectEffectBlue, transform.position, transform.rotation);
 
                 Destroy(other.gameObject);
@@ -149,7 +149,13 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     private IEnumerator Jump(GameObject newobject)
     {
         rb = newobject.GetComponent<Rigidbody2D>();
-        rb.AddForce(new Vector2(0,10f), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(0,5f), ForceMode2D.Impulse);
+
+        for(int i=0; i<360; i++){
+            rb.transform.Rotate(0f,10f,0f);
+            yield return new WaitForSeconds(0.01f);
+        }
+        
         yield return new WaitForSeconds(0.5f);
         Destroy(newobject);
     }
