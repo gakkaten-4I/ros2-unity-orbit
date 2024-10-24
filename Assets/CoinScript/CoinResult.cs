@@ -6,8 +6,6 @@ using TMPro;
 
 public class CoinResult : MonoBehaviour
 {
-    public int CoinCountRed;
-    public int CoinCountBlue;
     public TextMeshProUGUI Review1;
     public TextMeshProUGUI Review2;
     public TextMeshProUGUI ShowRed1;
@@ -23,6 +21,10 @@ public class CoinResult : MonoBehaviour
     private float boundTime = 0.2f;
     private float buindHeight = 20f;
 
+    //得点をBollCollision2Dから取得
+    private GameObject score;
+    public BallDestroyOnCollision2D bdoc;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +37,7 @@ public class CoinResult : MonoBehaviour
             Review1.fontSize = FontSizeReview;
             Review1.transform.Rotate(0,0,-90);
             Review1.text = "   Result   ";
-            Review1.color = new Color(0.0f, 0.0f, 0.0f, 1f);
+            Review1.color = new Color(0.8f, 0.5f, 0.8f, 1f);
             Review1.enabled = false;
         }
         else
@@ -52,7 +54,7 @@ public class CoinResult : MonoBehaviour
             Review2.fontSize = FontSizeReview;
             Review2.transform.Rotate(0,0,90);
             Review2.text = "   Result   ";
-            Review2.color = new Color(0.0f, 0.0f, 0.0f, 1f);
+            Review2.color = new Color(0.8f, 0.5f, 0.8f, 1f);
             Review2.enabled = false;
         }
         else
@@ -128,6 +130,15 @@ public class CoinResult : MonoBehaviour
             Debug.LogError("ShowBlue1オブジェクトが指定されていません");
         }
 
+        score = GameObject.Find("ball");
+        bdoc = score.GetComponent<BallDestroyOnCollision2D>();
+        if(bdoc == null)
+        {
+            Debug.LogError("can't read BallDestoryOnCollision2D");
+        }
+        Debug.Log(bdoc.CoinCountRed);
+        Debug.Log(bdoc.CoinCountBlue);
+
         //30秒後に結果発表
         StartCoroutine(ShowCoin(30f));
     }
@@ -168,17 +179,21 @@ public class CoinResult : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
 
-        ShowRed1.text = "Red:" + CoinCountRed.ToString();
-        ShowRed2.text = "Red:" + CoinCountRed.ToString();
-        ShowBlue1.text = "Blue:" + CoinCountBlue.ToString();
-        ShowBlue2.text = "Blue:" + CoinCountBlue.ToString();
+        Debug.Log(bdoc.CoinCountRed);
+        Debug.Log(bdoc.CoinCountBlue);
+        ShowRed1.text = "Red:" + bdoc.CoinCountRed.ToString();
+        ShowRed2.text = "Red:" + bdoc.CoinCountRed.ToString();
+        ShowBlue1.text = "Blue:" + bdoc.CoinCountBlue.ToString();
+        ShowBlue2.text = "Blue:" + bdoc.CoinCountBlue.ToString();
 
-        if(CoinCountBlue < CoinCountRed){
+        Review1.fontSize = 40f;
+        Review2.fontSize = 40f;
+        if(bdoc.CoinCountBlue < bdoc.CoinCountRed){
             //赤チームが勝った時
             Review1.text = "RedTeam  Win";
             Review2.text = "RedTeam  Win";
         }
-        else if(CoinCountBlue > CoinCountRed){
+        else if(bdoc.CoinCountBlue > bdoc.CoinCountRed){
             //青チームが勝った時
             Review1.text = "BlueTeam Win";
             Review2.text = "BlueTeam Win";
@@ -190,6 +205,7 @@ public class CoinResult : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1f);
+
         SceneManager.LoadScene("MainScene");
 
     }

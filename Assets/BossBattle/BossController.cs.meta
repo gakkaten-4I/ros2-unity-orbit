@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/BossBattle/BossController.cs.meta
 guid: dcc2e9b71514c0144a92659d276af8c6
+=======
+guid: 4c22e65e829a7874492eaabccc63cabd
+>>>>>>> 96c15b053109e081163c2ba49c5761325250ef74:Assets/BossController.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
