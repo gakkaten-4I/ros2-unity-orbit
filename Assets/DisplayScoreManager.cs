@@ -50,6 +50,21 @@ public class DisplayScoreManager : MonoBehaviour
         MainGameManager.PointOfB=scoreB;//ポイントが入っている変数の中身も変更
     }
 
+    public void AddDisplayScore(int AddscoreA,int AddscoreB)//テキストオブジェクトに任意の値を表示+加算
+    {
+        MainGameManager.PointOfA+=AddscoreA;
+        MainGameManager.PointOfB+=AddscoreB;//ポイントが入っている変数の中身を変更
+
+        tmpScoreOfA=""+MainGameManager.PointOfA+"";
+        tmpScoreOfB=""+MainGameManager.PointOfB+"";//スコアの値をとってくる
+
+        if(MainGameManager.PointOfA <=9) tmpScoreOfA="0"+tmpScoreOfA;
+        if(MainGameManager.PointOfB <=9) tmpScoreOfB="0"+tmpScoreOfB;//数字が一桁なら先頭に0を追加
+
+        ScoreTextOfA.text = ""+tmpScoreOfA+"";
+        ScoreTextOfB.text = ""+tmpScoreOfB+"";//スコアを反映させる
+    }
+
     void DebugText()//テキストの表示が変わるか確認
     {
         if((Input.GetKeyDown(KeyCode.D))&&(Input.GetKeyDown(KeyCode.B))){
