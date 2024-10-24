@@ -15,14 +15,17 @@ public class ObjectPlacerXY : MonoBehaviour
     public TextMeshProUGUI countText; //カウントダウンタイマー用の表示テキスト
 
     //tmpの基準点
-    private float tmpX = -553.5f;
-    private float tmpY = -279f;
-
+    private float tmpX;
+    private float tmpY;
+    
     public AudioSource timeRimitAudio;
 
     void Start()
     {
         timeRimitAudio = GetComponent<AudioSource>();
+
+        //テキストの座標の基準
+
 
         System.Random rnd = new System.Random();    // Randomオブジェクトの作成
         int NextMap = rnd.Next(1, 5);  //1以上5未満の値がランダムに出力 マップA~Dがランダムで出現

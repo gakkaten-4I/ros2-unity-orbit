@@ -23,8 +23,8 @@ public class CoinResult : MonoBehaviour
     public BallDestroyOnCollision2D bdoc;
 
     //tmpの基準点
-    private float tmpX = -553.5f;
-    private float tmpY = -279f;
+    private float tmpX;
+    private float tmpY;
 
     private Vector2 sizeReview = new Vector2(7f,2f);
     private Vector2 sizeScore = new Vector2(3.5f, 2f);
@@ -41,6 +41,9 @@ public class CoinResult : MonoBehaviour
 
         resultAudio = GetComponent<AudioSource>();
 
+        //テキストの座標の基準
+        // CanvasオブジェクトのRectTransformを取得
+        
         // Review1の設定
         if (Review1 != null)
         {

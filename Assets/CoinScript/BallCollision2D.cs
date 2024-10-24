@@ -29,9 +29,10 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     public GameObject CoinBlue;
     private Rigidbody2D rb;
     private float jumpForce = 500f;
+
     //tmpの基準点
-    private float tmpX = -553.5f;
-    private float tmpY = -279f;
+    private float tmpX;
+    private float tmpY;
 
     //どっちサイドかをinCoinSceneTrailから取得
     inCoinSceneTrail cointrail;
@@ -63,8 +64,11 @@ public class BallDestroyOnCollision2D : MonoBehaviour
         float FontSize = 1.5f;
 
         cointrail = GetComponent<inCoinSceneTrail>();
-
+        
         getCoin = GetComponent<AudioSource>();
+
+        //テキストの座標の基準
+
 
         //CoinTextBlueを指定の位置に移動させ,フォントサイズを変える
         if(CoinTextBlue != null)
