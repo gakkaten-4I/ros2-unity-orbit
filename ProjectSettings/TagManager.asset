@@ -16,9 +16,9 @@ TagManager:
   - Water
   - UI
   - TargetLayer
-  - 
-  - 
-  - 
+  - Boss
+  - BossHP
+  - Particle
   - 
   - 
   - 
@@ -53,4 +53,13 @@ TagManager:
     locked: 0
   - name: TargetLayer
     uniqueID: 3447537529
+    locked: 0
+  - name: Boss
+    uniqueID: 1031919155
+    locked: 0
+  - name: BossHP
+    uniqueID: 2086278767
+    locked: 0
+  - name: Particle
+    uniqueID: 1194214699
     locked: 0

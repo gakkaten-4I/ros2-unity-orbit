@@ -4,27 +4,35 @@ using UnityEngine;
 
 public class hitpoint : MonoBehaviour
 {
-   
-
     public int hp;
-    // Start is called before the first frame update
-    void start () {
-        
-        hp = 45;
-    }
-    void OnTriggerEnter2D(Collider2D collision){
 
-        hp -= 3;
-        Debug.Log("hit");
+    // Inspectorで設定するパーティクルPrefab
+    public GameObject deathParticle;
+
+    void Start()
+    {
         
-        if (hp <= 0) {
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        hp -= 3;
+        Debug.Log("Hit! HP: " + hp);
+
+        if (hp <= 0)
+        {
             Debug.Log("You Died!!");
+
+            // パーティクルを生成して再生
+            Instantiate(deathParticle, transform.position, Quaternion.identity);
+
+            // オブジェクトを削除
+            Destroy(gameObject);
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
+    // ダメージを与える関数
+    void Damage(int damage){
+        hp-=damage;
         
     }
 }
