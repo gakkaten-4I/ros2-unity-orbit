@@ -15,7 +15,7 @@ TagManager:
   - UI
   - TargetLayer
   - Boss
-  - 
+  - BossHP
   - 
   - 
   - 
@@ -51,4 +51,10 @@ TagManager:
     locked: 0
   - name: TargetLayer
     uniqueID: 3447537529
+    locked: 0
+  - name: Boss
+    uniqueID: 1031919155
+    locked: 0
+  - name: BossHP
+    uniqueID: 2086278767
     locked: 0
