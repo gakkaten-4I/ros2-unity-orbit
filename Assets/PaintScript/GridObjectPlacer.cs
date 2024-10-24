@@ -18,6 +18,9 @@ public class GridObjectPlacerXZ : MonoBehaviour
     public GameObject LOSE1;
     public GameObject WIN2;
     public GameObject LOSE2;
+    public AudioClip sound1;
+    public AudioClip sound2;
+    AudioSource audioSource; 
 
     private int countMin = 0; 
     private int Count1 = 0;
@@ -27,7 +30,9 @@ public class GridObjectPlacerXZ : MonoBehaviour
     {
         PlaceObjectsInGrid();
         StartCoroutine(WaitAndCallPlus(3f));
-        StartCoroutine(WaitAndCallResult(12f));  // 50秒後にresult関数を呼び出すコルーチンを開始
+        StartCoroutine(WaitAndCallResult(12f));
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(sound1);  // 50秒後にresult関数を呼び出すコルーチンを開始
     }
 
     void PlaceObjectsInGrid()
@@ -85,6 +90,8 @@ public class GridObjectPlacerXZ : MonoBehaviour
 
     void plus()
     {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(sound1);
         int i = 0;
         int a = 0;
         for (int x = 0; x < 2; x++)
@@ -143,8 +150,11 @@ public class GridObjectPlacerXZ : MonoBehaviour
     //Player1のポイント数える
     IEnumerator ResultShow()
     {
+
        for (int i = 0; i < countMin; i++)
         {
+            audioSource = GetComponent<AudioSource>();
+            audioSource.PlayOneShot(sound1);
             string objectName;
             // オブジェクトの名前を生成
             //グリッド数変えるときここも変える
@@ -248,6 +258,8 @@ public class GridObjectPlacerXZ : MonoBehaviour
 
         int GridNum;
 
+            audioSource = GetComponent<AudioSource>();
+            audioSource.PlayOneShot(sound2);
         if(num == 1){
             GridNum = Count1-Count2;
             Player1text.text = Count1.ToString();

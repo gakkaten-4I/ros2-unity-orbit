@@ -5,11 +5,15 @@ using UnityEngine;
 public class DestroyAfterAnimation : MonoBehaviour
 {
     public GameObject targetObject;   // アニメーションが再生されるオブジェクト
-    public float DestroyTime; // アニメーションを持つオブジェクトの Animator
+    public float DestroyTime;
+    public AudioClip sound1;
+    AudioSource audioSource; // アニメーションを持つオブジェクトの Animator
 
     void Start()
     {
         StartCoroutine(DestroyAfterSeconds(DestroyTime));
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(sound1);
     }
 
     void Update()
