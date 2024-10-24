@@ -30,8 +30,15 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     private Rigidbody2D rb;
     private float jumpForce = 500f;
 
+    //tmpの基準点
+    private float tmpX;
+    private float tmpY;
+
     //どっちサイドかをinCoinSceneTrailから取得
     inCoinSceneTrail cointrail;
+
+    //コイン取得時の効果音
+    public AudioSource getCoin;
 
     /*
         // 物理的な衝突時に呼ばれるメソッド（2D）
@@ -49,14 +56,19 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     void Start(){
 
         //スコアの設定位置
-        Vector3 WhereBlueScore = new Vector3(260f,150f,0f);
-        Vector3 WhereRedScore = new Vector3(-230f,150f,0f);
+        Vector3 WhereBlueScore = new Vector3(tmpX + 4f, tmpY - 1f, 0f);
+        Vector3 WhereRedScore = new Vector3(tmpX + 12f, tmpY - 1f, 0f);
         //スコアの大きさ設定
-        Vector2 ScoreSize = new Vector2(180f,20f);
+        Vector2 ScoreSize = new Vector2(8f,2f);
         //スコアのフォントサイズの設定
-        float FontSize = 30f;
+        float FontSize = 1.5f;
 
         cointrail = GetComponent<inCoinSceneTrail>();
+        
+        getCoin = GetComponent<AudioSource>();
+
+        //テキストの座標の基準
+
 
         //CoinTextBlueを指定の位置に移動させ,フォントサイズを変える
         if(CoinTextBlue != null)
@@ -99,6 +111,7 @@ public class BallDestroyOnCollision2D : MonoBehaviour
             // 指定のレイヤーであれば破壊する
             if(cointrail.turn == true){//エフェクト発生(赤)
                 GameObject newEffect = Instantiate(CoinRed, transform.position, transform.rotation);
+                getCoin.Play();
                 StartCoroutine(Jump(newEffect));
                 Instantiate(CollectEffectRed, transform.position, transform.rotation);
 
@@ -108,6 +121,7 @@ public class BallDestroyOnCollision2D : MonoBehaviour
                 StartCoroutine(WaitAndExecuteFunction(0.1f));
             }else{//エフェクト発生(青)
                 GameObject newEffect = Instantiate(CoinBlue, transform.position, transform.rotation);
+                getCoin.Play();
                 StartCoroutine(Jump(newEffect));
                 Instantiate(CollectEffectBlue, transform.position, transform.rotation);
 
