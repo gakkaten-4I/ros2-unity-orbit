@@ -32,9 +32,15 @@ public class CoinResult : MonoBehaviour
     private float FontSizeReview = 1.5f;
     private float FontSizeScore = 1f;
 
+    //結果発表効果音
+    public AudioSource resultAudio;
+
     // Start is called before the first frame update
     void Start()
     {
+
+        resultAudio = GetComponent<AudioSource>();
+
         // Review1の設定
         if (Review1 != null)
         {
@@ -183,8 +189,7 @@ public class CoinResult : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
 
-        Debug.Log(bdoc.CoinCountRed);
-        Debug.Log(bdoc.CoinCountBlue);
+        resultAudio.Play();
         ShowRed1.text = "Red:" + bdoc.CoinCountRed.ToString();
         ShowRed2.text = "Red:" + bdoc.CoinCountRed.ToString();
         ShowBlue1.text = "Blue:" + bdoc.CoinCountBlue.ToString();

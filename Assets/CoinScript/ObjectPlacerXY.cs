@@ -18,8 +18,12 @@ public class ObjectPlacerXY : MonoBehaviour
     private float tmpX = -553.5f;
     private float tmpY = -279f;
 
+    public AudioSource timeRimitAudio;
+
     void Start()
     {
+        timeRimitAudio = GetComponent<AudioSource>();
+
         System.Random rnd = new System.Random();    // Randomオブジェクトの作成
         int NextMap = rnd.Next(1, 5);  //1以上5未満の値がランダムに出力 マップA~Dがランダムで出現
         PlaceObjectsInGrid(NextMap); //引数によってマップが変わる 1→マップA、2→マップB、3→マップC、4→マップD、5→マップE）
@@ -268,6 +272,7 @@ public class ObjectPlacerXY : MonoBehaviour
                     yield return new WaitForSeconds(0.25f);
                     countText.enabled = true;
                 }
+                timeRimitAudio.Play();
             }else{
                 yield return new WaitForSeconds(1f);
             }

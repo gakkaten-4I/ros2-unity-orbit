@@ -36,6 +36,9 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     //どっちサイドかをinCoinSceneTrailから取得
     inCoinSceneTrail cointrail;
 
+    //コイン取得時の効果音
+    public AudioSource getCoin;
+
     /*
         // 物理的な衝突時に呼ばれるメソッド（2D）
         void OnCollisionEnter2D(Collision2D collision)
@@ -60,6 +63,8 @@ public class BallDestroyOnCollision2D : MonoBehaviour
         float FontSize = 1.5f;
 
         cointrail = GetComponent<inCoinSceneTrail>();
+
+        getCoin = GetComponent<AudioSource>();
 
         //CoinTextBlueを指定の位置に移動させ,フォントサイズを変える
         if(CoinTextBlue != null)
@@ -102,6 +107,7 @@ public class BallDestroyOnCollision2D : MonoBehaviour
             // 指定のレイヤーであれば破壊する
             if(cointrail.turn == true){//エフェクト発生(赤)
                 GameObject newEffect = Instantiate(CoinRed, transform.position, transform.rotation);
+                getCoin.Play();
                 StartCoroutine(Jump(newEffect));
                 Instantiate(CollectEffectRed, transform.position, transform.rotation);
 
@@ -111,6 +117,7 @@ public class BallDestroyOnCollision2D : MonoBehaviour
                 StartCoroutine(WaitAndExecuteFunction(0.1f));
             }else{//エフェクト発生(青)
                 GameObject newEffect = Instantiate(CoinBlue, transform.position, transform.rotation);
+                getCoin.Play();
                 StartCoroutine(Jump(newEffect));
                 Instantiate(CollectEffectBlue, transform.position, transform.rotation);
 
