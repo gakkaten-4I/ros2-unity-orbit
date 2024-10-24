@@ -3,10 +3,7 @@ guid: f47d0f4cecbb40b4589f5509c345db61
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - CoinText: {instanceID: 0}
-  - CollectEffectRed: {instanceID: 0}
-  - CollectEffectBlue: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
