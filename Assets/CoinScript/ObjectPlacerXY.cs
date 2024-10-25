@@ -13,10 +13,6 @@ public class ObjectPlacerXY : MonoBehaviour
     private bool continueFlag = true; //今後ゲームを続けるかのフラグ
     private int counting; //カウントダウンタイマー用の関数
     public TextMeshProUGUI countText; //カウントダウンタイマー用の表示テキスト
-
-    //tmpの基準点
-    private float tmpX;
-    private float tmpY;
     
     public AudioSource timeRimitAudio;
 
@@ -47,7 +43,7 @@ public class ObjectPlacerXY : MonoBehaviour
         if (countText != null)
         {
             RectTransform RectCountText = countText.GetComponent<RectTransform>();
-            RectCountText.anchoredPosition = new Vector3(tmpX + 8f, tmpY - 8f, 0f);
+            RectCountText.anchoredPosition = new Vector3( 8f,  - 8f, 0f);
             RectCountText.sizeDelta = new Vector2(2f,2f);
             countText.fontSize = 1.5f;
             RectCountText.transform.Rotate(0,0,-180);

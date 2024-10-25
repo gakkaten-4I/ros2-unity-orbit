@@ -30,10 +30,6 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     private Rigidbody2D rb;
     private float jumpForce = 500f;
 
-    //tmpの基準点
-    private float tmpX;
-    private float tmpY;
-
     //どっちサイドかをinCoinSceneTrailから取得
     inCoinSceneTrail cointrail;
 
@@ -56,8 +52,8 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     void Start(){
 
         //スコアの設定位置
-        Vector3 WhereBlueScore = new Vector3(tmpX + 4f, tmpY - 1f, 0f);
-        Vector3 WhereRedScore = new Vector3(tmpX + 12f, tmpY - 1f, 0f);
+        Vector3 WhereBlueScore = new Vector3(4f, 1f, 0f);
+        Vector3 WhereRedScore = new Vector3(12f, 1f, 0f);
         //スコアの大きさ設定
         Vector2 ScoreSize = new Vector2(8f,2f);
         //スコアのフォントサイズの設定
