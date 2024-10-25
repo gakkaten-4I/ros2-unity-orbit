@@ -28,13 +28,14 @@ public class BallManager : MonoBehaviour
     SpriteRenderer[] sprite_prediction;//予測マークの透明度
     int count_prediction;//総予測マーク数
 
-    public bool turn;//どちらのターンか
+
+    public static bool turn;//どちらのターンか
 
     //フィールドの大きさ
-    float wall_right = 20.5f;
-    float wall_left = 0.5f;
+    float wall_right = 16.0f;
+    float wall_left = 0.0f;
     float wall_up = 0f;
-    float wall_down = -10f;
+    float wall_down = -9f;
 
     // Start is called before the first frame update
     void Start()
@@ -125,6 +126,7 @@ public class BallManager : MonoBehaviour
             }
         }
 
+        //どちらのターンか
         turn=whichturn(BallVelocity[nowindex],turn);//どちらが撃ったパケットか判定
 
         count_getposition+=1;
