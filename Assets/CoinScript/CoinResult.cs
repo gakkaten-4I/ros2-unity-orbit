@@ -25,8 +25,8 @@ public class CoinResult : MonoBehaviour
     private Vector2 sizeReview = new Vector2(231f,66f);
     private Vector2 sizeScore = new Vector2(115.5f, 66f);
 
-    private float FontSizeReview = 30f;
-    private float FontSizeScore = 20f;
+    private float FontSizeReview = 40f;
+    private float FontSizeScore = 30f;
 
     //結果発表効果音
     public AudioSource resultAudio;
