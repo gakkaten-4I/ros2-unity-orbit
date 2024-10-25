@@ -94,7 +94,7 @@ bool whichturn(Vector3 position, Vector3 velocity, Vector3 prevVelocity, Vector3
             // 打ち返しを判定
             //isPlayerA = whichturn(ball.transform.position,ballManager.turn, isPlayerA);
 
-            isPlayerA = whichturn(ball.transform.position, currentVelocity,previousVelocity,PrepreviousVelocity,ballManager.turn, isPlayerA); 
+            isPlayerA = whichturn(ball.transform.position, currentVelocity,previousVelocity,PrepreviousVelocity,BallManager.turn, isPlayerA); 
             
 
 
