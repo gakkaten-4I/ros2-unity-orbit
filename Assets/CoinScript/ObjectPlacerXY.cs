@@ -43,9 +43,9 @@ public class ObjectPlacerXY : MonoBehaviour
         if (countText != null)
         {
             RectTransform RectCountText = countText.GetComponent<RectTransform>();
-            RectCountText.anchoredPosition = new Vector3( 8f,  - 8f, 0f);
-            RectCountText.sizeDelta = new Vector2(2f,2f);
-            countText.fontSize = 1.5f;
+            RectCountText.anchoredPosition = new Vector3( 0f,  -115.5f, 0f);
+            RectCountText.sizeDelta = new Vector2(66f,66f);
+            countText.fontSize = 10f;
             RectCountText.transform.Rotate(0,0,-180);
             countText.color = new Color(1f, 1f, 1f, 1f);
         }

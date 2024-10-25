@@ -52,12 +52,12 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     void Start(){
 
         //スコアの設定位置
-        Vector3 WhereBlueScore = new Vector3(4f, 1f, 0f);
-        Vector3 WhereRedScore = new Vector3(12f, 1f, 0f);
+        Vector3 WhereBlueScore = new Vector3(-198f, 115.5f, 0f);
+        Vector3 WhereRedScore = new Vector3(198f, 115.5f, 0f);
         //スコアの大きさ設定
-        Vector2 ScoreSize = new Vector2(8f,2f);
+        Vector2 ScoreSize = new Vector2(132f,66f);
         //スコアのフォントサイズの設定
-        float FontSize = 1.5f;
+        float FontSize = 30f;
 
         cointrail = GetComponent<inCoinSceneTrail>();
         
