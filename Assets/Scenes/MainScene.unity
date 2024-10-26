@@ -332,6 +332,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &142867174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 142867175}
+  m_Layer: 0
+  m_Name: RedBarrierSpwnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &142867175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142867174}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15, y: -4.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 755648877}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &288585792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -401,6 +432,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c37667d66e5ddbb49b385051108beefc, type: 3}
+--- !u!1 &323562315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 323562316}
+  m_Layer: 0
+  m_Name: 'BlueBarrierSpwnPoint '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &323562316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323562315}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1, y: -4.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 755648877}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &334317796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1235,6 +1297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6135185f74024e343a1d874d927579eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainGameManager: {fileID: 0}
   debugCanvas: {fileID: 0}
 --- !u!114 &556171492
 MonoBehaviour:
@@ -1514,6 +1577,8 @@ Transform:
   - {fileID: 1456294082}
   - {fileID: 1637950508}
   - {fileID: 357124984}
+  - {fileID: 142867175}
+  - {fileID: 323562316}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &848561197
@@ -2565,6 +2630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnergyCanPrefab: {fileID: 2180157386642227429, guid: 964b0d2a57366ae47a27bf89a3fc9f85, type: 3}
+  BarrierPrefab: {fileID: 5764697619069848866, guid: 846ac52b3cc0df9418f2d5a83d7bc276, type: 3}
   Items:
   - {fileID: 6788173146332959007, guid: 500c7260d5ed9c7478a9991749620b1a, type: 3}
   - {fileID: 191985596061482349, guid: 813aa790fa398cd4a916aa1be5c16e07, type: 3}
@@ -2575,6 +2641,9 @@ MonoBehaviour:
   - {fileID: 1456294082}
   - {fileID: 1637950508}
   - {fileID: 357124984}
+  BarrierSpawnPoints:
+  - {fileID: 142867175}
+  - {fileID: 323562316}
   BlueEmergencyImage: {fileID: 1682284834}
   RedEmergencyImage: {fileID: 1680405449}
 --- !u!4 &1727355759
