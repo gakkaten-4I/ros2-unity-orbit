@@ -33,7 +33,11 @@ public class MainGameManager : MonoBehaviour
     [SerializeField] BallManager ballManager;
     [SerializeField] ItemManager itemManager;
 
+    GameObject RedSheild;
+    GameObject BlueSheild;
+
     private DisplayScoreManager DisplayScoreManager;
+    private DisplayEnergyCountManager DisplayEnergyCountManager;
 
     private ItemAreaScript biaScript;
     private ItemAreaScript riaScript;
@@ -45,6 +49,8 @@ public class MainGameManager : MonoBehaviour
         //UnityEngin.Random.InitState(DateTime.Now.Millisecond);
         GameObject dsmObj = GameObject.Find("DisplayScoreManager");
         DisplayScoreManager = dsmObj.GetComponent<DisplayScoreManager>();
+        GameObject decmObj = GameObject.Find("DisplayEnergyCountManager");
+        DisplayEnergyCountManager = decmObj.GetComponent<DisplayEnergyCountManager>();
 
         GameObject biaObject = GameObject.Find("BlueItemArea");
         GameObject riaObject = GameObject.Find("RedItemArea");
@@ -125,18 +131,24 @@ public class MainGameManager : MonoBehaviour
     public async ValueTask EnableBlueShield(CancellationToken token)
     {
         //TODO: シールドを表示する処理
+        BlueSheild = Instantiate(itemManager.BarrierPrefab, itemManager.BarrierSpawnPoints[1].position, Quaternion.identity);
         IsBlueShielded = true;
         await Task.Delay(TimeSpan.FromSeconds(10), token);
         //TODO: シールドを非表示にする処理
+        Destroy(BlueSheild);
         IsBlueShielded = false;
     }
 
     public async ValueTask EnableRedShield(CancellationToken token)
     {
         //TODO: シールドを表示する処理
+        //回転を設定
+        Quaternion rot = Quaternion.Euler(0, 0, 180);
+        RedSheild = Instantiate(itemManager.BarrierPrefab, itemManager.BarrierSpawnPoints[0].position, rot);
         IsRedShielded = true;
         await Task.Delay(TimeSpan.FromSeconds(10), token);
         //TODO: シールドを非表示にする処理
+        Destroy(RedSheild);
         IsRedShielded = false;
     }
 
@@ -168,6 +180,7 @@ public class MainGameManager : MonoBehaviour
             StartCoroutine(EnterFeverMode());
             EnergyCount = 0;
         }
+        DisplayEnergyCountManager.ReflectCount(EnergyCount);
     }
 
     // Blueチーム側のゴールセンサーが反応したときの処理
@@ -204,6 +217,7 @@ public class MainGameManager : MonoBehaviour
         {
             // アイテム欄からシールドを削除
             biaScript.RemoveShield();
+            Destroy(BlueSheild);
             IsBlueShielded = false;
             StartCoroutine(SetBlueInvincible());
             //TODO: シールドを非表示にする処理
@@ -243,6 +257,7 @@ public class MainGameManager : MonoBehaviour
         if (IsRedShielded)
         {
             riaScript.RemoveShield();
+            Destroy(RedSheild);
             IsRedShielded = false;
             StartCoroutine(SetRedInvincible());
             //TODO: シールドを非表示にする処理
