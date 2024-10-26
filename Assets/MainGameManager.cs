@@ -37,6 +37,7 @@ public class MainGameManager : MonoBehaviour
     GameObject BlueSheild;
 
     private DisplayScoreManager DisplayScoreManager;
+    private DisplayEnergyCountManager DisplayEnergyCountManager;
 
     private ItemAreaScript biaScript;
     private ItemAreaScript riaScript;
@@ -48,6 +49,8 @@ public class MainGameManager : MonoBehaviour
         //UnityEngin.Random.InitState(DateTime.Now.Millisecond);
         GameObject dsmObj = GameObject.Find("DisplayScoreManager");
         DisplayScoreManager = dsmObj.GetComponent<DisplayScoreManager>();
+        GameObject decmObj = GameObject.Find("DisplayEnergyCountManager");
+        DisplayEnergyCountManager = decmObj.GetComponent<DisplayEnergyCountManager>();
 
         GameObject biaObject = GameObject.Find("BlueItemArea");
         GameObject riaObject = GameObject.Find("RedItemArea");
@@ -177,6 +180,7 @@ public class MainGameManager : MonoBehaviour
             StartCoroutine(EnterFeverMode());
             EnergyCount = 0;
         }
+        DisplayEnergyCountManager.ReflectCount(EnergyCount);
     }
 
     // Blueチーム側のゴールセンサーが反応したときの処理
