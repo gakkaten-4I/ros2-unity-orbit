@@ -8,6 +8,7 @@ public class TransToMinigame : MonoBehaviour
 {
     //[SerializeField]
     //private TextMeshProUGUI nextTextOfA,nextTextOfB;
+    
     [SerializeField]
     private TextMeshProUGUI minigameNameTextOfA,minigameNameTextOfB;
 
@@ -55,19 +56,23 @@ public class TransToMinigame : MonoBehaviour
 
     public void StartAnimeOfTransMinigame(string str){
         StartCoroutine(GoMinigame(str));
-        yield return new WaitForSeconds(6f);
     }
 
     //ミニゲームへ遷移する関数
     IEnumerator GoMinigame(string NextMinigame)//引数は次遷移するミニゲームのシーン名
     {
+
         //Step1.「Next」テキストを2度点滅(2s)
+        PointBlue.SetActive(false);
+        PointRed.SetActive(false);
         for(int i=0;i<2;i++){
             NextText.SetActive(true);
             yield return new WaitForSeconds(0.5f);
             NextText.SetActive(false);
             yield return new WaitForSeconds(0.5f);
         }
+        NextText.SetActive(true);
+
 
         //Step2.「ミニゲームタイトル」テキストを変更
         MinigameNameText.SetActive(true);
@@ -75,11 +80,11 @@ public class TransToMinigame : MonoBehaviour
             minigameNameTextOfA.text=StringOfBOSSBATTLE;
             minigameNameTextOfB.text=StringOfBOSSBATTLE;
         }
-        if(NextMinigame=="CoinGame"){
+        else if(NextMinigame=="CoinGame"){
             minigameNameTextOfA.text=StringOfCOINGAME;
             minigameNameTextOfB.text=StringOfCOINGAME;
         }
-        if(NextMinigame=="ColoringGame"){
+        else if(NextMinigame=="ColoringGame"){
             minigameNameTextOfA.text=StringOfCOLORINGGAME;
             minigameNameTextOfB.text=StringOfCOLORINGGAME;
         }
@@ -87,13 +92,11 @@ public class TransToMinigame : MonoBehaviour
             minigameNameTextOfA.text="ERROR \n<NAME OF MINIGAME IS INCORRECT!!>";
             minigameNameTextOfB.text="ERROR \n<NAME OF MINIGAME IS INCORRECT!!>";
         }
+        //MinigameNameText.SetActive(false);
 
         //Step3.「Next」&「ミニゲームタイトル」テキストを表示＆4度点滅(4s)
-        PointBlue.SetActive(false);
-        PointBlue.SetActive(false);
-        NextText.SetActive(true);
         yield return new WaitForSeconds(2f);
-        for(int i=0;i<4;i++){
+        for(int i=0;i<2;i++){
             NextText.SetActive(true);
             MinigameNameText.SetActive(true);
             yield return new WaitForSeconds(0.5f);
@@ -104,7 +107,7 @@ public class TransToMinigame : MonoBehaviour
 
         //Step4.point表示を元に戻しておく
         PointBlue.SetActive(true);
-        PointBlue.SetActive(true);
+        PointRed.SetActive(true);
 
         /*Step3.ミニゲームへ推移
         SceneManager.LoadScene(NextMinigame, LoadSceneMode.Single);

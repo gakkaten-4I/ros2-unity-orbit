@@ -74,7 +74,7 @@ public class MainGameManager : MonoBehaviour
         StartCoroutine("delayMethod");
     }
 
-    IEnumerator delayMethod()
+    private IEnumerator delayMethod()
     {
         ++SceneMoveCount;
         int GameSceneNumber = UnityEngine.Random.Range(0, 3);
