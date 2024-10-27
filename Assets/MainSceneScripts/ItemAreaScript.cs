@@ -14,6 +14,7 @@ public class ItemAreaScript : MonoBehaviour
     [SerializeField] private float InitialY;
     [SerializeField] private short Upward;
     private int ShieldSlot;
+    private int BombSlot;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,7 @@ public class ItemAreaScript : MonoBehaviour
         switch (item)
         {
             case Items.Bomb:
+                BombSlot = slot;
                 StartCoroutine(SpawnItem(Bomb, slot, 10));
                 break;
             case Items.Shield:
@@ -69,6 +71,18 @@ public class ItemAreaScript : MonoBehaviour
             }
         }
         ItemSlotAvailability[ShieldSlot]=true;
+    }
+
+    public void RemoveBomb()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.gameObject.tag == "Bomb")
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        ItemSlotAvailability[BombSlot] = true;
     }
 
     private IEnumerator SpawnItem(GameObject prefab, int slot, int delaySeconds)
