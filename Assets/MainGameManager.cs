@@ -42,6 +42,8 @@ public class MainGameManager : MonoBehaviour
     private ItemAreaScript biaScript;
     private ItemAreaScript riaScript;
 
+    public TransToMinigame transToMinigame;//ミニゲーム遷移時のアニメーションのため、TranToMinigame.csを参照する
+
     // Start is called before the first frame update
     void Start()
     {
@@ -69,18 +71,29 @@ public class MainGameManager : MonoBehaviour
 
     void DelayMethod()
     {
+        StartCoroutine("delayMethod");
+    }
+
+    IEnumerator delayMethod()
+    {
         ++SceneMoveCount;
         int GameSceneNumber = UnityEngine.Random.Range(0, 3);
         IsMain = false;
         switch (GameSceneNumber)
         {
             case 0:
+                transToMinigame.StartAnimeOfTransMinigame("CoinGame");//ミニゲーム遷移アニメーションの開始
+                yield return new WaitForSeconds(6f);//ミニゲーム遷移アニメーションを行っている間待つ必要がある
                 SceneManager.LoadScene("CoinGame");
                 break;
             case 1:
+                transToMinigame.StartAnimeOfTransMinigame("ColoringGame");
+                yield return new WaitForSeconds(6f);
                 SceneManager.LoadScene("ColoringGame");
                 break;
             case 2:
+                transToMinigame.StartAnimeOfTransMinigame("BossBattle");
+                yield return new WaitForSeconds(6f);
                 SceneManager.LoadScene("BossBattle");
                 break;
         }

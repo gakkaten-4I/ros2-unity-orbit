@@ -13,8 +13,8 @@ public class DisplayScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ScoreTextOfA.text = ""+00+"";
-        ScoreTextOfA.text = ""+00+"";//スコア表示の初期化
+        ScoreTextOfA.text = "00";
+        ScoreTextOfA.text = "00";//スコア表示の初期化
     }
 
     // Update is called once per frame
