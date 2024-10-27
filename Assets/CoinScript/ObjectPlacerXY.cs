@@ -45,7 +45,7 @@ public class ObjectPlacerXY : MonoBehaviour
             RectTransform RectCountText = countText.GetComponent<RectTransform>();
             RectCountText.anchoredPosition = new Vector3( 0f,  -115.5f, 0f);
             RectCountText.sizeDelta = new Vector2(66f,66f);
-            countText.fontSize = 40f;
+            countText.fontSize = 50f;
             RectCountText.transform.Rotate(0,0,-180);
             countText.color = new Color(1f, 1f, 1f, 1f);
         }
@@ -271,7 +271,9 @@ public class ObjectPlacerXY : MonoBehaviour
                     yield return new WaitForSeconds(0.25f);
                     countText.enabled = true;
                 }
-                timeRimitAudio.Play();
+                if(i%2 == 1){
+                    timeRimitAudio.Play();
+                }
             }else{
                 yield return new WaitForSeconds(1f);
             }
