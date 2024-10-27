@@ -75,7 +75,6 @@ public class HPBar : MonoBehaviour
 
         
     
-    Debug.Log("Hello World");
 
     }
 
