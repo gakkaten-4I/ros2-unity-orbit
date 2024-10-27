@@ -867,15 +867,15 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505968927}
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0123291025}
+  m_LocalScale: {x: 0.016666668, y: 0.016666668, z: 0.016666668}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1009107661}
+  m_Father: {fileID: 1271082073}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -50.000088, y: 0}
+  m_AnchoredPosition: {x: -5.290085, y: 1.0444212}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &505968929
@@ -1525,6 +1525,7 @@ MonoBehaviour:
   IsBlueGoalable: 1
   ballManager: {fileID: 556171485}
   itemManager: {fileID: 1727355758}
+  transToMinigame: {fileID: 573867724}
 --- !u!114 &573867724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1537,10 +1538,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760874991ed722b4287d74f0c730d020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextText: {fileID: 0}
-  minigameNameText: {fileID: 0}
-  NextText: {fileID: 0}
-  MinigameNameText: {fileID: 0}
+  minigameNameTextOfA: {fileID: 908991513}
+  minigameNameTextOfB: {fileID: 1832200828}
+  NextText: {fileID: 1271082072}
+  MinigameNameText: {fileID: 879201874}
+  PointBlue: {fileID: 1183916001}
+  PointRed: {fileID: 1741929032}
 --- !u!1 &600815004
 GameObject:
   m_ObjectHideFlags: 0
@@ -2090,7 +2093,6 @@ RectTransform:
   m_Children:
   - {fileID: 1183916002}
   - {fileID: 1741929035}
-  - {fileID: 505968928}
   - {fileID: 1271082073}
   - {fileID: 879201875}
   m_Father: {fileID: 0}
@@ -2711,6 +2713,7 @@ Transform:
   m_LocalScale: {x: 60, y: 60, z: 60}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 505968928}
   - {fileID: 1023422958}
   m_Father: {fileID: 1009107661}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
