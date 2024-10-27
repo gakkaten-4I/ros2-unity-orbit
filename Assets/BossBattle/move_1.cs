@@ -99,8 +99,8 @@ public class Route : MonoBehaviour
             float rand = Random.Range(1.0f, 100.0f);
             if (!flag)
             {
-                _Position.x = 10.00f;
-                _Position.y = -5.00f;
+                _Position.x = 8.00f;
+                _Position.y = -4.50f;
                 transform.position = _Position;
 
                 flag = true;

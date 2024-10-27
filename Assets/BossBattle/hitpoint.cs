@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class hitpoint : MonoBehaviour
 {
     public int hp;
+    
 
     // Inspectorで設定するパーティクルPrefab
     public GameObject deathParticle;
@@ -28,6 +30,8 @@ public class hitpoint : MonoBehaviour
 
             // オブジェクトを削除
             Destroy(gameObject);
+
+            SceneManager.LoadScene("MainScene");
         }
     }
     // ダメージを与える関数
