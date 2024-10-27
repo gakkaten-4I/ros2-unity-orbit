@@ -21,7 +21,7 @@ public class ItemManager : MonoBehaviour
 
     SpriteRenderer color;
     float cla;
-    float duration = 2f;  // n秒間
+    float duration = 1.6f;  // n秒間
     float elapsedTime = 0f;
 
     // Start is called before the first frame update
