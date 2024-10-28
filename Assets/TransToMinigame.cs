@@ -17,8 +17,11 @@ public class TransToMinigame : MonoBehaviour
     public GameObject NextText;
     public GameObject MinigameNameText;
     public GameObject ToMinigameCount;
-
     public GameObject PointBlue,PointRed;
+
+    public AudioClip CountdownSound;
+    public AudioClip AlarmSound;
+    public AudioClip BossBattleAlarmSound;
 
     string StringOfBOSSBATTLE="BOSSBATTLE";
     /*
@@ -75,6 +78,7 @@ public class TransToMinigame : MonoBehaviour
         for(int i=5;i>=1;i--){
             toMinigameCountOfA.text=""+i+"";
             toMinigameCountOfB.text=""+i+"";
+            GetComponent<AudioSource>().PlayOneShot(CountdownSound);
             yield return new WaitForSeconds(1f);
         }
         ToMinigameCount.SetActive(false);//カウントダウンを非表示
@@ -90,6 +94,7 @@ public class TransToMinigame : MonoBehaviour
         PointRed.SetActive(false);
         for(int i=0;i<2;i++){
             NextText.SetActive(true);
+            GetComponent<AudioSource>().PlayOneShot(AlarmSound);//警告音を鳴らす
             yield return new WaitForSeconds(0.5f);
             NextText.SetActive(false);
             yield return new WaitForSeconds(0.5f);
@@ -121,6 +126,10 @@ public class TransToMinigame : MonoBehaviour
         for(int i=0;i<2;i++){
             NextText.SetActive(true);
             MinigameNameText.SetActive(true);
+
+            if(NextMinigame=="BossBattle") GetComponent<AudioSource>().PlayOneShot(BossBattleAlarmSound);
+            else GetComponent<AudioSource>().PlayOneShot(AlarmSound);
+
             yield return new WaitForSeconds(0.5f);
             NextText.SetActive(false);
             MinigameNameText.SetActive(false);
