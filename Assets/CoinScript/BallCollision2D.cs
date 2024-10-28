@@ -55,7 +55,7 @@ public class BallDestroyOnCollision2D : MonoBehaviour
         Vector3 WhereBlueScore = new Vector3(-150f, 100f, 0f);
         Vector3 WhereRedScore = new Vector3(150f, 100f, 0f);
         //スコアの大きさ設定
-        Vector2 ScoreSize = new Vector2(160f,66f);
+        Vector2 ScoreSize = new Vector2(180f,66f);
         //スコアのフォントサイズの設定
         float FontSize = 45f;
 
