@@ -105,6 +105,12 @@ public class MainGameManager : MonoBehaviour
             DelayMethod();
         }
         */
+
+        // Escキーが押されたらメニューに戻る
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MenuScene");
+        }
     }
 
     public async ValueTask BombBlue(CancellationToken token)
