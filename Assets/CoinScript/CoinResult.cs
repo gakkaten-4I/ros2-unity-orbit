@@ -25,8 +25,8 @@ public class CoinResult : MonoBehaviour
     private Vector2 sizeReview = new Vector2(231f,66f);
     private Vector2 sizeScore = new Vector2(115.5f, 66f);
 
-    private float FontSizeReview = 40f;
-    private float FontSizeScore = 30f;
+    private float FontSizeReview = 45f;
+    private float FontSizeScore = 35f;
 
     //結果発表効果音
     public AudioSource resultAudio;
@@ -172,14 +172,14 @@ public class CoinResult : MonoBehaviour
         }
         Review1.maxVisibleCharacters = length1;
         Review2.maxVisibleCharacters = length2;
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
 
         ShowRed1.enabled = true;
         ShowRed2.enabled = true;
         ShowBlue1.enabled = true;
         ShowBlue2.enabled = true;
 
-        for(int j=0; j<100; j++){
+        for(int j=0; j<80; j++){
             RandNum = Random.Range(10,99);
             ShowRed1.text = "Red:" + RandNum.ToString();
             ShowRed2.text = "Red:" + RandNum.ToString();
@@ -210,9 +210,16 @@ public class CoinResult : MonoBehaviour
             Review2.text = "Draw";
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
-        SceneManager.LoadScene("MainScene");
+        StartCoroutine(ChangeScene());
 
+    }
+
+    private IEnumerator ChangeScene()
+    {
+        Debug.Log("to mainscene");
+        //SceneManager.LoadScene("MainScene");
+        yield return null;
     }
 }

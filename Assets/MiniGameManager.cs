@@ -22,7 +22,7 @@ public class MiniGameManager : MonoBehaviour
 
         // 30秒間待つ
         // Time.timeScale の影響を受けずに実時間で30秒待つ
-        yield return new WaitForSecondsRealtime(30);
+        yield return new WaitForSecondsRealtime(30f);
         DelayMethod();
     }
 
