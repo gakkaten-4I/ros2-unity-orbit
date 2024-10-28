@@ -14,8 +14,8 @@ public class MainGameManager : MonoBehaviour
     public static int PointOfA = 0; // Blue?
     public static int PointOfB = 0; // Red?
 
-    //public static int SceneMoveCount = 0; 本番はこっち
-    private int SceneMoveCount = 0;
+    public static int SceneMoveCount = 0; // 本番はこっち
+    //private int SceneMoveCount = 0;
     public bool IsMain;
 
     // ゴール管理
@@ -72,6 +72,11 @@ public class MainGameManager : MonoBehaviour
     void DelayMethod()
     {
         ++SceneMoveCount;
+        if(SceneMoveCount >= 3)
+        {
+            SceneManager.LoadScene("QuietScene");
+            return;
+        }
         int GameSceneNumber = UnityEngine.Random.Range(0, 3);
         IsMain = false;
         switch (GameSceneNumber)

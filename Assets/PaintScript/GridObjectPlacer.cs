@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GridObjectPlacerXZ : MonoBehaviour
 {
@@ -195,6 +196,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
         }
         yield return new WaitForSeconds(1f);
         Finish();
+        StartCoroutine(WaitAndLoadMainScene());
     }
 
     //Player2のポイント数える
@@ -338,5 +340,10 @@ public class GridObjectPlacerXZ : MonoBehaviour
                 }
         }
 
-    
+    IEnumerator WaitAndLoadMainScene()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene("MainScene");
+    }
+
 }
