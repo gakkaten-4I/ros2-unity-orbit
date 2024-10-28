@@ -72,8 +72,6 @@ public class TransToMinigame : MonoBehaviour
     //ミニゲーム遷移前にカウントダウンを行う(time 秒)
     IEnumerator GoMinigameCountdown(int time){
 
-        Debug.Log("count-----------------------------------------------------");
-
         ToMinigameCount.SetActive(true);//カウントダウンを表示
         for(int i=5;i>=1;i--){
             toMinigameCountOfA.text=""+i+"";
@@ -88,7 +86,6 @@ public class TransToMinigame : MonoBehaviour
     //ミニゲームへ遷移する関数
     IEnumerator GoMinigame(string NextMinigame)//引数は次遷移するミニゲームのシーン名
     {
-        Debug.Log("-----------------------------------------------------");
         //Step1.「Next」テキストを2度点滅(2s)
         PointBlue.SetActive(false);
         PointRed.SetActive(false);
