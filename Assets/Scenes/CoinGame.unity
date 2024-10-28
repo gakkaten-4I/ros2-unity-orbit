@@ -1810,6 +1810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6135185f74024e343a1d874d927579eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainGameManager: {fileID: 0}
   debugCanvas: {fileID: 0}
 --- !u!114 &556171492
 MonoBehaviour:
@@ -1891,8 +1892,8 @@ MonoBehaviour:
   CoinTextRed: {fileID: 1655640416}
   CollectEffectRed: {fileID: 8596195021196661256, guid: ebfec592adbaa774f816ac18182f7da6, type: 3}
   CollectEffectBlue: {fileID: 1857858718305735071, guid: 2565de2bd3428934289f5473402c9ad2, type: 3}
-  CoinRed: {fileID: 2528378792570381764, guid: 80ae108ed49a9504f8e027eb2f663936, type: 3}
-  CoinBlue: {fileID: 8696251564765723684, guid: dbb383946e6793c41ad16d8849d1bc83, type: 3}
+  CoinRed: {fileID: 2528378792570381764, guid: 054ca909558912c429e10f614f3b791f, type: 3}
+  CoinBlue: {fileID: 8696251564765723684, guid: c21d68f6863ad764a8adc8ca9712856c, type: 3}
   getCoin: {fileID: 0}
 --- !u!114 &556171497
 MonoBehaviour:
