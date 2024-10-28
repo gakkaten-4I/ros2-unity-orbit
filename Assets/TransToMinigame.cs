@@ -16,11 +16,7 @@ public class TransToMinigame : MonoBehaviour
 
     public GameObject NextText;
     public GameObject MinigameNameText;
-    public GameObject RoundFinishTextOfA;
-    public GameObject RoundFinishTextOfB;
-    public GameObject ToMinigameCountOfA;
-    public GameObject ToMinigameCountOfB;
-
+    public GameObject ToMinigameCount;
 
     public GameObject PointBlue,PointRed;
 
@@ -53,10 +49,7 @@ public class TransToMinigame : MonoBehaviour
     {
         NextText.SetActive(false);//「Next」テキストを非表示
         MinigameNameText.SetActive(false);//ミニゲーム名テキストを非表示
-        ToMinigameCountOfA.SetActive(false);
-        ToMinigameCountOfB.SetActive(false);
-        RoundFinishTextOfA.SetActive(false);
-        RoundFinishTextOfB.SetActive(false);
+        ToMinigameCount.SetActive(false);
     }
 
     // Update is called once per frame
@@ -78,19 +71,14 @@ public class TransToMinigame : MonoBehaviour
 
         Debug.Log("count-----------------------------------------------------");
 
-        ToMinigameCountOfA.SetActive(true);//カウントダウンを表示
-        ToMinigameCountOfB.SetActive(true);
-        RoundFinishTextOfA.SetActive(true);
-        RoundFinishTextOfB.SetActive(true);
-        for(int i=5;i<=1;i--){
+        ToMinigameCount.SetActive(true);//カウントダウンを表示
+        for(int i=5;i>=1;i--){
             toMinigameCountOfA.text=""+i+"";
             toMinigameCountOfB.text=""+i+"";
             yield return new WaitForSeconds(1f);
         }
-        ToMinigameCountOfA.SetActive(false);//カウントダウンを非表示
-        ToMinigameCountOfB.SetActive(false);
-        RoundFinishTextOfA.SetActive(false);
-        RoundFinishTextOfB.SetActive(false);
+        ToMinigameCount.SetActive(false);//カウントダウンを非表示
+
     }
 
     //ミニゲームへ遷移する関数
