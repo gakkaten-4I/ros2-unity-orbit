@@ -58,11 +58,15 @@ public class MainGameManager : MonoBehaviour
         GameObject riaObject = GameObject.Find("RedItemArea");
         biaScript = biaObject.GetComponent<ItemAreaScript>();
         riaScript = riaObject.GetComponent<ItemAreaScript>();
+
+        StartCoroutine(DelayCoroutine());//ここでは？
     }
 
     // コルーチン本体
     private IEnumerator DelayCoroutine()
     {
+        //Debug.Log("-----------------------------------------------------");
+
         // 90秒間待つ
         // Time.timeScale の影響を受けずに実時間で90秒待つ
         yield return new WaitForSecondsRealtime(90);
@@ -77,10 +81,15 @@ public class MainGameManager : MonoBehaviour
     private IEnumerator delayMethod()
     {
         ++SceneMoveCount;
+
+        transToMinigame.StartCountdownOfMinigame(5);
+        yield return new WaitForSeconds(5f);
+        
         int GameSceneNumber = UnityEngine.Random.Range(0, 3);
         IsMain = false;
         switch (GameSceneNumber)
         {
+            
             case 0:
                 transToMinigame.StartAnimeOfTransMinigame("CoinGame");//ミニゲーム遷移アニメーションの開始
                 yield return new WaitForSeconds(6f);//ミニゲーム遷移アニメーションを行っている間待つ必要がある
@@ -108,7 +117,7 @@ public class MainGameManager : MonoBehaviour
         //Debug.Log(IsMain);
         //Debug.Log(SceneMoveCount);
         // コルーチンの起動
-        StartCoroutine(DelayCoroutine());
+        //StartCoroutine(DelayCoroutine());ここじゃなくて
 
         //最初に4点以上の差がついたら
         if (Mathf.Abs(PointOfA - PointOfB) >= 4 && (SceneMoveCount == 0))

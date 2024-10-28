@@ -10,10 +10,17 @@ public class TransToMinigame : MonoBehaviour
     //private TextMeshProUGUI nextTextOfA,nextTextOfB;
     
     [SerializeField]
+    private TextMeshProUGUI toMinigameCountOfA,toMinigameCountOfB;
+    [SerializeField]
     private TextMeshProUGUI minigameNameTextOfA,minigameNameTextOfB;
 
     public GameObject NextText;
     public GameObject MinigameNameText;
+    public GameObject RoundFinishTextOfA;
+    public GameObject RoundFinishTextOfB;
+    public GameObject ToMinigameCountOfA;
+    public GameObject ToMinigameCountOfB;
+
 
     public GameObject PointBlue,PointRed;
 
@@ -46,6 +53,10 @@ public class TransToMinigame : MonoBehaviour
     {
         NextText.SetActive(false);//「Next」テキストを非表示
         MinigameNameText.SetActive(false);//ミニゲーム名テキストを非表示
+        ToMinigameCountOfA.SetActive(false);
+        ToMinigameCountOfB.SetActive(false);
+        RoundFinishTextOfA.SetActive(false);
+        RoundFinishTextOfB.SetActive(false);
     }
 
     // Update is called once per frame
@@ -54,14 +65,38 @@ public class TransToMinigame : MonoBehaviour
         
     }
 
+    public void StartCountdownOfMinigame(int i){
+        StartCoroutine(GoMinigameCountdown(i));
+    }
+
     public void StartAnimeOfTransMinigame(string str){
         StartCoroutine(GoMinigame(str));
+    }
+
+    //ミニゲーム遷移前にカウントダウンを行う(time 秒)
+    IEnumerator GoMinigameCountdown(int time){
+
+        Debug.Log("count-----------------------------------------------------");
+
+        ToMinigameCountOfA.SetActive(true);//カウントダウンを表示
+        ToMinigameCountOfB.SetActive(true);
+        RoundFinishTextOfA.SetActive(true);
+        RoundFinishTextOfB.SetActive(true);
+        for(int i=5;i<=1;i--){
+            toMinigameCountOfA.text=""+i+"";
+            toMinigameCountOfB.text=""+i+"";
+            yield return new WaitForSeconds(1f);
+        }
+        ToMinigameCountOfA.SetActive(false);//カウントダウンを非表示
+        ToMinigameCountOfB.SetActive(false);
+        RoundFinishTextOfA.SetActive(false);
+        RoundFinishTextOfB.SetActive(false);
     }
 
     //ミニゲームへ遷移する関数
     IEnumerator GoMinigame(string NextMinigame)//引数は次遷移するミニゲームのシーン名
     {
-
+        Debug.Log("-----------------------------------------------------");
         //Step1.「Next」テキストを2度点滅(2s)
         PointBlue.SetActive(false);
         PointRed.SetActive(false);
@@ -72,7 +107,6 @@ public class TransToMinigame : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
         NextText.SetActive(true);
-
 
         //Step2.「ミニゲームタイトル」テキストを変更
         MinigameNameText.SetActive(true);
