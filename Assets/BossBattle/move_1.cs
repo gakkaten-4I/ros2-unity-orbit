@@ -29,7 +29,12 @@ public class Route : MonoBehaviour
         points = new List<Transform>();
         points = GetComponentsInChildren<Transform>().Where(t => t != transform).ToList();
         nextPos = points[pointIdx].position;
+
+        //Bossオブジェクトを取得
         Boss = GameObject.Find("Boss");
+        
+        
+
         move1 = Boss.GetComponent<hitpoint>();
         speeds = 2;
         radius = 2;   
@@ -59,6 +64,7 @@ public class Route : MonoBehaviour
                     pointIdx = 0;
                 }
             }
+            
         }
         else if (move1.hp > 15)
         {
@@ -83,10 +89,13 @@ public class Route : MonoBehaviour
                     pointIdx = 4;
                 }
             }
+            
+            
         }
         
         else if(move1.hp <= 15&&move1.hp > 0)
         {
+            
             float rand = Random.Range(1.0f, 100.0f);
             if (!flag)
             {
@@ -110,15 +119,14 @@ public class Route : MonoBehaviour
             }
             particle.transform.position = moveObj.position;
             
+            if (move1.hp <= 15)
+            {
+                
+            }
+            
         } 
 
-        else if (move1.hp <= 0)
-        {
-            move1.hp = 0;
-            particle.Play();
-            
-            
-        }
+        
         
     }
 }

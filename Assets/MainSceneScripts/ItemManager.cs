@@ -10,16 +10,18 @@ using UnityEngine.UIElements;
 public class ItemManager : MonoBehaviour
 {
     [SerializeField] GameObject EnergyCanPrefab;
+    [SerializeField] public GameObject BarrierPrefab;
     [SerializeField] GameObject[] Items;
     [SerializeField] Transform EnergyCanSpawnPoint;
     [SerializeField] Transform[] ItemSpawnPoints;
+    [SerializeField] public Transform[] BarrierSpawnPoints;
     GameObject EmergencyImage;
     [SerializeField] GameObject BlueEmergencyImage;
     [SerializeField] GameObject RedEmergencyImage;
 
     SpriteRenderer color;
     float cla;
-    float duration = 1f;  // n秒間
+    float duration = 2f;  // n秒間
     float elapsedTime = 0f;
 
     // Start is called before the first frame update
@@ -60,7 +62,6 @@ public class ItemManager : MonoBehaviour
     }
     IEnumerator DisplayEmergency()
     {
-        Debug.Log(EmergencyImage);
         if (elapsedTime > duration)
         {
             EmergencyImage.SetActive(false);

@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BossBattle.unity
     guid: ee99e1d3539886e498473af6529fe510
+  - enabled: 1
+    path: Assets/Scenes/QuietScene.unity
+    guid: 334ad1e14d3d446469c50120cb709799
   m_configObjects: {}

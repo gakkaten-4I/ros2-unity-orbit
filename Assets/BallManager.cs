@@ -28,6 +28,7 @@ public class BallManager : MonoBehaviour
     SpriteRenderer[] sprite_prediction;//予測マークの透明度
     int count_prediction;//総予測マーク数
 
+
     public static bool turn;//どちらのターンか
 
     //フィールドの大きさ
