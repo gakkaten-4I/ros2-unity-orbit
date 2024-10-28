@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class SheildScript : MonoBehaviour
 {
+    ItemManager itemManager;
+
     // Start is called before the first frame update
     void Start()
     {
