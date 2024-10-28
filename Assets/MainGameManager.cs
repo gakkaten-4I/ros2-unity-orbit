@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Unity.VisualScripting.Antlr3.Runtime;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,6 +26,9 @@ public class MainGameManager : MonoBehaviour
     public bool IsBlueShielded = false;
     public bool IsRedGoalable = true;
     public bool IsBlueGoalable = true;
+
+    public bool IsRedDetected = false;
+    public bool IsBlueDetected = false;
 
     public static short EnergyCount = 0;
 
@@ -116,6 +118,8 @@ public class MainGameManager : MonoBehaviour
         {
             SceneManager.LoadScene("MenuScene");
         }
+        OnBlueGoalEnter();
+        OnRedGoalEnter();
     }
 
     public async ValueTask BombBlue(CancellationToken token)
@@ -201,6 +205,10 @@ public class MainGameManager : MonoBehaviour
     // Blueチーム側のゴールセンサーが反応したときの処理
     public void OnBlueGoalEnter()
     {
+        if (!IsBlueDetected)
+        {
+            return;
+        }
         if (!IsBlueShielded&&IsBlueGoalable) // PointOfB (RedTeam)の得点を増やす
         {
             if (IsBlueBombed&&IsCharged)
@@ -246,6 +254,10 @@ public class MainGameManager : MonoBehaviour
     // Redチーム側のゴールセンサーが反応したときの処理
     public void OnRedGoalEnter()
     {
+        if (!IsRedDetected)
+        {
+            return;
+        }
         if (!IsRedShielded && IsRedGoalable)// PointOfA (BlueTeam)の得点を増やす
         {
             if (IsRedBombed && IsCharged)
