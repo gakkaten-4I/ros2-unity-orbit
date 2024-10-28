@@ -56,6 +56,8 @@ public class MainGameManager : MonoBehaviour
         GameObject riaObject = GameObject.Find("RedItemArea");
         biaScript = biaObject.GetComponent<ItemAreaScript>();
         riaScript = riaObject.GetComponent<ItemAreaScript>();
+        // コルーチンの起動
+        StartCoroutine(DelayCoroutine());
     }
 
     // コルーチン本体
@@ -94,22 +96,23 @@ public class MainGameManager : MonoBehaviour
         IsMain = (SceneManager.GetActiveScene().name == "MainScene");
         //Debug.Log(IsMain);
         //Debug.Log(SceneMoveCount);
-        // コルーチンの起動
-        StartCoroutine(DelayCoroutine());
+        
 
         //最初に4点以上の差がついたら
+        /*
         if (Mathf.Abs(PointOfA - PointOfB) >= 4 && (SceneMoveCount == 0))
         {
             DelayMethod();
         }
+        */
     }
 
     public async ValueTask BombBlue(CancellationToken token)
     {
         IsBlueBombed = true;
-        //StartCoroutine(itemManager.Emergence());
         itemManager.Emergence(BallManager.turn);
         await Task.Delay(TimeSpan.FromSeconds(10), token);
+        itemManager.DestroyEmergency();
         IsBlueBombed = false;
     }
 
@@ -118,6 +121,7 @@ public class MainGameManager : MonoBehaviour
         IsRedBombed = true;
         itemManager.Emergence(BallManager.turn);
         await Task.Delay(TimeSpan.FromSeconds(10), token);
+        itemManager.DestroyEmergency();
         IsRedBombed = false;
     }
 
@@ -192,11 +196,15 @@ public class MainGameManager : MonoBehaviour
             {
                 PointOfB += 4;
                 IsBlueBombed = false;
+                itemManager.DestroyEmergency();
+                biaScript.RemoveBomb();
             }
             else if (IsBlueBombed)
             {
                 PointOfB += 2;
                 IsBlueBombed = false;
+                itemManager.DestroyEmergency();
+                biaScript.RemoveBomb();
             }
             else if (IsCharged)
             {
@@ -233,11 +241,15 @@ public class MainGameManager : MonoBehaviour
             {
                 PointOfA += 4;
                 IsRedBombed = false;
+                itemManager.DestroyEmergency();
+                riaScript.RemoveBomb();
             }
             else if (IsRedBombed)
             {
                 PointOfA += 2;
                 IsRedBombed = false;
+                itemManager.DestroyEmergency();
+                riaScript.RemoveBomb();
             }
             else if (IsCharged)
             {
