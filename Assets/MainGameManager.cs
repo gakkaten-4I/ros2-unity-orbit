@@ -67,9 +67,9 @@ public class MainGameManager : MonoBehaviour
     {
         //Debug.Log("-----------------------------------------------------");
 
-        // 90秒間待つ
-        // Time.timeScale の影響を受けずに実時間で90秒待つ
-        yield return new WaitForSecondsRealtime(90);
+        // 60秒間待つ
+        // Time.timeScale の影響を受けずに実時間で60秒待つ
+        yield return new WaitForSecondsRealtime(60);
         DelayMethod();
     }
 
@@ -120,10 +120,10 @@ public class MainGameManager : MonoBehaviour
         //StartCoroutine(DelayCoroutine());ここじゃなくて
 
         //最初に4点以上の差がついたら
-        if (Mathf.Abs(PointOfA - PointOfB) >= 4 && (SceneMoveCount == 0))
-        {
-            DelayMethod();
-        }
+        //if (Mathf.Abs(PointOfA - PointOfB) >= 4 && (SceneMoveCount == 0))
+        //{
+        //    DelayMethod();
+        //}
     }
 
     public async ValueTask BombBlue(CancellationToken token)

@@ -14,6 +14,7 @@ public class MiniGameManager : MonoBehaviour
     {
         Application.targetFrameRate = 60;//フレームレートを60に固定
         //UnityEngin.Random.InitState(DateTime.Now.Millisecond);
+        StartCoroutine(DelayCoroutine());
     }
 
     // コルーチン本体
@@ -35,11 +36,10 @@ public class MiniGameManager : MonoBehaviour
     void Update()
     {
         //今のシーンがメインがかどうか
-        IsMain = (SceneManager.GetActiveScene().name == "MainScene");
-        Debug.Log(IsMain);
+        //IsMain = (SceneManager.GetActiveScene().name == "MainScene");
+        //Debug.Log(IsMain);
         //Debug.Log(++MainGameManager.PointOfA);
         // コルーチンの起動
-        StartCoroutine(DelayCoroutine());
 
     }
 }
