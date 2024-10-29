@@ -44,6 +44,8 @@ public class MainGameManager : MonoBehaviour
     private ItemAreaScript biaScript;
     private ItemAreaScript riaScript;
 
+    public TransToMinigame transToMinigame;//ミニゲーム遷移時のアニメーションのため、TranToMinigame.csを参照する
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,31 +67,48 @@ public class MainGameManager : MonoBehaviour
     // コルーチン本体
     private IEnumerator DelayCoroutine()
     {
-        // 90秒間待つ
-        // Time.timeScale の影響を受けずに実時間で90秒待つ
-        yield return new WaitForSecondsRealtime(90);
+        //Debug.Log("-----------------------------------------------------");
+
+        // 60秒間待つ
+        // Time.timeScale の影響を受けずに実時間で60秒待つ
+        yield return new WaitForSecondsRealtime(60);
         DelayMethod();
     }
 
     void DelayMethod()
     {
+        StartCoroutine("delayMethod");
+    }
+
+    private IEnumerator delayMethod()
+    {
         ++SceneMoveCount;
         if(SceneMoveCount >= 3)
         {
             SceneManager.LoadScene("QuietScene");
-            return;
         }
+
+        transToMinigame.StartCountdownOfMinigame(5);
+        yield return new WaitForSeconds(5f);
+        
         int GameSceneNumber = UnityEngine.Random.Range(0, 3);
         IsMain = false;
         switch (GameSceneNumber)
         {
+            
             case 0:
+                transToMinigame.StartAnimeOfTransMinigame("CoinGame");//ミニゲーム遷移アニメーションの開始
+                yield return new WaitForSeconds(6f);//ミニゲーム遷移アニメーションを行っている間待つ必要がある
                 SceneManager.LoadScene("CoinGame");
                 break;
             case 1:
+                transToMinigame.StartAnimeOfTransMinigame("ColoringGame");
+                yield return new WaitForSeconds(6f);
                 SceneManager.LoadScene("ColoringGame");
                 break;
             case 2:
+                transToMinigame.StartAnimeOfTransMinigame("BossBattle");
+                yield return new WaitForSeconds(6f);
                 SceneManager.LoadScene("BossBattle");
                 break;
         }
