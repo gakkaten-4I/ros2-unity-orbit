@@ -19,8 +19,6 @@ public class HPBar : MonoBehaviour
     
     public int initialHP;
     private int currentHP;
-    int player_a_hp;
-    int player_b_hp;  
 
     public float timeLimit = 90.0f; // 制限時間（30秒）
     //privateからpublicにした
@@ -28,10 +26,12 @@ public class HPBar : MonoBehaviour
 
     public GameObject timerText;          // UIのTextコンポーネントに表示されるテキスト
 
+    public Text gameunclear;
 
 //ボスの初期設定・ゲームが開始されたときに一度だけ実行される
     void Start()
     {
+        gameunclear.gameObject.SetActive(false);
         boss = GameObject.Find("Boss");
         _hp = boss.GetComponent<hitpoint>();
         bossHP = _hp.hp;
@@ -122,15 +122,6 @@ public class HPBar : MonoBehaviour
         }
     }
 
-    // ボスにダメージを与えるメソッド
-    /*public void TakeDamage(int damage)
-    {
-        currentHP -= damage;
-        if (currentHP < 0) currentHP = 0;
-        Debug.Log("damege");
-        UpdateHPBar();
-
-    }*/
 
 
     
@@ -147,6 +138,7 @@ public class HPBar : MonoBehaviour
             // 残り時間が0以下にならないようにする
             if (remainingTime < 0)
             {
+                gameunclear.gameObject.SetActive(true);
                 remainingTime = 0;
             }
 
