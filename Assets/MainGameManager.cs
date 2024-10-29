@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Unity.VisualScripting.Antlr3.Runtime;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,8 +13,8 @@ public class MainGameManager : MonoBehaviour
     public static int PointOfA = 0; // Blue?
     public static int PointOfB = 0; // Red?
 
-    //public static int SceneMoveCount = 0; 本番はこっち
-    private int SceneMoveCount = 0;
+    public static int SceneMoveCount = 0; // 本番はこっち
+    //private int SceneMoveCount = 0;
     public bool IsMain;
 
     // ゴール管理
@@ -27,6 +26,9 @@ public class MainGameManager : MonoBehaviour
     public bool IsBlueShielded = false;
     public bool IsRedGoalable = true;
     public bool IsBlueGoalable = true;
+
+    public bool IsRedDetected = false;
+    public bool IsBlueDetected = false;
 
     public static short EnergyCount = 0;
 
@@ -42,6 +44,8 @@ public class MainGameManager : MonoBehaviour
     private ItemAreaScript biaScript;
     private ItemAreaScript riaScript;
 
+    public TransToMinigame transToMinigame;//ミニゲーム遷移時のアニメーションのため、TranToMinigame.csを参照する
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,31 +60,55 @@ public class MainGameManager : MonoBehaviour
         GameObject riaObject = GameObject.Find("RedItemArea");
         biaScript = biaObject.GetComponent<ItemAreaScript>();
         riaScript = riaObject.GetComponent<ItemAreaScript>();
+        // コルーチンの起動
+        StartCoroutine(DelayCoroutine());
     }
 
     // コルーチン本体
     private IEnumerator DelayCoroutine()
     {
-        // 90秒間待つ
-        // Time.timeScale の影響を受けずに実時間で90秒待つ
-        yield return new WaitForSecondsRealtime(90);
+        //Debug.Log("-----------------------------------------------------");
+
+        // 60秒間待つ
+        // Time.timeScale の影響を受けずに実時間で60秒待つ
+        yield return new WaitForSecondsRealtime(60);
         DelayMethod();
     }
 
     void DelayMethod()
     {
+        StartCoroutine("delayMethod");
+    }
+
+    private IEnumerator delayMethod()
+    {
         ++SceneMoveCount;
+        if(SceneMoveCount >= 3)
+        {
+            SceneManager.LoadScene("QuietScene");
+        }
+
+        transToMinigame.StartCountdownOfMinigame(5);
+        yield return new WaitForSeconds(5f);
+        
         int GameSceneNumber = UnityEngine.Random.Range(0, 3);
         IsMain = false;
         switch (GameSceneNumber)
         {
+            
             case 0:
+                transToMinigame.StartAnimeOfTransMinigame("CoinGame");//ミニゲーム遷移アニメーションの開始
+                yield return new WaitForSeconds(6f);//ミニゲーム遷移アニメーションを行っている間待つ必要がある
                 SceneManager.LoadScene("CoinGame");
                 break;
             case 1:
+                transToMinigame.StartAnimeOfTransMinigame("ColoringGame");
+                yield return new WaitForSeconds(6f);
                 SceneManager.LoadScene("ColoringGame");
                 break;
             case 2:
+                transToMinigame.StartAnimeOfTransMinigame("BossBattle");
+                yield return new WaitForSeconds(6f);
                 SceneManager.LoadScene("BossBattle");
                 break;
         }
@@ -94,22 +122,31 @@ public class MainGameManager : MonoBehaviour
         IsMain = (SceneManager.GetActiveScene().name == "MainScene");
         //Debug.Log(IsMain);
         //Debug.Log(SceneMoveCount);
-        // コルーチンの起動
-        StartCoroutine(DelayCoroutine());
+        
 
         //最初に4点以上の差がついたら
+        /*
         if (Mathf.Abs(PointOfA - PointOfB) >= 4 && (SceneMoveCount == 0))
         {
             DelayMethod();
         }
+        */
+
+        // Escキーが押されたらメニューに戻る
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MenuScene");
+        }
+        OnBlueGoalEnter();
+        OnRedGoalEnter();
     }
 
     public async ValueTask BombBlue(CancellationToken token)
     {
         IsBlueBombed = true;
-        //StartCoroutine(itemManager.Emergence());
         itemManager.Emergence(BallManager.turn);
         await Task.Delay(TimeSpan.FromSeconds(10), token);
+        itemManager.DestroyEmergency();
         IsBlueBombed = false;
     }
 
@@ -118,6 +155,7 @@ public class MainGameManager : MonoBehaviour
         IsRedBombed = true;
         itemManager.Emergence(BallManager.turn);
         await Task.Delay(TimeSpan.FromSeconds(10), token);
+        itemManager.DestroyEmergency();
         IsRedBombed = false;
     }
 
@@ -186,17 +224,25 @@ public class MainGameManager : MonoBehaviour
     // Blueチーム側のゴールセンサーが反応したときの処理
     public void OnBlueGoalEnter()
     {
+        if (!IsBlueDetected)
+        {
+            return;
+        }
         if (!IsBlueShielded&&IsBlueGoalable) // PointOfB (RedTeam)の得点を増やす
         {
             if (IsBlueBombed&&IsCharged)
             {
                 PointOfB += 4;
                 IsBlueBombed = false;
+                itemManager.DestroyEmergency();
+                biaScript.RemoveBomb();
             }
             else if (IsBlueBombed)
             {
                 PointOfB += 2;
                 IsBlueBombed = false;
+                itemManager.DestroyEmergency();
+                biaScript.RemoveBomb();
             }
             else if (IsCharged)
             {
@@ -227,17 +273,25 @@ public class MainGameManager : MonoBehaviour
     // Redチーム側のゴールセンサーが反応したときの処理
     public void OnRedGoalEnter()
     {
+        if (!IsRedDetected)
+        {
+            return;
+        }
         if (!IsRedShielded && IsRedGoalable)// PointOfA (BlueTeam)の得点を増やす
         {
             if (IsRedBombed && IsCharged)
             {
                 PointOfA += 4;
                 IsRedBombed = false;
+                itemManager.DestroyEmergency();
+                riaScript.RemoveBomb();
             }
             else if (IsRedBombed)
             {
                 PointOfA += 2;
                 IsRedBombed = false;
+                itemManager.DestroyEmergency();
+                riaScript.RemoveBomb();
             }
             else if (IsCharged)
             {

@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GridObjectPlacerXZ : MonoBehaviour
 {
-    public GameObject objectToPlace;  // 配置するオブジェクトのプレハブ
+    public GameObject objectToPlace; 
+    public GameObject ball; // 配置するオブジェクトのプレハブ
     public int gridSizeX = 4;         // X軸方向のグリッド数（4に設定）
     public int gridSizeY = 10;        // Z軸方向のグリッド数（10に設定）
     public float spacing = 1f;
@@ -18,6 +20,9 @@ public class GridObjectPlacerXZ : MonoBehaviour
     public GameObject LOSE1;
     public GameObject WIN2;
     public GameObject LOSE2;
+
+    public GameObject DRAWl;
+    public GameObject DRAW2;
     public AudioClip sound1;
     public AudioClip sound2;
     AudioSource audioSource; 
@@ -29,15 +34,15 @@ public class GridObjectPlacerXZ : MonoBehaviour
     void Start()
     {
         PlaceObjectsInGrid();
-        StartCoroutine(WaitAndCallPlus(3f));
-        StartCoroutine(WaitAndCallResult(12f));
+        StartCoroutine(WaitAndCallPlus(10f));
+        StartCoroutine(WaitAndCallResult(25f));
         audioSource = GetComponent<AudioSource>();
         audioSource.PlayOneShot(sound1);  // 50秒後にresult関数を呼び出すコルーチンを開始
     }
 
     void PlaceObjectsInGrid()
     {
-        int i = gridSizeY;
+        int i = gridSizeY-1;
 
         if (objectToPlace == null)
         {
@@ -47,11 +52,11 @@ public class GridObjectPlacerXZ : MonoBehaviour
 
         for (int x = 0; x < gridSizeX; x++)
         {
+            int m = (x+3)*8-1;
             for (int y = 0; y < gridSizeY; y++)
             {
-                if (x != 0 || y != 0)
-                {
-                    Vector3 position = new Vector3(6.875f + x * spacing, -9.375f + y * spacing, 0);
+
+                    Vector3 position = new Vector3(6.875f-1.6875f + x * spacing, -9.5f+1.1f + y * spacing, 0);
 
                         // オブジェクトを配置し、生成されたインスタンスの参照を取得
                         
@@ -60,8 +65,9 @@ public class GridObjectPlacerXZ : MonoBehaviour
                         i++;
                             // オブジェクトに固有の名前を設定 (例: "Square_X2_Y3" など)
                         
+                        //if(x%2 ==0){newObject.name = $"Square_{m-i}";}else {newObject.name = $"Square_{i}";}
                         newObject.name = $"Square_{i}";
-                }
+
                 // 配置位置を計算
                 
                 
@@ -101,8 +107,8 @@ public class GridObjectPlacerXZ : MonoBehaviour
                 if (x == 1){
                     a = gridSizeX * gridSizeY;
                 }
-                
-                Vector3 position = new Vector3(5.625f + x * 8.75f, -9.375f + y * spacing, 0);
+
+                Vector3 position = new Vector3(4.0625f + x * 7.875f, -9.5f+1.1f + y * spacing, 0);
                         // オブジェクトを配置し、生成されたインスタンスの参照を取得
                 GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
                             // オブジェクトに固有の名前を設定 (例: "Square_X2_Y3" など)
@@ -143,13 +149,14 @@ public class GridObjectPlacerXZ : MonoBehaviour
             Player2text.color = Color.red;
         StartCoroutine(ResultShow());
         StartCoroutine(ResultShow2());
-
+        ball.SetActive(false);
         
     }
 
     //Player1のポイント数える
     IEnumerator ResultShow()
     {
+        
 
        for (int i = 0; i < countMin; i++)
         {
@@ -158,12 +165,9 @@ public class GridObjectPlacerXZ : MonoBehaviour
             string objectName;
             // オブジェクトの名前を生成
             //グリッド数変えるときここも変える
-            if(i != 8){
+        
                 objectName = $"Square_{i}";
-            }
-            else{
-                objectName = "Square";
-            }
+ 
 
             // 名前でオブジェクトを検索
             GameObject obj = GameObject.Find(objectName);
@@ -197,6 +201,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
         }
         yield return new WaitForSeconds(1f);
         Finish();
+        StartCoroutine(WaitAndLoadMainScene());
     }
 
     //Player2のポイント数える
@@ -248,9 +253,16 @@ public class GridObjectPlacerXZ : MonoBehaviour
         if(Count1 > Count2){
             ikkini(1,Color.blue);
             
-        }else{
+        }else if(Count1 < Count2){
             ikkini(2,Color.red);
+        }else{
+            audioSource = GetComponent<AudioSource>();
+            audioSource.PlayOneShot(sound2);
+            DRAWl.SetActive(true);
+            DRAW2.SetActive(true);
         }
+
+        ball.SetActive(true);
     }
 
 
@@ -340,5 +352,10 @@ public class GridObjectPlacerXZ : MonoBehaviour
                 }
         }
 
-    
+    IEnumerator WaitAndLoadMainScene()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene("MainScene");
+    }
+
 }
