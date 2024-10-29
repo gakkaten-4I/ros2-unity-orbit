@@ -22,7 +22,7 @@ public class HPBar : MonoBehaviour
     int player_a_hp;
     int player_b_hp;  
 
-    public float timeLimit = 90.0f; // 制限時間（30秒）
+    public float timeLimit = 30.0f; // 制限時間（30秒）
     //privateからpublicにした
     public float remainingTime;    // 残り時間
 
