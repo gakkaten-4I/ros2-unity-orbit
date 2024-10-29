@@ -6,6 +6,13 @@ using UnityEngine.SceneManagement;
 public class hitpoint : MonoBehaviour
 {
     public int hp;
+    BossDefeatCounter  dmg;
+    GameObject boss;
+    GameObject boss1;
+    GameObject boss2;
+    GameObject boss3;
+    GameObject boss4;
+
     
 
     // Inspectorで設定するパーティクルPrefab
@@ -13,15 +20,29 @@ public class hitpoint : MonoBehaviour
 
     void Start()
     {
+        boss = GameObject.Find("Boss");
+
+        dmg = boss.GetComponent<BossDefeatCounter>();
         
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        hp -= 3;
-        Debug.Log("Hit! HP: " + hp);
+        Damage();
+    }
 
-        if (hp <= 0)
+    // ダメージを与える関数
+    public void Damage(){
+        hp -= 1;
+        Debug.Log("Hit! HP: " + hp);
+        dmg.BossDefeated();
+
+       
+    }
+
+    void Update()
+    {
+         if (hp <= 0)
         {
             Debug.Log("You Died!!");
 
@@ -31,12 +52,8 @@ public class hitpoint : MonoBehaviour
             // オブジェクトを削除
             Destroy(gameObject);
 
-            SceneManager.LoadScene("MainScene");
+            
         }
-    }
-    // ダメージを与える関数
-    void Damage(int damage){
-        hp-=damage;
         
     }
 }

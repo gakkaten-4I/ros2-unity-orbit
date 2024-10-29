@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - tag
+  - coins
+  - Ball
+  - Shield
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - PostProcess
+  - Water
+  - UI
+  - TargetLayer
+  - Boss
+  - BossHP
+  - Particle
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: PostProcess
+    uniqueID: 1961833013
+    locked: 0
+  - name: TransparentFX
+    uniqueID: 3108684575
+    locked: 0
+  - name: TargetLayer
+    uniqueID: 3447537529
+    locked: 0
+  - name: Boss
+    uniqueID: 1031919155
+    locked: 0
+  - name: BossHP
+    uniqueID: 2086278767
+    locked: 0
+  - name: Particle
+    uniqueID: 1194214699
+    locked: 0
