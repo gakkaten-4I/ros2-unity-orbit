@@ -10,11 +10,12 @@ public class DisplayScoreManager : MonoBehaviour
 
     string tmpScoreOfA,tmpScoreOfB;//関数内でスコアが入る
 
+    
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        ScoreTextOfA.text = ""+00+"";
-        ScoreTextOfA.text = ""+00+"";//スコア表示の初期化
+        ScoreTextOfA.text = "00";
+        ScoreTextOfB.text = "00";//スコア表示の初期化
     }
 
     // Update is called once per frame

@@ -22,6 +22,10 @@ public class CoinResult : MonoBehaviour
     private GameObject score;
     public BallDestroyOnCollision2D bdoc;
 
+    //得点をmainに反映させる
+    //private GameObject 
+    private DisplayScoreManager displayscoremanager;
+
     private Vector2 sizeReview = new Vector2(231f,66f);
     private Vector2 sizeScore = new Vector2(131.5f, 66f);
 
@@ -198,11 +202,13 @@ public class CoinResult : MonoBehaviour
             //赤チームが勝った時
             Review1.text = "You Lose";
             Review2.text = "You Win";
+            displayscoremanager.AddDisplayScore(0,5);
         }
         else if(bdoc.CoinCountBlue > bdoc.CoinCountRed){
             //青チームが勝った時
             Review1.text = "You Win";
             Review2.text = "You Lose";
+            displayscoremanager.AddDisplayScore(5,0);
         }
         else{
             //引き分けの時
