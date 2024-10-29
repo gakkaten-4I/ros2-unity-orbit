@@ -13,8 +13,6 @@ public class DisplayScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ScoreTextOfA.text = "00";
-        ScoreTextOfA.text = "00";//スコア表示の初期化
     }
 
     // Update is called once per frame
@@ -25,7 +23,9 @@ public class DisplayScoreManager : MonoBehaviour
 
     public void ReflectScore()//テキストオブジェクトにスコアの値を反映させる(A,Bどちらも)
     {
-        tmpScoreOfA=""+MainGameManager.PointOfA+"";
+        Debug.Log("ReflectScore is called");
+        Debug.Log("AddDisplayScore: " + MainGameManager.PointOfA);
+        tmpScoreOfA =""+MainGameManager.PointOfA+"";
         tmpScoreOfB=""+MainGameManager.PointOfB+"";//スコアの値をとってくる
 
         if(MainGameManager.PointOfA <=9) tmpScoreOfA="0"+tmpScoreOfA;
@@ -33,6 +33,8 @@ public class DisplayScoreManager : MonoBehaviour
 
         ScoreTextOfA.text = ""+tmpScoreOfA+"";
         ScoreTextOfB.text = ""+tmpScoreOfB+"";//スコアを反映させる
+
+        Debug.Log("ReflectScore:");
     }
 
     public void DisplayScore(int scoreA,int scoreB)//テキストオブジェクトに任意の値を表示する
@@ -54,15 +56,24 @@ public class DisplayScoreManager : MonoBehaviour
     {
         MainGameManager.PointOfA+=AddscoreA;
         MainGameManager.PointOfB+=AddscoreB;//ポイントが入っている変数の中身を変更
+        Debug.Log("AddDisplayScore: " + MainGameManager.PointOfA);
 
-        tmpScoreOfA=""+MainGameManager.PointOfA+"";
-        tmpScoreOfB=""+MainGameManager.PointOfB+"";//スコアの値をとってくる
+        /*
+        string tmpScoreOfA = MainGameManager.PointOfA.ToString("00");
 
-        if(MainGameManager.PointOfA <=9) tmpScoreOfA="0"+tmpScoreOfA;
+        //tmpScoreOfA=""+MainGameManager.PointOfA+"";
+        tmpScoreOfB =""+MainGameManager.PointOfB+"";//スコアの値をとってくる
+
+        //if(MainGameManager.PointOfA <=9) tmpScoreOfA="0"+tmpScoreOfA;
         if(MainGameManager.PointOfB <=9) tmpScoreOfB="0"+tmpScoreOfB;//数字が一桁なら先頭に0を追加
 
-        ScoreTextOfA.text = ""+tmpScoreOfA+"";
+        //ScoreTextOfA.text = ""+tmpScoreOfA+"";
+        ScoreTextOfA.text = "" + tmpScoreOfA + "";
         ScoreTextOfB.text = ""+tmpScoreOfB+"";//スコアを反映させる
+
+        Debug.Log("AddDisplayScore: " + tmpScoreOfA);
+        */
+        ReflectScore();
     }
 
     void DebugText()//テキストの表示が変わるか確認
