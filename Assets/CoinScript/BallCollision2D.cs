@@ -57,7 +57,7 @@ public class BallDestroyOnCollision2D : MonoBehaviour
         //スコアの大きさ設定
         Vector2 ScoreSize = new Vector2(160f,66f);
         //スコアのフォントサイズの設定
-        float FontSize = 35f;
+        float FontSize = 45f;
 
         cointrail = GetComponent<inCoinSceneTrail>();
         
@@ -107,7 +107,7 @@ public class BallDestroyOnCollision2D : MonoBehaviour
         if (((1 << other.gameObject.layer) & destroyableLayer) != 0 && contableFlag == 1)
         {
             // 指定のレイヤーであれば破壊する
-            if(cointrail.turn == true){//エフェクト発生(赤)
+            if(cointrail.turn == false){//エフェクト発生(赤)
                 GameObject newEffect = Instantiate(CoinRed, transform.position, transform.rotation);
                 getCoin.Play();
                 StartCoroutine(Jump(newEffect));

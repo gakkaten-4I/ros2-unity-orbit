@@ -9,6 +9,7 @@ TagManager:
   - coins
   - Ball
   - Shield
+  - Bomb
   layers:
   - Default
   - TransparentFX
