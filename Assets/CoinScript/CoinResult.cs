@@ -26,11 +26,11 @@ public class CoinResult : MonoBehaviour
     //private GameObject 
     private DisplayScoreManager displayscoremanager;
 
-    private Vector2 sizeReview = new Vector2(231f,66f);
-    private Vector2 sizeScore = new Vector2(131.5f, 66f);
+    private Vector2 sizeReview = new Vector2(420f,120f);
+    private Vector2 sizeScore = new Vector2(210f, 120f);
 
-    private float FontSizeReview = 50f;
-    private float FontSizeScore = 40f;
+    private float FontSizeReview = 90f;
+    private float FontSizeScore = 60f;
 
     //結果発表効果音
     public AudioSource resultAudio;
@@ -48,7 +48,7 @@ public class CoinResult : MonoBehaviour
         if (Review1 != null)
         {
             RectTransform RectReview1 = Review1.GetComponent<RectTransform>();
-            RectReview1.anchoredPosition = new Vector3(-66f, 0f, 0f);
+            RectReview1.anchoredPosition = new Vector3(-180f, 0f, 0f);
             RectReview1.sizeDelta = sizeReview;
             Review1.fontSize = FontSizeReview;
             Review1.transform.Rotate(0,0,-90);
@@ -65,7 +65,7 @@ public class CoinResult : MonoBehaviour
         if (Review2 != null)
         {
             RectTransform RectReview2 = Review2.GetComponent<RectTransform>();
-            RectReview2.anchoredPosition = new Vector3(66f, 0f, 0f);
+            RectReview2.anchoredPosition = new Vector3(180f, 0f, 0f);
             RectReview2.sizeDelta = sizeReview;
             Review2.fontSize = FontSizeReview;
             Review2.transform.Rotate(0,0,90);
@@ -82,7 +82,7 @@ public class CoinResult : MonoBehaviour
         if (ShowRed1 != null)
         {
             RectTransform RectRed1 = ShowRed1.GetComponent<RectTransform>();
-            RectRed1.anchoredPosition = new Vector3( -132f, 61.75f, 0f);
+            RectRed1.anchoredPosition = new Vector3( -300f, 105f, 0f);
             RectRed1.sizeDelta = sizeScore;
             ShowRed1.fontSize = FontSizeScore;
             ShowRed1.transform.Rotate(0,0,-90);
@@ -99,7 +99,7 @@ public class CoinResult : MonoBehaviour
         if (ShowRed2 != null)
         {
             RectTransform RectRed2 = ShowRed2.GetComponent<RectTransform>();
-            RectRed2.anchoredPosition = new Vector3( 132f, -61.75f, 0f);
+            RectRed2.anchoredPosition = new Vector3( 300f, -105f, 0f);
             RectRed2.sizeDelta = sizeScore;
             ShowRed2.fontSize = FontSizeScore;
             ShowRed2.transform.Rotate(0,0,90);
@@ -116,7 +116,7 @@ public class CoinResult : MonoBehaviour
         if (ShowBlue1 != null)
         {
             RectTransform RectBlue1 = ShowBlue1.GetComponent<RectTransform>();
-            RectBlue1.anchoredPosition = new Vector3( -132f, -61.75f, 0f);
+            RectBlue1.anchoredPosition = new Vector3( -300f, -105f, 0f);
             RectBlue1.sizeDelta = sizeScore;
             ShowBlue1.fontSize = FontSizeScore;
             ShowBlue1.transform.Rotate(0,0,-90);
@@ -133,7 +133,7 @@ public class CoinResult : MonoBehaviour
         if (ShowBlue1 != null)
         {
             RectTransform RectBlue2 = ShowBlue2.GetComponent<RectTransform>();
-            RectBlue2.anchoredPosition = new Vector3( 132f, 61.75f, 0f);
+            RectBlue2.anchoredPosition = new Vector3( 300f, 105f, 0f);
             RectBlue2.sizeDelta = sizeScore;
             ShowBlue2.fontSize = FontSizeScore;
             ShowBlue2.transform.Rotate(0,0,90);
