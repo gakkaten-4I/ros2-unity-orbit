@@ -7,6 +7,8 @@ public class DisplayScoreManager : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI ScoreTextOfA,ScoreTextOfB;//テキストオブジェクト(左と右)
+    [SerializeField]
+    private AddMinigamePoint AddMinigamePoint;
 
     string tmpScoreOfA,tmpScoreOfB;//関数内でスコアが入る
 
@@ -25,6 +27,7 @@ public class DisplayScoreManager : MonoBehaviour
     {
         Debug.Log("ReflectScore is called");
         Debug.Log("AddDisplayScore: " + MainGameManager.PointOfA);
+
         tmpScoreOfA =""+MainGameManager.PointOfA+"";
         tmpScoreOfB=""+MainGameManager.PointOfB+"";//スコアの値をとってくる
 
@@ -73,6 +76,12 @@ public class DisplayScoreManager : MonoBehaviour
 
         Debug.Log("AddDisplayScore: " + tmpScoreOfA);
         */
+
+        //TODO:得点加算アニメーションを再生
+        char WinTeam = (AddscoreA == 5) ? 'A' : 'B';
+        Debug.Log(WinTeam);
+        AddMinigamePoint.PlusMinigamePoint(WinTeam, 5);
+
         ReflectScore();
     }
 

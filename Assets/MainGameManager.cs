@@ -82,18 +82,18 @@ public class MainGameManager : MonoBehaviour
             case 0:
                 break;
             case 1:
-                //DisplayScoreManager.AddDisplayScore(5, 0);
-                PointOfA += 5;
+                DisplayScoreManager.AddDisplayScore(5, 0);
+                //PointOfA += 5;
                 break;
             case 2:
-                //DisplayScoreManager.AddDisplayScore(0,5);
-                PointOfB += 5;
+                DisplayScoreManager.AddDisplayScore(0,5);
+                //PointOfB += 5;
                 break;
             default:
                 break;
         }
         state = 0;
-        DisplayScoreManager.ReflectScore();
+        //DisplayScoreManager.ReflectScore();
     }
 
     // コルーチン本体
