@@ -52,10 +52,10 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     void Start(){
 
         //スコアの設定位置
-        Vector3 WhereBlueScore = new Vector3(-255f, 180f, 0f);
-        Vector3 WhereRedScore = new Vector3(255f, 180f, 0f);
+        Vector3 WhereBlueScore = new Vector3(-90f, 150f, 0f);
+        Vector3 WhereRedScore = new Vector3(90f, -150f, 0f);
         //スコアの大きさ設定
-        Vector2 ScoreSize = new Vector2(330f,120f);
+        Vector2 ScoreSize = new Vector2(180f,100f);
         //スコアのフォントサイズの設定
         float FontSize = 80f;
 
@@ -73,7 +73,8 @@ public class BallDestroyOnCollision2D : MonoBehaviour
             rectTransformBlue.anchoredPosition = WhereBlueScore;//青色のスコアの位置に移動
             rectTransformBlue.sizeDelta = ScoreSize;//スコアのサイズの設定
             CoinTextBlue.fontSize = FontSize;//スコアのフォントサイズの設定
-            CoinTextBlue.text = "BlueTeam";//最初に表示する文字
+            rectTransformBlue.transform.Rotate(0,0,-90);
+            CoinTextBlue.text = "Blue\nTeam";//最初に表示する文字
         }
         else
         {
@@ -86,7 +87,8 @@ public class BallDestroyOnCollision2D : MonoBehaviour
             rectTransformRed.anchoredPosition = WhereRedScore;//赤色スコアの位置に移動
             rectTransformRed.sizeDelta = ScoreSize;//スコアのサイズの設定
             CoinTextRed.fontSize = FontSize;//スコアのフォントサイズの設定
-            CoinTextRed.text = "RedTeam";//最初に表示する文字
+            rectTransformRed.transform.Rotate(0,0,90);
+            CoinTextRed.text = "Red\nTeam";//最初に表示する文字
         }
         else
         {
@@ -148,14 +150,14 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     {
         CoinCountBlue ++;
         // テキストメッシュプロに破壊数を表示
-        CoinTextBlue.text = "Blue:" + CoinCountBlue.ToString();
+        CoinTextBlue.text = "Blue:\n" + CoinCountBlue.ToString();
     }
 
     void UpdateCoinCountTextRed()
     {
         CoinCountRed ++;
         //テキストメッシュプロに破壊数を表示
-        CoinTextRed.text = "Red:" + CoinCountRed.ToString();
+        CoinTextRed.text = "Red:\n" + CoinCountRed.ToString();
     }
 
     private IEnumerator Jump(GameObject newobject)

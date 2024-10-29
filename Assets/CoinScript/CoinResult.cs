@@ -35,6 +35,9 @@ public class CoinResult : MonoBehaviour
     //結果発表効果音
     public AudioSource resultAudio;
 
+    //結果表示する際の白背景
+    public GameObject WhiteCurtain;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -152,6 +155,18 @@ public class CoinResult : MonoBehaviour
         {
             Debug.LogError("can't read BallDestoryOnCollision2D");
         }
+
+        if(WhiteCurtain != null)
+        {
+            WhiteCurtain.transform.localScale = new Vector3( 4f, 7f, 1f);
+            SpriteRenderer WhiteRenderer = WhiteCurtain.GetComponent<SpriteRenderer>();
+            WhiteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
+        }
+        else
+        {
+            Debug.LogError("WhiteCurtainオブジェクトが指定されていません");
+        }
+
         //30秒後に結果発表
         StartCoroutine(ShowCoin(25f));
     }
@@ -165,6 +180,8 @@ public class CoinResult : MonoBehaviour
     private IEnumerator ShowCoin(float waiting)
     {
         yield return new WaitForSeconds(waiting);
+        GameObject whitecurtain1 = Instantiate(WhiteCurtain, new Vector2(4f, -4.5f), Quaternion.identity);
+        GameObject whitecurtain2 = Instantiate(WhiteCurtain, new Vector2(12f, -4.5f), Quaternion.identity);
         Review1.enabled = true;
         Review2.enabled = true;
         var length1 = Review1.text.Length;
@@ -202,13 +219,13 @@ public class CoinResult : MonoBehaviour
             //赤チームが勝った時
             Review1.text = "You Lose";
             Review2.text = "You Win";
-            displayscoremanager.AddDisplayScore(0,5);
+            //displayscoremanager.AddDisplayScore(0,5);
         }
         else if(bdoc.CoinCountBlue > bdoc.CoinCountRed){
             //青チームが勝った時
             Review1.text = "You Win";
             Review2.text = "You Lose";
-            displayscoremanager.AddDisplayScore(5,0);
+            //splayscoremanager.AddDisplayScore(5,0);
         }
         else{
             //引き分けの時
