@@ -140,7 +140,7 @@ public class inCoinSceneTrail : MonoBehaviour
             }//透明度を下げる
         }
 
-        if(turn == true){
+        if(turn == false){
             trajectory[count_trajectory % number_trajectory] = Instantiate(Prefab_Trajectory_Red, BallPosition[nowindex], new Quaternion(0, 0, 0, 0));//軌跡を生成
         }
         else{
