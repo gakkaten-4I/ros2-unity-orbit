@@ -29,7 +29,7 @@ public class CoinResult : MonoBehaviour
     private Vector2 sizeReview = new Vector2(420f,120f);
     private Vector2 sizeScore = new Vector2(210f, 120f);
 
-    private float FontSizeReview = 90f;
+    private float FontSizeReview = 100f;
     private float FontSizeScore = 60f;
 
     //結果発表効果音
@@ -56,7 +56,9 @@ public class CoinResult : MonoBehaviour
             Review1.fontSize = FontSizeReview;
             Review1.transform.Rotate(0,0,-90);
             Review1.text = " Result  ";
-            Review1.color = new Color(0.8f, 0.5f, 0.9f, 1f);
+            Review1.color = new Color(0f, 0f, 0f, 1f);
+            Review1.outlineColor = Color.white;
+            Review1.outlineWidth = 0.1f;
             Review1.enabled = false;
         }
         else
@@ -73,7 +75,9 @@ public class CoinResult : MonoBehaviour
             Review2.fontSize = FontSizeReview;
             Review2.transform.Rotate(0,0,90);
             Review2.text = " Result  ";
-            Review2.color = new Color(0.8f, 0.5f, 0.9f, 1f);
+            Review2.color = new Color(0f, 0f, 0f, 1f);
+            Review2.outlineColor = Color.white;
+            Review2.outlineWidth = 0.2f;
             Review2.enabled = false;
         }
         else
@@ -90,7 +94,9 @@ public class CoinResult : MonoBehaviour
             ShowRed1.fontSize = FontSizeScore;
             ShowRed1.transform.Rotate(0,0,-90);
             ShowRed1.text = "RedTeam";
-            ShowRed1.color = new Color(1f, 0.3f, 0.3f, 1f);
+            ShowRed1.color = new Color(1f, 0.1f, 0.1f, 1f);
+            ShowRed1.outlineColor = Color.white;
+            ShowRed1.outlineWidth = 0.1f;
             ShowRed1.enabled = false;
         }
         else
@@ -107,7 +113,9 @@ public class CoinResult : MonoBehaviour
             ShowRed2.fontSize = FontSizeScore;
             ShowRed2.transform.Rotate(0,0,90);
             ShowRed2.text = "RedTeam";
-            ShowRed2.color = new Color(1f, 0.3f, 0.3f, 1f);
+            ShowRed2.color = new Color(1f, 0.1f, 0.1f, 1f);
+            ShowRed2.outlineColor = Color.white;
+            ShowRed2.outlineWidth = 0.1f;
             ShowRed2.enabled = false;
         }
         else
@@ -124,7 +132,9 @@ public class CoinResult : MonoBehaviour
             ShowBlue1.fontSize = FontSizeScore;
             ShowBlue1.transform.Rotate(0,0,-90);
             ShowBlue1.text = "BlueTeam";
-            ShowBlue1.color = new Color(0.3f, 0.3f, 1f, 1f);
+            ShowBlue1.color = new Color(0.1f, 0.1f, 1f, 1f);
+            ShowBlue1.outlineColor = Color.white;
+            ShowBlue1.outlineWidth = 0.1f;
             ShowBlue1.enabled = false;
         }
         else
@@ -141,7 +151,9 @@ public class CoinResult : MonoBehaviour
             ShowBlue2.fontSize = FontSizeScore;
             ShowBlue2.transform.Rotate(0,0,90);
             ShowBlue2.text = "BlueTeam";
-            ShowBlue2.color = new Color(0.3f, 0.3f, 1f, 1f);  // 0～1の範囲で設定
+            ShowBlue2.color = new Color(0.1f, 0.1f, 1f, 1f);  // 0～1の範囲で設定
+            ShowBlue2.outlineColor = Color.white;
+            ShowBlue2.outlineWidth = 0.1f;
             ShowBlue2.enabled = false;
         }
         else
