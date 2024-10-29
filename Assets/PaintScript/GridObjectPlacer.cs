@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GridObjectPlacerXZ : MonoBehaviour
 {
-    public GameObject objectToPlace;  // 配置するオブジェクトのプレハブ
+    public GameObject objectToPlace; 
+    public GameObject ball; // 配置するオブジェクトのプレハブ
     public int gridSizeX = 4;         // X軸方向のグリッド数（4に設定）
     public int gridSizeY = 10;        // Z軸方向のグリッド数（10に設定）
     public float spacing = 1f;
@@ -19,6 +20,9 @@ public class GridObjectPlacerXZ : MonoBehaviour
     public GameObject LOSE1;
     public GameObject WIN2;
     public GameObject LOSE2;
+
+    public GameObject DRAWl;
+    public GameObject DRAW2;
     public AudioClip sound1;
     public AudioClip sound2;
     AudioSource audioSource; 
@@ -145,13 +149,14 @@ public class GridObjectPlacerXZ : MonoBehaviour
             Player2text.color = Color.red;
         StartCoroutine(ResultShow());
         StartCoroutine(ResultShow2());
-
+        ball.SetActive(false);
         
     }
 
     //Player1のポイント数える
     IEnumerator ResultShow()
     {
+        
 
        for (int i = 0; i < countMin; i++)
         {
@@ -248,9 +253,16 @@ public class GridObjectPlacerXZ : MonoBehaviour
         if(Count1 > Count2){
             ikkini(1,Color.blue);
             
-        }else{
+        }else if(Count1 < Count2){
             ikkini(2,Color.red);
+        }else{
+            audioSource = GetComponent<AudioSource>();
+            audioSource.PlayOneShot(sound2);
+            DRAWl.SetActive(true);
+            DRAW2.SetActive(true);
         }
+
+        ball.SetActive(true);
     }
 
 
