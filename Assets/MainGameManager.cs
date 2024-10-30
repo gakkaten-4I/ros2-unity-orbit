@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,10 @@ public class MainGameManager : MonoBehaviour
 {
     public static int PointOfA = 0; // Blue?
     public static int PointOfB = 0; // Red?
+    public static int state = 2; //ミニゲームで誰が勝ったか(0:MainScene, 1: Blue, 2:Red)
+
+    [SerializeField]
+    private TextMeshProUGUI ScoreTextOfA, ScoreTextOfB;
 
     public static int SceneMoveCount = 0; // 本番はこっち
     //private int SceneMoveCount = 0;
@@ -49,6 +54,8 @@ public class MainGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ScoreTextOfA.text = "00";
+        ScoreTextOfB.text = "00";//スコア表示の初期化
         Application.targetFrameRate = 60;//フレームレートを60に固定
         //UnityEngin.Random.InitState(DateTime.Now.Millisecond);
         GameObject dsmObj = GameObject.Find("DisplayScoreManager");
@@ -60,8 +67,33 @@ public class MainGameManager : MonoBehaviour
         GameObject riaObject = GameObject.Find("RedItemArea");
         biaScript = biaObject.GetComponent<ItemAreaScript>();
         riaScript = riaObject.GetComponent<ItemAreaScript>();
+
+        AddMiniGameBonus(state);
+
         // コルーチンの起動
         StartCoroutine(DelayCoroutine());
+    }
+
+    private void AddMiniGameBonus(int State)
+    {
+        Debug.Log("Test is called");
+        switch (State)
+        {
+            case 0:
+                break;
+            case 1:
+                DisplayScoreManager.AddDisplayScore(5, 0);
+                //PointOfA += 5;
+                break;
+            case 2:
+                DisplayScoreManager.AddDisplayScore(0,5);
+                //PointOfB += 5;
+                break;
+            default:
+                break;
+        }
+        state = 0;
+        //DisplayScoreManager.ReflectScore();
     }
 
     // コルーチン本体
@@ -120,9 +152,6 @@ public class MainGameManager : MonoBehaviour
     {
         //今のシーンがメインがかどうか
         IsMain = (SceneManager.GetActiveScene().name == "MainScene");
-        //Debug.Log(IsMain);
-        //Debug.Log(SceneMoveCount);
-        
 
         //最初に4点以上の差がついたら
         /*
