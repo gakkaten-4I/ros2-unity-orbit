@@ -33,6 +33,9 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     //どっちサイドかをinCoinSceneTrailから取得
     inCoinSceneTrail cointrail;
 
+    //コイン取得時の効果音
+    public AudioSource getCoin;
+
     /*
         // 物理的な衝突時に呼ばれるメソッド（2D）
         void OnCollisionEnter2D(Collision2D collision)
@@ -49,14 +52,19 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     void Start(){
 
         //スコアの設定位置
-        Vector3 WhereBlueScore = new Vector3(260f,150f,0f);
-        Vector3 WhereRedScore = new Vector3(-230f,150f,0f);
+        Vector3 WhereBlueScore = new Vector3(-150f, 100f, 0f);
+        Vector3 WhereRedScore = new Vector3(150f, 100f, 0f);
         //スコアの大きさ設定
-        Vector2 ScoreSize = new Vector2(180f,20f);
+        Vector2 ScoreSize = new Vector2(160f,66f);
         //スコアのフォントサイズの設定
-        float FontSize = 30f;
+        float FontSize = 45f;
 
         cointrail = GetComponent<inCoinSceneTrail>();
+        
+        getCoin = GetComponent<AudioSource>();
+
+        //テキストの座標の基準
+
 
         //CoinTextBlueを指定の位置に移動させ,フォントサイズを変える
         if(CoinTextBlue != null)
@@ -78,12 +86,14 @@ public class BallDestroyOnCollision2D : MonoBehaviour
             rectTransformRed.anchoredPosition = WhereRedScore;//赤色スコアの位置に移動
             rectTransformRed.sizeDelta = ScoreSize;//スコアのサイズの設定
             CoinTextRed.fontSize = FontSize;//スコアのフォントサイズの設定
-            CoinTextRed.text = " RedTeam";//最初に表示する文字
+            CoinTextRed.text = "RedTeam";//最初に表示する文字
         }
         else
         {
             Debug.LogError("RedScoreオブジェクトが指定されていません");
         }
+
+        StartCoroutine(HideText());
     }
 
     void Update(){
@@ -97,8 +107,9 @@ public class BallDestroyOnCollision2D : MonoBehaviour
         if (((1 << other.gameObject.layer) & destroyableLayer) != 0 && contableFlag == 1)
         {
             // 指定のレイヤーであれば破壊する
-            if(cointrail.turn == true){//エフェクト発生(赤)
+            if(cointrail.turn == false){//エフェクト発生(赤)
                 GameObject newEffect = Instantiate(CoinRed, transform.position, transform.rotation);
+                getCoin.Play();
                 StartCoroutine(Jump(newEffect));
                 Instantiate(CollectEffectRed, transform.position, transform.rotation);
 
@@ -108,6 +119,7 @@ public class BallDestroyOnCollision2D : MonoBehaviour
                 StartCoroutine(WaitAndExecuteFunction(0.1f));
             }else{//エフェクト発生(青)
                 GameObject newEffect = Instantiate(CoinBlue, transform.position, transform.rotation);
+                getCoin.Play();
                 StartCoroutine(Jump(newEffect));
                 Instantiate(CollectEffectBlue, transform.position, transform.rotation);
 
@@ -158,5 +170,12 @@ public class BallDestroyOnCollision2D : MonoBehaviour
         
         yield return new WaitForSeconds(0.5f);
         Destroy(newobject);
+    }
+
+    private IEnumerator HideText()
+    {
+        yield return new WaitForSeconds(23f);
+        CoinTextBlue.enabled = false;
+        CoinTextRed.enabled = false;
     }
 }

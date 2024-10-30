@@ -8,14 +8,21 @@ public class ObjectPlacerXY : MonoBehaviour
     public GameObject objectToPlace;  // 配置するオブジェクトのプレハブ
     public int gridSizeX = 4;         // X軸方向のグリッド数（4に設定）
     public int gridSizeY = 10;        // Z軸方向のグリッド数（10に設定）
-    public float spacing = 1f;        // オブジェクト間のスペース
+    public float spacing = 1.5f;        // オブジェクト間のスペース
     public float map_start_time = 0f; //マップが更新された直後の経過時間を格納するための変数
     private bool continueFlag = true; //今後ゲームを続けるかのフラグ
     private int counting; //カウントダウンタイマー用の関数
     public TextMeshProUGUI countText; //カウントダウンタイマー用の表示テキスト
+    
+    public AudioSource timeRimitAudio;
 
     void Start()
     {
+        timeRimitAudio = GetComponent<AudioSource>();
+
+        //テキストの座標の基準
+
+
         System.Random rnd = new System.Random();    // Randomオブジェクトの作成
         int NextMap = rnd.Next(1, 5);  //1以上5未満の値がランダムに出力 マップA~Dがランダムで出現
         PlaceObjectsInGrid(NextMap); //引数によってマップが変わる 1→マップA、2→マップB、3→マップC、4→マップD、5→マップE）
@@ -36,19 +43,19 @@ public class ObjectPlacerXY : MonoBehaviour
         if (countText != null)
         {
             RectTransform RectCountText = countText.GetComponent<RectTransform>();
-            RectCountText.anchoredPosition = new Vector3(-70f,-150f,0f);
-            //RectReview1.sizeDelta = new Vector2(0f,0f);
-            countText.fontSize = 60f;
+            RectCountText.anchoredPosition = new Vector3( 0f,  -115.5f, 0f);
+            RectCountText.sizeDelta = new Vector2(66f,66f);
+            countText.fontSize = 50f;
             RectCountText.transform.Rotate(0,0,-180);
             countText.color = new Color(1f, 1f, 1f, 1f);
         }
         else
         {
-            Debug.LogError("Titleオブジェクトが指定されていません");
+            Debug.LogError("countTextオブジェクトが指定されていません");
         }
 
         StartCoroutine(CountDown());
-        StartCoroutine(WaitAndCallResult(30f));  // 30秒後にresult関数を呼び出すコルーチンを開始
+        StartCoroutine(WaitAndCallResult(25f));  // 30秒後にresult関数を呼び出すコルーチンを開始
     }
     
     void Update()
@@ -71,6 +78,7 @@ public class ObjectPlacerXY : MonoBehaviour
             int NextMap = rnd.Next(1, 5);
             PlaceObjectsInGrid(NextMap);
         }
+
     }
     
     void PlaceObjectsInGrid(int map) 
@@ -81,13 +89,14 @@ public class ObjectPlacerXY : MonoBehaviour
             return;
         }
    
-        if(map == 1) //マップA
-        {
+        if(map == 1)
+        {//マップA
+            Debug.Log("マップA");
             for (int x = 0; x < 2; x++)
             {
                 for (int y = 0; y < 5; y++)
                 {
-                    Vector3 position = new Vector3(9f + x * spacing, -9f + y * spacing, 0);
+                    Vector3 position = new Vector3(7f + x * 2f, -7.5f + (y * 1.5f), 0);
 
                     // オブジェクトを配置し、生成されたインスタンスの参照を取得
                     GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
@@ -101,15 +110,16 @@ public class ObjectPlacerXY : MonoBehaviour
             }
         }
 
-        if (map == 2) //マップB
-        {
+        if (map == 2) 
+        {//マップB
+            Debug.Log("マップB");
             for (int x = 0; x < 5; x++)
             {
                 for (int y = 0; y < 5; y++)
                 {
                     if(y == x || y == 4 - x)
                     {
-                        Vector3 position = new Vector3(6f + x * spacing, -9f + y * spacing, 0);
+                        Vector3 position = new Vector3(4f + x * spacing, -7.5f + y * 1.5f, 0);
 
                         // オブジェクトを配置し、生成されたインスタンスの参照を取得
                         GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
@@ -124,8 +134,9 @@ public class ObjectPlacerXY : MonoBehaviour
             }
         }
 
-        if (map == 3) //マップC
-        {
+        if (map == 3)
+        {//マップC
+            Debug.Log("マップC");
             for (int x = 0; x < 6; x++)
             {
                 for (int y = 0; y < 5; y++)
@@ -136,7 +147,7 @@ public class ObjectPlacerXY : MonoBehaviour
                         (y == 3 && x > 0 && x < 3) || 
                         (y == 4 && x == 4))
                     {
-                        Vector3 position = new Vector3(5f + x * spacing, -9f + y * spacing, 0);
+                        Vector3 position = new Vector3(4.25f + x * 1.5f, -7.5f + y * 1.5f, 0);
 
                         // オブジェクトを配置し、生成されたインスタンスの参照を取得
                         GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
@@ -151,8 +162,9 @@ public class ObjectPlacerXY : MonoBehaviour
             }
         }
 
-        if (map == 4) //マップD
-        {
+        if (map == 4)
+        {//マップD
+            Debug.Log("マップD");
             for (int x = 0; x < 5; x++)
             {
                 for (int y = 0; y < 5; y++)
@@ -161,7 +173,7 @@ public class ObjectPlacerXY : MonoBehaviour
                         y == 3 && (x == 3 || x == 4) ||
                         y == 4 - x)
                     {
-                        Vector3 position = new Vector3(6f + x * spacing, -9f + y * spacing, 0);
+                        Vector3 position = new Vector3(4f + x * spacing, -7.5f + y * 1.5f, 0);
 
                         // オブジェクトを配置し、生成されたインスタンスの参照を取得
                         GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
@@ -176,8 +188,9 @@ public class ObjectPlacerXY : MonoBehaviour
             }
         }
 
-        if (map == 5) //マップE
-        {
+        if (map == 5)
+        {//マップE
+            Debug.Log("マップE");
             for (int x = 0; x < 5; x++)
             {
                 for (int y = 0; y < 5; y++)
@@ -185,7 +198,7 @@ public class ObjectPlacerXY : MonoBehaviour
                     if (y == x || y == 4 - x ||
                         y == 2 && (x == 0 || x == 4) )
                     {
-                        Vector3 position = new Vector3(6f + x * spacing, -9f + y * spacing, 0);
+                        Vector3 position = new Vector3(4f + x * spacing, -7.5f + y * 1.5f, 0);
 
                         // オブジェクトを配置し、生成されたインスタンスの参照を取得
                         GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
@@ -201,8 +214,8 @@ public class ObjectPlacerXY : MonoBehaviour
             }
             //for文のみで配置できない部分
 
-            Vector3 position1 = new Vector3(6f + 2f * spacing, -9f + 3.5f * spacing, 0);
-            Vector3 position2 = new Vector3(6f + 2f * spacing, -9f + 0.5f * spacing, 0);
+            Vector3 position1 = new Vector3(4f + 2f * spacing, -7.5f + 3.5f * 1.5f, 0);
+            Vector3 position2 = new Vector3(4f + 2f * spacing, -7.5f + 0.5f * 1.5f, 0);
 
             // オブジェクトを配置し、生成されたインスタンスの参照を取得
             GameObject newObject1 = Instantiate(objectToPlace, position1, Quaternion.identity);
@@ -248,15 +261,18 @@ public class ObjectPlacerXY : MonoBehaviour
     IEnumerator CountDown()
     {
         countText.enabled = true;
-        for(int i=0; i<30; i++){
-            counting = 30 - i;
+        for(int i=0; i<25; i++){
+            counting = 25 - i;
             countText.text = counting.ToString();
-            if(i > 24){
+            if(i > 19){
                 for(int j=0; j<2; j++){
                     yield return new WaitForSeconds(0.25f);
                     countText.enabled = false;
                     yield return new WaitForSeconds(0.25f);
                     countText.enabled = true;
+                }
+                if(i%2 == 1){
+                    timeRimitAudio.Play();
                 }
             }else{
                 yield return new WaitForSeconds(1f);

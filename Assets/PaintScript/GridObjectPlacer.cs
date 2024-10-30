@@ -1,15 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GridObjectPlacerXZ : MonoBehaviour
 {
-    public GameObject objectToPlace;  // 配置するオブジェクトのプレハブ
+    public GameObject objectToPlace; 
+    public GameObject ball; // 配置するオブジェクトのプレハブ
     public int gridSizeX = 4;         // X軸方向のグリッド数（4に設定）
     public int gridSizeY = 10;        // Z軸方向のグリッド数（10に設定）
     public float spacing = 1f;
     public LayerMask targetLayers;   
-    
+    public TextMeshProUGUI Player1text;
+    public TextMeshProUGUI Player2text;
+    public GameObject P1;
+    public GameObject P2;
+    public GameObject WIN1;
+    public GameObject LOSE1;
+    public GameObject WIN2;
+    public GameObject LOSE2;
+
+    public GameObject DRAWl;
+    public GameObject DRAW2;
+    public AudioClip sound1;
+    public AudioClip sound2;
+    AudioSource audioSource; 
+
     private int countMin = 0; 
     private int Count1 = 0;
     private int Count2 = 0;   // オブジェクト間のスペース
@@ -17,13 +34,15 @@ public class GridObjectPlacerXZ : MonoBehaviour
     void Start()
     {
         PlaceObjectsInGrid();
-        StartCoroutine(WaitAndCallPlus(3f));
-        StartCoroutine(WaitAndCallResult(12f));  // 50秒後にresult関数を呼び出すコルーチンを開始
+        StartCoroutine(WaitAndCallPlus(10f));
+        StartCoroutine(WaitAndCallResult(25f));
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(sound1);  // 50秒後にresult関数を呼び出すコルーチンを開始
     }
 
     void PlaceObjectsInGrid()
     {
-        int i = gridSizeY;
+        int i = gridSizeY-1;
 
         if (objectToPlace == null)
         {
@@ -33,11 +52,11 @@ public class GridObjectPlacerXZ : MonoBehaviour
 
         for (int x = 0; x < gridSizeX; x++)
         {
+            int m = (x+3)*8-1;
             for (int y = 0; y < gridSizeY; y++)
             {
-                if (x != 0 || y != 0)
-                {
-                    Vector3 position = new Vector3(8.5f + x * spacing, -9.5f + y * spacing, 0);
+
+                    Vector3 position = new Vector3(6.875f-1.6875f + x * spacing, -9.5f+1.1f + y * spacing, 0);
 
                         // オブジェクトを配置し、生成されたインスタンスの参照を取得
                         
@@ -46,8 +65,9 @@ public class GridObjectPlacerXZ : MonoBehaviour
                         i++;
                             // オブジェクトに固有の名前を設定 (例: "Square_X2_Y3" など)
                         
+                        //if(x%2 ==0){newObject.name = $"Square_{m-i}";}else {newObject.name = $"Square_{i}";}
                         newObject.name = $"Square_{i}";
-                }
+
                 // 配置位置を計算
                 
                 
@@ -64,6 +84,8 @@ public class GridObjectPlacerXZ : MonoBehaviour
         plus();  // 50秒後にresult関数を実行
     }
 
+
+
     IEnumerator WaitAndCallResult(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
@@ -71,20 +93,22 @@ public class GridObjectPlacerXZ : MonoBehaviour
     }
 
 
-    // 結果を表示する関数（必要に応じて定義）
+
     void plus()
     {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(sound1);
         int i = 0;
         int a = 0;
-        for (int x = 0; x < gridSizeX/2; x++)
+        for (int x = 0; x < 2; x++)
         {
             for (int y = 0; y < gridSizeY; y++)
             {
                 if (x == 1){
                     a = gridSizeX * gridSizeY;
                 }
-                
-                Vector3 position = new Vector3(7.5f + x * 5, -9.5f + y * spacing, 0);
+
+                Vector3 position = new Vector3(4.0625f + x * 7.875f, -9.5f+1.1f + y * spacing, 0);
                         // オブジェクトを配置し、生成されたインスタンスの参照を取得
                 GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
                             // オブジェクトに固有の名前を設定 (例: "Square_X2_Y3" など)
@@ -94,17 +118,24 @@ public class GridObjectPlacerXZ : MonoBehaviour
 
             }
         }
+        
     }
 
+
+    //コルーチンで呼び出される勝利判定
     void result(){
         SpriteCounter SpriteCounter = GetComponent<SpriteCounter>();
         RangeSpriteColorChange RangeSpriteColorChange = GetComponent<RangeSpriteColorChange>();
         SpriteCounter.CountFlag = 1;
-        Count1 = SpriteCounter.redSprites;
-        Count2 = SpriteCounter.blueSprites;
+        //変更
+        Count1 = SpriteCounter.blueSprites;
+        Count2 = SpriteCounter.redSprites;
         RangeSpriteColorChange.enabled = false;
         
         AllWhite();
+
+        P1.SetActive(true);
+        P2.SetActive(true);
 
         if(Count1 > Count2){
             countMin = Count2;
@@ -112,26 +143,31 @@ public class GridObjectPlacerXZ : MonoBehaviour
             countMin = Count1;
         }
 
+        //
+            Player1text.color = Color.blue;
+            //
+            Player2text.color = Color.red;
         StartCoroutine(ResultShow());
         StartCoroutine(ResultShow2());
-
+        ball.SetActive(false);
         
     }
 
-
+    //Player1のポイント数える
     IEnumerator ResultShow()
     {
+        
+
        for (int i = 0; i < countMin; i++)
         {
+            audioSource = GetComponent<AudioSource>();
+            audioSource.PlayOneShot(sound1);
             string objectName;
             // オブジェクトの名前を生成
             //グリッド数変えるときここも変える
-            if(i != 10){
+        
                 objectName = $"Square_{i}";
-            }
-            else{
-                objectName = "Square";
-            }
+ 
 
             // 名前でオブジェクトを検索
             GameObject obj = GameObject.Find(objectName);
@@ -145,9 +181,51 @@ public class GridObjectPlacerXZ : MonoBehaviour
                     // アニメーションを再生
                     animator.Play("square");
                 }
-                else
+                // スプライトレンダラーを取得
+                SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
+                if (spriteRenderer != null)
                 {
-                    Debug.Log($"Animator not found on {objectName}");
+                    // スプライトの色を赤に変更
+                    spriteRenderer.color = Color.blue;
+                }
+
+            }
+            int ii = i+1;
+            Player1text.text = ii.ToString();
+            
+
+            Vector2 currentScale = Player1text.transform.localScale;
+            // スケールを少しずつ大きくする
+            Player1text.transform.localScale = currentScale * 1.03f;
+            yield return new WaitForSeconds(0.2f);
+        }
+        yield return new WaitForSeconds(1f);
+        Finish();
+        StartCoroutine(WaitAndLoadMainScene());
+    }
+
+    //Player2のポイント数える
+    IEnumerator ResultShow2()
+    {
+       for (int i = 0; i < countMin; i++)
+        {
+            // オブジェクトの名前を生成
+
+            //グリッド数変えるときここも変える
+
+            string objectName = $"Square_{63-i}";
+
+            // 名前でオブジェクトを検索
+            GameObject obj = GameObject.Find(objectName);
+
+            if (obj != null)
+            {
+                // アニメーションコンポーネントを取得
+                Animator animator = obj.GetComponent<Animator>();
+                if (animator != null)
+                {
+                    // アニメーションを再生
+                    animator.Play("square");
                 }
 
                 // スプライトレンダラーを取得
@@ -157,74 +235,34 @@ public class GridObjectPlacerXZ : MonoBehaviour
                     // スプライトの色を赤に変更
                     spriteRenderer.color = Color.red;
                 }
-                else
-                {
-                    Debug.LogWarning($"SpriteRenderer not found on {objectName}");
-                }
             }
-            else
-            {
-                Debug.LogWarning($"{objectName} not found.");
-            }
-            yield return new WaitForSeconds(0.2f);
-        }
-        yield return new WaitForSeconds(1f);
-        Finish();
-    }
 
-    IEnumerator ResultShow2()
-    {
-       for (int i = 0; i < countMin; i++)
-        {
-            // オブジェクトの名前を生成
+            Vector2 currentScale = Player2text.transform.localScale;
 
-            //グリッド数変えるときここも変える
+            // スケールを少しずつ大きくする
+            Player2text.transform.localScale = currentScale * 1.03f;
 
-            string objectName = $"Square_{59-i}";
-
-            // 名前でオブジェクトを検索
-            GameObject obj = GameObject.Find(objectName);
-
-            if (obj != null)
-            {
-                // アニメーションコンポーネントを取得
-                Animator animator = obj.GetComponent<Animator>();
-                if (animator != null)
-                {
-                    // アニメーションを再生
-                    animator.Play("square");
-                }
-                else
-                {
-                    Debug.Log($"Animator not found on {objectName}");
-                }
-
-                // スプライトレンダラーを取得
-                SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
-                if (spriteRenderer != null)
-                {
-                    // スプライトの色を赤に変更
-                    spriteRenderer.color = Color.blue;
-                }
-                else
-                {
-                    Debug.LogWarning($"SpriteRenderer not found on {objectName}");
-                }
-            }
-            else
-            {
-                Debug.LogWarning($"{objectName} not found.");
-            }
+            int ii = i+1;
+            Player2text.text = ii.ToString();
             yield return new WaitForSeconds(0.2f);
         }
     }
 
+    //同じ数カウントして一気に買った方塗る
     void Finish(){
         if(Count1 > Count2){
-            ikkini(1,Color.red);
+            ikkini(1,Color.blue);
+            
+        }else if(Count1 < Count2){
+            ikkini(2,Color.red);
         }else{
-            ikkini(2,Color.blue);
+            audioSource = GetComponent<AudioSource>();
+            audioSource.PlayOneShot(sound2);
+            DRAWl.SetActive(true);
+            DRAW2.SetActive(true);
         }
+
+        ball.SetActive(true);
     }
 
 
@@ -232,10 +270,20 @@ public class GridObjectPlacerXZ : MonoBehaviour
 
         int GridNum;
 
+            audioSource = GetComponent<AudioSource>();
+            audioSource.PlayOneShot(sound2);
         if(num == 1){
             GridNum = Count1-Count2;
+            Player1text.text = Count1.ToString();
+            Vector2 currentScale = Player1text.transform.localScale;
+            // スケールを少しずつ大きくする
+            Player1text.transform.localScale = currentScale * 1.2f;
         }else{
             GridNum = Count2-Count1;
+            Player2text.text = Count2.ToString();
+            Vector2 currentScale = Player2text.transform.localScale;
+            // スケールを少しずつ大きくする
+            Player2text.transform.localScale = currentScale * 1.2f;
         }
 
         for (int i = 0; i < GridNum; i++)
@@ -247,7 +295,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
             if(num ==1){
                 objectName = $"Square_{Count2+i}";
             }else{            
-                objectName = $"Square_{59-Count1-i}";
+                objectName = $"Square_{63-Count1-i}";
             }
 
             // 名前でオブジェクトを検索
@@ -274,6 +322,14 @@ public class GridObjectPlacerXZ : MonoBehaviour
             }
 
         }
+
+            if(num ==1){
+                WIN1.SetActive(true);
+                LOSE2.SetActive(true);
+            }else{            
+                WIN2.SetActive(true);
+                LOSE1.SetActive(true);
+            }
     }
 
 
@@ -290,11 +346,16 @@ public class GridObjectPlacerXZ : MonoBehaviour
                         if (spriteRenderer != null)
                         {
                             // スプライトの色を白に変更
-                            spriteRenderer.color = Color.white;
+                            spriteRenderer.color = new Color(0.75f, 0.75f, 0.75f);
                         }
                     }
                 }
         }
 
-    
+    IEnumerator WaitAndLoadMainScene()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene("MainScene");
+    }
+
 }

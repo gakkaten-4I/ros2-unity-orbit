@@ -51,5 +51,7 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "ros2-unity-orbit-BossBattle.sln"
+
+    "dotnet.defaultSolution": "ros2-unity-orbit.sln"
+  
 }

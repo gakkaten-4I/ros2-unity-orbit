@@ -5,9 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - tag
+  - Wall
   - coins
   - Ball
   - Shield
+  - Bomb
   layers:
   - Default
   - TransparentFX
