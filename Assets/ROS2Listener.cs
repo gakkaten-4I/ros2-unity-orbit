@@ -100,6 +100,7 @@ public class ROS2Listener : MonoBehaviour
         if (msg.Data > goalStart && msg.Data < goalEnd)
         {
             gsmScript.IsBlueDetected = true;
+            //Detect(true);
         }
         else
         {
@@ -112,9 +113,26 @@ public class ROS2Listener : MonoBehaviour
         if(msg.Data > goalStart && msg.Data < goalEnd)
         {
             gsmScript.IsRedDetected = true;
+            //Detect(false);
         }
         else
         {
+            gsmScript.IsRedDetected = false;
+        }
+    }
+
+    private IEnumerator Detect(bool IsBlue)
+    {
+        if (IsBlue)
+        {
+            gsmScript.IsBlueDetected = true;
+            yield return new WaitForSecondsRealtime(0.5f);
+            gsmScript.IsBlueDetected = false;
+        }
+        else
+        {
+            gsmScript.IsRedDetected = true;
+            yield return new WaitForSecondsRealtime(0.5f);
             gsmScript.IsRedDetected = false;
         }
     }

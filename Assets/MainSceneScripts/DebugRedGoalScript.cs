@@ -22,8 +22,14 @@ public class DebugRedGoalScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Ball")
         {
-            Debug.Log("Blue Goal");
-            gsmScript.OnRedGoalEnter();
+            Debug.Log("Red Goal");
+            StartCoroutine(Detect());
         }
+    }
+    private IEnumerator Detect()
+    {
+        gsmScript.IsRedDetected = true;
+        yield return new WaitForSecondsRealtime(0.5f);
+        gsmScript.IsRedDetected = false;
     }
 }
