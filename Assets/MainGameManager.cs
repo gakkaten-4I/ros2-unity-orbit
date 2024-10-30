@@ -50,6 +50,7 @@ public class MainGameManager : MonoBehaviour
     private ItemAreaScript riaScript;
 
     public TransToMinigame transToMinigame;//ミニゲーム遷移時のアニメーションのため、TranToMinigame.csを参照する
+    public StartCount startCount;//ゲーム開始のカウントダウンのため、StartCount.csを参照する
 
     // Start is called before the first frame update
     void Start()
@@ -99,7 +100,8 @@ public class MainGameManager : MonoBehaviour
     // コルーチン本体
     private IEnumerator DelayCoroutine()
     {
-        //Debug.Log("-----------------------------------------------------");
+        startCount.GameStartCount(5);
+        yield return new WaitForSeconds(6f);
 
         // 60秒間待つ
         // Time.timeScale の影響を受けずに実時間で60秒待つ
