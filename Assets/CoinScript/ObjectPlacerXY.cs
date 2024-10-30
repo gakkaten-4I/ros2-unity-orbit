@@ -25,9 +25,8 @@ public class ObjectPlacerXY : MonoBehaviour
 
 
         System.Random rnd = new System.Random();    // Randomオブジェクトの作成
-        //int NextMap = rnd.Next(1, 5);  //1以上5未満の値がランダムに出力 マップA~Dがランダムで出現
-        //PlaceObjectsInGrid(NextMap); //引数によってマップが変わる 1→マップA、2→マップB、3→マップC、4→マップD、5→マップE）
-        PlaceObjectsInGrid(5);
+        int NextMap = rnd.Next(1, 5);  //1以上5未満の値がランダムに出力 マップA~Dがランダムで出現
+        PlaceObjectsInGrid(NextMap); //引数によってマップが変わる 1→マップA、2→マップB、3→マップC、4→マップD、5→マップE）
 
         //20秒後にマップEに移行
         StartCoroutine(DelayMethod(20f, () =>
@@ -283,6 +282,8 @@ public class ObjectPlacerXY : MonoBehaviour
             countText1.text = counting.ToString();
             countText2.text = counting.ToString();
             if(i > 19){
+                timeRimitAudio.Play();
+                Invoke("StopAudio",1f);
                 for(int j=0; j<2; j++){
                     yield return new WaitForSeconds(0.25f);
                     countText1.enabled = false;
@@ -291,9 +292,6 @@ public class ObjectPlacerXY : MonoBehaviour
                     countText1.enabled = true;
                     countText2.enabled = true;
                 }
-                if(i%2 == 1){
-                    timeRimitAudio.Play();
-                }
             }else{
                 yield return new WaitForSeconds(1f);
             }
@@ -301,6 +299,10 @@ public class ObjectPlacerXY : MonoBehaviour
         counting = 0;
         countText1.text = counting.ToString();
         countText2.text = counting.ToString();
+
+        yield return new WaitForSeconds(0.5f);
+        countText1.enabled = false;
+        countText2.enabled = false;
     }
 
     // 30秒後にすべてを壊す
@@ -311,5 +313,8 @@ public class ObjectPlacerXY : MonoBehaviour
         AllDestroy();
     }
 
-    
+    void StopAudio()
+    {
+        timeRimitAudio.Stop();
+    }    
 }

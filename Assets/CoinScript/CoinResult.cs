@@ -77,7 +77,7 @@ public class CoinResult : MonoBehaviour
             Review2.text = " Result  ";
             Review2.color = new Color(0f, 0f, 0f, 1f);
             Review2.outlineColor = Color.white;
-            Review2.outlineWidth = 0.2f;
+            Review2.outlineWidth = 0.1f;
             Review2.enabled = false;
         }
         else
