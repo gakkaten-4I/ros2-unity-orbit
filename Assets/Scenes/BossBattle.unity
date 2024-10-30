@@ -639,7 +639,6 @@ GameObject:
   - component: {fileID: 262248233}
   - component: {fileID: 262248232}
   - component: {fileID: 262248231}
-  - component: {fileID: 262248230}
   - component: {fileID: 262248235}
   m_Layer: 8
   m_Name: PlayerScore1
@@ -664,29 +663,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90.048}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -183.01883, y: -213.37457}
+  m_AnchoredPosition: {x: -183.01883, y: -190}
   m_SizeDelta: {x: 239.1441, y: 29.8953}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &262248230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 262248228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa28a461132eb97498dcedc272230146, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  black: {fileID: 287356479}
-  hpBarImage: {fileID: 948756786}
-  bossHP: 0
-  score_object: {fileID: 0}
-  initialHP: 0
-  timeLimit: 30
-  remainingTime: 0
-  timerText: {fileID: 1585482028}
 --- !u!114 &262248231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -733,7 +712,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player1Score:'
+  m_Text: 'Score:'
 --- !u!222 &262248233
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -927,7 +906,6 @@ GameObject:
   - component: {fileID: 287356480}
   - component: {fileID: 287356482}
   - component: {fileID: 287356481}
-  - component: {fileID: 287356483}
   m_Layer: 8
   m_Name: black
   m_TagString: Untagged
@@ -951,7 +929,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 130}
+  m_AnchoredPosition: {x: 0, y: 190}
   m_SizeDelta: {x: 200, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &287356481
@@ -992,26 +970,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 287356479}
   m_CullTransparentMesh: 1
---- !u!114 &287356483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 287356479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa28a461132eb97498dcedc272230146, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  black: {fileID: 287356479}
-  hpBarImage: {fileID: 948756786}
-  bossHP: 0
-  score_object: {fileID: 0}
-  initialHP: 0
-  timeLimit: 30
-  remainingTime: 0
-  timerText: {fileID: 1585482028}
 --- !u!1 &364238100
 GameObject:
   m_ObjectHideFlags: 0
@@ -1505,6 +1463,7 @@ GameObject:
   - component: {fileID: 556171493}
   - component: {fileID: 556171492}
   - component: {fileID: 556171491}
+  - component: {fileID: 556171494}
   m_Layer: 0
   m_Name: ball
   m_TagString: Untagged
@@ -1827,6 +1786,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feab04ad06492965492b3edc6423aa53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &556171494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556171482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c1cbac078fe7f418c5f200296bcdaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &573867720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1866,7 +1837,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573867720}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f19360cda1e76ff4fb10fc06c65d9261, type: 3}
   m_Name: 
@@ -1939,7 +1910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -2040,7 +2011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -2112,7 +2083,6 @@ GameObject:
   - component: {fileID: 874414688}
   - component: {fileID: 874414687}
   - component: {fileID: 874414686}
-  - component: {fileID: 874414685}
   - component: {fileID: 874414692}
   - component: {fileID: 874414693}
   - component: {fileID: 874414691}
@@ -2158,20 +2128,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &874414685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 874414682}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97ee7f7afa0477145b94e044584f5e48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 45
-  deathParticle: {fileID: 0}
 --- !u!50 &874414686
 Rigidbody2D:
   serializedVersion: 4
@@ -2514,7 +2470,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -99, y: 131}
+  m_AnchoredPosition: {x: -99, y: 191}
   m_SizeDelta: {x: 170, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &948756788
@@ -2971,8 +2927,6 @@ GameObject:
   - component: {fileID: 1390567824}
   - component: {fileID: 1390567823}
   - component: {fileID: 1390567822}
-  - component: {fileID: 1390567821}
-  - component: {fileID: 1390567826}
   m_Layer: 8
   m_Name: PlayerScore2
   m_TagString: Untagged
@@ -2996,29 +2950,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 89.888}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 271.0451, y: 178.9892}
+  m_AnchoredPosition: {x: 271.0451, y: 160}
   m_SizeDelta: {x: 251.4005, y: 29.8953}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1390567821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1390567819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa28a461132eb97498dcedc272230146, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  black: {fileID: 287356479}
-  hpBarImage: {fileID: 948756786}
-  bossHP: 0
-  score_object: {fileID: 0}
-  initialHP: 0
-  timeLimit: 30
-  remainingTime: 0
-  timerText: {fileID: 1585482028}
 --- !u!114 &1390567822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3065,7 +2999,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Player2Score:'
+  m_Text: 'Score:'
 --- !u!222 &1390567824
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3074,22 +3008,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1390567819}
   m_CullTransparentMesh: 1
---- !u!114 &1390567826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1390567819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9268b1ed16204a419463b30201832ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ScoreTextPlayer1: {fileID: 262248228}
-  _ScoreTextPlayer2: {fileID: 1390567819}
-  previousPlayer1Score: -1
-  previousPlayer2Score: -1
 --- !u!1 &1397586084
 GameObject:
   m_ObjectHideFlags: 0
@@ -3103,7 +3021,6 @@ GameObject:
   - component: {fileID: 1397586092}
   - component: {fileID: 1397586091}
   - component: {fileID: 1397586090}
-  - component: {fileID: 1397586089}
   - component: {fileID: 1397586095}
   - component: {fileID: 1397586096}
   - component: {fileID: 1397586088}
@@ -3176,20 +3093,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1683190785}
---- !u!114 &1397586089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1397586084}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97ee7f7afa0477145b94e044584f5e48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 45
-  deathParticle: {fileID: 0}
 --- !u!50 &1397586090
 Rigidbody2D:
   serializedVersion: 4
@@ -3519,7 +3422,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000019073, y: 90}
+  m_AnchoredPosition: {x: -0.000019073, y: 145}
   m_SizeDelta: {x: 316.429, y: 61.0984}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1429346723
@@ -3575,7 +3478,6 @@ GameObject:
   - component: {fileID: 1585482029}
   - component: {fileID: 1585482031}
   - component: {fileID: 1585482030}
-  - component: {fileID: 1585482032}
   m_Layer: 8
   m_Name: gametimer
   m_TagString: Untagged
@@ -3644,26 +3546,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585482028}
   m_CullTransparentMesh: 1
---- !u!114 &1585482032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1585482028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa28a461132eb97498dcedc272230146, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  black: {fileID: 287356479}
-  hpBarImage: {fileID: 948756786}
-  bossHP: 0
-  score_object: {fileID: 0}
-  initialHP: 0
-  timeLimit: 30
-  remainingTime: 0
-  timerText: {fileID: 1585482028}
 --- !u!1 &1659573695
 GameObject:
   m_ObjectHideFlags: 0
@@ -4382,7 +4264,6 @@ GameObject:
   - component: {fileID: 2001003022}
   - component: {fileID: 2001003021}
   - component: {fileID: 2001003024}
-  - component: {fileID: 2001003023}
   m_Layer: 8
   m_Name: BossHP
   m_TagString: Untagged
@@ -4406,7 +4287,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: 130}
+  m_AnchoredPosition: {x: -150, y: 190}
   m_SizeDelta: {x: 205.4221, y: 29.8953}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2001003021
@@ -4451,26 +4332,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2001003019}
   m_CullTransparentMesh: 1
---- !u!114 &2001003023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2001003019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa28a461132eb97498dcedc272230146, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  black: {fileID: 287356479}
-  hpBarImage: {fileID: 948756786}
-  bossHP: 0
-  score_object: {fileID: 0}
-  initialHP: 0
-  timeLimit: 30
-  remainingTime: 0
-  timerText: {fileID: 1585482028}
 --- !u!114 &2001003024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5602,7 +5463,6 @@ MonoBehaviour:
   moveObj: {fileID: 2528507654796982066}
   speed: 2
   target: {fileID: 1682061418790277102}
-  particle: {fileID: 0}
 --- !u!1 &6249333570262552023
 GameObject:
   m_ObjectHideFlags: 0

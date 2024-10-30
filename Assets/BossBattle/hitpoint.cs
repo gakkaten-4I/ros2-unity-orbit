@@ -8,10 +8,6 @@ public class hitpoint : MonoBehaviour
     public int hp;
     BossDefeatCounter  dmg;
     GameObject boss;
-    GameObject boss1;
-    GameObject boss2;
-    GameObject boss3;
-    GameObject boss4;
 
     
 

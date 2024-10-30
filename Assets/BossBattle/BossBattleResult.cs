@@ -33,7 +33,7 @@ public class BossBattleResult : MonoBehaviour
         Debug.Log(_previousPlayer1Score);
 
         // 30秒後にDisplayResultMessageを呼び出す
-        StartCoroutine(DisplayResultMessageAfterDelay(5f));
+        StartCoroutine(DisplayResultMessageAfterDelay(30f));
 
         
         
@@ -72,15 +72,15 @@ public class BossBattleResult : MonoBehaviour
         string message;
         if (_previousPlayer1Score > _previousPlayer2Score)
         {
-            message = "Player1 Win!";
+            message = "Blue Win!";
         }
         else if (_previousPlayer1Score < _previousPlayer2Score)
         {
-            message = "Player2 Win!";
+            message = "Red Win!";
         }
         else
         {
-            message = "It's a Draw!";
+            message = "Draw!";
         }
 
         // Textコンポーネントを生成してメッセージを設定

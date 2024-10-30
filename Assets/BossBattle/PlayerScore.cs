@@ -47,8 +47,8 @@ public class PlayerScore : MonoBehaviour
 
         Debug.Log(Bossdef.player1BossCount);
 
-        ScoreText1.text = "Player1 Point: " + Bossdef.player1BossCount;
-        ScoreText2.text = "Player2 Point: " + Bossdef.player2BossCount;
+        ScoreText1.text = "Score: " + Bossdef.player1BossCount;
+        ScoreText2.text = "Score: " + Bossdef.player2BossCount;
 
         // 現在のスコアを保存
         previousPlayer1Score = Bossdef.player1BossCount;

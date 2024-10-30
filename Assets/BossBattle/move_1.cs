@@ -22,7 +22,6 @@ public class Route : MonoBehaviour
     float y;
     bool flag;
     [SerializeField] GameObject target;
-    [SerializeField] private ParticleSystem particle;
 
     void Start()
     {
@@ -38,7 +37,6 @@ public class Route : MonoBehaviour
         move1 = Boss.GetComponent<hitpoint>();
         speeds = 2;
         radius = 2;   
-        particle = GetComponentInChildren<ParticleSystem>();
     }
 
     void Update()
@@ -117,7 +115,6 @@ public class Route : MonoBehaviour
             else {
                 moveObj.position = new Vector3((x+transform.position.x),(y+transform.position.y), transform.position.z);  //自分のいる位置から座標を動かす。
             }
-            particle.transform.position = moveObj.position;
             
             if (move1.hp <= 15)
             {
