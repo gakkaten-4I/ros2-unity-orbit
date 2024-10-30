@@ -25,8 +25,9 @@ public class ObjectPlacerXY : MonoBehaviour
 
 
         System.Random rnd = new System.Random();    // Randomオブジェクトの作成
-        int NextMap = rnd.Next(1, 5);  //1以上5未満の値がランダムに出力 マップA~Dがランダムで出現
-        PlaceObjectsInGrid(NextMap); //引数によってマップが変わる 1→マップA、2→マップB、3→マップC、4→マップD、5→マップE）
+        //int NextMap = rnd.Next(1, 5);  //1以上5未満の値がランダムに出力 マップA~Dがランダムで出現
+        //PlaceObjectsInGrid(NextMap); //引数によってマップが変わる 1→マップA、2→マップB、3→マップC、4→マップD、5→マップE）
+        PlaceObjectsInGrid(5);
 
         //20秒後にマップEに移行
         StartCoroutine(DelayMethod(20f, () =>
@@ -111,7 +112,7 @@ public class ObjectPlacerXY : MonoBehaviour
             {
                 for (int y = 0; y < 5; y++)
                 {
-                    Vector3 position = new Vector3(7f + x * 2f, -7.5f + (y * 1.5f), 0);
+                    Vector3 position = new Vector3(5f + x * 6f, -7.5f + (y * 1.5f), 0);
 
                     // オブジェクトを配置し、生成されたインスタンスの参照を取得
                     GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
@@ -162,7 +163,7 @@ public class ObjectPlacerXY : MonoBehaviour
                         (y == 3 && x > 0 && x < 3) || 
                         (y == 4 && x == 4))
                     {
-                        Vector3 position = new Vector3(4.25f + x * 1.5f, -7.5f + y * 1.5f, 0);
+                        Vector3 position = new Vector3(3.625f + x * 1.75f, -7f + y * 1.25f, 0);
 
                         // オブジェクトを配置し、生成されたインスタンスの参照を取得
                         GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
