@@ -24,6 +24,13 @@ public class DebugRedGoalScript : MonoBehaviour
         {
             Debug.Log("Red Goal");
             gsmScript.IsRedDetected = true;
+            Detect();
         }
+    }
+    private IEnumerator Detect()
+    {
+        gsmScript.IsRedDetected = true;
+        yield return new WaitForSecondsRealtime(0.5f);
+        gsmScript.IsRedDetected = false;
     }
 }
