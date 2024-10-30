@@ -22,14 +22,21 @@ public class CoinResult : MonoBehaviour
     private GameObject score;
     public BallDestroyOnCollision2D bdoc;
 
-    private Vector2 sizeReview = new Vector2(231f,66f);
-    private Vector2 sizeScore = new Vector2(115.5f, 66f);
+    //得点をmainに反映させる
+    //private GameObject 
+    private DisplayScoreManager displayscoremanager;
 
-    private float FontSizeReview = 45f;
-    private float FontSizeScore = 35f;
+    private Vector2 sizeReview = new Vector2(420f,120f);
+    private Vector2 sizeScore = new Vector2(210f, 120f);
+
+    private float FontSizeReview = 100f;
+    private float FontSizeScore = 60f;
 
     //結果発表効果音
     public AudioSource resultAudio;
+
+    //結果表示する際の白背景
+    public GameObject WhiteCurtain;
 
     // Start is called before the first frame update
     void Start()
@@ -44,12 +51,14 @@ public class CoinResult : MonoBehaviour
         if (Review1 != null)
         {
             RectTransform RectReview1 = Review1.GetComponent<RectTransform>();
-            RectReview1.anchoredPosition = new Vector3(-66f, 0f, 0f);
+            RectReview1.anchoredPosition = new Vector3(-180f, 0f, 0f);
             RectReview1.sizeDelta = sizeReview;
             Review1.fontSize = FontSizeReview;
             Review1.transform.Rotate(0,0,-90);
             Review1.text = " Result  ";
-            Review1.color = new Color(0.8f, 0.5f, 0.9f, 1f);
+            Review1.color = new Color(0f, 0f, 0f, 1f);
+            Review1.outlineColor = Color.white;
+            Review1.outlineWidth = 0.1f;
             Review1.enabled = false;
         }
         else
@@ -61,12 +70,14 @@ public class CoinResult : MonoBehaviour
         if (Review2 != null)
         {
             RectTransform RectReview2 = Review2.GetComponent<RectTransform>();
-            RectReview2.anchoredPosition = new Vector3(66f, 0f, 0f);
+            RectReview2.anchoredPosition = new Vector3(180f, 0f, 0f);
             RectReview2.sizeDelta = sizeReview;
             Review2.fontSize = FontSizeReview;
             Review2.transform.Rotate(0,0,90);
             Review2.text = " Result  ";
-            Review2.color = new Color(0.8f, 0.5f, 0.9f, 1f);
+            Review2.color = new Color(0f, 0f, 0f, 1f);
+            Review2.outlineColor = Color.white;
+            Review2.outlineWidth = 0.2f;
             Review2.enabled = false;
         }
         else
@@ -78,12 +89,14 @@ public class CoinResult : MonoBehaviour
         if (ShowRed1 != null)
         {
             RectTransform RectRed1 = ShowRed1.GetComponent<RectTransform>();
-            RectRed1.anchoredPosition = new Vector3( -132f, 57.75f, 0f);
+            RectRed1.anchoredPosition = new Vector3( -300f, 105f, 0f);
             RectRed1.sizeDelta = sizeScore;
             ShowRed1.fontSize = FontSizeScore;
             ShowRed1.transform.Rotate(0,0,-90);
             ShowRed1.text = "RedTeam";
-            ShowRed1.color = new Color(1f, 0.3f, 0.3f, 1f);
+            ShowRed1.color = new Color(1f, 0.1f, 0.1f, 1f);
+            ShowRed1.outlineColor = Color.white;
+            ShowRed1.outlineWidth = 0.1f;
             ShowRed1.enabled = false;
         }
         else
@@ -95,12 +108,14 @@ public class CoinResult : MonoBehaviour
         if (ShowRed2 != null)
         {
             RectTransform RectRed2 = ShowRed2.GetComponent<RectTransform>();
-            RectRed2.anchoredPosition = new Vector3( 132f, -57.75f, 0f);
+            RectRed2.anchoredPosition = new Vector3( 300f, -105f, 0f);
             RectRed2.sizeDelta = sizeScore;
             ShowRed2.fontSize = FontSizeScore;
             ShowRed2.transform.Rotate(0,0,90);
             ShowRed2.text = "RedTeam";
-            ShowRed2.color = new Color(1f, 0.3f, 0.3f, 1f);
+            ShowRed2.color = new Color(1f, 0.1f, 0.1f, 1f);
+            ShowRed2.outlineColor = Color.white;
+            ShowRed2.outlineWidth = 0.1f;
             ShowRed2.enabled = false;
         }
         else
@@ -112,12 +127,14 @@ public class CoinResult : MonoBehaviour
         if (ShowBlue1 != null)
         {
             RectTransform RectBlue1 = ShowBlue1.GetComponent<RectTransform>();
-            RectBlue1.anchoredPosition = new Vector3( -132f, -57.75f, 0f);
+            RectBlue1.anchoredPosition = new Vector3( -300f, -105f, 0f);
             RectBlue1.sizeDelta = sizeScore;
             ShowBlue1.fontSize = FontSizeScore;
             ShowBlue1.transform.Rotate(0,0,-90);
             ShowBlue1.text = "BlueTeam";
-            ShowBlue1.color = new Color(0.3f, 0.3f, 1f, 1f);
+            ShowBlue1.color = new Color(0.1f, 0.1f, 1f, 1f);
+            ShowBlue1.outlineColor = Color.white;
+            ShowBlue1.outlineWidth = 0.1f;
             ShowBlue1.enabled = false;
         }
         else
@@ -129,12 +146,14 @@ public class CoinResult : MonoBehaviour
         if (ShowBlue1 != null)
         {
             RectTransform RectBlue2 = ShowBlue2.GetComponent<RectTransform>();
-            RectBlue2.anchoredPosition = new Vector3( 132f, 57.75f, 0f);
+            RectBlue2.anchoredPosition = new Vector3( 300f, 105f, 0f);
             RectBlue2.sizeDelta = sizeScore;
             ShowBlue2.fontSize = FontSizeScore;
             ShowBlue2.transform.Rotate(0,0,90);
             ShowBlue2.text = "BlueTeam";
-            ShowBlue2.color = new Color(0.3f, 0.3f, 1f, 1f);  // 0～1の範囲で設定
+            ShowBlue2.color = new Color(0.1f, 0.1f, 1f, 1f);  // 0～1の範囲で設定
+            ShowBlue2.outlineColor = Color.white;
+            ShowBlue2.outlineWidth = 0.1f;
             ShowBlue2.enabled = false;
         }
         else
@@ -148,6 +167,18 @@ public class CoinResult : MonoBehaviour
         {
             Debug.LogError("can't read BallDestoryOnCollision2D");
         }
+
+        if(WhiteCurtain != null)
+        {
+            WhiteCurtain.transform.localScale = new Vector3( 4f, 7f, 1f);
+            SpriteRenderer WhiteRenderer = WhiteCurtain.GetComponent<SpriteRenderer>();
+            WhiteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
+        }
+        else
+        {
+            Debug.LogError("WhiteCurtainオブジェクトが指定されていません");
+        }
+
         //30秒後に結果発表
         StartCoroutine(ShowCoin(25f));
     }
@@ -161,6 +192,8 @@ public class CoinResult : MonoBehaviour
     private IEnumerator ShowCoin(float waiting)
     {
         yield return new WaitForSeconds(waiting);
+        GameObject whitecurtain1 = Instantiate(WhiteCurtain, new Vector2(4f, -4.5f), Quaternion.identity);
+        GameObject whitecurtain2 = Instantiate(WhiteCurtain, new Vector2(12f, -4.5f), Quaternion.identity);
         Review1.enabled = true;
         Review2.enabled = true;
         var length1 = Review1.text.Length;
@@ -198,11 +231,13 @@ public class CoinResult : MonoBehaviour
             //赤チームが勝った時
             Review1.text = "You Lose";
             Review2.text = "You Win";
+            //displayscoremanager.AddDisplayScore(0,5);
         }
         else if(bdoc.CoinCountBlue > bdoc.CoinCountRed){
             //青チームが勝った時
             Review1.text = "You Win";
             Review2.text = "You Lose";
+            //splayscoremanager.AddDisplayScore(5,0);
         }
         else{
             //引き分けの時
