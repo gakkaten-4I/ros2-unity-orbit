@@ -13,7 +13,7 @@ public class MainGameManager : MonoBehaviour
 {
     public static int PointOfA = 0; // Blue?
     public static int PointOfB = 0; // Red?
-    public static int state = 2; //ミニゲームで誰が勝ったか(0:MainScene, 1: Blue, 2:Red)
+    public static int state = 0; //ミニゲームで誰が勝ったか(0:MainScene, 1: Blue, 2:Red)
 
     [SerializeField]
     private TextMeshProUGUI ScoreTextOfA, ScoreTextOfB;
@@ -54,8 +54,8 @@ public class MainGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ScoreTextOfA.text = "00";
-        ScoreTextOfB.text = "00";//スコア表示の初期化
+        //ScoreTextOfA.text = "00";
+        //ScoreTextOfB.text = "00";//スコア表示の初期化
         Application.targetFrameRate = 60;//フレームレートを60に固定
         //UnityEngin.Random.InitState(DateTime.Now.Millisecond);
         GameObject dsmObj = GameObject.Find("DisplayScoreManager");
