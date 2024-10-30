@@ -12,8 +12,9 @@ public class ObjectPlacerXY : MonoBehaviour
     public float map_start_time = 0f; //マップが更新された直後の経過時間を格納するための変数
     private bool continueFlag = true; //今後ゲームを続けるかのフラグ
     private int counting; //カウントダウンタイマー用の関数
-    public TextMeshProUGUI countText; //カウントダウンタイマー用の表示テキスト
-    
+    public TextMeshProUGUI countText1; //カウントダウンタイマー用の表示テキスト
+    public TextMeshProUGUI countText2;
+
     public AudioSource timeRimitAudio;
 
     void Start()
@@ -40,18 +41,32 @@ public class ObjectPlacerXY : MonoBehaviour
             continueFlag = false;
         }));
 
-        if (countText != null)
+        if (countText1 != null)
         {
-            RectTransform RectCountText = countText.GetComponent<RectTransform>();
-            RectCountText.anchoredPosition = new Vector3( 0f,  -115.5f, 0f);
-            RectCountText.sizeDelta = new Vector2(66f,66f);
-            countText.fontSize = 50f;
-            RectCountText.transform.Rotate(0,0,-180);
-            countText.color = new Color(1f, 1f, 1f, 1f);
+            RectTransform RectCountText1 = countText1.GetComponent<RectTransform>();
+            RectCountText1.anchoredPosition = new Vector3( -90f, -210f, 0f);
+            RectCountText1.sizeDelta = new Vector2(120f,120f);
+            countText1.fontSize = 100f;
+            RectCountText1.transform.Rotate(0,0,-90);
+            countText1.color = new Color(1f, 1f, 1f, 1f);
         }
         else
         {
-            Debug.LogError("countTextオブジェクトが指定されていません");
+            Debug.LogError("countText1オブジェクトが指定されていません");
+        }
+
+        if (countText2 != null)
+        {
+            RectTransform RectCountText2 = countText2.GetComponent<RectTransform>();
+            RectCountText2.anchoredPosition = new Vector3( 90f, 210f, 0f);
+            RectCountText2.sizeDelta = new Vector2(120f,120f);
+            countText2.fontSize = 100f;
+            RectCountText2.transform.Rotate(0,0,90);
+            countText2.color = new Color(1f, 1f, 1f, 1f);
+        }
+        else
+        {
+            Debug.LogError("countText1オブジェクトが指定されていません");
         }
 
         StartCoroutine(CountDown());
@@ -260,16 +275,20 @@ public class ObjectPlacerXY : MonoBehaviour
 
     IEnumerator CountDown()
     {
-        countText.enabled = true;
+        countText1.enabled = true;
+        countText2.enabled = true;
         for(int i=0; i<25; i++){
             counting = 25 - i;
-            countText.text = counting.ToString();
+            countText1.text = counting.ToString();
+            countText2.text = counting.ToString();
             if(i > 19){
                 for(int j=0; j<2; j++){
                     yield return new WaitForSeconds(0.25f);
-                    countText.enabled = false;
+                    countText1.enabled = false;
+                    countText2.enabled = false;
                     yield return new WaitForSeconds(0.25f);
-                    countText.enabled = true;
+                    countText1.enabled = true;
+                    countText2.enabled = true;
                 }
                 if(i%2 == 1){
                     timeRimitAudio.Play();
@@ -279,7 +298,8 @@ public class ObjectPlacerXY : MonoBehaviour
             }
         }
         counting = 0;
-        countText.text = counting.ToString();
+        countText1.text = counting.ToString();
+        countText2.text = counting.ToString();
     }
 
     // 30秒後にすべてを壊す
