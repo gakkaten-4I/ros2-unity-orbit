@@ -150,14 +150,14 @@ public class BallDestroyOnCollision2D : MonoBehaviour
     {
         CoinCountBlue ++;
         // テキストメッシュプロに破壊数を表示
-        CoinTextBlue.text = "Blue:\n" + CoinCountBlue.ToString();
+        CoinTextBlue.text = "Blue:" + CoinCountBlue.ToString();
     }
 
     void UpdateCoinCountTextRed()
     {
         CoinCountRed ++;
         //テキストメッシュプロに破壊数を表示
-        CoinTextRed.text = "Red:\n" + CoinCountRed.ToString();
+        CoinTextRed.text = "Red:" + CoinCountRed.ToString();
     }
 
     private IEnumerator Jump(GameObject newobject)
