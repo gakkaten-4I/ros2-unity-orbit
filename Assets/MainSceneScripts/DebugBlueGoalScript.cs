@@ -24,7 +24,6 @@ public class DebugBlueGoalScript : MonoBehaviour
         {
             Debug.Log("Blue Goal");
             gsmScript.IsBlueDetected = true;
-            gsmScript.OnBlueGoalEnter();
         }
     }
 }
