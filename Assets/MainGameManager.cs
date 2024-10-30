@@ -52,6 +52,10 @@ public class MainGameManager : MonoBehaviour
     public TransToMinigame transToMinigame;//ミニゲーム遷移時のアニメーションのため、TranToMinigame.csを参照する
     public StartCount startCount;//ゲーム開始のカウントダウンのため、StartCount.csを参照する
 
+    public GameObject ball;
+    public GameObject ScoreOfA;
+    public GameObject ScoreOfB;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,11 +101,18 @@ public class MainGameManager : MonoBehaviour
         //DisplayScoreManager.ReflectScore();
     }
 
+
     // コルーチン本体
     private IEnumerator DelayCoroutine()
     {
+        ball.SetActive(false);
+        ScoreOfA.SetActive(false);
+        ScoreOfB.SetActive(false);
         startCount.GameStartCount(5);
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(5f);
+        ball.SetActive(true);
+        ScoreOfA.SetActive(true);
+        ScoreOfB.SetActive(true);
 
         // 60秒間待つ
         // Time.timeScale の影響を受けずに実時間で60秒待つ
