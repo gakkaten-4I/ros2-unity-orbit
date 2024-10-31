@@ -117,7 +117,7 @@ public class MainGameManager : MonoBehaviour
         ++SceneMoveCount;
         if(SceneMoveCount >= 3)
         {
-            SceneManager.LoadScene("QuietScene");
+            SceneManager.LoadScene("ResultScene");
         }
 
         transToMinigame.StartCountdownOfMinigame(5);
