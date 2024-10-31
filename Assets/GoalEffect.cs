@@ -22,13 +22,10 @@ public class GoalEffect : MonoBehaviour
     //goalテキスト
     public TextMeshProUGUI GoalText;
     private string displayText = "GOAL"; //表示するテキスト
-    private float boundHeight = 50f;
-    private float boundTime = 0.5f;
-    private float bounceDuration = 0.5f;
-    private float characterDelay = 0.2f;
-    private float elapseTime = 0;
-
-    private Func<float, float> CalcFunc = null;
+    private float bounceHeight = 50f;
+    private float bounceTime = 0.5f;
+    private float bounceDuration = 0.3f;
+    private float characterDelay = 0.5f;
 
     //ballの座標を取得する
     public GameObject targetObject;
@@ -39,9 +36,6 @@ public class GoalEffect : MonoBehaviour
         IntervalTime = 0.2f;
         ScaleSpeed = 1.5f;
 
-        CalcFunc = GetBoundFunc(boundHeight, boundTime);
-        elapseTime = 0.0f;
-
         // GoalTextの設定
         if (GoalText != null)
         {
@@ -49,11 +43,10 @@ public class GoalEffect : MonoBehaviour
             RectGoalText.anchoredPosition = new Vector3(0f, 0f, 0f);
             RectGoalText.sizeDelta = new Vector2(700,300);
             GoalText.fontSize = 200;
-            GoalText.text = "GOAL";
+            GoalText.text = "";
             GoalText.color = new Color(0.92f, 0.843f, 0f, 1f);
             GoalText.outlineColor = Color.white;
             GoalText.outlineWidth = 0.2f;
-            GoalText.enabled = false;
         }
         else
         {
@@ -108,24 +101,22 @@ public class GoalEffect : MonoBehaviour
     {
         
         GoalText.text = "";  // 初期化
-        GoalText.enabled = true;
 
         for (int i = 0; i < displayText.Length; i++)
         {
             GoalText.text += displayText[i];  // 次の文字を追加
-            //StartCoroutine(BounceCharacter(i));  // バウンドアニメーションを開始
+            StartCoroutine(BounceCharacter(i));  // バウンドアニメーションを開始
             yield return new WaitForSeconds(characterDelay);  // 次の文字の前に遅延
         }
-        Animation(elapseTime, boundTime);
-        yield return new WaitForSeconds(3f);
-        GoalText.enabled = false;
+        //Animation(elapseTime, boundTime);
+        yield return new WaitForSeconds(2f);
+        GoalText.text = "";
     }
 
     //テキストを一文字ずつバウンドさせる
-    /*
     IEnumerator BounceCharacter(int index)
     {
-         Vector3 originalPosition = GoalText.transform.localPosition;
+        Vector3 originalPosition = GoalText.transform.localPosition;
         Vector3 targetPosition = originalPosition + new Vector3(0, bounceHeight, 0);
 
         // バウンドアニメーション
@@ -144,55 +135,5 @@ public class GoalEffect : MonoBehaviour
         // 元の位置に戻す
         GoalText.transform.localPosition = originalPosition;
     }
-    */
-
-    private void Animation(float time, float maxTime)
-    {
-        GoalText.ForceMeshUpdate(true);
-        TMP_TextInfo textInfo = GoalText.textInfo;
-
-        for (int i = 0; i < textInfo.characterInfo.Length; i++)
-        {
-            TMP_CharacterInfo charInfo = textInfo.characterInfo[i];
-            if (!charInfo.isVisible) continue;
-
-            int mIndex = charInfo.materialReferenceIndex;
-            int vIndex = charInfo.vertexIndex;
-
-            Vector3[] vectors = textInfo.meshInfo[mIndex].vertices;
-
-            float height = CalcFunc(time - i * boundTime * 0.5f);
-            vectors[vIndex + 0].y += height;
-            vectors[vIndex + 1].y += height;
-            vectors[vIndex + 2].y += height;
-            vectors[vIndex + 3].y += height;
-        }
-
-        for (int i = 0; i < textInfo.materialCount; i++)
-        {
-            if (textInfo.meshInfo[i].mesh == null) continue;
-
-            textInfo.meshInfo[i].mesh.vertices = textInfo.meshInfo[i].vertices;
-            GoalText.UpdateGeometry(textInfo.meshInfo[i].mesh, i);
-        }
-    }
-
-    private Func<float, float> GetBoundFunc(float maxHeight, float maxTime)
-    {
-        float v0 = 4 * maxHeight / maxTime;
-        float g = 2 * v0 / maxTime;
-
-        return GetBoundFuncFromInitSpeed(g, v0);
-    }
-
-    private Func<float, float> GetBoundFuncFromInitSpeed(float g, float v0)
-    {
-        return (float t) =>
-        {
-            float h = v0 * t - (g * Mathf.Pow(t, 2.0f) * 0.5f);
-            return h < 0 ? 0 : h;
-        };
-    }
-
 
 }
