@@ -13,10 +13,7 @@ public class ResultManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        RectTransform YouWinForm = YouWin.GetComponent<RectTransform>();
-        RectTransform YouLoseForm = YouLose.GetComponent<RectTransform>();
-        RectTransform DrawRightForm = DrawRight.GetComponent<RectTransform>();
-        RectTransform DrawLeftForm = DrawLeft.GetComponent<RectTransform>();
+        
 
         YouWin.enabled = false;
         YouLose.enabled = false;
@@ -39,27 +36,30 @@ public class ResultManager : MonoBehaviour
     }
     private IEnumerator ShowWinner()
     {
-        if(MainGameManager.PointOfA != MainGameManager.PointOfB)
+        RectTransform YouWinForm = YouWin.GetComponent<RectTransform>();
+        RectTransform YouLoseForm = YouLose.GetComponent<RectTransform>();
+
+        if (MainGameManager.PointOfA != MainGameManager.PointOfB)
         {
             //LEFT(ê¬)Ç™èüÇ¡ÇΩÇÁ
             if (MainGameManager.PointOfA > MainGameManager.PointOfB)
             {
-                YouWinForm.anchoredPosition = new Vector2(-350, -200);
+                YouWinForm.anchoredPosition = new Vector2(-350, -50);
                 YouWinForm.rotation = Quaternion.Euler(0, 0, 270);
                 YouWin.color = new Color32(0,15,191,255);
 
-                YouLoseForm.anchoredPosition = new Vector2(350, 200);
+                YouLoseForm.anchoredPosition = new Vector2(350, 20);
                 YouLoseForm.rotation = Quaternion.Euler(0, 0, 90);
                 YouLose.color = new Color32(191, 7, 5, 255);
             }
             //Right(ê‘)Ç™èüÇ¡ÇΩÇÁ
             else if (MainGameManager.PointOfA < MainGameManager.PointOfB)
             {
-                YouWinForm.anchoredPosition = new Vector2(350, 200);
+                YouWinForm.anchoredPosition = new Vector2(350, 50);
                 YouWinForm.rotation = Quaternion.Euler(0, 0, 90);
                 YouWin.color = new Color32(191, 7, 5, 255);
 
-                YouLoseForm.anchoredPosition = new Vector2(-350, -200);
+                YouLoseForm.anchoredPosition = new Vector2(-350, -20);
                 YouLoseForm.rotation = Quaternion.Euler(0, 0, 270);
                 YouLose.color = new Color32(0, 15, 191, 255);
             }
