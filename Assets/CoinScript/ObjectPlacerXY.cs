@@ -111,7 +111,7 @@ public class ObjectPlacerXY : MonoBehaviour
             {
                 for (int y = 0; y < 5; y++)
                 {
-                    Vector3 position = new Vector3(7f + x * 2f, -7.5f + (y * 1.5f), 0);
+                    Vector3 position = new Vector3(5f + x * 6f, -7.5f + (y * 1.5f), 0);
 
                     // オブジェクトを配置し、生成されたインスタンスの参照を取得
                     GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
@@ -162,7 +162,7 @@ public class ObjectPlacerXY : MonoBehaviour
                         (y == 3 && x > 0 && x < 3) || 
                         (y == 4 && x == 4))
                     {
-                        Vector3 position = new Vector3(4.25f + x * 1.5f, -7.5f + y * 1.5f, 0);
+                        Vector3 position = new Vector3(3.625f + x * 1.75f, -7f + y * 1.25f, 0);
 
                         // オブジェクトを配置し、生成されたインスタンスの参照を取得
                         GameObject newObject = Instantiate(objectToPlace, position, Quaternion.identity);
@@ -282,6 +282,8 @@ public class ObjectPlacerXY : MonoBehaviour
             countText1.text = counting.ToString();
             countText2.text = counting.ToString();
             if(i > 19){
+                timeRimitAudio.Play();
+                Invoke("StopAudio",1f);
                 for(int j=0; j<2; j++){
                     yield return new WaitForSeconds(0.25f);
                     countText1.enabled = false;
@@ -290,9 +292,6 @@ public class ObjectPlacerXY : MonoBehaviour
                     countText1.enabled = true;
                     countText2.enabled = true;
                 }
-                if(i%2 == 1){
-                    timeRimitAudio.Play();
-                }
             }else{
                 yield return new WaitForSeconds(1f);
             }
@@ -300,6 +299,10 @@ public class ObjectPlacerXY : MonoBehaviour
         counting = 0;
         countText1.text = counting.ToString();
         countText2.text = counting.ToString();
+
+        yield return new WaitForSeconds(0.5f);
+        countText1.enabled = false;
+        countText2.enabled = false;
     }
 
     // 30秒後にすべてを壊す
@@ -310,5 +313,8 @@ public class ObjectPlacerXY : MonoBehaviour
         AllDestroy();
     }
 
-    
+    void StopAudio()
+    {
+        timeRimitAudio.Stop();
+    }    
 }
