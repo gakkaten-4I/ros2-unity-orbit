@@ -51,6 +51,8 @@ public class MainGameManager : MonoBehaviour
 
     public TransToMinigame transToMinigame;//ミニゲーム遷移時のアニメーションのため、TranToMinigame.csを参照する
 
+    public GoalEffect goaleffect;//ゴール演出を参照する
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,6 +69,8 @@ public class MainGameManager : MonoBehaviour
         GameObject riaObject = GameObject.Find("RedItemArea");
         biaScript = biaObject.GetComponent<ItemAreaScript>();
         riaScript = riaObject.GetComponent<ItemAreaScript>();
+
+        goaleffect = GetComponent<GoalEffect>();
 
         AddMiniGameBonus(state);
 
@@ -287,6 +291,7 @@ public class MainGameManager : MonoBehaviour
             }
             StartCoroutine(SetBlueInvincible());
             DisplayScoreManager.ReflectScore();
+            goaleffect.MakeGoalEffect(1);
         }
         if (IsBlueShielded)
         {
@@ -336,6 +341,7 @@ public class MainGameManager : MonoBehaviour
             }
             StartCoroutine(SetRedInvincible());
             DisplayScoreManager.ReflectScore();
+            goaleffect.MakeGoalEffect(2);
         }
         if (IsRedShielded)
         {
