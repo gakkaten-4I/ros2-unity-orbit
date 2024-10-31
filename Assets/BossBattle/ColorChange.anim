@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Animation1
+  m_Name: ColorChange
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -22,13 +22,13 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: 21300000, guid: 0fb75d1151096b24eaf9eff0984a120e, type: 3}
-    - time: 0.16666667
+    - time: 0.25
       value: {fileID: 21300000, guid: 3838b4d669a58254dbfbdbe5c2670664, type: 3}
-    - time: 0.33333334
-      value: {fileID: 21300000, guid: 3724414a3f042e74a887ae3f137fbdd2, type: 3}
     - time: 0.5
+      value: {fileID: 21300000, guid: 3724414a3f042e74a887ae3f137fbdd2, type: 3}
+    - time: 0.75
       value: {fileID: 21300000, guid: 390beb29d5ed0fc49986e7cf92bd598b, type: 3}
-    - time: 0.6666667
+    - time: 1
       value: {fileID: 21300000, guid: 0fb75d1151096b24eaf9eff0984a120e, type: 3}
     attribute: m_Sprite
     path: 
@@ -62,12 +62,12 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.68333334
+    m_StopTime: 1.0166667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 0
+    m_LoopTime: 1
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
