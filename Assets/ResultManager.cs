@@ -13,8 +13,6 @@ public class ResultManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-
         YouWin.enabled = false;
         YouLose.enabled = false;
         DrawRight.enabled = false;

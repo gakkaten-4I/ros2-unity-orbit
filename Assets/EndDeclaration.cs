@@ -51,6 +51,8 @@ public class EndDeclaration : MonoBehaviour
 
     private IEnumerator FadeInOutSequence()
     {
+        //効果音
+        GetComponent<AudioSource>().Play();
         // フェードイン
         yield return StartCoroutine(FadeIn());
 
