@@ -232,12 +232,14 @@ public class CoinResult : MonoBehaviour
             Review1.text = "You Lose";
             Review2.text = "You Win";
             //displayscoremanager.AddDisplayScore(0,5);
+            MainGameManager.state = 2;
         }
         else if(bdoc.CoinCountBlue > bdoc.CoinCountRed){
             //青チームが勝った時
             Review1.text = "You Win";
             Review2.text = "You Lose";
             //splayscoremanager.AddDisplayScore(5,0);
+            MainGameManager.state = 1;
         }
         else{
             //引き分けの時
