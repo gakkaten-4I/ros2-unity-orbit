@@ -20,6 +20,7 @@ public class BossBattleGameManager : MonoBehaviour
     public float remainingTime;    // 残り時間
 
     public BossBattleResult bossBattleResult;
+    public GameObject ball;
 
     private bool isInGame = true;
 
@@ -28,6 +29,7 @@ public class BossBattleGameManager : MonoBehaviour
     void Start()
     {
         remainingTime = timeLimit;
+        ball = GameObject.Find("ball");
     }
 
     // Update is called once per frame
@@ -55,7 +57,6 @@ public class BossBattleGameManager : MonoBehaviour
         GameObject.Find("Boss2")?.SetActive(false);
         GameObject.Find("Boss3")?.SetActive(false);
         GameObject.Find("Boss4")?.SetActive(false);
-
         StartCoroutine(Result());
     }
 
@@ -82,7 +83,7 @@ public class BossBattleGameManager : MonoBehaviour
             bossBattleResult.DisplayResultMessage(Winner.Draw);
             MainGameManager.state = 0;
         }
-
+        ball.SetActive(false);
         // 3秒後にシーン遷移
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("MainScene");
