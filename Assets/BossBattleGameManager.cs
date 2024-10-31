@@ -50,6 +50,12 @@ public class BossBattleGameManager : MonoBehaviour
     public void OnTimeUp()
     {
         isInGame = false;
+        GameObject.Find("Boss")?.SetActive(false);
+        GameObject.Find("Boss1")?.SetActive(false);
+        GameObject.Find("Boss2")?.SetActive(false);
+        GameObject.Find("Boss3")?.SetActive(false);
+        GameObject.Find("Boss4")?.SetActive(false);
+
         StartCoroutine(Result());
     }
 
@@ -64,14 +70,17 @@ public class BossBattleGameManager : MonoBehaviour
         if (RedDamageCount > BlueDamageCount)
         {
             bossBattleResult.DisplayResultMessage(Winner.Red);
+            MainGameManager.state = 2;
         }
         else if (RedDamageCount < BlueDamageCount)
         {
             bossBattleResult.DisplayResultMessage(Winner.Blue);
+            MainGameManager.state = 1;
         }
         else
         {
             bossBattleResult.DisplayResultMessage(Winner.Draw);
+            MainGameManager.state = 0;
         }
 
         // 3秒後にシーン遷移
