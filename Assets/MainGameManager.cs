@@ -26,7 +26,7 @@ public class MainGameManager : MonoBehaviour
     public bool IsRedBombed = false;
     public bool IsBlueBombed = false;
     public bool IsCharged = false; // チャージャーが有効かどうか
-    public bool IsFever = false;
+    public bool IsFever = true;
     public bool IsRedShielded = false;
     public bool IsBlueShielded = false;
     public bool IsRedGoalable = true;
@@ -53,14 +53,6 @@ public class MainGameManager : MonoBehaviour
 
     public TransToMinigame transToMinigame;//ミニゲーム遷移時のアニメーションのため、TranToMinigame.csを参照する
 
-    //ゲーミングカラー用の変数
-    public float Chnge_Color_Time = 0.1f;
-    public float Smooth = 0.01f;
-    public float HSV_Hue = 1.0f;// 0 ~ 1
-    public float HSV_Saturation = 1.0f;// 0 ~ 1
-    public float HSV_Brightness = 1.0f;// 0 ~ 1
-    public float HSV_Hue_max = 1.0f;// 0 ~ 1
-    public float HSV_Hue_min = 0.0f;// 0 ~ 1
 
     // Start is called before the first frame update
     void Start()
@@ -80,7 +72,6 @@ public class MainGameManager : MonoBehaviour
         riaScript = riaObject.GetComponent<ItemAreaScript>();
 
         AddMiniGameBonus(state);
-        GamingWall();
 
         // コルーチンの起動
         StartCoroutine(DelayCoroutine());
@@ -235,7 +226,6 @@ public class MainGameManager : MonoBehaviour
     {
         IsFever = true;
         //TODO: フィーバーモードになったことがわかるビジュアルエフェクト
-        StartCoroutine(GamingWall());
 
         //TODO: 場の効果をすべて無効にする処理
         
@@ -252,24 +242,6 @@ public class MainGameManager : MonoBehaviour
         IsFever = false;
     }
 
-    private IEnumerator GamingWall()
-    {
-        Debug.Log("GamingWall");
-        //TODO: フィーバーモードになったことがわかるビジュアルエフェクト
-        GameObject BackGround = GameObject.Find("Background");
-        Material material = BackGround.GetComponent<Material>();
-
-        HSV_Hue += Smooth;
-
-        if (HSV_Hue >= HSV_Hue_max)
-        {
-            HSV_Hue = HSV_Hue_min;
-        }
-
-        material.color = Color.HSVToRGB(HSV_Hue, HSV_Saturation, HSV_Brightness);
-
-        yield return new WaitForSeconds(Chnge_Color_Time);
-    }
 
     public void OnEnergyTaken()
     {
