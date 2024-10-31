@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 
 public class MainGameManager : MonoBehaviour
 {
-    public static int PointOfA = 3; // Blue?
+    public static int PointOfA = 0; // Blue?
     public static int PointOfB = 0; // Red?
     public static int state = 0; //ミニゲームで誰が勝ったか(0:MainScene, 1: Blue, 2:Red)
 
