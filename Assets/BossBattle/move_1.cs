@@ -6,7 +6,7 @@ using UnityEngine;
 public class Route : MonoBehaviour
 {
     [SerializeField] Transform moveObj;
-    [SerializeField] float speed;
+    [SerializeField] public float speed;
     List<Transform> points;
     int pointIdx;
     Vector3 nextPos;
