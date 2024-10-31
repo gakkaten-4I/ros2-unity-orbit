@@ -396,11 +396,10 @@ GameObject:
   - component: {fileID: 52899414}
   - component: {fileID: 52899412}
   - component: {fileID: 52899420}
-  - component: {fileID: 52899419}
   - component: {fileID: 52899410}
   - component: {fileID: 52899409}
+  - component: {fileID: 52899421}
   - component: {fileID: 52899408}
-  - component: {fileID: 52899407}
   m_Layer: 7
   m_Name: Boss1
   m_TagString: Untagged
@@ -408,18 +407,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &52899407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 52899406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a6f3aa6f2b7ee4494b32c150467306, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &52899408
 Animator:
   serializedVersion: 5
@@ -736,19 +723,6 @@ RectTransform:
   m_AnchoredPosition: {x: 4.960022, y: -1.9700012}
   m_SizeDelta: {x: 240, y: 192}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &52899419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 52899406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc27a1f722eeb7848a438e75a1f29ac0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  invincibleDuration: 0.2
 --- !u!114 &52899420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -762,6 +736,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathParticle: {fileID: 1919120786387046190, guid: 45eabe4bc9ca42641a6fabf259a54de0, type: 3}
+--- !u!114 &52899421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52899406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a6f3aa6f2b7ee4494b32c150467306, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &227294839
 GameObject:
   m_ObjectHideFlags: 0
@@ -2648,10 +2634,9 @@ GameObject:
   - component: {fileID: 874414687}
   - component: {fileID: 874414686}
   - component: {fileID: 874414692}
-  - component: {fileID: 874414693}
   - component: {fileID: 874414691}
+  - component: {fileID: 874414693}
   - component: {fileID: 874414684}
-  - component: {fileID: 874414683}
   m_Layer: 7
   m_Name: Boss4
   m_TagString: Untagged
@@ -2659,18 +2644,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &874414683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 874414682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a6f3aa6f2b7ee4494b32c150467306, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &874414684
 Animator:
   serializedVersion: 5
@@ -2996,10 +2969,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 874414682}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc27a1f722eeb7848a438e75a1f29ac0, type: 3}
+  m_Script: {fileID: 11500000, guid: 54a6f3aa6f2b7ee4494b32c150467306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invincibleDuration: 0.2
 --- !u!1 &948756786
 GameObject:
   m_ObjectHideFlags: 0
@@ -3954,11 +3926,10 @@ GameObject:
   - component: {fileID: 1397586091}
   - component: {fileID: 1397586090}
   - component: {fileID: 1397586095}
-  - component: {fileID: 1397586096}
   - component: {fileID: 1397586088}
   - component: {fileID: 1397586087}
+  - component: {fileID: 1397586096}
   - component: {fileID: 1397586086}
-  - component: {fileID: 1397586085}
   m_Layer: 7
   m_Name: Boss3
   m_TagString: Untagged
@@ -3966,18 +3937,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1397586085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1397586084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a6f3aa6f2b7ee4494b32c150467306, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &1397586086
 Animator:
   serializedVersion: 5
@@ -4316,10 +4275,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1397586084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc27a1f722eeb7848a438e75a1f29ac0, type: 3}
+  m_Script: {fileID: 11500000, guid: 54a6f3aa6f2b7ee4494b32c150467306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invincibleDuration: 0.2
 --- !u!1 &1429346721
 GameObject:
   m_ObjectHideFlags: 0
@@ -4784,11 +4742,10 @@ GameObject:
   - component: {fileID: 1683190792}
   - component: {fileID: 1683190791}
   - component: {fileID: 1683190798}
-  - component: {fileID: 1683190797}
   - component: {fileID: 1683190789}
   - component: {fileID: 1683190788}
+  - component: {fileID: 1683190799}
   - component: {fileID: 1683190787}
-  - component: {fileID: 1683190786}
   m_Layer: 7
   m_Name: Boss2
   m_TagString: Untagged
@@ -4796,18 +4753,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1683190786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1683190785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a6f3aa6f2b7ee4494b32c150467306, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &1683190787
 Animator:
   serializedVersion: 5
@@ -5124,19 +5069,6 @@ RectTransform:
   m_AnchoredPosition: {x: 4.960022, y: -1.9700012}
   m_SizeDelta: {x: 240, y: 192}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1683190797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1683190785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc27a1f722eeb7848a438e75a1f29ac0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  invincibleDuration: 0.2
 --- !u!114 &1683190798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5150,6 +5082,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathParticle: {fileID: 1919120786387046190, guid: 45eabe4bc9ca42641a6fabf259a54de0, type: 3}
+--- !u!114 &1683190799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683190785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a6f3aa6f2b7ee4494b32c150467306, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1701150155
 GameObject:
   m_ObjectHideFlags: 0
@@ -6113,10 +6057,7 @@ GameObject:
   - component: {fileID: 218949026178374553}
   - component: {fileID: 7089561714627258400}
   - component: {fileID: 3281226018938519615}
-  - component: {fileID: 7089561714627258403}
   - component: {fileID: 7089561714627258401}
-  - component: {fileID: 7089561714627258402}
-  - component: {fileID: 7089561714627258404}
   - component: {fileID: 5822205794840371114}
   - component: {fileID: 645818714118329602}
   m_Layer: 7
@@ -6305,46 +6246,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayTime: 0.5
---- !u!114 &7089561714627258402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5051564539504418537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc27a1f722eeb7848a438e75a1f29ac0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  invincibleDuration: 3
---- !u!114 &7089561714627258403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5051564539504418537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc27a1f722eeb7848a438e75a1f29ac0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  invincibleDuration: 0.2
---- !u!114 &7089561714627258404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5051564539504418537}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bc8ad05d4032bc4d85f35030f3825d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player1BossCount: 0
-  player2BossCount: 0
 --- !u!1 &7279319073629282517
 GameObject:
   m_ObjectHideFlags: 0
