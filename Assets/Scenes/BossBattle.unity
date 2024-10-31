@@ -2096,7 +2096,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RedDamageCount: 0
   BlueDamageCount: 0
-  timeLimit: 5
+  timeLimit: 30
   remainingTime: 0
   bossBattleResult: {fileID: 650100461}
 --- !u!1 &594475435
