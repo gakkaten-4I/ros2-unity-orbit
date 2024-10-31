@@ -23,7 +23,7 @@ public class DebugRedGoalScript : MonoBehaviour
         if (other.gameObject.tag == "Ball")
         {
             Debug.Log("Red Goal");
-            Detect();
+            StartCoroutine(Detect());
         }
     }
     private IEnumerator Detect()
