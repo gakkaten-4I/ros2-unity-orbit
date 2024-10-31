@@ -56,6 +56,9 @@ public class MainGameManager : MonoBehaviour
     public GameObject ScoreOfA;
     public GameObject ScoreOfB;
 
+    public GameObject BluePost;
+    public GameObject RedPost;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -371,16 +374,20 @@ public class MainGameManager : MonoBehaviour
     {
         IsBlueGoalable = false;
         //TODO: 無敵状態な事がわかるビジュアルエフェクト
+        BluePost.SetActive(false);
         yield return new WaitForSeconds(5); // 5秒間ゴールは無視される
         IsBlueGoalable = true;
+        BluePost.SetActive(true);
     }
 
     public IEnumerator SetRedInvincible()
     {
         IsRedGoalable = false;
         //TODO: 無敵状態な事がわかるビジュアルエフェクト
+        RedPost.SetActive(false);
         yield return new WaitForSeconds(5); // 5秒間ゴールは無視される
         IsRedGoalable = true;
+        RedPost.SetActive(true);
     }
 
 }
