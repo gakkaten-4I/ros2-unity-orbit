@@ -114,6 +114,7 @@ public class MainGameManager : MonoBehaviour
         ScoreOfA.SetActive(true);
         ScoreOfB.SetActive(true);
 
+        itemManager.StartSpawn();
         // 60秒間待つ
         // Time.timeScale の影響を受けずに実時間で60秒待つ
         yield return new WaitForSecondsRealtime(60);
@@ -135,7 +136,9 @@ public class MainGameManager : MonoBehaviour
 
         transToMinigame.StartCountdownOfMinigame(5);
         yield return new WaitForSeconds(5f);
-        
+        ball.SetActive(false);
+
+
         int GameSceneNumber = UnityEngine.Random.Range(0, 3);
         IsMain = false;
         switch (GameSceneNumber)

@@ -16,9 +16,9 @@ public class DisplayScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        ScoreTextOfA.text = "00";
-        ScoreTextOfB.text = "00";//スコア表示の初期化
-
+        //ScoreTextOfA.text = "00";
+        //ScoreTextOfB.text = "00";//スコア表示の初期化
+        ReflectScore();
     }
 
     // Update is called once per frame
