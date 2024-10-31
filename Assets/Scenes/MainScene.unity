@@ -1968,6 +1968,9 @@ MonoBehaviour:
   itemManager: {fileID: 1727355758}
   transToMinigame: {fileID: 573867724}
   startCount: {fileID: 573867726}
+  ball: {fileID: 556171482}
+  ScoreOfA: {fileID: 1183916001}
+  ScoreOfB: {fileID: 1741929032}
 --- !u!114 &573867724
 MonoBehaviour:
   m_ObjectHideFlags: 0
