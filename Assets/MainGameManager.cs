@@ -139,7 +139,7 @@ public class MainGameManager : MonoBehaviour
         ball.SetActive(false);
         if (SceneMoveCount >= 3)
         {
-            SceneManager.LoadScene("QuietScene");
+            SceneManager.LoadScene("ResultScene");
         }
 
 
