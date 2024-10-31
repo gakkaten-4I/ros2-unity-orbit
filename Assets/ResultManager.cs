@@ -6,13 +6,24 @@ using UnityEngine;
 public class ResultManager : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI Winner_Right, Winner_Left;
+    private TextMeshProUGUI YouWin, YouLose, DrawRight, DrawLeft;
+    RectTransform YouWinForm;
+    RectTransform YouLoseForm;
+    RectTransform DrawRightForm;
+    RectTransform DrawLeftForm;
 
     // Start is called before the first frame update
     void Start()
     {
-        Winner_Right.enabled = false;
-        Winner_Left.enabled = false;
+        RectTransform YouWinForm = YouWin.GetComponent<RectTransform>();
+        RectTransform YouLoseForm = YouLose.GetComponent<RectTransform>();
+        RectTransform DrawRightForm = DrawRight.GetComponent<RectTransform>();
+        RectTransform DrawLeftForm = DrawLeft.GetComponent<RectTransform>();
+
+        YouWin.enabled = false;
+        YouLose.enabled = false;
+        DrawRight.enabled = false;
+        DrawLeft.enabled = false;
         StartCoroutine(ResultAnimation());
     }
     private IEnumerator ResultAnimation()
@@ -21,18 +32,56 @@ public class ResultManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         // ìæì_ï\é¶
-        yield return StartCoroutine(FlashWinner());
+        yield return StartCoroutine(ShowWinner());
     }
-    private IEnumerator FlashWinner()
+    private IEnumerator ShowWinner()
     {
-        for(int i = 0; i < 6; i++)
+        if(MainGameManager.PointOfA != MainGameManager.PointOfB)
         {
-            Winner_Right.enabled = !Winner_Right.enabled;
-            Winner_Left.enabled = !Winner_Left.enabled;
-            yield return new WaitForSeconds(0.5f);
+            //LEFT(ê¬)Ç™èüÇ¡ÇΩÇÁ
+            if (MainGameManager.PointOfA > MainGameManager.PointOfB)
+            {
+                YouWinForm.anchoredPosition = new Vector2(-350, -200);
+                YouWinForm.rotation = Quaternion.Euler(0, 0, 270);
+                YouWin.color = new Color32(0,15,191,255);
+
+                YouLoseForm.anchoredPosition = new Vector2(350, 200);
+                YouLoseForm.rotation = Quaternion.Euler(0, 0, 90);
+                YouLose.color = new Color32(191, 7, 5, 255);
+            }
+            //Right(ê‘)Ç™èüÇ¡ÇΩÇÁ
+            else if (MainGameManager.PointOfA < MainGameManager.PointOfB)
+            {
+                YouWinForm.anchoredPosition = new Vector2(350, 200);
+                YouWinForm.rotation = Quaternion.Euler(0, 0, 90);
+                YouWin.color = new Color32(191, 7, 5, 255);
+
+                YouLoseForm.anchoredPosition = new Vector2(-350, -200);
+                YouLoseForm.rotation = Quaternion.Euler(0, 0, 270);
+                YouLose.color = new Color32(0, 15, 191, 255);
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                YouWin.enabled = !YouWin.enabled;
+                YouLose.enabled = !YouLose.enabled;
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+        else
+        {
+            DrawLeft.color = new Color32(0, 15, 191, 255);
+            DrawRight.color = new Color32(191, 7, 5, 255);
+            //ìØì_ÇæÇ¡ÇΩÇÁ
+            for (int i = 0; i < 8; i++)
+            {
+                DrawRight.enabled = !DrawRight.enabled;
+                DrawLeft.enabled = !DrawLeft.enabled;
+                yield return new WaitForSeconds(0.5f);
+            }
         }
         yield break;    
     }
+
 
     // Update is called once per frame
     void Update()
