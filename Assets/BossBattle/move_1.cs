@@ -6,7 +6,7 @@ using UnityEngine;
 public class Route : MonoBehaviour
 {
     [SerializeField] Transform moveObj;
-    [SerializeField] float speed;
+    [SerializeField] public float speed;
     List<Transform> points;
     int pointIdx;
     Vector3 nextPos;
@@ -22,7 +22,6 @@ public class Route : MonoBehaviour
     float y;
     bool flag;
     [SerializeField] GameObject target;
-    [SerializeField] private ParticleSystem particle;
 
     void Start()
     {
@@ -38,7 +37,6 @@ public class Route : MonoBehaviour
         move1 = Boss.GetComponent<hitpoint>();
         speeds = 2;
         radius = 2;   
-        particle = GetComponentInChildren<ParticleSystem>();
     }
 
     void Update()
@@ -99,8 +97,8 @@ public class Route : MonoBehaviour
             float rand = Random.Range(1.0f, 100.0f);
             if (!flag)
             {
-                _Position.x = 10.00f;
-                _Position.y = -5.00f;
+                _Position.x = 8.00f;
+                _Position.y = -4.50f;
                 transform.position = _Position;
 
                 flag = true;
@@ -117,7 +115,6 @@ public class Route : MonoBehaviour
             else {
                 moveObj.position = new Vector3((x+transform.position.x),(y+transform.position.y), transform.position.z);  //自分のいる位置から座標を動かす。
             }
-            particle.transform.position = moveObj.position;
             
             if (move1.hp <= 15)
             {

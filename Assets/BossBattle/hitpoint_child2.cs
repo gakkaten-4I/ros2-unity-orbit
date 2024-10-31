@@ -20,9 +20,14 @@ public class hitpoint_child2 : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         // HPを減少させる
-        move1.hp -= 3;
+        move1.Damage();
         Debug.Log("hit! Boss HP: " + move1.hp);
 
+        
+    }
+
+    void Update()
+    {
         // HPが0以下になったらエフェクトを表示してBossを削除
         if (move1.hp <= 15)
         {

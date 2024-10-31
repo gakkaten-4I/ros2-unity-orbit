@@ -22,11 +22,17 @@ public class hitpoint_child : MonoBehaviour
         //本体のダメージ関数を呼ぶ
         
         // HPを減少させる
-        move1.hp -= 3;
+        move1.Damage();
         Debug.Log("hit! Boss HP: " + move1.hp);
 
-        // HPが0以下になったらエフェクトを表示してBossを削除
-        if (move1.hp <= 30)
+       
+       
+    }
+    
+    void Update()
+    {
+         // HPが0以下になったらエフェクトを表示してBossを削除
+         if (move1.hp <= 30)
         {
             Debug.Log("Boss Defeated!");
 
