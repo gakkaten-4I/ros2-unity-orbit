@@ -29,12 +29,22 @@ public class GridObjectPlacerXZ : MonoBehaviour
 
     private int countMin = 0; 
     private int Count1 = 0;
-    private int Count2 = 0;   // オブジェクト間のスペース
+    private int Count2 = 0;  
+    
+    private int WinNum; // オブジェクト間のスペース
+    private MiniGameManager miniGameManager ;
 
     void Start()
     {
+
+        
+
+        miniGameManager = GetComponent<MiniGameManager>();
+
+        miniGameManager.additional = 3f;
+
         PlaceObjectsInGrid();
-        StartCoroutine(WaitAndCallPlus(10f));
+        StartCoroutine(WaitAndCallPlus(7f));
         StartCoroutine(WaitAndCallResult(25f));
         audioSource = GetComponent<AudioSource>();
         audioSource.PlayOneShot(sound1);  // 50秒後にresult関数を呼び出すコルーチンを開始
@@ -197,7 +207,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
             Vector2 currentScale = Player1text.transform.localScale;
             // スケールを少しずつ大きくする
             Player1text.transform.localScale = currentScale * 1.03f;
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.175f);
         }
         yield return new WaitForSeconds(1f);
         Finish();
@@ -244,25 +254,36 @@ public class GridObjectPlacerXZ : MonoBehaviour
 
             int ii = i+1;
             Player2text.text = ii.ToString();
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.175f);
         }
     }
 
     //同じ数カウントして一気に買った方塗る
+
+
+
     void Finish(){
+
+
+        
         if(Count1 > Count2){
             ikkini(1,Color.blue);
-            
+            WinNum = 1;
         }else if(Count1 < Count2){
             ikkini(2,Color.red);
+            WinNum = 2;
         }else{
+            WinNum = 0;
             audioSource = GetComponent<AudioSource>();
             audioSource.PlayOneShot(sound2);
             DRAWl.SetActive(true);
             DRAW2.SetActive(true);
         }
 
-        ball.SetActive(true);
+        //ball.SetActive(true);
+        MainGameManager.state = WinNum;
+     
+
     }
 
 
@@ -355,6 +376,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
     IEnumerator WaitAndLoadMainScene()
     {
         yield return new WaitForSeconds(5f);
+        
         SceneManager.LoadScene("MainScene");
     }
 
