@@ -6,11 +6,9 @@ using UnityEngine;
 public class ResultManager : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI YouWin, YouLose, DrawRight, DrawLeft;
+    private TextMeshProUGUI YouWin, YouLose, DrawRight, DrawLeft, ThanksRight, ThanksLeft;
     RectTransform YouWinForm;
     RectTransform YouLoseForm;
-    RectTransform DrawRightForm;
-    RectTransform DrawLeftForm;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +22,8 @@ public class ResultManager : MonoBehaviour
         YouLose.enabled = false;
         DrawRight.enabled = false;
         DrawLeft.enabled = false;
+        ThanksLeft.enabled = false;
+        ThanksRight.enabled = false;
         StartCoroutine(ResultAnimation());
     }
     private IEnumerator ResultAnimation()
@@ -33,6 +33,9 @@ public class ResultManager : MonoBehaviour
 
         // ìæì_ï\é¶
         yield return StartCoroutine(ShowWinner());
+
+        //èIÇÌÇË
+        yield return StartCoroutine(Thanks());
     }
     private IEnumerator ShowWinner()
     {
@@ -82,9 +85,15 @@ public class ResultManager : MonoBehaviour
         yield break;    
     }
 
+    private IEnumerator Thanks()
+    {
+        ThanksLeft.enabled = true;
+        ThanksRight.enabled = true;
+        yield break;
+    }
 
     // Update is called once per frame
-    
+
     void Update()
     {
         EndGame();
