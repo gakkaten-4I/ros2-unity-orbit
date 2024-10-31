@@ -77,6 +77,9 @@ public class MainGameManager : MonoBehaviour
 
         // コルーチンの起動
         StartCoroutine(DelayCoroutine());
+
+        // シーン読み込み時にエナジー缶の数を更新
+        DisplayEnergyCountManager.ReflectCount(EnergyCount);
     }
 
     private void AddMiniGameBonus(int State)
@@ -129,14 +132,15 @@ public class MainGameManager : MonoBehaviour
     private IEnumerator delayMethod()
     {
         ++SceneMoveCount;
-        if(SceneMoveCount >= 3)
-        {
-            SceneManager.LoadScene("QuietScene");
-        }
+        
 
         transToMinigame.StartCountdownOfMinigame(5);
         yield return new WaitForSeconds(5f);
         ball.SetActive(false);
+        if (SceneMoveCount >= 3)
+        {
+            SceneManager.LoadScene("QuietScene");
+        }
 
 
         int GameSceneNumber = UnityEngine.Random.Range(0, 3);
