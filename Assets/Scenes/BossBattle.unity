@@ -467,6 +467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 5051564539504418537}
+  route: {fileID: 5994932628321160560}
 --- !u!50 &52899412
 Rigidbody2D:
   serializedVersion: 4
@@ -732,7 +733,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.2800293, y: -14.790009}
+  m_AnchoredPosition: {x: 4.960022, y: -1.9700012}
   m_SizeDelta: {x: 240, y: 192}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &52899419
@@ -2095,7 +2096,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RedDamageCount: 0
   BlueDamageCount: 0
-  timeLimit: 30
+  timeLimit: 5
   remainingTime: 0
   bossBattleResult: {fileID: 650100461}
 --- !u!1 &594475435
@@ -2956,7 +2957,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12.51001, y: -14.799988}
+  m_AnchoredPosition: {x: 4.960022, y: -1.9700012}
   m_SizeDelta: {x: 240, y: 192}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &874414691
@@ -2972,6 +2973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1397586084}
+  route: {fileID: 5994932628321160560}
 --- !u!114 &874414692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4023,6 +4025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1683190785}
+  route: {fileID: 5994932628321160560}
 --- !u!50 &1397586090
 Rigidbody2D:
   serializedVersion: 4
@@ -4288,7 +4291,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.75, y: -14.769989}
+  m_AnchoredPosition: {x: 4.960022, y: -1.9700012}
   m_SizeDelta: {x: 240, y: 192}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1397586095
@@ -4852,6 +4855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 52899406}
+  route: {fileID: 5994932628321160560}
 --- !u!50 &1683190791
 Rigidbody2D:
   serializedVersion: 4
@@ -5117,7 +5121,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.950012, y: -14.799988}
+  m_AnchoredPosition: {x: 4.960022, y: -1.9700012}
   m_SizeDelta: {x: 240, y: 192}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1683190797
@@ -6208,7 +6212,7 @@ GameObject:
   - component: {fileID: 5906007700332694925}
   - component: {fileID: 5994932628321160560}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Route
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
