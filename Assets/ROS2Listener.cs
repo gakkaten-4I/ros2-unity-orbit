@@ -30,7 +30,10 @@ public class ROS2Listener : MonoBehaviour
     void Start()
     {
         GameObject gsmObject = GameObject.Find("GameSceneManager");
-        gsmScript = gsmObject.GetComponent<MainGameManager>();
+        if (gsmObject != null)
+        {
+            gsmScript = gsmObject.GetComponent<MainGameManager>();
+        }
         GameObject ObjectB = GameObject.Find("DeltaY_Debug");
         if (ObjectB != null)
             dc = ObjectB.GetComponent<DebugTextController>();
@@ -50,23 +53,29 @@ public class ROS2Listener : MonoBehaviour
             // カメラのPythonプログラムからの座標を受け取る
             PackCoord = ros2Node.CreateSubscription<geometry_msgs.msg.Vector3>(
               "f1/chatter", callback);
-            // ゴール判定用の距離センサー(青チーム側)
-            BlueDtSensor = ros2Node.CreateSubscription<std_msgs.msg.Float64>(
-              "f1/distance_0", blue_distance_callback);
-            // ゴール判定用の距離センサー(赤チーム側)
-            RedDtSensor = ros2Node.CreateSubscription<std_msgs.msg.Float64>(
-                             "f1/distance_1", red_distance_callback);
+            if(gsmScript != null)
+            {
+                // ゴール判定用の距離センサー(青チーム側)
+                BlueDtSensor = ros2Node.CreateSubscription<std_msgs.msg.Float64>(
+                  "f1/distance_0", blue_distance_callback);
+                // ゴール判定用の距離センサー(赤チーム側)
+                RedDtSensor = ros2Node.CreateSubscription<std_msgs.msg.Float64>(
+                                 "f1/distance_1", red_distance_callback);
+            }      
         }
         else
         {
             PackCoord = ros2Node.CreateSubscription<geometry_msgs.msg.Vector3>(
               "f2/chatter", callback);
-            // ゴール判定用の距離センサー(青チーム側)
-            BlueDtSensor = ros2Node.CreateSubscription<std_msgs.msg.Float64>(
-              "f2/distance_0", blue_distance_callback);
-            // ゴール判定用の距離センサー(赤チーム側)
-            RedDtSensor = ros2Node.CreateSubscription<std_msgs.msg.Float64>(
-                             "f2/distance_1", red_distance_callback);
+            if(gsmScript != null)
+            {
+                // ゴール判定用の距離センサー(青チーム側)
+                BlueDtSensor = ros2Node.CreateSubscription<std_msgs.msg.Float64>(
+                  "f2/distance_0", blue_distance_callback);
+                // ゴール判定用の距離センサー(赤チーム側)
+                RedDtSensor = ros2Node.CreateSubscription<std_msgs.msg.Float64>(
+                                 "f2/distance_1", red_distance_callback);
+            }            
         }
 
     }
@@ -110,6 +119,7 @@ public class ROS2Listener : MonoBehaviour
 
         if (dc!=null)
             dc.text = deltaX.ToString();
+        Debug.Log(msg);
 
     }
 
