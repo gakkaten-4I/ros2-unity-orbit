@@ -26,7 +26,7 @@ public class MainGameManager : MonoBehaviour
     public bool IsRedBombed = false;
     public bool IsBlueBombed = false;
     public bool IsCharged = false; // チャージャーが有効かどうか
-    public bool IsFever = false;
+    public bool IsFever = true;
     public bool IsRedShielded = false;
     public bool IsBlueShielded = false;
     public bool IsRedGoalable = true;
@@ -42,6 +42,8 @@ public class MainGameManager : MonoBehaviour
 
     GameObject RedSheild;
     GameObject BlueSheild;
+    GameObject BackGround;
+    Material material;
 
     private DisplayScoreManager DisplayScoreManager;
     private DisplayEnergyCountManager DisplayEnergyCountManager;
@@ -50,6 +52,15 @@ public class MainGameManager : MonoBehaviour
     private ItemAreaScript riaScript;
 
     public TransToMinigame transToMinigame;//ミニゲーム遷移時のアニメーションのため、TranToMinigame.csを参照する
+    public StartCount startCount;//ゲーム開始のカウントダウンのため、StartCount.csを参照する
+
+    public GameObject ball;
+    public GameObject ScoreOfA;
+    public GameObject ScoreOfB;
+
+    public GameObject BluePost;
+    public GameObject RedPost;
+
 
     public GoalEffect goaleffect;//ゴール演出を参照する
 
@@ -76,6 +87,9 @@ public class MainGameManager : MonoBehaviour
 
         // コルーチンの起動
         StartCoroutine(DelayCoroutine());
+
+        // シーン読み込み時にエナジー缶の数を更新
+        DisplayEnergyCountManager.ReflectCount(EnergyCount);
     }
 
     private void AddMiniGameBonus(int State)
@@ -100,11 +114,20 @@ public class MainGameManager : MonoBehaviour
         //DisplayScoreManager.ReflectScore();
     }
 
+
     // コルーチン本体
     private IEnumerator DelayCoroutine()
     {
-        //Debug.Log("-----------------------------------------------------");
+        ball.SetActive(false);
+        ScoreOfA.SetActive(false);
+        ScoreOfB.SetActive(false);
+        startCount.GameStartCount(5);
+        yield return new WaitForSeconds(6f);
+        ball.SetActive(true);
+        ScoreOfA.SetActive(true);
+        ScoreOfB.SetActive(true);
 
+        itemManager.StartSpawn();
         // 60秒間待つ
         // Time.timeScale の影響を受けずに実時間で60秒待つ
         yield return new WaitForSecondsRealtime(60);
@@ -119,14 +142,17 @@ public class MainGameManager : MonoBehaviour
     private IEnumerator delayMethod()
     {
         ++SceneMoveCount;
-        if(SceneMoveCount >= 3)
-        {
-            SceneManager.LoadScene("QuietScene");
-        }
+        
 
         transToMinigame.StartCountdownOfMinigame(5);
         yield return new WaitForSeconds(5f);
-        
+        ball.SetActive(false);
+        if (SceneMoveCount >= 3)
+        {
+            SceneManager.LoadScene("ResultScene");
+        }
+
+
         int GameSceneNumber = UnityEngine.Random.Range(0, 3);
         IsMain = false;
         switch (GameSceneNumber)
@@ -227,6 +253,7 @@ public class MainGameManager : MonoBehaviour
     {
         IsFever = true;
         //TODO: フィーバーモードになったことがわかるビジュアルエフェクト
+
         //TODO: 場の効果をすべて無効にする処理
         
         biaScript.RemoveAllItems();
@@ -241,6 +268,7 @@ public class MainGameManager : MonoBehaviour
         yield return new WaitForSeconds(15);
         IsFever = false;
     }
+
 
     public void OnEnergyTaken()
     {
@@ -357,16 +385,20 @@ public class MainGameManager : MonoBehaviour
     {
         IsBlueGoalable = false;
         //TODO: 無敵状態な事がわかるビジュアルエフェクト
+        BluePost.SetActive(false);
         yield return new WaitForSeconds(5); // 5秒間ゴールは無視される
         IsBlueGoalable = true;
+        BluePost.SetActive(true);
     }
 
     public IEnumerator SetRedInvincible()
     {
         IsRedGoalable = false;
         //TODO: 無敵状態な事がわかるビジュアルエフェクト
+        RedPost.SetActive(false);
         yield return new WaitForSeconds(5); // 5秒間ゴールは無視される
         IsRedGoalable = true;
+        RedPost.SetActive(true);
     }
 
 }

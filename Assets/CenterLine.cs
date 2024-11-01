@@ -48,6 +48,5 @@ public class CenterLine : MonoBehaviour
 
         yield return new WaitForSeconds(Chnge_Color_Time);
 
-        StartCoroutine("Change_Color");
     }
 }
