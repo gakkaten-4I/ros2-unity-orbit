@@ -61,6 +61,7 @@ public class ResultManager : MonoBehaviour
                 YouLoseForm.rotation = Quaternion.Euler(0, 0, 270);
                 YouLose.color = new Color32(0, 15, 191, 255);
             }
+            GetComponent<AudioSource>().Play();
             for (int i = 0; i < 8; i++)
             {
                 YouWin.enabled = !YouWin.enabled;
@@ -73,6 +74,7 @@ public class ResultManager : MonoBehaviour
             DrawLeft.color = new Color32(0, 15, 191, 255);
             DrawRight.color = new Color32(191, 7, 5, 255);
             //“¯“_‚¾‚Á‚½‚ç
+            GetComponent<AudioSource>().Play();
             for (int i = 0; i < 8; i++)
             {
                 DrawRight.enabled = !DrawRight.enabled;
