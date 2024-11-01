@@ -1447,7 +1447,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4.57
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1811,7 +1811,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6135185f74024e343a1d874d927579eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainGameManager: {fileID: 0}
   debugCanvas: {fileID: 0}
 --- !u!114 &556171492
 MonoBehaviour:
@@ -1922,7 +1921,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 66b1f4e12409e2049a249769e89e1655, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2040,6 +2039,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 562f2a45658898e42b545c142f43c9eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ScoreTextOfA: {fileID: 0}
+  ScoreTextOfB: {fileID: 0}
   IsMain: 0
   IsRedBombed: 0
   IsBlueBombed: 0
@@ -2049,8 +2050,12 @@ MonoBehaviour:
   IsBlueShielded: 0
   IsRedGoalable: 1
   IsBlueGoalable: 1
+  IsRedDetected: 0
+  IsBlueDetected: 0
   ballManager: {fileID: 0}
   itemManager: {fileID: 0}
+  transToMinigame: {fileID: 0}
+  goaleffect: {fileID: 0}
 --- !u!4 &573867722
 Transform:
   m_ObjectHideFlags: 0
@@ -2122,7 +2127,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8dea4cdcdf047f94bb98bda67e7cedb0, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -3121,7 +3126,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 42462e3a75f400549944adc0f346aa63, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

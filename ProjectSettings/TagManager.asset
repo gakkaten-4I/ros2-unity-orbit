@@ -10,6 +10,8 @@ TagManager:
   - Ball
   - Shield
   - Bomb
+  - Ground
+  - ItemBox
   layers:
   - Default
   - TransparentFX

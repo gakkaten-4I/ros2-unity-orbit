@@ -27,13 +27,17 @@ public class ItemManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(DelayMethod(30, SpawnEnergy)); //30秒後にSpawnEnergyを実行
-        StartCoroutine(RepeatSpawn());
         //EmergencyImage.SetActive(false);
         //color=EmergencyImage.GetComponent<SpriteRenderer>();
         
         BlueEmergencyImage.SetActive(false);
         RedEmergencyImage.SetActive(false);
+    }
+
+    public void StartSpawn()
+    {
+        StartCoroutine(DelayMethod(30, SpawnEnergy)); //30秒後にSpawnEnergyを実行
+        StartCoroutine(RepeatSpawn());
     }
 
     // EnergyCanを生成

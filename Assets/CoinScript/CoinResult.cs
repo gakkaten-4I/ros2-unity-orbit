@@ -77,7 +77,7 @@ public class CoinResult : MonoBehaviour
             Review2.text = " Result  ";
             Review2.color = new Color(0f, 0f, 0f, 1f);
             Review2.outlineColor = Color.white;
-            Review2.outlineWidth = 0.2f;
+            Review2.outlineWidth = 0.1f;
             Review2.enabled = false;
         }
         else
@@ -232,12 +232,14 @@ public class CoinResult : MonoBehaviour
             Review1.text = "You Lose";
             Review2.text = "You Win";
             //displayscoremanager.AddDisplayScore(0,5);
+            MainGameManager.state = 2;
         }
         else if(bdoc.CoinCountBlue > bdoc.CoinCountRed){
             //青チームが勝った時
             Review1.text = "You Win";
             Review2.text = "You Lose";
             //splayscoremanager.AddDisplayScore(5,0);
+            MainGameManager.state = 1;
         }
         else{
             //引き分けの時
