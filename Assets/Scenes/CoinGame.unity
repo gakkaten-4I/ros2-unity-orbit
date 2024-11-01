@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &18818988
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2055,6 +2055,12 @@ MonoBehaviour:
   ballManager: {fileID: 0}
   itemManager: {fileID: 0}
   transToMinigame: {fileID: 0}
+  startCount: {fileID: 0}
+  ball: {fileID: 0}
+  ScoreOfA: {fileID: 0}
+  ScoreOfB: {fileID: 0}
+  BluePost: {fileID: 0}
+  RedPost: {fileID: 0}
   goaleffect: {fileID: 0}
 --- !u!4 &573867722
 Transform:
@@ -2116,6 +2122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsMain: 0
+  additional: 0
 --- !u!82 &573867726
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4769,6 +4776,10 @@ PrefabInstance:
     - target: {fileID: 60265431807205910, guid: c37667d66e5ddbb49b385051108beefc, type: 3}
       propertyPath: m_Name
       value: prediction
+      objectReference: {fileID: 0}
+    - target: {fileID: 60265431807205910, guid: c37667d66e5ddbb49b385051108beefc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 60265431807205928, guid: c37667d66e5ddbb49b385051108beefc, type: 3}
       propertyPath: m_RootOrder

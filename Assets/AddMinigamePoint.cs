@@ -16,6 +16,11 @@ public class AddMinigamePoint : MonoBehaviour
     public GameObject HanabiA1,HanabiA2,HanabiB1,HanabiB2;//花火演出
     public Sprite BigHanabi,MidHanabi,SmlHanabi;//大きい花火、中ぐらいの花火、小さい花火の絵
 
+    public GameObject AHanabi;
+    public GameObject BHanabi;
+
+
+
     public DisplayScoreManager displayScoreManager;//関数の呼び出しをため、DisplayScoreManager.csを取得
 
     // Start is called before the first frame update
@@ -59,8 +64,8 @@ public class AddMinigamePoint : MonoBehaviour
             Hanabi2=HanabiA2;
 
             RectTransform rectTransform = AddPoint.GetComponent<RectTransform>();
-            rectTransform.anchoredPosition = new Vector2(-6f,2.5f);
-            AddPoint.fontSize=250f;
+            rectTransform.anchoredPosition = new Vector2(-8f,-2.5f);
+            AddPoint.fontSize=150f;
 
         }else{
             AddPoint=addPointOfB;
@@ -70,10 +75,20 @@ public class AddMinigamePoint : MonoBehaviour
             Hanabi2=HanabiB2;
 
             RectTransform rectTransform = AddPoint.GetComponent<RectTransform>();
-            rectTransform.anchoredPosition = new Vector2(4f,-2.5f);
-            AddPoint.fontSize=250f;
+            rectTransform.anchoredPosition = new Vector2(2f,-2.5f);
+            AddPoint.fontSize=150f;
         }
+        
         PointTextObj.SetActive(true);
+
+                if (winteam == 'A')
+                {
+                    AHanabi.SetActive(true);
+                }
+                else
+                {
+                    BHanabi.SetActive(true);
+                }
 
         AddPoint.text=""+0+"";
 
@@ -91,7 +106,7 @@ public class AddMinigamePoint : MonoBehaviour
 
         //Step3.アニメーション2(花火＋加算ポイントテキストオブジェクトの回転)　1.5s
 
-        for(int i=0;i<60;i++){
+        /*for(int i=0;i<60;i++){
             if(i==0) {
                 Hanabi1.SetActive(true);
                 Hanabi1.GetComponent<SpriteRenderer>().sprite=SmlHanabi;
@@ -119,6 +134,59 @@ public class AddMinigamePoint : MonoBehaviour
                 AddPointObj.transform.Rotate(new Vector3(720/30, 0, 0));
             }
             yield return new WaitForSeconds(1.5f/60f);
+        }*/
+
+
+        for (int i = 0; i < 60; i++)
+        {
+            // 最初に花火オブジェクトを生成
+            if (i == 0)
+            {
+                // 勝ったチームに応じた花火位置でオブジェクト生成
+ 
+            }
+            /*else if (i == 10)
+            {
+                if (winteam == 'A')
+                {
+                    Instantiate(BigHanabiObj, new Vector3(3f, -8f, 0), Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(BigHanabiObj, new Vector3(10.5f, -8f, 0), Quaternion.identity);
+                }
+            }
+
+            if (i == 20)
+            {
+                // 勝ったチームに応じた花火位置でオブジェクト生成
+                if (winteam == 'A')
+                {
+                    Instantiate(SmallHanabiObj, new Vector3(7.5f, -8f, 0), Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(SmallHanabiObj, new Vector3(13f, -8f, 0), Quaternion.identity);
+                }
+            }
+            else if (i == 29)
+            {
+                if (winteam == 'A')
+                {
+                    Instantiate(BigHanabiObj, new Vector3(3f, -2f, 0), Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(BigHanabiObj, new Vector3(10.5f, -2f, 0), Quaternion.identity);
+                }
+            }*/
+
+
+            if (i > 30)
+            {
+                AddPointObj.transform.Rotate(new Vector3(720 / 30, 0, 0));
+            }
+            yield return new WaitForSeconds(1.5f / 60f);
         }
 
         //Step3.アニメーション2(加算ポイントテキストオブジェクトの移動) 0.5s
@@ -126,7 +194,7 @@ public class AddMinigamePoint : MonoBehaviour
             for(int i=0;i<60;i++){
                 RectTransform rectTransform = AddPoint.GetComponent<RectTransform>();
                 // 毎フレーム少しずつ移動させる
-                rectTransform.anchoredPosition += new Vector2((-3.3f+6f) / 60f, (1.8f-2.5f) / 60f);
+                rectTransform.anchoredPosition += new Vector2((1.5f) / 60f, (1.5f) / 60f);
                 AddPoint.fontSize*=0.97f;
                 yield return new WaitForSeconds(0.5f/60);
             }
@@ -136,7 +204,8 @@ public class AddMinigamePoint : MonoBehaviour
             for(int i=0;i<60;i++){
                 RectTransform rectTransform = AddPoint.GetComponent<RectTransform>();
                 // 毎フレーム少しずつ移動させる
-                rectTransform.anchoredPosition += new Vector2((1.3f-4f) / 60f, (1.8f+2.5f) / 60f);
+                rectTransform.anchoredPosition += new Vector2((-2.4f) / 60f, (1.5f) / 60f);
+
                 AddPoint.fontSize*=0.97f;
                 yield return new WaitForSeconds(0.5f/60f);
             }
@@ -145,12 +214,16 @@ public class AddMinigamePoint : MonoBehaviour
         //Step4.シーン移動
 
         PointTextObj.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        AHanabi.SetActive(false);
+        BHanabi.SetActive(false);
 
         //SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
     }
 
     void DebugAddText(){
         if(Input.GetKeyDown(KeyCode.Return)){
+            PlusMinigamePoint('A',5);
             PlusMinigamePoint('B',5);
         }
     }
