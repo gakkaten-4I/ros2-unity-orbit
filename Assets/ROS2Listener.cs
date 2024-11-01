@@ -8,7 +8,6 @@ public class ROS2Listener : MonoBehaviour
 {
     private static ROS2UnityComponent ros2Unity;
     private static ROS2Node ros2Node;
-    public static bool isFieldOne = true; // フィールド1かどうか
     public static int BlueStart = 370; // 青チームのゴールの開始位置
     public static int BlueEnd = 840; // 青チームのゴールの終了位置
     public static int RedStart = 370; // 赤チームのゴールの開始位置
@@ -25,7 +24,7 @@ public class ROS2Listener : MonoBehaviour
     public GameObject debugCanvas;
     DebugTextController dc;
 
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -48,7 +47,7 @@ public class ROS2Listener : MonoBehaviour
             
         }
 
-        if (isFieldOne)
+        if (MenuManager.isFieldOne)
         {
             // カメラのPythonプログラムからの座標を受け取る
             PackCoord = ros2Node.CreateSubscription<geometry_msgs.msg.Vector3>(

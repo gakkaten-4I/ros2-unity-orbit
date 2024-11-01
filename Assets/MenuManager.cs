@@ -12,6 +12,8 @@ public class MenuManager : MonoBehaviour
     public TMP_InputField BlueEnd;
     public TMP_InputField RedStart;
     public TMP_InputField RedEnd;
+
+    public static bool isFieldOne = true;
     
     // Start is called before the first frame update
     void Start()
@@ -27,11 +29,11 @@ public class MenuManager : MonoBehaviour
         {
             if(IsFieldOne.isOn)
             {
-                ROS2Listener.isFieldOne = true;
+                isFieldOne = true;
             }
             else
             {
-                ROS2Listener.isFieldOne = false;
+                isFieldOne = false;
             }
             ROS2Listener.BlueStart = int.Parse(BlueStart.text);
             ROS2Listener.BlueEnd = int.Parse(BlueEnd.text);
