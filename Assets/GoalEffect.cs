@@ -22,10 +22,10 @@ public class GoalEffect : MonoBehaviour
     //goalテキスト
     public TextMeshProUGUI GoalText;
     private string displayText = "GOAL"; //表示するテキスト
-    private float bounceHeight = 50f;
-    private float bounceTime = 0.5f;
-    private float bounceDuration = 0.3f;
-    private float characterDelay = 0.5f;
+    private float bounceHeight = 25f;
+    private float bounceTime = 0.2f;
+    private float bounceDuration = 0.2f;
+    private float characterDelay = 0.2f;
 
     //ballの座標を取得する
     public GameObject targetObject;
@@ -44,9 +44,8 @@ public class GoalEffect : MonoBehaviour
             RectGoalText.sizeDelta = new Vector2(700,300);
             GoalText.fontSize = 200;
             GoalText.text = "";
-            GoalText.color = new Color(0.92f, 0.843f, 0f, 1f);
             GoalText.outlineColor = Color.white;
-            GoalText.outlineWidth = 0.2f;
+            GoalText.outlineWidth = 0.1f;
         }
         else
         {
@@ -60,8 +59,8 @@ public class GoalEffect : MonoBehaviour
     {
         Debug.Log("GoalEffect");
         Vector3 targetPosition = targetObject.transform.position;
-        StartCoroutine(DisplayBouncingText());
-        StartCoroutine(MakeCircle(x,targetPosition));
+        StartCoroutine(DisplayBouncingText(x));
+        //StartCoroutine(MakeCircle(x,targetPosition));
     }
 
     //波紋の元のなる円を作成するコード
@@ -97,10 +96,15 @@ public class GoalEffect : MonoBehaviour
 
 
     //GOALテキストを一文字ずつ表示する
-    IEnumerator DisplayBouncingText()
+    IEnumerator DisplayBouncingText(int x)
     {
         
         GoalText.text = "";  // 初期化
+        if(x == 1){
+            GoalText.color = new Color(1f, 0.25f, 0.18f, 1f);
+        }else{
+            GoalText.color = new Color(0.13f, 0.65f, 1f, 1f);
+        }
 
         for (int i = 0; i < displayText.Length; i++)
         {
