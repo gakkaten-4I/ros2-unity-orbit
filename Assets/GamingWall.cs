@@ -29,9 +29,7 @@ public class GamingWall : MonoBehaviour
         // オブジェクトのRendererを取得
         material = GetComponent<Renderer>().material;
 
-        Tmaterial = material;
         c = MainGameManager.IsFever;
-        Debug.Log(MainGameManager.IsFever);
         //c = true;
         if (c)
         {
@@ -61,18 +59,20 @@ public class GamingWall : MonoBehaviour
 
         // 取得したオブジェクトの色を変更
         material.SetColor("_EmissionColor",rainbowColor);
+        Debug.Log(Tmaterial == material);
 
         yield return new WaitForSeconds(Chnge_Color_Time);
     }
     private void UndoGaming()
     {
+        Debug.Log("UndoGaming");
         material=Tmaterial;
         return;
     }
-    private void Update()
+    void Update()
     {
         c = MainGameManager.IsFever;
-        Debug.Log(MainGameManager.IsFever);
+        //Debug.Log(MainGameManager.IsFever);
         //c = true;
         if (c)
         {
