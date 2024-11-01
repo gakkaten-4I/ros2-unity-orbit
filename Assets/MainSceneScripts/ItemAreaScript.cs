@@ -16,10 +16,25 @@ public class ItemAreaScript : MonoBehaviour
     private int ShieldSlot;
     private int BombSlot;
 
+    public GameObject ItemBox;
+    public GameObject ItemBoxOutline;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        /*
+        if(ItemBox != null)
+        {
+            ItemBox.transform.localScale = new Vector3( 1f, 1f, 1f);
+            SpriteRenderer BoxRendere = ItemBox.GetComponent<SpriteRenderer>();
+            BoxRendere.color = new Color(1f, 1f, 1f, 0.5f);
+        }
+        else
+        {
+            Debug.LogError("WhiteCurtainã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒæŒ‡å®šã•ã‚Œã¦ã„ã¾ã›ã‚“");
+        }
+        */
+        MakeItemBox();
     }
 
     // Update is called once per frame
@@ -87,10 +102,10 @@ public class ItemAreaScript : MonoBehaviour
 
     private IEnumerator SpawnItem(GameObject prefab, int slot, int delaySeconds)
     {
-        Vector3 slotPos = new Vector3(0, InitialY + slot*Upward, 0);
+        Vector3 slotPos = new Vector3(0, InitialY + slot * Upward, 0);
         GameObject obj = Instantiate(prefab, transform.position+slotPos , Quaternion.identity, transform);
         yield return new WaitForSeconds(delaySeconds);
-        // c‚è‚R•b‚Å“_–Å‚Æ‚©‚à‚ ‚è‚©‚à
+        // ï¿½cï¿½ï¿½Rï¿½bï¿½Å“_ï¿½Å‚Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è‚©ï¿½ï¿½
         Destroy(obj);
         ItemSlotAvailability[slot] = true;
     }
@@ -105,5 +120,20 @@ public class ItemAreaScript : MonoBehaviour
             }
         }
         return -1;
+    }
+
+    public void MakeItemBox()
+    {
+        for(int j=0; j<3; j++){
+            Vector3 boxPos = new Vector3(0, InitialY + j * Upward, 0);
+            GameObject boxOutline = Instantiate(ItemBoxOutline, transform.position+boxPos , Quaternion.identity, transform);
+            GameObject box = Instantiate(ItemBox, transform.position+boxPos , Quaternion.identity, transform);
+            
+        }
+    }
+
+    public void HideItemBox()
+    {
+
     }
 }
