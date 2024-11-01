@@ -3,7 +3,21 @@ guid: 7eb1a079542ee454d8d71d9ad83ee09b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - addPointOfA: {instanceID: 0}
+  - addPointOfB: {instanceID: 0}
+  - AddMessageOfA: {instanceID: 0}
+  - AddMessageOfB: {instanceID: 0}
+  - AddPointOfA: {instanceID: 0}
+  - AddPointOfB: {instanceID: 0}
+  - HanabiA1: {instanceID: 0}
+  - HanabiA2: {instanceID: 0}
+  - HanabiB1: {instanceID: 0}
+  - HanabiB2: {instanceID: 0}
+  - BigHanabi: {fileID: 21300000, guid: 767b49c6f117bbd42bf6c2a7fb3911a1, type: 3}
+  - MidHanabi: {instanceID: 0}
+  - SmlHanabi: {instanceID: 0}
+  - displayScoreManager: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

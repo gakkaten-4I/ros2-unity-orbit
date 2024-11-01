@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class MiniGameManager : MonoBehaviour
 {
     public bool IsMain;
+    public float additional = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,12 +24,14 @@ public class MiniGameManager : MonoBehaviour
         // 30秒間待つ
         // Time.timeScale の影響を受けずに実時間で30秒待つ
         yield return new WaitForSecondsRealtime(30f);
+        yield return new WaitForSecondsRealtime(additional);
         DelayMethod();
     }
 
     void DelayMethod()
-    {
-        SceneManager.LoadScene("MainScene");
+    {   
+        Initiate.Fade("MainScene", Color.black, 2.0f);
+        //SceneManager.LoadScene("MainScene");
     }
 
     // Update is called once per frame
