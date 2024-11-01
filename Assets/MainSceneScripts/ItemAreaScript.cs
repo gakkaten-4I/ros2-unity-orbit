@@ -83,6 +83,10 @@ public class ItemAreaScript : MonoBehaviour
             {
                 Destroy(child.gameObject);
             }
+            if (child.gameObject.tag == "ItemBox")
+            {
+                Destroy(child.gameObject);
+            }
         }
         ItemSlotAvailability[ShieldSlot]=true;
     }
@@ -95,6 +99,10 @@ public class ItemAreaScript : MonoBehaviour
             {
                 Destroy(child.gameObject);
             }
+            if (child.gameObject.tag == "ItemBox")
+            {
+                Destroy(child.gameObject);
+            }
         }
         ItemSlotAvailability[BombSlot] = true;
     }
@@ -102,7 +110,7 @@ public class ItemAreaScript : MonoBehaviour
     private IEnumerator SpawnItem(GameObject prefab, int slot, int delaySeconds)
     {
         Vector3 slotPos = new Vector3(0, InitialY + slot * Upward, 0);
-        GameObject obj = Instantiate(prefab, transform.position+slotPos , Quaternion.Euler(0, 0, 180), transform);
+        GameObject obj = Instantiate(prefab, transform.position+slotPos , Quaternion.identity, transform);
         GameObject boxOutline = Instantiate(ItemBoxOutline, transform.position+slotPos , Quaternion.identity, transform);
         GameObject box = Instantiate(ItemBox, transform.position+slotPos , Quaternion.identity, transform);
         yield return new WaitForSeconds(delaySeconds);
