@@ -46,7 +46,7 @@ public class BallManager : MonoBehaviour
 
         // 力を加える
         Vector3 forceDirection = new Vector3(1, 0.8f, 0); // xy方向に力を加える
-        rb.AddForce(forceDirection * 300f);
+        //rb.AddForce(forceDirection * 300f);
 
         //---------------------------------------------------------------------ここから初期値の代入、値の定義
         
@@ -82,9 +82,9 @@ public class BallManager : MonoBehaviour
         if (Time.frameCount % MarkFrate == 0)
         {
 
-            CreateTrajectory();//軌跡を生成
+            //CreateTrajectory();//軌跡を生成
 
-            CreatePrediction();//予測マークを生成   
+            //CreatePrediction();//予測マークを生成   
 
         }
 
