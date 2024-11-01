@@ -15,6 +15,11 @@ public class hitpoint : MonoBehaviour
     // Inspectorで設定するパーティクルPrefab
     public GameObject deathParticle;
 
+    public AudioClip sound1;
+    //public AudioClip sound2;
+
+    AudioSource audioSource; 
+
     void Start()
     {
         //dmg = boss.GetComponent<BossDefeatCounter>();  
@@ -29,6 +34,8 @@ public class hitpoint : MonoBehaviour
 
     // ダメージを与える関数
     public void Damage(){
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(sound1);
         hp -= 1;
         Debug.Log("Hit! HP: " + hp);
         if (BallManager.turn)
@@ -45,6 +52,24 @@ public class hitpoint : MonoBehaviour
 
         if (hp <= 0)
         {
+            audioSource = GetComponent<AudioSource>();
+            audioSource.volume = 0.8f;
+
+            GameObject obj = GameObject.Find("GameObject");
+    
+    // GameObjectが見つかった場合、そのオブジェクトにアタッチされている DeadSound スクリプトを取得
+                if (obj != null)
+                {
+                    DeadSound deadSoundScript = obj.GetComponent<DeadSound>();
+                    
+                    // DeadSound スクリプトが存在する場合、sound メソッドを呼び出す
+                    if (deadSoundScript != null)
+                    {
+                        deadSoundScript.sound();
+                    }
+
+                }
+
             Debug.Log("You Died!!");
 
             // パーティクルを生成して再生
