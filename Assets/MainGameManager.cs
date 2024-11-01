@@ -26,7 +26,7 @@ public class MainGameManager : MonoBehaviour
     public bool IsRedBombed = false;
     public bool IsBlueBombed = false;
     public bool IsCharged = false; // チャージャーが有効かどうか
-    public bool IsFever = false;
+    public bool IsFever = true;
     public bool IsRedShielded = false;
     public bool IsBlueShielded = false;
     public bool IsRedGoalable = true;
@@ -42,6 +42,8 @@ public class MainGameManager : MonoBehaviour
 
     GameObject RedSheild;
     GameObject BlueSheild;
+    GameObject BackGround;
+    Material material;
 
     private DisplayScoreManager DisplayScoreManager;
     private DisplayEnergyCountManager DisplayEnergyCountManager;
@@ -58,6 +60,7 @@ public class MainGameManager : MonoBehaviour
 
     public GameObject BluePost;
     public GameObject RedPost;
+
 
     // Start is called before the first frame update
     void Start()
@@ -246,6 +249,7 @@ public class MainGameManager : MonoBehaviour
     {
         IsFever = true;
         //TODO: フィーバーモードになったことがわかるビジュアルエフェクト
+
         //TODO: 場の効果をすべて無効にする処理
         
         biaScript.RemoveAllItems();
@@ -260,6 +264,7 @@ public class MainGameManager : MonoBehaviour
         yield return new WaitForSeconds(15);
         IsFever = false;
     }
+
 
     public void OnEnergyTaken()
     {
