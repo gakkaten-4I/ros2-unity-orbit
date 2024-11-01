@@ -115,7 +115,7 @@ public class MainGameManager : MonoBehaviour
         ScoreOfA.SetActive(false);
         ScoreOfB.SetActive(false);
         startCount.GameStartCount(5);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(6f);
         ball.SetActive(true);
         ScoreOfA.SetActive(true);
         ScoreOfB.SetActive(true);

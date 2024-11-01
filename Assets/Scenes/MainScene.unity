@@ -779,7 +779,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2168,6 +2168,8 @@ MonoBehaviour:
   GotextOfB: {fileID: 1937593347}
   startCountOfA: {fileID: 330099462}
   startCountOfB: {fileID: 2084664704}
+  gotextofA: {fileID: 1663779745}
+  gotextofB: {fileID: 1937593349}
 --- !u!1 &600815004
 GameObject:
   m_ObjectHideFlags: 0
