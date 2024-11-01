@@ -779,6 +779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound1: {fileID: 8300000, guid: b5fa09be835750e4491bf5288c87e920, type: 3}
+  sound2: {fileID: 0}
 --- !u!4 &143698829
 Transform:
   m_ObjectHideFlags: 0
@@ -2122,7 +2123,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556171482}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6135185f74024e343a1d874d927579eb, type: 3}
   m_Name: 
@@ -2159,7 +2160,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556171482}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6c1cbac078fe7f418c5f200296bcdaa, type: 3}
   m_Name: 
@@ -2228,7 +2229,7 @@ MonoBehaviour:
   timeLimit: 30
   remainingTime: 0
   bossBattleResult: {fileID: 650100461}
-  ball: {fileID: 0}
+  ball: {fileID: 556171482}
 --- !u!1 &594475435
 GameObject:
   m_ObjectHideFlags: 0
