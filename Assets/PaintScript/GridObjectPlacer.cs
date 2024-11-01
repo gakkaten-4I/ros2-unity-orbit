@@ -377,7 +377,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         
-        SceneManager.LoadScene("MainScene");
+        Initiate.Fade("MainScene", Color.black, 2.0f);
     }
 
 }
