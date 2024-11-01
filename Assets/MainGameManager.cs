@@ -127,11 +127,16 @@ public class MainGameManager : MonoBehaviour
             yield return new WaitForSeconds(5.5f);
             state = 0;
         }
+        IsBlueGoalable = false;
+        IsRedGoalable = false;
         startCount.GameStartCount(5);
         yield return new WaitForSeconds(6f);
         ball.SetActive(true);
+
         ScoreOfA.SetActive(true);
         ScoreOfB.SetActive(true);
+        IsBlueGoalable = true;
+        IsRedGoalable = true;
 
         itemManager.StartSpawn();
         // 60秒間待つ
