@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using Cinemachine;
 
 public class GoalEffect : MonoBehaviour
 {
+    
     //赤色エフェクト
     public GameObject RedCircle;
     //青色エフェクト
@@ -18,6 +20,7 @@ public class GoalEffect : MonoBehaviour
 
     //最大サイズ
     private Vector3 MaxScale = new Vector3(4f, 4f, 4f);
+    
 
     //goalテキスト
     public TextMeshProUGUI GoalText;
@@ -40,7 +43,7 @@ public class GoalEffect : MonoBehaviour
         if (GoalText != null)
         {
             RectTransform RectGoalText = GoalText.GetComponent<RectTransform>();
-            RectGoalText.anchoredPosition = new Vector3(0f, 0f, 0f);
+            RectGoalText.anchoredPosition = new Vector3(0f, -200f, 0f);
             RectGoalText.sizeDelta = new Vector2(700,300);
             GoalText.fontSize = 200;
             GoalText.text = "";
@@ -59,10 +62,14 @@ public class GoalEffect : MonoBehaviour
     {
         Debug.Log("GoalEffect");
         Vector3 targetPosition = targetObject.transform.position;
+        var impulseSource = GetComponent<CinemachineImpulseSource>();//振動の発生
+        impulseSource.GenerateImpulse();
         StartCoroutine(DisplayBouncingText(x));
         //StartCoroutine(MakeCircle(x,targetPosition));
     }
 
+
+    /*
     //波紋の元のなる円を作成するコード
     private IEnumerator MakeCircle(int x,Vector3 GoalPositon)
     {
@@ -93,8 +100,8 @@ public class GoalEffect : MonoBehaviour
         }
         Destroy(GoalCircle);
     }
-
-
+    */
+    
     //GOALテキストを一文字ずつ表示する
     IEnumerator DisplayBouncingText(int x)
     {
@@ -139,5 +146,4 @@ public class GoalEffect : MonoBehaviour
         // 元の位置に戻す
         GoalText.transform.localPosition = originalPosition;
     }
-
 }

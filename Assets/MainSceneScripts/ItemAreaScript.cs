@@ -34,7 +34,6 @@ public class ItemAreaScript : MonoBehaviour
             Debug.LogError("WhiteCurtainオブジェクトが指定されていません");
         }
         */
-        MakeItemBox();
     }
 
     // Update is called once per frame
@@ -104,6 +103,7 @@ public class ItemAreaScript : MonoBehaviour
     {
         Vector3 slotPos = new Vector3(0, InitialY + slot * Upward, 0);
         GameObject obj = Instantiate(prefab, transform.position+slotPos , Quaternion.identity, transform);
+        MakeItemBox(slot);
         yield return new WaitForSeconds(delaySeconds);
         // �c��R�b�œ_�łƂ������肩��
         Destroy(obj);
@@ -122,14 +122,11 @@ public class ItemAreaScript : MonoBehaviour
         return -1;
     }
 
-    public void MakeItemBox()
+    public void MakeItemBox(int x)
     {
-        for(int j=0; j<3; j++){
-            Vector3 boxPos = new Vector3(0, InitialY + j * Upward, 0);
-            GameObject boxOutline = Instantiate(ItemBoxOutline, transform.position+boxPos , Quaternion.identity, transform);
-            GameObject box = Instantiate(ItemBox, transform.position+boxPos , Quaternion.identity, transform);
-            
-        }
+        Vector3 boxPos = new Vector3(0, InitialY + x * Upward, 0);
+        GameObject boxOutline = Instantiate(ItemBoxOutline, transform.position+boxPos , Quaternion.identity, transform);
+        GameObject box = Instantiate(ItemBox, transform.position+boxPos , Quaternion.identity, transform);
     }
 
     public void HideItemBox()
