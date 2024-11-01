@@ -40,7 +40,7 @@ public class ItemManager : MonoBehaviour
     private void SpawnEnergy()
     {
         // Instantiate energy can
-        Instantiate(EnergyCanPrefab, EnergyCanSpawnPoint.position, Quaternion.identity);
+        Instantiate(EnergyCanPrefab, EnergyCanSpawnPoint.position,  Quaternion.Euler(0, 0, 180));
         
     }
     //public IEnumerator Emergence()
@@ -92,7 +92,7 @@ public class ItemManager : MonoBehaviour
             // Do anything
             Vector3 spawnPoint = ItemSpawnPoints[UnityEngine.Random.Range(0, ItemSpawnPoints.Length)].position;
             GameObject item = Items[UnityEngine.Random.Range(0, Items.Length)];
-            Instantiate(item, spawnPoint, Quaternion.identity);
+            Instantiate(item, spawnPoint, Quaternion.Euler(0, 0, 180));
             yield return new WaitForSeconds(15);
         }
     }

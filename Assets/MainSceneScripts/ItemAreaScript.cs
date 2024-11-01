@@ -88,9 +88,9 @@ public class ItemAreaScript : MonoBehaviour
     private IEnumerator SpawnItem(GameObject prefab, int slot, int delaySeconds)
     {
         Vector3 slotPos = new Vector3(0, InitialY + slot*Upward, 0);
-        GameObject obj = Instantiate(prefab, transform.position+slotPos , Quaternion.identity, transform);
+        GameObject obj = Instantiate(prefab, transform.position+slotPos ,  Quaternion.Euler(0, 0, 180), transform);
         yield return new WaitForSeconds(delaySeconds);
-        // Žc‚è‚R•b‚Å“_–Å‚Æ‚©‚à‚ ‚è‚©‚à
+        // ï¿½cï¿½ï¿½Rï¿½bï¿½Å“_ï¿½Å‚Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è‚©ï¿½ï¿½
         Destroy(obj);
         ItemSlotAvailability[slot] = true;
     }
