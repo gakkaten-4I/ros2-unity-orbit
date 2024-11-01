@@ -86,7 +86,7 @@ public class BossBattleGameManager : MonoBehaviour
         ball.SetActive(false);
         // 3秒後にシーン遷移
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene("MainScene");
+        Initiate.Fade("MainScene", Color.black, 2.0f);
     }
 
     public void OnBlueDamage()
