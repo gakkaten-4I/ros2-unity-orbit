@@ -24,6 +24,9 @@ public class ItemManager : MonoBehaviour
     float duration = 1.6f;  // n秒間
     float elapsedTime = 0f;
 
+    public GameObject item;
+    public Vector3 spawnPoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -94,8 +97,28 @@ public class ItemManager : MonoBehaviour
         while (true)
         {
             // Do anything
-            Vector3 spawnPoint = ItemSpawnPoints[UnityEngine.Random.Range(0, ItemSpawnPoints.Length)].position;
-            GameObject item = Items[UnityEngine.Random.Range(0, Items.Length)];
+            int j = UnityEngine.Random.Range(0, ItemSpawnPoints.Length);
+            //Vector3 spawnPoint = ItemSpawnPoints[UnityEngine.Random.Range(0, ItemSpawnPoints.Length)].position;
+            Vector3 TspawnPoint = ItemSpawnPoints[UnityEngine.Random.Range(0, ItemSpawnPoints.Length)].position;
+            int i = UnityEngine.Random.Range(0, Items.Length);
+            //GameObject item = Items[UnityEngine.Random.Range(0, Items.Length)];
+            GameObject Titem= Items[i];
+            if (item == Titem)
+            {
+                item= Items[(i+ UnityEngine.Random.Range(1, Items.Length))% Items.Length];
+            }
+            else
+            {
+                item = Titem;
+            }
+            if (spawnPoint == TspawnPoint)
+            {
+                spawnPoint = ItemSpawnPoints[(j + UnityEngine.Random.Range(0, ItemSpawnPoints.Length)) % ItemSpawnPoints.Length].position;
+            }
+            else
+            {
+                spawnPoint = TspawnPoint;
+            }
             Instantiate(item, spawnPoint, Quaternion.Euler(0, 0, 180));
             yield return new WaitForSeconds(15);
         }

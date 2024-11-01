@@ -19,6 +19,7 @@ public class MainGameManager : MonoBehaviour
     private TextMeshProUGUI ScoreTextOfA, ScoreTextOfB;
 
     public static int SceneMoveCount = 0; // 本番はこっち
+    public int GameSceneNumber;
     //private int SceneMoveCount = 0;
     public bool IsMain;
 
@@ -159,11 +160,17 @@ public class MainGameManager : MonoBehaviour
         }
 
         UnityEngine.Random.InitState(DateTime.Now.Millisecond);
-        int GameSceneNumber = UnityEngine.Random.Range(0, 3);
+        int TGameSceneNumber = UnityEngine.Random.Range(0, 3);
+        //二回連続で同じミニゲームが発生しないようにする
+        if (TGameSceneNumber == GameSceneNumber)
+        {
+            GameSceneNumber += UnityEngine.Random.Range(1, 3);
+            GameSceneNumber %= 3;
+        }
+        else GameSceneNumber = TGameSceneNumber;
         IsMain = false;
         switch (GameSceneNumber)
         {
-            
             case 0:
                 transToMinigame.StartAnimeOfTransMinigame("CoinGame");//ミニゲーム遷移アニメーションの開始
                 yield return new WaitForSeconds(6f);//ミニゲーム遷移アニメーションを行っている間待つ必要がある
@@ -180,7 +187,6 @@ public class MainGameManager : MonoBehaviour
                 SceneManager.LoadScene("BossBattle");
                 break;
         }
-
 
     }
     // Update is called once per frame
