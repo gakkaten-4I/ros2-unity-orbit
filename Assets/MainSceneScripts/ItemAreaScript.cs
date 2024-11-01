@@ -102,11 +102,14 @@ public class ItemAreaScript : MonoBehaviour
     private IEnumerator SpawnItem(GameObject prefab, int slot, int delaySeconds)
     {
         Vector3 slotPos = new Vector3(0, InitialY + slot * Upward, 0);
-        GameObject obj = Instantiate(prefab, transform.position+slotPos , Quaternion.identity, transform);
-        MakeItemBox(slot);
+        GameObject obj = Instantiate(prefab, transform.position+slotPos , Quaternion.Euler(0, 0, 180), transform);
+        GameObject boxOutline = Instantiate(ItemBoxOutline, transform.position+slotPos , Quaternion.identity, transform);
+        GameObject box = Instantiate(ItemBox, transform.position+slotPos , Quaternion.identity, transform);
         yield return new WaitForSeconds(delaySeconds);
         // �c��R�b�œ_�łƂ������肩��
         Destroy(obj);
+        Destroy(boxOutline);
+        Destroy(box);
         ItemSlotAvailability[slot] = true;
     }
 
@@ -120,13 +123,6 @@ public class ItemAreaScript : MonoBehaviour
             }
         }
         return -1;
-    }
-
-    public void MakeItemBox(int x)
-    {
-        Vector3 boxPos = new Vector3(0, InitialY + x * Upward, 0);
-        GameObject boxOutline = Instantiate(ItemBoxOutline, transform.position+boxPos , Quaternion.identity, transform);
-        GameObject box = Instantiate(ItemBox, transform.position+boxPos , Quaternion.identity, transform);
     }
 
     public void HideItemBox()
