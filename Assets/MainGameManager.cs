@@ -85,6 +85,7 @@ public class MainGameManager : MonoBehaviour
 
         AddMiniGameBonus(state);
 
+
         // コルーチンの起動
         StartCoroutine(DelayCoroutine());
 
@@ -110,7 +111,6 @@ public class MainGameManager : MonoBehaviour
             default:
                 break;
         }
-        state = 0;
         //DisplayScoreManager.ReflectScore();
     }
 
@@ -118,9 +118,15 @@ public class MainGameManager : MonoBehaviour
     // コルーチン本体
     private IEnumerator DelayCoroutine()
     {
+        
         ball.SetActive(false);
         ScoreOfA.SetActive(false);
         ScoreOfB.SetActive(false);
+        if (state != 0)
+        {
+            yield return new WaitForSeconds(5.5f);
+            state = 0;
+        }
         startCount.GameStartCount(5);
         yield return new WaitForSeconds(6f);
         ball.SetActive(true);
