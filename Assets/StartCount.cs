@@ -113,11 +113,11 @@ public class StartCount : MonoBehaviour
         gotextofB.fontSize=300f;
         */
 
-        Vector3 rotationSpeed = new Vector3(0, 0, 45);
+        Vector3 rotationSpeed = new Vector3(0, 0, 50);
 
         for(int i=0;i<20;i++){
-            gotextofA.fontSize+=20f*i/25f;
-            gotextofB.fontSize+=20f*i/25f;
+            gotextofA.fontSize+=15f*i/25f;
+            gotextofB.fontSize+=15f*i/25f;
             GotextOfA.transform.Rotate(rotationSpeed);
             GotextOfB.transform.Rotate(rotationSpeed);
 
