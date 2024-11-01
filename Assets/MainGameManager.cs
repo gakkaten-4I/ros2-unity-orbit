@@ -52,6 +52,14 @@ public class MainGameManager : MonoBehaviour
     private ItemAreaScript riaScript;
 
     public TransToMinigame transToMinigame;//ミニゲーム遷移時のアニメーションのため、TranToMinigame.csを参照する
+    public StartCount startCount;//ゲーム開始のカウントダウンのため、StartCount.csを参照する
+
+    public GameObject ball;
+    public GameObject ScoreOfA;
+    public GameObject ScoreOfB;
+
+    public GameObject BluePost;
+    public GameObject RedPost;
 
 
     // Start is called before the first frame update
@@ -75,6 +83,9 @@ public class MainGameManager : MonoBehaviour
 
         // コルーチンの起動
         StartCoroutine(DelayCoroutine());
+
+        // シーン読み込み時にエナジー缶の数を更新
+        DisplayEnergyCountManager.ReflectCount(EnergyCount);
     }
 
     private void AddMiniGameBonus(int State)
@@ -99,11 +110,20 @@ public class MainGameManager : MonoBehaviour
         //DisplayScoreManager.ReflectScore();
     }
 
+
     // コルーチン本体
     private IEnumerator DelayCoroutine()
     {
-        //Debug.Log("-----------------------------------------------------");
+        ball.SetActive(false);
+        ScoreOfA.SetActive(false);
+        ScoreOfB.SetActive(false);
+        startCount.GameStartCount(5);
+        yield return new WaitForSeconds(5f);
+        ball.SetActive(true);
+        ScoreOfA.SetActive(true);
+        ScoreOfB.SetActive(true);
 
+        itemManager.StartSpawn();
         // 60秒間待つ
         // Time.timeScale の影響を受けずに実時間で60秒待つ
         yield return new WaitForSecondsRealtime(60);
@@ -118,14 +138,17 @@ public class MainGameManager : MonoBehaviour
     private IEnumerator delayMethod()
     {
         ++SceneMoveCount;
-        if(SceneMoveCount >= 3)
+        
+
+        transToMinigame.StartCountdownOfMinigame(5);
+        yield return new WaitForSeconds(5f);
+        ball.SetActive(false);
+        if (SceneMoveCount >= 3)
         {
             SceneManager.LoadScene("ResultScene");
         }
 
-        transToMinigame.StartCountdownOfMinigame(5);
-        yield return new WaitForSeconds(5f);
-        
+
         int GameSceneNumber = UnityEngine.Random.Range(0, 3);
         IsMain = false;
         switch (GameSceneNumber)
@@ -356,16 +379,20 @@ public class MainGameManager : MonoBehaviour
     {
         IsBlueGoalable = false;
         //TODO: 無敵状態な事がわかるビジュアルエフェクト
+        BluePost.SetActive(false);
         yield return new WaitForSeconds(5); // 5秒間ゴールは無視される
         IsBlueGoalable = true;
+        BluePost.SetActive(true);
     }
 
     public IEnumerator SetRedInvincible()
     {
         IsRedGoalable = false;
         //TODO: 無敵状態な事がわかるビジュアルエフェクト
+        RedPost.SetActive(false);
         yield return new WaitForSeconds(5); // 5秒間ゴールは無視される
         IsRedGoalable = true;
+        RedPost.SetActive(true);
     }
 
 }
