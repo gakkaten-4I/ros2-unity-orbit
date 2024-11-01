@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -23,13 +23,13 @@ public class ResultManager : MonoBehaviour
     }
     private IEnumerator ResultAnimation()
     {
-        // ‘Ò‹@
+        // å¾…æ©Ÿ
         yield return new WaitForSeconds(3f);
 
-        // “¾“_•\¦
+        // å¾—ç‚¹è¡¨ç¤º
         yield return StartCoroutine(ShowWinner());
 
-        //I‚í‚è
+        //çµ‚ã‚ã‚Š
         yield return StartCoroutine(Thanks());
     }
     private IEnumerator ShowWinner()
@@ -39,7 +39,7 @@ public class ResultManager : MonoBehaviour
 
         if (MainGameManager.PointOfA != MainGameManager.PointOfB)
         {
-            //LEFT(Â)‚ªŸ‚Á‚½‚ç
+            //LEFT(é’)ãŒå‹ã£ãŸã‚‰
             if (MainGameManager.PointOfA > MainGameManager.PointOfB)
             {
                 YouWinForm.anchoredPosition = new Vector2(-350, -50);
@@ -50,7 +50,7 @@ public class ResultManager : MonoBehaviour
                 YouLoseForm.rotation = Quaternion.Euler(0, 0, 90);
                 YouLose.color = new Color32(191, 7, 5, 255);
             }
-            //Right(Ô)‚ªŸ‚Á‚½‚ç
+            //Right(èµ¤)ãŒå‹ã£ãŸã‚‰
             else if (MainGameManager.PointOfA < MainGameManager.PointOfB)
             {
                 YouWinForm.anchoredPosition = new Vector2(350, 50);
@@ -72,7 +72,7 @@ public class ResultManager : MonoBehaviour
         {
             DrawLeft.color = new Color32(0, 15, 191, 255);
             DrawRight.color = new Color32(191, 7, 5, 255);
-            //“¯“_‚¾‚Á‚½‚ç
+            //åŒç‚¹ã ã£ãŸã‚‰
             for (int i = 0; i < 8; i++)
             {
                 DrawRight.enabled = !DrawRight.enabled;
@@ -97,16 +97,17 @@ public class ResultManager : MonoBehaviour
         EndGame();
     }
 
-    //ƒQ[ƒ€I—¹
+    //ã‚²ãƒ¼ãƒ çµ‚äº†
     private void EndGame()
     {
-        //Esc‚ª‰Ÿ‚³‚ê‚½
+        //EscãŒæŠ¼ã•ã‚ŒãŸæ™‚
         if (Input.GetKey(KeyCode.Escape))
         {
-        //if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;//ƒQ[ƒ€ƒvƒŒƒCI—¹
-        //else
-            //Application.Quit();//ƒQ[ƒ€ƒvƒŒƒCI—¹
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;//ã‚²ãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤çµ‚äº†
+#else
+            Application.Quit();//ã‚²ãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤çµ‚äº†
+#endif
         }
 
     }
