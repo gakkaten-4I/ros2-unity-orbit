@@ -5628,6 +5628,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: prediction
       objectReference: {fileID: 0}
+    - target: {fileID: 60265431807205910, guid: c37667d66e5ddbb49b385051108beefc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 60265431807205928, guid: c37667d66e5ddbb49b385051108beefc, type: 3}
       propertyPath: m_RootOrder
       value: 7
