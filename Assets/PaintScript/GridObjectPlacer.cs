@@ -41,7 +41,7 @@ public class GridObjectPlacerXZ : MonoBehaviour
 
         miniGameManager = GetComponent<MiniGameManager>();
 
-        miniGameManager.additional = 3f;
+        miniGameManager.additional = 6f;
 
         PlaceObjectsInGrid();
         StartCoroutine(WaitAndCallPlus(7f));
