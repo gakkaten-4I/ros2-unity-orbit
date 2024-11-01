@@ -158,7 +158,7 @@ public class MainGameManager : MonoBehaviour
             SceneManager.LoadScene("ResultScene");
         }
 
-
+        UnityEngine.Random.InitState(DateTime.Now.Millisecond);
         int GameSceneNumber = UnityEngine.Random.Range(0, 3);
         IsMain = false;
         switch (GameSceneNumber)
