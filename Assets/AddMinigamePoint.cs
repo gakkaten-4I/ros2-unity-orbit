@@ -16,8 +16,10 @@ public class AddMinigamePoint : MonoBehaviour
     public GameObject HanabiA1,HanabiA2,HanabiB1,HanabiB2;//花火演出
     public Sprite BigHanabi,MidHanabi,SmlHanabi;//大きい花火、中ぐらいの花火、小さい花火の絵
 
-    public GameObject BigHanabiObj;
-    public GameObject SmallHanabiObj;
+    public GameObject AHanabi;
+    public GameObject BHanabi;
+
+
 
     public DisplayScoreManager displayScoreManager;//関数の呼び出しをため、DisplayScoreManager.csを取得
 
@@ -76,7 +78,17 @@ public class AddMinigamePoint : MonoBehaviour
             rectTransform.anchoredPosition = new Vector2(2f,-2.5f);
             AddPoint.fontSize=150f;
         }
+        
         PointTextObj.SetActive(true);
+
+                if (winteam == 'A')
+                {
+                    AHanabi.SetActive(true);
+                }
+                else
+                {
+                    BHanabi.SetActive(true);
+                }
 
         AddPoint.text=""+0+"";
 
@@ -131,16 +143,9 @@ public class AddMinigamePoint : MonoBehaviour
             if (i == 0)
             {
                 // 勝ったチームに応じた花火位置でオブジェクト生成
-                if (winteam == 'A')
-                {
-                    Instantiate(SmallHanabiObj, new Vector3(7.5f, -2f, 0), Quaternion.identity);
-                }
-                else
-                {
-                    Instantiate(SmallHanabiObj, new Vector3(14.5f, -2f, 0), Quaternion.identity);
-                }
+ 
             }
-            else if (i == 10)
+            /*else if (i == 10)
             {
                 if (winteam == 'A')
                 {
@@ -174,7 +179,7 @@ public class AddMinigamePoint : MonoBehaviour
                 {
                     Instantiate(BigHanabiObj, new Vector3(10.5f, -2f, 0), Quaternion.identity);
                 }
-            }
+            }*/
 
 
             if (i > 30)
@@ -209,6 +214,9 @@ public class AddMinigamePoint : MonoBehaviour
         //Step4.シーン移動
 
         PointTextObj.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        AHanabi.SetActive(false);
+        BHanabi.SetActive(false);
 
         //SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
     }
