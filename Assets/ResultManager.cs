@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -23,13 +23,13 @@ public class ResultManager : MonoBehaviour
     }
     private IEnumerator ResultAnimation()
     {
-        // ë“ã@
+        // ÂæÖÊ©ü
         yield return new WaitForSeconds(3f);
 
-        // ìæì_ï\é¶
+        // ÂæóÁÇπË°®Á§∫
         yield return StartCoroutine(ShowWinner());
 
-        //èIÇÌÇË
+        //ÁµÇ„Çè„Çä
         yield return StartCoroutine(Thanks());
     }
     private IEnumerator ShowWinner()
@@ -39,7 +39,7 @@ public class ResultManager : MonoBehaviour
 
         if (MainGameManager.PointOfA != MainGameManager.PointOfB)
         {
-            //LEFT(ê¬)Ç™èüÇ¡ÇΩÇÁ
+            //LEFT(Èùí)„ÅåÂãù„Å£„Åü„Çâ
             if (MainGameManager.PointOfA > MainGameManager.PointOfB)
             {
                 YouWinForm.anchoredPosition = new Vector2(-200, -50);
@@ -50,7 +50,7 @@ public class ResultManager : MonoBehaviour
                 YouLoseForm.rotation = Quaternion.Euler(0, 0, 90);
                 YouLose.color = new Color32(191, 7, 5, 255);
             }
-            //Right(ê‘)Ç™èüÇ¡ÇΩÇÁ
+            //Right(Ëµ§)„ÅåÂãù„Å£„Åü„Çâ
             else if (MainGameManager.PointOfA < MainGameManager.PointOfB)
             {
                 YouWinForm.anchoredPosition = new Vector2(200, 50);
@@ -61,6 +61,7 @@ public class ResultManager : MonoBehaviour
                 YouLoseForm.rotation = Quaternion.Euler(0, 0, 270);
                 YouLose.color = new Color32(0, 15, 191, 255);
             }
+            GetComponent<AudioSource>().Play();
             for (int i = 0; i < 8; i++)
             {
                 YouWin.enabled = !YouWin.enabled;
@@ -72,7 +73,9 @@ public class ResultManager : MonoBehaviour
         {
             DrawLeft.color = new Color32(0, 15, 191, 255);
             DrawRight.color = new Color32(191, 7, 5, 255);
-            //ìØì_ÇæÇ¡ÇΩÇÁ
+
+            //ÔøΩÔøΩÔøΩ_ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ
+            GetComponent<AudioSource>().Play();
             for (int i = 0; i < 8; i++)
             {
                 DrawRight.enabled = !DrawRight.enabled;
@@ -97,16 +100,17 @@ public class ResultManager : MonoBehaviour
         EndGame();
     }
 
-    //ÉQÅ[ÉÄèIóπ
+    //„Ç≤„Éº„É†ÁµÇ‰∫Ü
     private void EndGame()
     {
-        //EscÇ™âüÇ≥ÇÍÇΩéû
+        //Esc„ÅåÊäº„Åï„Çå„ÅüÊôÇ
         if (Input.GetKey(KeyCode.Escape))
         {
-        //if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;//ÉQÅ[ÉÄÉvÉåÉCèIóπ
-        //else
-            //Application.Quit();//ÉQÅ[ÉÄÉvÉåÉCèIóπ
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;//„Ç≤„Éº„É†„Éó„É¨„Ç§ÁµÇ‰∫Ü
+#else
+            Application.Quit();//„Ç≤„Éº„É†„Éó„É¨„Ç§ÁµÇ‰∫Ü
+#endif
         }
 
     }
