@@ -22,7 +22,7 @@ public class EndDeclaration : MonoBehaviour
         // 左側のテキスト設定
         RectTransform rectTransform1 = textMeshPro1.GetComponent<RectTransform>();
         startPosition1 = rectTransform1.anchoredPosition + new Vector2(0, -startOffsetY);
-        endPosition1 = new Vector2(-350, rectTransform1.anchoredPosition.y);
+        endPosition1 = new Vector2(-175, rectTransform1.anchoredPosition.y);
         rectTransform1.anchoredPosition = startPosition1;
         rectTransform1.localRotation = Quaternion.Euler(0, 0, 270);
 
@@ -35,7 +35,7 @@ public class EndDeclaration : MonoBehaviour
         // 右側のテキスト設定
         RectTransform rectTransform2 = textMeshPro2.GetComponent<RectTransform>();
         startPosition2 = rectTransform2.anchoredPosition + new Vector2(0, startOffsetY);
-        endPosition2 = new Vector2(350, rectTransform2.anchoredPosition.y);
+        endPosition2 = new Vector2(175, rectTransform2.anchoredPosition.y);
         rectTransform2.anchoredPosition = startPosition2;
         rectTransform2.localRotation = Quaternion.Euler(0, 0, 90);
 

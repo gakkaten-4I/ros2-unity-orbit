@@ -42,22 +42,22 @@ public class ResultManager : MonoBehaviour
             //LEFT(ê¬)Ç™èüÇ¡ÇΩÇÁ
             if (MainGameManager.PointOfA > MainGameManager.PointOfB)
             {
-                YouWinForm.anchoredPosition = new Vector2(-350, -50);
+                YouWinForm.anchoredPosition = new Vector2(-200, -50);
                 YouWinForm.rotation = Quaternion.Euler(0, 0, 270);
                 YouWin.color = new Color32(0,15,191,255);
 
-                YouLoseForm.anchoredPosition = new Vector2(350, 20);
+                YouLoseForm.anchoredPosition = new Vector2(200, 20);
                 YouLoseForm.rotation = Quaternion.Euler(0, 0, 90);
                 YouLose.color = new Color32(191, 7, 5, 255);
             }
             //Right(ê‘)Ç™èüÇ¡ÇΩÇÁ
             else if (MainGameManager.PointOfA < MainGameManager.PointOfB)
             {
-                YouWinForm.anchoredPosition = new Vector2(350, 50);
+                YouWinForm.anchoredPosition = new Vector2(200, 50);
                 YouWinForm.rotation = Quaternion.Euler(0, 0, 90);
                 YouWin.color = new Color32(191, 7, 5, 255);
 
-                YouLoseForm.anchoredPosition = new Vector2(-350, -20);
+                YouLoseForm.anchoredPosition = new Vector2(-200, -20);
                 YouLoseForm.rotation = Quaternion.Euler(0, 0, 270);
                 YouLose.color = new Color32(0, 15, 191, 255);
             }

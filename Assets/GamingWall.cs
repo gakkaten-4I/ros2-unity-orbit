@@ -9,6 +9,7 @@ public class GamingWall : MonoBehaviour
     private Material material, Tmaterial;
     [SerializeField] GameObject MainGameManagerobj;
     MainGameManager MainGameManager;
+    private Color Tcolor;
     bool c;
 
     public float Chnge_Color_Time = 2f;
@@ -28,6 +29,8 @@ public class GamingWall : MonoBehaviour
         MainGameManager = MainGameManagerobj.GetComponent<MainGameManager>();
         // オブジェクトのRendererを取得
         material = GetComponent<Renderer>().material;
+        Tmaterial =GetComponent<Renderer>().material;
+        Tcolor= material.GetColor("_EmissionColor");
 
         c = MainGameManager.IsFever;
         //c = true;
@@ -59,21 +62,19 @@ public class GamingWall : MonoBehaviour
 
         // 取得したオブジェクトの色を変更
         material.SetColor("_EmissionColor",rainbowColor);
-        Debug.Log(Tmaterial == material);
 
         yield return new WaitForSeconds(Chnge_Color_Time);
     }
     private void UndoGaming()
     {
-        Debug.Log("UndoGaming");
-        material=Tmaterial;
+        Debug.Log("UndoGaming: "+(material==Tmaterial));
+        //material=Tmaterial;
+        material.SetColor("_EmissionColor",Tcolor);
         return;
     }
     void Update()
     {
         c = MainGameManager.IsFever;
-        //Debug.Log(MainGameManager.IsFever);
-        //c = true;
         if (c)
         {
             StartCoroutine(Gaming());
