@@ -25,7 +25,7 @@ public class MenuManager : MonoBehaviour
     void Update()
     {
         // キーが押されたらシーンを切り替える
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             if(IsFieldOne.isOn)
             {
