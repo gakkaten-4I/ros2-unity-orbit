@@ -19,7 +19,7 @@ public class MainGameManager : MonoBehaviour
     private TextMeshProUGUI ScoreTextOfA, ScoreTextOfB;
 
     public static int SceneMoveCount = 0; // 本番はこっち
-    public int GameSceneNumber;
+    public static int GameSceneNumber=-1;
     //private int SceneMoveCount = 0;
     public bool IsMain;
 
@@ -172,7 +172,10 @@ public class MainGameManager : MonoBehaviour
             GameSceneNumber += UnityEngine.Random.Range(1, 3);
             GameSceneNumber %= 3;
         }
-        else GameSceneNumber = TGameSceneNumber;
+        else
+        {
+            GameSceneNumber = TGameSceneNumber;
+        }
         IsMain = false;
         switch (GameSceneNumber)
         {
