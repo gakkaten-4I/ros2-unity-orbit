@@ -123,13 +123,13 @@ public class MainGameManager : MonoBehaviour
         ball.SetActive(false);
         ScoreOfA.SetActive(false);
         ScoreOfB.SetActive(false);
+        IsBlueGoalable = false;
+        IsRedGoalable = false;
         if (state != 0)
         {
             yield return new WaitForSeconds(5.5f);
             state = 0;
         }
-        IsBlueGoalable = false;
-        IsRedGoalable = false;
         startCount.GameStartCount(3);
         yield return new WaitForSeconds(4f);
         ball.SetActive(true);
