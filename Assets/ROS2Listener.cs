@@ -1,4 +1,5 @@
 using ROS2;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -43,7 +44,9 @@ public class ROS2Listener : MonoBehaviour
         }
         if (ros2Node == null && ros2Unity.Ok())
         {
-            ros2Node = ros2Unity.CreateNode("ROS2UnityListenerNode");
+            string ros2NodeName = "ROS2UnityListenerNode" + DateTime.Now.Millisecond.ToString();
+            UnityEngine.Debug.Log(ros2NodeName);
+            ros2Node = ros2Unity.CreateNode(ros2NodeName);
             
         }
 

@@ -96,7 +96,7 @@ public class HPBar : MonoBehaviour
         //hpBarImage.GetComponent<RectTransform>().pivot = new Vector2(0, 0.5f);
 
         hpBarImage.transform.localScale = new Vector3((float)currentHP/initialHP, 1.0f, 1.0f);
-        Debug.Log("green");
+        //Debug.Log("green");
 
         
         if(currentHP <=30){

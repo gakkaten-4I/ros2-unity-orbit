@@ -9,6 +9,8 @@ public class ResultManager : MonoBehaviour
     private TextMeshProUGUI YouWin, YouLose, DrawRight, DrawLeft, ThanksRight, ThanksLeft;
     RectTransform YouWinForm;
     RectTransform YouLoseForm;
+    [SerializeField]
+    private TextMeshProUGUI RightRedPoint, RightBluePoint, LeftRedPoint, LeftBluePoint;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +21,10 @@ public class ResultManager : MonoBehaviour
         DrawLeft.enabled = false;
         ThanksLeft.enabled = false;
         ThanksRight.enabled = false;
+        RightRedPoint.enabled = false;
+        LeftRedPoint.enabled = false;  
+        LeftBluePoint.enabled = false;
+        RightBluePoint.enabled = false;
         StartCoroutine(ResultAnimation());
     }
     private IEnumerator ResultAnimation()
@@ -37,29 +43,41 @@ public class ResultManager : MonoBehaviour
         RectTransform YouWinForm = YouWin.GetComponent<RectTransform>();
         RectTransform YouLoseForm = YouLose.GetComponent<RectTransform>();
 
+        LeftRedPoint.text = "" + MainGameManager.PointOfB + "";
+        LeftRedPoint.color = new Color32(191, 7, 5, 255);
+        LeftBluePoint.text = "" + MainGameManager.PointOfA + ":";
+        LeftBluePoint.color = new Color32(0, 15, 191, 255);
+        RightRedPoint.text = "" + MainGameManager.PointOfB + ":";
+        RightRedPoint.color = new Color32(191, 7, 5, 255);
+        RightBluePoint.text = "" + MainGameManager.PointOfA + "";
+        RightBluePoint.color = new Color32(0, 15, 191, 255);
+
         if (MainGameManager.PointOfA != MainGameManager.PointOfB)
         {
             //LEFT(青)が勝ったら
             if (MainGameManager.PointOfA > MainGameManager.PointOfB)
             {
-                YouWinForm.anchoredPosition = new Vector2(-200, -50);
+                YouWinForm.anchoredPosition = new Vector2(-200, 0);
                 YouWinForm.rotation = Quaternion.Euler(0, 0, 270);
                 YouWin.color = new Color32(0,15,191,255);
 
-                YouLoseForm.anchoredPosition = new Vector2(200, 20);
+                YouLoseForm.anchoredPosition = new Vector2(200, 0);
                 YouLoseForm.rotation = Quaternion.Euler(0, 0, 90);
                 YouLose.color = new Color32(191, 7, 5, 255);
+
+                
             }
             //Right(赤)が勝ったら
             else if (MainGameManager.PointOfA < MainGameManager.PointOfB)
             {
-                YouWinForm.anchoredPosition = new Vector2(200, 50);
+                YouWinForm.anchoredPosition = new Vector2(200, 0);
                 YouWinForm.rotation = Quaternion.Euler(0, 0, 90);
                 YouWin.color = new Color32(191, 7, 5, 255);
 
-                YouLoseForm.anchoredPosition = new Vector2(-200, -20);
+                YouLoseForm.anchoredPosition = new Vector2(-200, 0);
                 YouLoseForm.rotation = Quaternion.Euler(0, 0, 270);
                 YouLose.color = new Color32(0, 15, 191, 255);
+
             }
             GetComponent<AudioSource>().Play();
             for (int i = 0; i < 8; i++)
@@ -83,11 +101,19 @@ public class ResultManager : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
             }
         }
+        RightRedPoint.enabled = false;
+        LeftRedPoint.enabled = false;
+        LeftBluePoint.enabled = false;
+        RightBluePoint.enabled = false;
         yield break;    
     }
 
     private IEnumerator Thanks()
     {
+        RightRedPoint.enabled = true;
+        LeftRedPoint.enabled = true;
+        RightBluePoint.enabled = true;
+        LeftBluePoint.enabled = true;
         ThanksLeft.enabled = true;
         ThanksRight.enabled = true;
         yield break;
