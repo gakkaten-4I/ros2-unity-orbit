@@ -57,11 +57,11 @@ public class ResultManager : MonoBehaviour
             //LEFT(青)が勝ったら
             if (MainGameManager.PointOfA > MainGameManager.PointOfB)
             {
-                YouWinForm.anchoredPosition = new Vector2(-200, -50);
+                YouWinForm.anchoredPosition = new Vector2(-200, 0);
                 YouWinForm.rotation = Quaternion.Euler(0, 0, 270);
                 YouWin.color = new Color32(0,15,191,255);
 
-                YouLoseForm.anchoredPosition = new Vector2(200, 20);
+                YouLoseForm.anchoredPosition = new Vector2(200, 0);
                 YouLoseForm.rotation = Quaternion.Euler(0, 0, 90);
                 YouLose.color = new Color32(191, 7, 5, 255);
 
@@ -70,11 +70,11 @@ public class ResultManager : MonoBehaviour
             //Right(赤)が勝ったら
             else if (MainGameManager.PointOfA < MainGameManager.PointOfB)
             {
-                YouWinForm.anchoredPosition = new Vector2(200, 50);
+                YouWinForm.anchoredPosition = new Vector2(200, 0);
                 YouWinForm.rotation = Quaternion.Euler(0, 0, 90);
                 YouWin.color = new Color32(191, 7, 5, 255);
 
-                YouLoseForm.anchoredPosition = new Vector2(-200, -20);
+                YouLoseForm.anchoredPosition = new Vector2(-200, 0);
                 YouLoseForm.rotation = Quaternion.Euler(0, 0, 270);
                 YouLose.color = new Color32(0, 15, 191, 255);
 
