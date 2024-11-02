@@ -84,10 +84,6 @@ public class ResultManager : MonoBehaviour
             {
                 YouWin.enabled = !YouWin.enabled;
                 YouLose.enabled = !YouLose.enabled;
-                RightRedPoint.enabled = !YouWin.enabled; 
-                RightBluePoint.enabled = !YouWin.enabled;
-                LeftBluePoint.enabled = !YouWin.enabled;
-                LeftRedPoint.enabled = !YouWin.enabled;
                 yield return new WaitForSeconds(0.5f);
             }
         }
@@ -102,10 +98,6 @@ public class ResultManager : MonoBehaviour
             {
                 DrawRight.enabled = !DrawRight.enabled;
                 DrawLeft.enabled = !DrawLeft.enabled;
-                RightRedPoint.enabled = !DrawLeft.enabled;
-                RightBluePoint.enabled = !DrawLeft.enabled;
-                LeftBluePoint.enabled = !DrawLeft.enabled;
-                LeftRedPoint.enabled = !DrawLeft.enabled;
                 yield return new WaitForSeconds(0.5f);
             }
         }
@@ -118,6 +110,10 @@ public class ResultManager : MonoBehaviour
 
     private IEnumerator Thanks()
     {
+        RightRedPoint.enabled = true;
+        LeftRedPoint.enabled = true;
+        RightBluePoint.enabled = true;
+        LeftBluePoint.enabled = true;
         ThanksLeft.enabled = true;
         ThanksRight.enabled = true;
         yield break;
