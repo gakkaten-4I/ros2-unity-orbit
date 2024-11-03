@@ -779,7 +779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound1: {fileID: 8300000, guid: b5fa09be835750e4491bf5288c87e920, type: 3}
-  sound2: {fileID: 0}
+  sound2: {fileID: 8300000, guid: f6ef9243e35ebde4abe82df8d32c937b, type: 3}
 --- !u!4 &143698829
 Transform:
   m_ObjectHideFlags: 0
@@ -6329,7 +6329,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.237
   m_Pitch: 1
   Loop: 0
   Mute: 0
